@@ -1,0 +1,81 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  auth0UserId   String    @unique
+  email         String    @unique
+  name          String 
+  password      String
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  favorite_songs      Favorite_Song[]
+  favorite_artists    Favorite_Artist[]
+  playlists           Playlist[]
+  histories           History[]
+}
+
+model Favorite_Song {
+  id            Int      @id @default(autoincrement())
+  user_id       String
+  api_song_id   Int
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  user   User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model Favorite_Artist {
+  id            Int      @id @default(autoincrement())
+  user_id       String
+  api_artist_id Int
+  user    User  @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model Playlist {
+  id            Int      @id @default(autoincrement())
+  user_id       String
+  name          String
+  user    User  @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  playlist_songs    Playlist_Song[]
+}
+
+model Playlist_Song {
+  id            Int       @id @default(autoincrement())
+  playlist_id   Int
+  api_song_id   Int
+  playlist    Playlist  @relation(fields: [playlist_id], references: [id], onDelete: Cascade)
+}
+
+model History {
+  id            Int       @id @default(autoincrement())
+  user_id       String
+  api_song_id   Int
+  user    User  @relation(fields: [user_id], references: [id], onDelete: Cascade)
+}
+
+model Pick {
+  id            Int       @id @default(autoincrement())
+  title         String
+  description   String
+  image         String
+  pick_songs    Pick_Song[]
+}
+
+model Pick_Song {
+  id            Int       @id @default(autoincrement())
+  pick_id      Int
+  api_song_id   Int
+  pick    Pick  @relation(fields: [pick_id], references: [id], onDelete: Cascade)
+}
