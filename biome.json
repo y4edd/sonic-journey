@@ -15,7 +15,7 @@
     "ignore": [],
     "indentStyle": "space",
     "indentSize": 2,
-    "lineWidth": 120,
+    "lineWidth": 100,
     "bracketSpacing": true
   },
   "organizeImports": {
