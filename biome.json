@@ -7,14 +7,14 @@
   },
   "files": {
     "ignoreUnknown": false,
-    "ignore": ["node_modules", ".next","*.lock"]
+    "ignore": ["node_modules", ".next", "*.lock"]
   },
   "formatter": {
     "enabled": true,
     "formatWithErrors": true,
     "ignore": [],
     "indentStyle": "space",
-    "indentSize": 2,
+    "indentWidth": 2,
     "lineWidth": 100,
     "bracketSpacing": true
   },
@@ -37,8 +37,8 @@
   "javascript": {
     "formatter": {
       "quoteStyle": "double",
-			"semicolons": "always",
-			"arrowParentheses": "always"
+      "semicolons": "always",
+      "arrowParentheses": "always"
     }
   }
 }
