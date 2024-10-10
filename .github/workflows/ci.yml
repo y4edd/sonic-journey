@@ -7,7 +7,7 @@ on:
 
 
 jobs:
-  build:
+  run-biome-and-jest:
     runs-on: ubuntu-latest
 
     strategy:
@@ -22,12 +22,14 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Build
-      run: |
-        yarn install
+    - name: Install Dependencies
+      run: yarn install
+
+    - name: Check format
+      run: yarn biome format 
+
+    - name: Check Lint
+      run: yarn biome check
   
-    - name: Biome
-      run: yarn biome format --write .
-    
     - name: Test
       run: yarn test
