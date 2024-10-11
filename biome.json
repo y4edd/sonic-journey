@@ -30,7 +30,8 @@
         "noUnusedVariables": "error"
       },
       "style": {
-        "noNamespace": "error"
+        "noNamespace": "error",
+        "noUselessElse": "off"
       }
     }
   },
@@ -39,6 +40,7 @@
       "quoteStyle": "double",
       "semicolons": "always",
       "arrowParentheses": "always"
-    }
+    },
+    "globals": ["it", "describe", "expect", "React"]
   }
 }
