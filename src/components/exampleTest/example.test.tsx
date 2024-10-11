@@ -4,7 +4,7 @@ import Page from "./example";
 
 describe("Page", () => {
   it("renders a heading", () => {
-    render(<Page />);
+    render(<Page text="text" />);
 
     const heading = screen.getByRole("heading", { level: 1 });
 
