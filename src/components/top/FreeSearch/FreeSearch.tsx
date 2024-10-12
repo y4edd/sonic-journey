@@ -1,8 +1,8 @@
 "use client";
 
+import { useFreeWordSearch } from "@/hooks/top/useFreeWordSearch";
 import SearchIcon from "@mui/icons-material/Search";
 import styles from "./FreeSearch.module.css";
-import { useFreeWordSearch } from "@/hooks/top/useFreeWordSearch";
 
 // フリーワード検索コンポーネント
 const FreeSearch = () => {

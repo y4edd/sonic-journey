@@ -1,7 +1,7 @@
-import Slider from "@/components/top/Slider/Slider";
 import ContentTitle from "@/components/top/ContentTitle/ContentTitle";
-import styles from "./page.module.css";
 import FreeSearch from "@/components/top/FreeSearch/FreeSearch";
+import Slider from "@/components/top/Slider/Slider";
+import styles from "./page.module.css";
 
 const TopPage = () => {
   return (
