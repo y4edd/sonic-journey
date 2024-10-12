@@ -1,8 +1,8 @@
 import styles from "./ContentTitle.module.css";
 
-interface ContentTitleProps {
+type ContentTitleProps = {
   title: string;
-}
+};
 
 const ContentTitle = ({ title }: ContentTitleProps) => {
   return (
