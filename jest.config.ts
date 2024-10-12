@@ -13,7 +13,7 @@ const config: Config = {
   moduleNameMapper: {
     "\\.(css|less|scss|sass)$": "identity-obj-proxy", // CSSモジュールをモック
     "^@/(.*)$": "<rootDir>/src/$1", // エイリアスをjest用に設定(テストでエラーが出るのでその対応)
-    "\\.(jpg|jpeg|png|gif|webp|svg)$": "<rootDir>/__mocks__/fileMock.js", // 画像などのアセットをモック
+    // FIXME:"\\.(jpg|jpeg|png|gif|webp|svg)$": "<rootDir>/__mocks__/fileMock.js", 後にテストで必要になるはず
   },
 
   globals: {
