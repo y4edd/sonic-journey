@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 // スライダーに表示させる画像パス、今後リンクにする必要があります
-const sliderImages = [
+const SLIDER_IMAGES = [
   "/images/sliderImage1.png",
   "/images/sliderImage2.png",
   "/images/sliderImage3.png",
@@ -37,7 +37,7 @@ const Slider = () => {
         modules={[Autoplay, Keyboard, Pagination, Navigation]}
         className="mySwiper"
       >
-        {sliderImages.map((image) => {
+        {SLIDER_IMAGES.map((image) => {
           return (
             <SwiperSlide key={image}>
               <Image src={image} alt="スライダー画像" width={150} height={100} priority />
