@@ -7,6 +7,10 @@ import PlaylistPlayIcon from "@mui/icons-material/PlaylistPlay";
 import PersonIcon from "@mui/icons-material/Person";
 import HistoryIcon from "@mui/icons-material/History";
 import HeadphonesIcon from "@mui/icons-material/Headphones";
+import HowToRegIcon from "@mui/icons-material/HowToReg";
+import LoginIcon from "@mui/icons-material/Login";
+import LogoutIcon from "@mui/icons-material/Logout";
+import ContactPageIcon from "@mui/icons-material/ContactPage";
 import { UseHamburgerOpen } from "@/hooks/header/useHamburgerOpen";
 
 export const HamburgerMenu = () => {
@@ -86,13 +90,29 @@ export const HamburgerMenu = () => {
                   className={styles.hamburgerinList}
                   onClick={() => hamburgerLink("/user/login")}
                 >
-                  ログイン
+                  <LoginIcon />
+                  &nbsp;ログイン
                 </li>
                 <li
                   className={styles.hamburgerinList}
                   onClick={() => hamburgerLink("/user/register")}
                 >
-                  新規登録
+                  <HowToRegIcon />
+                  &nbsp;新規登録
+                </li>
+                <li
+                  className={styles.hamburgerinList}
+                  onClick={() => hamburgerLink("/user/logout")}
+                >
+                  <LogoutIcon />
+                  &nbsp;ログアウト
+                </li>
+                <li
+                  className={styles.hamburgerinList}
+                  onClick={() => hamburgerLink("/user/[:id]")}
+                >
+                  <ContactPageIcon />
+                  &nbsp;アカウント情報
                 </li>
               </ul>
             </div>

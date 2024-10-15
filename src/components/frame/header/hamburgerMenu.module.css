@@ -42,6 +42,7 @@
   list-style-type: none;
   display: flex;
   margin-bottom: 15px;
+  align-items: center;
 }
 
 .hamburgerList:hover,
@@ -54,6 +55,7 @@
   display: flex;
   margin-left: 15px;
   margin-bottom: 10px;
+  align-items: center;
 }
 
 .line {
