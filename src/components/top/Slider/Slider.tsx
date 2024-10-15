@@ -6,14 +6,7 @@ import { Autoplay, Keyboard, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-
-// スライダーに表示させる画像パス、今後リンクにする必要があります
-const SLIDER_IMAGES = [
-  "/images/sliderImage1.png",
-  "/images/sliderImage2.png",
-  "/images/sliderImage3.png",
-  "/images/sliderImage4.png",
-];
+import { SLIDER_IMAGES } from "@/constants/constant";
 
 const Slider = () => {
   return (
