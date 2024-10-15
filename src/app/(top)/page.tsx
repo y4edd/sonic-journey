@@ -1,5 +1,6 @@
 import ContentTitle from "@/components/top/ContentTitle/ContentTitle";
 import FreeSearch from "@/components/top/FreeSearch/FreeSearch";
+import LinkButton from "@/components/top/LinkButton/LinkButton";
 import Slider from "@/components/top/Slider/Slider";
 import SongsGroup from "@/components/top/SongsGroup/SongsGroup";
 import styles from "./page.module.css";
@@ -18,7 +19,10 @@ const TopPage = () => {
         </div>
 
         <div className={styles.newSongsContent}>
-          <ContentTitle title="人気新着" />
+          <div className={styles.contentTitleGroup}>
+            <ContentTitle title="人気新着" />
+            <LinkButton label="もっと見る >" />
+          </div>
           <SongsGroup />
         </div>
       </div>
