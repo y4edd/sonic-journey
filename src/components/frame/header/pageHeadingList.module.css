@@ -1,0 +1,26 @@
+.headerBottom {
+  height: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.thePageHeading,
+.otherPageHeading {
+  font-size: 1.3rem;
+  list-style-type: none;
+  margin: auto;
+  padding: 10px 15px 0 15px;
+  height: 100%;
+}
+
+.otherPageHeading:hover {
+  background-color: rgba(220, 220, 220, 0.377);
+}
+
+.thePageHeading {
+  color: rgb(86, 236, 186);
+  font-weight: 500;
+  /* padding: 0 10px; */
+  border-bottom: 3px solid rgb(86, 236, 186);
+}
