@@ -1,0 +1,36 @@
+.container {
+  height: 120px;
+  width: 100%;
+  position: relative;
+}
+
+.headerTop {
+  display: flex;
+  height: 80px;
+  background-color: white;
+  justify-content: space-between;
+}
+
+.logoImage {
+  display: flex;
+  margin: auto;
+  align-items: center;
+  height: 80px;
+}
+
+.searchIcon {
+  display: flex;
+  min-width: 80px;
+}
+
+.searchIconMark {
+  display: flex;
+  margin: auto;
+  font-size: 50px;
+  width: 40px;
+}
+
+.headerBottom {
+  height: 40px;
+  display: flex;
+}
