@@ -49,7 +49,7 @@ export type DeezerSearch = {
   next?: string;
 };
 
-// deezerにて新着楽曲情報を取得した際の型
+// deezerにて楽曲情報を取得した際の型
 export type DeezerNewRelease = {
   id: number;
   title: string;
@@ -87,13 +87,18 @@ export type DeezerNewSongDetail = {
   };
 };
 
-export type DeezerNewSong = {
+export type DeezerSong = {
   id: number;
   title: string;
-  cover_xl: string;
-  release_date: string;
+  cover_xl?: string;
+  release_date?: string;
   artist: {
     id: number;
     name: string;
+  };
+  album: {
+    id: number;
+    title: string;
+    cover_xl?: string;
   };
 };

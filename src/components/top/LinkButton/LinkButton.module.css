@@ -4,4 +4,9 @@
   border-radius: 15px;
   padding: 0.3rem 0.5rem;
   display: block;
+  cursor: pointer;
+}
+
+.linkButton:hover {
+  background-color: #e2e2e2;
 }
