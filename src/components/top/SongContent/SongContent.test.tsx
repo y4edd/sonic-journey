@@ -1,4 +1,4 @@
-import { type DeezerSong, DeezerNewSongDetail } from "@/types/deezer";
+import { DeezerNewSongDetail, type DeezerSong } from "@/types/deezer";
 import { render, screen } from "@testing-library/react";
 import SongContent from "./SongContent";
 
