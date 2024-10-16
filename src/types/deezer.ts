@@ -99,6 +99,6 @@ export type DeezerSong = {
   album: {
     id: number;
     title: string;
-    cover_xl: string;
+    cover_xl?: string;
   };
 };
