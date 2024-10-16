@@ -34,6 +34,15 @@ export const PageHeadingList = () => {
         >
           <Link href="/special">特集</Link>
         </li>
+        <li
+          className={
+            pathname === "/genre"
+              ? styles.thePageHeading
+              : styles.otherPageHeading
+          }
+        >
+          <Link href="/genre">ジャンル</Link>
+        </li>
       </ul>
     </>
   );

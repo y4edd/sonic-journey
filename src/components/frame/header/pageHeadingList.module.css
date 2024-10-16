@@ -1,16 +1,16 @@
 .headerBottom {
   height: 50px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 10px;
 }
 
 .thePageHeading,
 .otherPageHeading {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   list-style-type: none;
   margin: auto;
-  padding: 10px 15px 0 15px;
+  padding: 15px 5px 0 5px;
   height: 100%;
 }
 
@@ -21,6 +21,5 @@
 .thePageHeading {
   color: rgb(86, 236, 186);
   font-weight: 500;
-  /* padding: 0 10px; */
   border-bottom: 3px solid rgb(86, 236, 186);
 }
