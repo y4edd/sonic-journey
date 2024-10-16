@@ -58,7 +58,11 @@ const Header = () => {
                   />
                 </Link>
               </div>
-              <div className={styles.searchIcon} onClick={handleClickSearch}>
+              <div
+                className={styles.searchIcon}
+                onClick={handleClickSearch}
+                data-testid="search-icon"
+              >
                 <SearchIcon className={styles.searchIconMark} />
               </div>
             </div>
