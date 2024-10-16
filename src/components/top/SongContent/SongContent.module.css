@@ -1,0 +1,13 @@
+.songInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.songInfo > img {
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px -5px #777777;
+}
+
+.songInfo > p {
+  margin-top: 0.3rem;
+}

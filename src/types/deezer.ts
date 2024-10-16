@@ -48,3 +48,52 @@ export type DeezerSearch = {
   total?: number;
   next?: string;
 };
+
+// deezerにて新着楽曲情報を取得した際の型
+export type DeezerNewRelease = {
+  id: number;
+  title: string;
+  cover: string;
+  cover_small: string;
+  cover_medium: string;
+  cover_big: string;
+  cover_xl: string;
+  md5_image: string;
+  release_date: string;
+  tracklist: string;
+  artist: {
+    id: number;
+    name: string;
+    tracklist: string;
+    type: string;
+  };
+  type: string;
+};
+
+export type DeezerNewReleaseApi = {
+  data: DeezerNewRelease[];
+};
+
+export type DeezerNewSongDetail = {
+  song: {
+    id: number;
+    title: string;
+    cover_xl: string;
+    release_date: string;
+    artist: {
+      id: number;
+      name: string;
+    };
+  };
+};
+
+export type DeezerNewSong = {
+  id: number;
+  title: string;
+  cover_xl: string;
+  release_date: string;
+  artist: {
+    id: number;
+    name: string;
+  };
+};
