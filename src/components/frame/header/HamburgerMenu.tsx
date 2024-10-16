@@ -1,5 +1,5 @@
 import Image from "next/image";
-import styles from "./hamburgerMenu.module.css";
+import styles from "./HamburgerMenu.module.css";
 import MenuIcon from "@mui/icons-material/Menu";
 import HomeIcon from "@mui/icons-material/Home";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";

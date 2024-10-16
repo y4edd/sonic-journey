@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { PageHeadingList } from "./pageHeadingList";
+import { PageHeadingList } from "./PageHeadingList";
 
 jest.mock("next/navigation", () => ({
   usePathname: jest.fn(() => "/mocked-path"),

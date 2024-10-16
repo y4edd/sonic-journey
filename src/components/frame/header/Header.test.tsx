@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import Header from "./header";
+import Header from "./Header";
 import { useFreeWordSearch } from "@/hooks/top/useFreeWordSearch";
 import "@testing-library/jest-dom";
 

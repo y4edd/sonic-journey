@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "./pageHeadingList.module.css";
+import styles from "./PageHeadingList.module.css";
 import { usePathname } from "next/navigation";
 
 export const PageHeadingList = () => {

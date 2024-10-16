@@ -1,11 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import styles from "./header.module.css";
+import styles from "./Header.module.css";
 import SearchIcon from "@mui/icons-material/Search";
-import { HamburgerMenu } from "./hamburgerMenu";
+import { HamburgerMenu } from "./HamburgerMenu";
 import Link from "next/link";
-import { PageHeadingList } from "./pageHeadingList";
+import { PageHeadingList } from "./PageHeadingList";
 import { useState } from "react";
 import { useFreeWordSearch } from "@/hooks/top/useFreeWordSearch";
 

@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { UseHamburgerOpen } from "@/hooks/header/useHamburgerOpen";
-import { HamburgerMenu } from "./hamburgerMenu";
+import { HamburgerMenu } from "./HamburgerMenu";
 import "@testing-library/jest-dom";
 
 jest.mock("@/hooks/header/useHamburgerOpen", () => ({
