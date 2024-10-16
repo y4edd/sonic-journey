@@ -1,5 +1,6 @@
 import ContentTitle from "@/components/top/ContentTitle/ContentTitle";
 import FreeSearch from "@/components/top/FreeSearch/FreeSearch";
+import GenreGroup from "@/components/top/GenreGroup/GenreGroup";
 import LinkButton from "@/components/top/LinkButton/LinkButton";
 import Slider from "@/components/top/Slider/Slider";
 import SongsGroup from "@/components/top/SongsGroup/SongsGroup";
@@ -38,6 +39,10 @@ const TopPage = async () => {
             <LinkButton label="もっと見る" />
           </div>
           <SongsGroup songs={singleSongs} />
+        </div>
+        <div className={styles.genreContent}>
+          <ContentTitle title="ジャンル一覧" />
+          <GenreGroup />
         </div>
       </div>
     </main>
