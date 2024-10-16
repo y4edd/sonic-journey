@@ -11,6 +11,7 @@ const SongContent = ({ song }: { song: DeezerSong }) => {
         alt={`${song.title}のジャケット画像`}
         width={180}
         height={180}
+        priority
       />
       <p>{song.artist.name}</p>
       <p>{song.title}</p>
