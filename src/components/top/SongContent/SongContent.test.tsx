@@ -1,8 +1,8 @@
-import { type DeezerNewSong, DeezerNewSongDetail } from "@/types/deezer";
+import { type DeezerSong, DeezerNewSongDetail } from "@/types/deezer";
 import { render, screen } from "@testing-library/react";
 import SongContent from "./SongContent";
 
-const mockSong: DeezerNewSong = {
+const mockSong: DeezerSong = {
   id: 1,
   title: "シンデレラ",
   cover_xl: "example.jpg",
@@ -10,6 +10,10 @@ const mockSong: DeezerNewSong = {
   artist: {
     id: 2,
     name: "サイダーガール",
+  },
+  album: {
+    id: 1,
+    title: "わっしょい",
   },
 };
 
