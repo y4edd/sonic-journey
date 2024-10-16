@@ -5,3 +5,16 @@ export const SLIDER_IMAGES = [
   "/images/sliderImage3.png",
   "/images/sliderImage4.png",
 ];
+
+// 表示させるアーティストのジャンル
+export const GENRE_ARTISTS = [
+  { id: 0, name: "全て" },
+  { id: 132, name: "ポップス" },
+  { id: 152, name: "ロック" },
+  { id: 165, name: "R&B" },
+  { id: 113, name: "ダンス" },
+  { id: 464, name: "メタル" },
+  { id: 16, name: "アジア音楽" },
+  { id: 95, name: "キッズ" },
+  { id: 173, name: "映画/ゲーム" },
+];
