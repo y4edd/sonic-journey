@@ -12,8 +12,6 @@ const TopPage = async () => {
   // シングルランキング楽曲を取得
   const singleSongs = await getRankSingleSongs(4);
 
-  console.log(newSongs, singleSongs, singleSongs.resultData[1]);
-
   return (
     <main>
       <div>
