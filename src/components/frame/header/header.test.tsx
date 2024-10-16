@@ -1,8 +1,7 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import Header from "./header";
 import { useFreeWordSearch } from "@/hooks/top/useFreeWordSearch";
 import "@testing-library/jest-dom";
-// import "@testing-library/jest-dom/extend-expect";
 
 jest.mock("next/navigation", () => ({
   useRouter: () => ({
