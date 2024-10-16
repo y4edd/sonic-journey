@@ -1,3 +1,4 @@
+import BreadList from "@/components/top/BreadList/BreadList";
 import ContentTitle from "@/components/top/ContentTitle/ContentTitle";
 import FreeSearch from "@/components/top/FreeSearch/FreeSearch";
 import GenreGroup from "@/components/top/GenreGroup/GenreGroup";
@@ -15,6 +16,7 @@ const TopPage = async () => {
 
   return (
     <main>
+      <BreadList bread={[{ link: "/", title: "TOP" }]} />
       <div>
         <div className={styles.specialContent}>
           <ContentTitle title="特集" />
@@ -36,7 +38,7 @@ const TopPage = async () => {
         <div className={styles.newSongsContent}>
           <div className={styles.contentTitleGroup}>
             <ContentTitle title="シングルランキング" />
-            <LinkButton label="もっと見る" />
+            <LinkButton label="もっと見る >" />
           </div>
           <SongsGroup songs={singleSongs} />
         </div>
