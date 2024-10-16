@@ -1,0 +1,13 @@
+.menuBox {
+  height: 125px;
+  width: 125px;
+  display: grid;
+  place-content: center;
+  place-items: center;
+  border: 1px solid black;
+  margin-top: 1rem;
+}
+
+.menuIcon {
+  margin-bottom: 0.5rem;
+}
