@@ -7,7 +7,7 @@ const SongContent = ({ song }: { song: DeezerSong }) => {
     // FIXME: 後でリンクにする必要があります。
     <div className={styles.songInfo}>
       <Image
-        src={song.cover_xl ?? song.album.cover_xl}
+        src={song.cover_xl || song.album.cover_xl || ""}
         alt={`${song.title}のジャケット画像`}
         width={180}
         height={180}
