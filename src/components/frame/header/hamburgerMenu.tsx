@@ -24,6 +24,7 @@ export const HamburgerMenu = () => {
               <div
                 className={styles.hamburgerCloseIconMark}
                 onClick={openMenuClick}
+                data-testid="close-hamburger-menu"
               >
                 ☒
               </div>
@@ -121,6 +122,7 @@ export const HamburgerMenu = () => {
           <MenuIcon
             className={styles.hamburgerIconMark}
             onClick={openMenuClick}
+            data-testid="hamburger-menu"
           />
         )}
       </div>
