@@ -32,10 +32,10 @@ jest.mock("next/image", () => {
     return <img {...props} alt={props.alt} />;
   };
 });
-jest.mock("./hamburgerMenu", () => ({
+jest.mock("./HamburgerMenu", () => ({
   HamburgerMenu: () => <div data-testid="hamburger-menu">HamburgerMenu</div>,
 }));
-jest.mock("./pageHeadingList", () => ({
+jest.mock("./PageHeadingList", () => ({
   PageHeadingList: () => <div data-testid="page-heading-list">PageHeadingList</div>,
 }));
 
