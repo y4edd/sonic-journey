@@ -5,15 +5,18 @@
   justify-content: center;
   border: 2px solid lightgray;
   max-width: 75%;
-  margin: 25% 15% 15%;
+  margin: 10% 15% 15%;
   font-size: 20px;
-  padding: 1rem;
-  padding-bottom: 3rem;
-  min-height: 300px;
+  height: 550px;
 }
 
 .form-register {
-  margin: 1rem;
+  margin: 0.5rem 1rem;
+  height: 110px;
+}
+
+input {
+  padding: 0.4em;
 }
 
 .form-register label,
@@ -21,15 +24,17 @@
 .form-register .error-message {
   display: block;
   margin-bottom: 0.5rem;
+  width: 12rem;
 }
 
 .register {
+  margin: 15px;
   background-color: black;
   color: white;
-  border-radius: 8%;
+  border-radius: 10px;
   cursor: pointer;
   transition: 0.3s;
-  width:90%;
+  width: 90%;
 }
 
 .register:hover {
@@ -38,18 +43,16 @@
 }
 
 .error-message {
-  min-height:20px;
   color: red;
   font-size: 15px;
 }
 
-p{
-  font-size:20px;
-  margin-top:1rem;
+p {
+  font-size: 20px;
+  margin-top: 1rem;
   text-align: center;
-
 }
 
-a{
-  text-decoration:underline;
+a {
+  text-decoration: underline;
 }
