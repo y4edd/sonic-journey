@@ -1,13 +1,13 @@
 "use client";
 
-import Image from "next/image";
-import styles from "./Header.module.css";
-import SearchIcon from "@mui/icons-material/Search";
-import { HamburgerMenu } from "./HamburgerMenu";
-import Link from "next/link";
-import { PageHeadingList } from "./PageHeadingList";
-import { useState } from "react";
 import { useFreeWordSearch } from "@/hooks/top/useFreeWordSearch";
+import SearchIcon from "@mui/icons-material/Search";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
+import { HamburgerMenu } from "./HamburgerMenu";
+import styles from "./Header.module.css";
+import { PageHeadingList } from "./PageHeadingList";
 
 const Header = () => {
   const [searchOn, setSearchOn] = useState(false);
@@ -28,9 +28,7 @@ const Header = () => {
                   name="freeWord"
                   value={freeWord}
                   onChange={handleChange}
-                  placeholder={
-                    error ? error : "アーティスト・アルバム・楽曲で検索"
-                  }
+                  placeholder={error ? error : "アーティスト・アルバム・楽曲で検索"}
                 />
                 <button type="submit">
                   <SearchIcon />
@@ -40,6 +38,7 @@ const Header = () => {
                 <p
                   className={styles.searchCancelText}
                   onClick={handleClickSearch}
+                  onKeyDown={handleClickSearch}
                 >
                   キャンセル
                 </p>
@@ -61,6 +60,7 @@ const Header = () => {
               <div
                 className={styles.searchIcon}
                 onClick={handleClickSearch}
+                onKeyDown={handleClickSearch}
                 data-testid="search-icon"
               >
                 <SearchIcon className={styles.searchIconMark} />

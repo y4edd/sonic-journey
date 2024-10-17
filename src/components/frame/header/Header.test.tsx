@@ -1,6 +1,6 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import Header from "./Header";
 import { useFreeWordSearch } from "@/hooks/top/useFreeWordSearch";
+import { fireEvent, render, screen } from "@testing-library/react";
+import Header from "./Header";
 import "@testing-library/jest-dom";
 
 jest.mock("next/navigation", () => ({
@@ -29,16 +29,14 @@ jest.mock("next/image", () => {
     height: number;
     width: number;
   }) => {
-    return <img {...props} />;
+    return <img {...props} alt={props.alt} />;
   };
 });
 jest.mock("./hamburgerMenu", () => ({
   HamburgerMenu: () => <div data-testid="hamburger-menu">HamburgerMenu</div>,
 }));
 jest.mock("./pageHeadingList", () => ({
-  PageHeadingList: () => (
-    <div data-testid="page-heading-list">PageHeadingList</div>
-  ),
+  PageHeadingList: () => <div data-testid="page-heading-list">PageHeadingList</div>,
 }));
 
 describe("ヘッダーコンポーネントの単体テスト", () => {
@@ -65,10 +63,7 @@ describe("ヘッダーコンポーネントの単体テスト", () => {
 
     const logo = screen.getByAltText("header-logo");
     expect(logo).toBeInTheDocument();
-    expect(logo).toHaveAttribute(
-      "src",
-      "/images/yaetunes_logo_transparent.png"
-    );
+    expect(logo).toHaveAttribute("src", "/images/yaetunes_logo_transparent.png");
 
     const searchIcon = screen.getByTestId("search-icon");
     expect(searchIcon).toBeInTheDocument();
@@ -80,8 +75,7 @@ describe("ヘッダーコンポーネントの単体テスト", () => {
     const searchIcon = screen.getByTestId("search-icon");
     fireEvent.click(searchIcon);
 
-    const input =
-      screen.getByPlaceholderText("アーティスト・アルバム・楽曲で検索");
+    const input = screen.getByPlaceholderText("アーティスト・アルバム・楽曲で検索");
     expect(input).toBeInTheDocument();
     expect(screen.getByText("キャンセル")).toBeInTheDocument();
   });
@@ -98,9 +92,7 @@ describe("ヘッダーコンポーネントの単体テスト", () => {
     const searchIcon = screen.getByTestId("search-icon");
     fireEvent.click(searchIcon);
 
-    expect(
-      screen.getByPlaceholderText("検索ワードを入力してください。")
-    ).toBeInTheDocument();
+    expect(screen.getByPlaceholderText("検索ワードを入力してください。")).toBeInTheDocument();
   });
 
   test("検索キャンセルボタンをクリックすると検索フォームが非表示になる", () => {

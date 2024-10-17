@@ -41,6 +41,6 @@
       "semicolons": "always",
       "arrowParentheses": "always"
     },
-    "globals": ["it", "test", "describe", "expect", "React"]
+    "globals": ["it", "test", "jest", "beforeEach", "afterEach", "describe", "expect", "React"]
   }
 }

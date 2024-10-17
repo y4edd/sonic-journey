@@ -1,17 +1,17 @@
-import Image from "next/image";
-import styles from "./HamburgerMenu.module.css";
-import MenuIcon from "@mui/icons-material/Menu";
-import HomeIcon from "@mui/icons-material/Home";
+import { UseHamburgerOpen } from "@/hooks/header/useHamburgerOpen";
+import ContactPageIcon from "@mui/icons-material/ContactPage";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import PlaylistPlayIcon from "@mui/icons-material/PlaylistPlay";
-import PersonIcon from "@mui/icons-material/Person";
-import HistoryIcon from "@mui/icons-material/History";
 import HeadphonesIcon from "@mui/icons-material/Headphones";
+import HistoryIcon from "@mui/icons-material/History";
+import HomeIcon from "@mui/icons-material/Home";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
-import ContactPageIcon from "@mui/icons-material/ContactPage";
-import { UseHamburgerOpen } from "@/hooks/header/useHamburgerOpen";
+import MenuIcon from "@mui/icons-material/Menu";
+import PersonIcon from "@mui/icons-material/Person";
+import PlaylistPlayIcon from "@mui/icons-material/PlaylistPlay";
+import Image from "next/image";
+import styles from "./HamburgerMenu.module.css";
 
 export const HamburgerMenu = () => {
   const { openMenu, openMenuClick, hamburgerLink } = UseHamburgerOpen();
@@ -24,6 +24,7 @@ export const HamburgerMenu = () => {
               <div
                 className={styles.hamburgerCloseIconMark}
                 onClick={openMenuClick}
+                onKeyDown={openMenuClick}
                 data-testid="close-hamburger-menu"
               >
                 ☒
@@ -40,6 +41,7 @@ export const HamburgerMenu = () => {
                 <li
                   className={styles.hamburgerList}
                   onClick={() => hamburgerLink("/")}
+                  onKeyDown={() => hamburgerLink("/")}
                 >
                   <HomeIcon />
                   &nbsp;トップページ
@@ -47,6 +49,7 @@ export const HamburgerMenu = () => {
                 <li
                   className={styles.hamburgerList}
                   onClick={() => hamburgerLink("/mypage")}
+                  onKeyDown={() => hamburgerLink("/mypage")}
                 >
                   <HeadphonesIcon />
                   &nbsp;マイページ
@@ -55,6 +58,7 @@ export const HamburgerMenu = () => {
                   <li
                     className={styles.hamburgerinList}
                     onClick={() => hamburgerLink("/mypage/playlist")}
+                    onKeyDown={() => hamburgerLink("/mypage/playlist")}
                   >
                     <PlaylistPlayIcon />
                     &nbsp;プレイリスト
@@ -62,6 +66,7 @@ export const HamburgerMenu = () => {
                   <li
                     className={styles.hamburgerinList}
                     onClick={() => hamburgerLink("/mypage/artist")}
+                    onKeyDown={() => hamburgerLink("/mypage/artist")}
                   >
                     <FavoriteBorderIcon />
                     &nbsp;アーティスト
@@ -69,6 +74,7 @@ export const HamburgerMenu = () => {
                   <li
                     className={styles.hamburgerinList}
                     onClick={() => hamburgerLink("/mypage/song")}
+                    onKeyDown={() => hamburgerLink("/mypage/song")}
                   >
                     <FavoriteBorderIcon />
                     &nbsp;曲
@@ -76,12 +82,13 @@ export const HamburgerMenu = () => {
                   <li
                     className={styles.hamburgerinList}
                     onClick={() => hamburgerLink("/mypage/history")}
+                    onKeyDown={() => hamburgerLink("/mypage/history")}
                   >
                     <HistoryIcon />
                     &nbsp;再生履歴
                   </li>
                 </ul>
-                <div className={styles.line}></div>
+                <div className={styles.line} />
                 <li className={styles.hamburgerList}>
                   <PersonIcon />
                   &nbsp;ユーザー
@@ -90,6 +97,7 @@ export const HamburgerMenu = () => {
                 <li
                   className={styles.hamburgerinList}
                   onClick={() => hamburgerLink("/user/login")}
+                  onKeyDown={() => hamburgerLink("/user/login")}
                 >
                   <LoginIcon />
                   &nbsp;ログイン
@@ -97,6 +105,7 @@ export const HamburgerMenu = () => {
                 <li
                   className={styles.hamburgerinList}
                   onClick={() => hamburgerLink("/user/register")}
+                  onKeyDown={() => hamburgerLink("/user/register")}
                 >
                   <HowToRegIcon />
                   &nbsp;新規登録
@@ -104,6 +113,7 @@ export const HamburgerMenu = () => {
                 <li
                   className={styles.hamburgerinList}
                   onClick={() => hamburgerLink("/user/logout")}
+                  onKeyDown={() => hamburgerLink("/user/logout")}
                 >
                   <LogoutIcon />
                   &nbsp;ログアウト
@@ -111,6 +121,7 @@ export const HamburgerMenu = () => {
                 <li
                   className={styles.hamburgerinList}
                   onClick={() => hamburgerLink("/user/[:id]")}
+                  onKeyDown={() => hamburgerLink("/user/[:id]")}
                 >
                   <ContactPageIcon />
                   &nbsp;アカウント情報
@@ -122,6 +133,7 @@ export const HamburgerMenu = () => {
           <MenuIcon
             className={styles.hamburgerIconMark}
             onClick={openMenuClick}
+            onKeyDown={openMenuClick}
             data-testid="hamburger-menu"
           />
         )}

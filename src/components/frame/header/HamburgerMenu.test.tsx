@@ -1,5 +1,5 @@
-import { render, screen, fireEvent } from "@testing-library/react";
 import { UseHamburgerOpen } from "@/hooks/header/useHamburgerOpen";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { HamburgerMenu } from "./HamburgerMenu";
 import "@testing-library/jest-dom";
 
@@ -14,7 +14,7 @@ jest.mock("next/image", () => {
     height: number;
     width: number;
   }) => {
-    return <img {...props} />;
+    return <img {...props} alt={props.alt} />;
   };
 });
 
