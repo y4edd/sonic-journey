@@ -2,7 +2,9 @@
 // limitには取得したい件数を入力
 export const getNewSongs = async (limit: number) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/newSongsSearch?limit=${limit}`);
+    const res = await fetch(`http://localhost:3000/api/newSongsSearch?limit=${limit}`, {
+      cache: "no-cache",
+    });
 
     if (!res.ok) {
       throw new Error("データが見つかりませんでした");
@@ -18,7 +20,9 @@ export const getNewSongs = async (limit: number) => {
 // limitには取得したい件数を入力
 export const getRankSingleSongs = async (limit: number) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/rankSingleSongSearch?limit=${limit}`);
+    const res = await fetch(`http://localhost:3000/api/rankSingleSongSearch?limit=${limit}`, {
+      cache: "no-cache",
+    });
 
     if (!res.ok) {
       throw new Error("データが見つかりませんでした");
@@ -34,7 +38,9 @@ export const getRankSingleSongs = async (limit: number) => {
 // genreにはgenreのid
 export const getGenreArtist = async (genre: number) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/genreArtistSearch?genre=${genre}`);
+    const res = await fetch(`http://localhost:3000/api/genreArtistSearch?genre=${genre}`, {
+      cache: "no-cache",
+    });
 
     if (!res.ok) {
       throw new Error("データが見つかりませんでした");

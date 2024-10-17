@@ -15,7 +15,7 @@ const TopPage = async () => {
   const singleSongs = await getRankSingleSongs(4);
 
   return (
-    <main>
+    <div>
       <BreadList bread={[{ link: "/", title: "TOP" }]} />
       <div>
         <div className={styles.specialContent}>
@@ -47,7 +47,7 @@ const TopPage = async () => {
           <GenreGroup />
         </div>
       </div>
-    </main>
+    </div>
   );
 };
 
