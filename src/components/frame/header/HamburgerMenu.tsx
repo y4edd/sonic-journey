@@ -65,19 +65,21 @@ export const HamburgerMenu = () => {
                   </li>
                   <li
                     className={styles.hamburgerinList}
-                    onClick={() => hamburgerLink("/mypage/favoriteArtist")}
-                    onKeyDown={() => hamburgerLink("/mypage/favoriteArtist")}
+                    onClick={() => hamburgerLink("/mypage/favoriteartist")}
+                    onKeyDown={() => hamburgerLink("/mypage/favoriteartist")}
                   >
                     <FavoriteBorderIcon />
-                    &nbsp;アーティスト
+                    &nbsp;お気に入り
+                    <br />
+                    アーティスト
                   </li>
                   <li
                     className={styles.hamburgerinList}
-                    onClick={() => hamburgerLink("/mypage/favoriteSong")}
-                    onKeyDown={() => hamburgerLink("/mypage/favoriteSong")}
+                    onClick={() => hamburgerLink("/mypage/favoritesong")}
+                    onKeyDown={() => hamburgerLink("/mypage/favoritesong")}
                   >
                     <FavoriteBorderIcon />
-                    &nbsp;曲
+                    &nbsp;お気に入り楽曲
                   </li>
                   <li
                     className={styles.hamburgerinList}
