@@ -1,0 +1,28 @@
+.sortButtonWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.verticalLine {
+  width: 1px;
+  height: 20px;
+  background-color: #aaa;
+  margin: 0 0.5rem;
+}
+
+.sortButtonWrapper button {
+  font-size: 1rem;
+  border: none;
+  background-color: white;
+  padding: 4px 4px;
+}
+
+.selected {
+  color: black;
+}
+
+.notSelected {
+  color: #aaa;
+}

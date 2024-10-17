@@ -51,3 +51,19 @@ export const getGenreArtist = async (genre: number) => {
     console.error(error);
   }
 };
+
+// 楽曲のidから楽曲情報を取得する関数
+// songには楽曲のidを入力
+export const getSong = async (song: number) => {
+  try {
+    const res = await fetch(`http://localhost:3000/api/songSearch?song=${song}`);
+
+    if (!res.ok) {
+      throw new Error("データが見つかりませんでした");
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
