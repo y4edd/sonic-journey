@@ -68,9 +68,8 @@ const Header = () => {
             </div>
           )}
         </div>
-        <hr />
+
         <PageHeadingList />
-        <hr />
       </div>
     </>
   );
