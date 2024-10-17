@@ -1,0 +1,64 @@
+.hamburgerContainer {
+  display: flex;
+  min-width: 60px;
+}
+
+.hamburgerIconMark {
+  display: flex;
+  margin: auto;
+  font-size: 50px;
+  width: 40px;
+}
+
+.hamburgerCloseWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: calc(infinity);
+  width: 40vw;
+  height: 470px;
+  border: 1px solid black;
+  border-radius: 15px;
+  background-color: white;
+  padding: 10px 15px;
+  font-size: 0.8rem;
+}
+
+.hamburgerCloseIconMark {
+  display: flex;
+  font-size: 30px;
+  width: 30px;
+}
+
+.logoImageClose {
+  margin-top: 5px;
+}
+
+.hamburgerLists {
+  margin-top: 15px;
+}
+
+.hamburgerList {
+  list-style-type: none;
+  display: flex;
+  margin-bottom: 15px;
+  align-items: center;
+}
+
+.hamburgerList:hover,
+.hamburgerinList:hover {
+  color: aquamarine;
+}
+
+.hamburgerinList {
+  list-style-type: none;
+  display: flex;
+  margin-left: 15px;
+  margin-bottom: 10px;
+  align-items: center;
+}
+
+.line {
+  border-bottom: 1px solid gray;
+  margin: 20px 0;
+}

@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex-grow: 1; /* 残りのスペースを占有する */
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 80px;
+  background-color: white;
+  font-size: 12px;
+  border-top: 1px solid gray;
+}
