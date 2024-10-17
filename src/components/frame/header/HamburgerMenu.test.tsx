@@ -65,8 +65,8 @@ describe("ハンバーガーメニューの単体テスト", () => {
     expect(screen.getByText("トップページ")).toBeInTheDocument();
     expect(screen.getByText("マイページ")).toBeInTheDocument();
     expect(screen.getByText("プレイリスト")).toBeInTheDocument();
-    expect(screen.getByText("アーティスト")).toBeInTheDocument();
-    expect(screen.getByText("曲")).toBeInTheDocument();
+    expect(screen.getByText("お気に入りアーティスト")).toBeInTheDocument();
+    expect(screen.getByText("お気に入り楽曲")).toBeInTheDocument();
     expect(screen.getByText("再生履歴")).toBeInTheDocument();
     expect(screen.getByText("ユーザー")).toBeInTheDocument();
   });
