@@ -9,7 +9,7 @@ const ErrorPage = () => {
     <div className={styles.unexpectedPage}>
       <div className={styles.unexpectedContent}>
         <h1>500</h1>
-        <p>お探しのページが見つかりませんでした。</p>
+        <p>お探しのページは表示できませんでした。</p>
         <p>
           サーバーに発生した問題によって、
           <br />
