@@ -1,0 +1,17 @@
+.songList {
+  margin-top: 1rem;
+  padding: 0 1rem;
+}
+
+.songList > ul {
+  list-style-type: none;
+}
+
+.horizon {
+  border-bottom: solid 1px #ccc;
+}
+
+.noSongsMessage {
+  text-align: center;
+  color: gray;
+}
