@@ -28,5 +28,5 @@ jobs:
     - name: Check Lint
       run: yarn biome check
   
-    # - name: Test
-    #   run: yarn test
+    - name: Test
+      run: yarn test
