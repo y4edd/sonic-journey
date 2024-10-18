@@ -19,12 +19,12 @@ const FavoriteSongs = async () => {
   );
 
   return (
-    <main>
+    <div>
       <MenuHeader title="お気に入り楽曲" />
       <SortButtons label="登録日" />
       <EditButton />
       <SongList songs={favoriteSongsInfo} />
-    </main>
+    </div>
   );
 };
 

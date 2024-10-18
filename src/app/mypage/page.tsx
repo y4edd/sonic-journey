@@ -10,7 +10,7 @@ import styles from "./page.module.css";
 
 const MyPage = () => {
   return (
-    <main>
+    <div>
       <div className={styles.menuTitle}>
         <h3>メニュー</h3>
       </div>
@@ -46,7 +46,7 @@ const MyPage = () => {
           <MenuBox mainTitle="退会" icon={<NoAccountsIcon fontSize="large" />} />
         </div>
       </div>
-    </main>
+    </div>
   );
 };
 
