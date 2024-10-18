@@ -19,9 +19,12 @@
 .artistNameGrid {
   width: 95%;
   margin: 0 auto;
-  margin-top: 3px;
+}
+.songNameGrid {
+  margin-top: 5px;
 }
 .artistNameGrid {
+  margin-top: 3px;
   color: rgb(178, 176, 176);
 }
 
