@@ -3,11 +3,11 @@
 import styles from "./LayoutIcon.module.css";
 import ViewModuleIcon from "@mui/icons-material/ViewModule";
 import ViewListIcon from "@mui/icons-material/ViewList";
-import { UseLayoutIconChange } from "@/hooks/chart/useLayoutIconChange";
+import { UseLayoutChange } from "@/hooks/chart/useLayoutChange";
 
 export const LayoutIcon = () => {
   const { gridLayout, handleGridLayoutIconClick, handleListLayoutIconClick } =
-    UseLayoutIconChange();
+    UseLayoutChange();
 
   return (
     <ul className={styles.layoutIcons}>
