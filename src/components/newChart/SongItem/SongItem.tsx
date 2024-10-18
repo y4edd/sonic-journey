@@ -12,7 +12,7 @@ export const SongItem = ({
   gridLayout: boolean;
 }) => {
   return (
-    <>
+    <div className={styles.wrapper}>
       {gridLayout ? (
         <div className={styles.songItemsGridWrapper}>
           {songs.map((song) => (
@@ -44,24 +44,18 @@ export const SongItem = ({
               <Image
                 src={song.cover_xl}
                 alt="ジャケ写"
-                height={160}
-                width={160}
+                height={70}
+                width={70}
                 className={styles.songImageList}
               />
-              <p className={styles.songNameList}>
-                {song.title.length <= 15
-                  ? song.title
-                  : song.title.slice(0, 14) + "..."}
-              </p>
-              <p className={styles.artistNameList}>
-                {song.artist.name.length <= 15
-                  ? song.artist.name
-                  : song.artist.name.slice(0, 14) + "..."}
-              </p>
+              <div className={styles.nameList}>
+                <p className={styles.songNameList}>{song.title}</p>
+                <p className={styles.artistNameList}>{song.artist.name}</p>
+              </div>
             </div>
           ))}
         </div>
       )}
-    </>
+    </div>
   );
 };
