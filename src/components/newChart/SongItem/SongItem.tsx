@@ -14,10 +14,18 @@ type Songs = {
 
 export const SongItem = ({ songs }: { songs: Songs[] }) => {
   return (
-    <>
+    <div className={styles.songItemsWrapper}>
       {songs.map((song) => (
-        <Image src={song.cover_xl} alt="ジャケ写" height={120} width={120} />
+        <div className={styles.songItemWrapper}>
+          <Image
+            src={song.cover_xl}
+            alt="ジャケ写"
+            height={150}
+            width={150}
+            className={styles.songImage}
+          />
+        </div>
       ))}
-    </>
+    </div>
   );
 };

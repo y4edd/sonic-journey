@@ -1,0 +1,15 @@
+.songItemsWrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* gap: 40px; */
+  margin: 20px 30px;
+}
+
+.songItemWrapper {
+  margin-bottom: 50px;
+}
+
+.songImage {
+  display: flex;
+  margin: auto;
+}
