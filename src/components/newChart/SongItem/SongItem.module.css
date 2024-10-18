@@ -1,15 +1,22 @@
-.songItemsWrapper {
+.songItemsGridWrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  /* gap: 40px; */
-  margin: 20px 30px;
+  gap: 34px;
+  margin: 20px 38px;
 }
 
-.songItemWrapper {
-  margin-bottom: 50px;
-}
-
-.songImage {
+.songImageGrid {
   display: flex;
   margin: auto;
+  border-radius: 10px;
+}
+
+.songNameGrid,
+.artistNameGrid {
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 3px;
+}
+.artistNameGrid {
+  color: rgb(178, 176, 176);
 }
