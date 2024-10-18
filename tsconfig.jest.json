@@ -20,8 +20,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "types": ["jest", "jest-fetch-mock", "node"],
-    "typeRoots": ["node-modules/@types"]
+    "types": ["jest", "jest-fetch-mock", "node"]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
