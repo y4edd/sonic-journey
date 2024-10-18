@@ -1,20 +1,24 @@
 "use client";
-
+import type { DeezerChartSong } from "@/types/deezer";
 import { LayoutIcon } from "@/components/newChart/LayoutIcon/LayoutIcon";
 import { SongItem } from "../SongItem/SongItem";
 import { UseLayoutChange } from "@/hooks/chart/useLayoutChange";
-import { getNewSongs } from "@/utils/apiFunc";
 
-export const Song = async () => {
+export const Song = ({
+  songs,
+}: {
+  songs: { resultData: DeezerChartSong[] };
+}) => {
   const { gridLayout, handleGridLayoutIconClick, handleListLayoutIconClick } =
     UseLayoutChange();
-
-  const newSongs = await getNewSongs(20);
-  // console.log(newSongs.resultData, "newnew");
   return (
     <>
-      <LayoutIcon />
-      <SongItem songs={newSongs.resultData} gridLayout={gridLayout} />
+      <LayoutIcon
+        gridLayout={gridLayout}
+        handleGridLayoutIconClick={handleGridLayoutIconClick}
+        handleListLayoutIconClick={handleListLayoutIconClick}
+      />
+      <SongItem songs={songs.resultData} gridLayout={gridLayout} />
     </>
   );
 };
