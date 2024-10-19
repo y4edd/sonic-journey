@@ -32,6 +32,9 @@
       "style": {
         "noNamespace": "error",
         "noUselessElse": "off"
+      },
+      "a11y": {
+        "useMediaCaption": "off"
       }
     }
   },
