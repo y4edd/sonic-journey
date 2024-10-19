@@ -1,0 +1,17 @@
+.imageTitleContent {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.imageTitleContent > img {
+  border-radius: 9999px;
+  box-shadow: 0px 0px 15px -5px #777777;
+  width: 35%;
+  height: 35%;
+}
+
+.imageTitleContent > p {
+  text-align: center;
+}

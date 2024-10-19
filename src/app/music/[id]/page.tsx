@@ -42,7 +42,7 @@ const SongPage = async ({ params }: SongPageProps) => {
         <div className={styles.artistInfoLinkContent}>
           <MusicContentTitle title="アーティスト情報" />
           <ImageTitleLink
-            id={resSongData.artist.id}
+            url={`/artist/${resSongData.artist.id}`}
             name={resSongData.artist.name}
             image={resSongData.artist.picture_xl}
           />
