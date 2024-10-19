@@ -3,19 +3,40 @@
 import type { DeezerChartSong } from "@/types/deezer";
 import styles from "./SongItem.module.css";
 import Image from "next/image";
+import { GETMONDAYOFTHISWEEK, GETMONDAYOFLASTWEEK } from "@/constants/constant";
 
 export const SongItem = ({
   songs,
   gridLayout,
+  weekCheck,
 }: {
   songs: DeezerChartSong[];
   gridLayout: boolean;
+  weekCheck: string;
 }) => {
+  let selectSongs: DeezerChartSong[] = [];
+
+  if (weekCheck === "this") {
+    selectSongs = songs.filter(
+      (song) =>
+        GETMONDAYOFTHISWEEK.toLocaleDateString().replaceAll("/", "-") <=
+        song.release_date
+    );
+  } else if (weekCheck === "last") {
+    selectSongs = songs.filter(
+      (song) =>
+        GETMONDAYOFTHISWEEK.toLocaleDateString().replaceAll("/", "-") >
+        song.release_date
+    );
+  } else {
+    selectSongs = songs;
+  }
+
   return (
     <div className={styles.wrapper}>
       {gridLayout ? (
         <div className={styles.songItemsGridWrapper}>
-          {songs.map((song) => (
+          {selectSongs.map((song) => (
             <div key={song.id} className={styles.songItemGridWrapper}>
               <Image
                 src={song.cover_xl}
