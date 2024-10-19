@@ -60,7 +60,7 @@ export const SongItem = ({
         </div>
       ) : (
         <div className={styles.songItemsListWrapper}>
-          {songs.map((song) => (
+          {selectSongs.map((song) => (
             <div key={song.id} className={styles.songItemListWrapper}>
               <Image
                 src={song.cover_xl}
