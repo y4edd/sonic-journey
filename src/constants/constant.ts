@@ -19,7 +19,6 @@ export const GENRE_ARTISTS = [
   { id: 173, name: "映画/ゲーム" },
 ];
 
-const options = { month: "2-digit" as const, day: "2-digit" as const };
 const getMondayOfThisWeek = () => {
   const today = new Date();
   const dayOfWeek = today.getDay();
@@ -27,10 +26,7 @@ const getMondayOfThisWeek = () => {
   const monday = new Date(today.setDate(today.getDate() + diff));
   return monday;
 };
-export const GETMONDAYOFTHISWEEK = getMondayOfThisWeek().toLocaleDateString(
-  undefined,
-  options
-);
+export const GETMONDAYOFTHISWEEK = getMondayOfThisWeek();
 
 const getMondayOfLastWeek = () => {
   const today = new Date();
@@ -39,7 +35,4 @@ const getMondayOfLastWeek = () => {
   const monday = new Date(today.setDate(today.getDate() + diff));
   return monday;
 };
-export const GETMONDAYOFLASTWEEK = getMondayOfLastWeek().toLocaleDateString(
-  undefined,
-  options
-);
+export const GETMONDAYOFLASTWEEK = getMondayOfLastWeek();
