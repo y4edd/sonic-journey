@@ -1,0 +1,14 @@
+.register {
+  margin: 15px;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 90%;
+}
+
+.register:hover {
+  background-color: white;
+  color: black;
+}

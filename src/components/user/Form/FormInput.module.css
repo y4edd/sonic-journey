@@ -1,0 +1,21 @@
+.formRegister {
+  margin: 0.5rem 1rem;
+  height: 110px;
+  width: 13rem;
+}
+
+.input {
+  padding: 0.4em;
+}
+
+.formRegister label,
+.formRegister input,
+.formRegister .error-message {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 15px;
+}
