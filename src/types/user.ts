@@ -1,6 +1,6 @@
-import { z } from "zod";
-import { schema } from "@/lib/validation";
-import { FieldError, UseFormRegisterReturn } from "react-hook-form";
+import type { schema } from "@/lib/validation";
+import type { FieldError, UseFormRegisterReturn } from "react-hook-form";
+import type { z } from "zod";
 
 export type FormData = z.infer<typeof schema>;
 

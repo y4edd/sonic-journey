@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Button from "./Button"; 
+import Button from "./Button";
 
 describe("Button コンポーネントの単体テスト", () => {
   it("propsで渡されたtypeとvalueが正しく表示される", () => {

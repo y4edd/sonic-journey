@@ -1,17 +1,18 @@
 "use client";
+
+import BreadList from "@/components/top/BreadList/BreadList";
+import Button from "@/components/user/Button/Button";
+import ButtonStyles from "@/components/user/Button/Button.module.css";
+import FormInput from "@/components/user/Form/FormInput";
+import Guide from "@/components/user/Guide/Guide";
+import Information from "@/components/user/Information/Information";
+import { schema } from "@/lib/validation";
+import type { FormData } from "@/types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import styles from "./page.module.css";
-import ButtonStyles from "@/components/user/Button/Button.module.css";
-import { schema } from "@/lib/validation";
-import { FormData } from "@/types/user";
-import FormInput from "@/components/user/Form/FormInput";
-import Button from "@/components/user/Button/Button";
-import Guide from "@/components/user/Guide/Guide";
-import Information from "@/components/user/Information/Information";
-import BreadList from "@/components/top/BreadList/BreadList";
 
 const UserRegistration = () => {
   // useStateでサーバーエラー管理
@@ -27,7 +28,7 @@ const UserRegistration = () => {
 
   const router = useRouter();
 
-  const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
+  const onSubmit: SubmitHandler<FormData> = async (_data: FormData) => {
     // try {
     //   await registerUser(
     //     data.name,
@@ -45,10 +46,12 @@ const UserRegistration = () => {
 
   return (
     <>
-      <BreadList bread={[
-        { link: "/", title: "TOP" },
-        { link: "/user", title: "アカウント登録" },
-      ]} />
+      <BreadList
+        bread={[
+          { link: "/", title: "TOP" },
+          { link: "/user", title: "アカウント登録" },
+        ]}
+      />
       <div>
         <Information text="アカウント登録" />
       </div>
@@ -89,11 +92,7 @@ const UserRegistration = () => {
             })}
             error={errors.passwordConfirm}
           />
-          <Button
-            type="submit"
-            value="ユーザー登録"
-            className={ButtonStyles.register}
-          />
+          <Button type="submit" value="ユーザー登録" className={ButtonStyles.register} />
         </form>
       </div>
       <Guide href="/login" message="登録済みの方" />

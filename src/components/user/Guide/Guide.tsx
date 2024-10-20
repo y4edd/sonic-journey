@@ -1,5 +1,5 @@
+import type { GuideProps } from "@/types/user";
 import Link from "next/link";
-import { GuideProps } from "@/types/user";
 import styles from "./Guide.module.css";
 
 const Guide: React.FC<GuideProps> = ({ href, message }) => {

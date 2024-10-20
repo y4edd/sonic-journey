@@ -25,15 +25,19 @@ describe("UserRegistration", () => {
     fireEvent.submit(screen.getByRole("button", { name: "ユーザー登録" }));
 
     await waitFor(() => {
-      expect(screen.getByText("ユーザー名は必須です", { collapseWhitespace: true })).toBeInTheDocument();
       expect(
-        screen.getByText("正しいメールアドレスを入力してください", { collapseWhitespace: true })
+        screen.getByText("ユーザー名は必須です", { collapseWhitespace: true }),
       ).toBeInTheDocument();
       expect(
-        screen.getByText("パスワードは6文字以上で入力してください", { collapseWhitespace: true })
+        screen.getByText("正しいメールアドレスを入力してください", { collapseWhitespace: true }),
       ).toBeInTheDocument();
       expect(
-        screen.getByText("確認用パスワードは6文字以上で入力してください", { collapseWhitespace: true })
+        screen.getByText("パスワードは6文字以上で入力してください", { collapseWhitespace: true }),
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText("確認用パスワードは6文字以上で入力してください", {
+          collapseWhitespace: true,
+        }),
       ).toBeInTheDocument();
     });
   });

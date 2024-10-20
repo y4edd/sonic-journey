@@ -1,6 +1,6 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
+import type { UseFormRegisterReturn } from "react-hook-form";
 import FormInput from "./FormInput";
-import { UseFormRegisterReturn } from "react-hook-form";
 
 describe("FormInput コンポーネントの単体テスト", () => {
   // register のモック
@@ -20,7 +20,7 @@ describe("FormInput コンポーネントの単体テスト", () => {
         placeholder="名前を入力してください"
         register={mockRegister}
         error={undefined}
-      />
+      />,
     );
 
     expect(screen.getByLabelText("ユーザー名")).toBeInTheDocument();
@@ -37,7 +37,7 @@ describe("FormInput コンポーネントの単体テスト", () => {
         placeholder="メールを入力してください"
         register={mockRegister}
         error={undefined}
-      />
+      />,
     );
 
     const errorMessage = screen.queryByText("必須です");
@@ -52,8 +52,8 @@ describe("FormInput コンポーネントの単体テスト", () => {
         type="password"
         placeholder="パスワードを入力してください"
         register={mockRegister}
-        error={{ message: "パスワードは必須です",type: "required" }}
-      />
+        error={{ message: "パスワードは必須です", type: "required" }}
+      />,
     );
 
     expect(screen.getByText("パスワードは必須です")).toBeInTheDocument();
@@ -68,7 +68,7 @@ describe("FormInput コンポーネントの単体テスト", () => {
         placeholder="名前を入力してください"
         register={mockRegister}
         error={undefined}
-      />
+      />,
     );
 
     const inputElement = screen.getByLabelText("ユーザー名");
