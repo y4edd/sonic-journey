@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
-import styles from './page.module.css';
+import styles from "./page.module.css";
 import ButtonStyles from "@/components/user/Button/Button.module.css";
 import { schema } from "@/lib/validation";
 import { FormData } from "@/types/user";
@@ -11,6 +11,7 @@ import FormInput from "@/components/user/Form/FormInput";
 import Button from "@/components/user/Button/Button";
 import Guide from "@/components/user/Guide/Guide";
 import Information from "@/components/user/Information/Information";
+import BreadList from "@/components/top/BreadList/BreadList";
 
 const UserRegistration = () => {
   // useStateでサーバーエラー管理
@@ -19,7 +20,7 @@ const UserRegistration = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(schema),
   });
@@ -44,15 +45,22 @@ const UserRegistration = () => {
 
   return (
     <>
-      <Information text="アカウント登録" />
+      {/* <BreadList bread = {"/user/page","アカウント登録"} /> */}
+      <BreadList bread={[
+        { link: "/", title: "TOP" },
+        { link: "/user", title: "アカウント登録" },
+      ]} />
+      <div>
+        <Information text="アカウント登録" />
+      </div>
       <div className={styles.container}>
-        <form onSubmit={handleSubmit(onSubmit)}> 
+        <form onSubmit={handleSubmit(onSubmit)}>
           <FormInput
             label="ユーザー名"
             id="username"
             type="text"
             placeholder="tanitune"
-            register={register("name", { required: true, minLength: 1})}
+            register={register("name", { required: true, minLength: 1 })}
             error={errors.name}
           />
           <FormInput
@@ -60,7 +68,7 @@ const UserRegistration = () => {
             id="mailAddress"
             type="email"
             placeholder="tani@example.com"
-            register={register("mailAddress", {required: true, minLength: 5})}
+            register={register("mailAddress", { required: true, minLength: 5 })}
             error={errors.mailAddress}
           />
           <FormInput
@@ -68,7 +76,7 @@ const UserRegistration = () => {
             id="password"
             type="password"
             placeholder="password"
-            register={register("password", { required: true, minLength: 6})}
+            register={register("password", { required: true, minLength: 6 })}
             error={errors.password}
           />
           <FormInput
@@ -76,13 +84,20 @@ const UserRegistration = () => {
             id="passwordConfirm"
             type="password"
             placeholder="password"
-            register={register("passwordConfirm", {required: true, minLength: 6})}
+            register={register("passwordConfirm", {
+              required: true,
+              minLength: 6,
+            })}
             error={errors.passwordConfirm}
           />
-          <Button type="submit" value="ユーザー登録" className={ButtonStyles.register}/>
+          <Button
+            type="submit"
+            value="ユーザー登録"
+            className={ButtonStyles.register}
+          />
         </form>
       </div>
-      <Guide href="/login"  message="登録済みの方" />
+      <Guide href="/login" message="登録済みの方" />
     </>
   );
 };
