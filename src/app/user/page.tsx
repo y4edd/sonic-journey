@@ -45,7 +45,6 @@ const UserRegistration = () => {
 
   return (
     <>
-      {/* <BreadList bread = {"/user/page","アカウント登録"} /> */}
       <BreadList bread={[
         { link: "/", title: "TOP" },
         { link: "/user", title: "アカウント登録" },

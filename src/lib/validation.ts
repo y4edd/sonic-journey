@@ -7,7 +7,7 @@ export const schema = z
     password: z.string().min(6, "パスワードは6文字以上で入力してください"),
     passwordConfirm: z
       .string()
-      .min(6, "パスワード確認は6文字以上で入力してください"),
+      .min(6, "確認用パスワードは6文字以上で入力してください"),
   })
   .refine((data) => data.password === data.passwordConfirm, {
     message: "パスワードが一致しません",

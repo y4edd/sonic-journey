@@ -1,42 +1,22 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { useRouter } from "next/navigation";
-import { z } from "zod";
 import UserRegistration from "./page";
+import "@testing-library/jest-dom";
 
-const schema = z.object({
-  name: z.string().min(1).max(20),
-  mailAddress: z.string().email(),
-  password: z.string().min(6),
-  passwordConfirm: z.string().min(6),
-});
-
-type FormValues = z.infer<typeof schema>;
-
-const mockRegisterUser = jest.fn<Promise<void>, [FormValues]>();
-
-jest.mock("./page", () => ({
-  __esModule: true,
-  default: jest.requireActual("./page").default,
-  registerUser: jest.fn((data: FormValues) => mockRegisterUser(data)),
-}));
-
+// モックの設定
 const mockPush = jest.fn();
-
 jest.mock("next/navigation", () => ({
   useRouter: () => ({
     push: mockPush,
   }),
 }));
-describe("UserRegistration", () => {
-  beforeEach(() => {
-    mockRegisterUser.mockReset();
-  });
 
+describe("UserRegistration", () => {
   it("フォームが正しくレンダリングされている", () => {
     render(<UserRegistration />);
     expect(screen.getByLabelText("ユーザー名")).toBeInTheDocument();
     expect(screen.getByLabelText("メールアドレス")).toBeInTheDocument();
-    expect(screen.getByLabelText("パスワード入力")).toBeInTheDocument();
+    expect(screen.getByLabelText("パスワード")).toBeInTheDocument();
     expect(screen.getByLabelText("パスワード確認")).toBeInTheDocument();
   });
 
@@ -45,16 +25,23 @@ describe("UserRegistration", () => {
     fireEvent.submit(screen.getByRole("button", { name: "ユーザー登録" }));
 
     await waitFor(() => {
-      expect(screen.getByText("ユーザー名は必須です")).toBeInTheDocument();
-      expect(screen.getByText("正しいメールアドレスを入力してください")).toBeInTheDocument();
-      expect(screen.getByText("パスワードは6文字以上で入力してください")).toBeInTheDocument();
+      expect(screen.getByText("ユーザー名は必須です", { collapseWhitespace: true })).toBeInTheDocument();
+      expect(
+        screen.getByText("正しいメールアドレスを入力してください", { collapseWhitespace: true })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText("パスワードは6文字以上で入力してください", { collapseWhitespace: true })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText("確認用パスワードは6文字以上で入力してください", { collapseWhitespace: true })
+      ).toBeInTheDocument();
     });
   });
 
   it("パスワードが一致しない場合、エラーメッセージが表示される", async () => {
     render(<UserRegistration />);
 
-    fireEvent.input(screen.getByLabelText("パスワード入力"), {
+    fireEvent.input(screen.getByLabelText("パスワード"), {
       target: { value: "password1" },
     });
     fireEvent.input(screen.getByLabelText("パスワード確認"), {
@@ -77,7 +64,7 @@ describe("UserRegistration", () => {
     fireEvent.input(screen.getByLabelText("メールアドレス"), {
       target: { value: "tanisan@example.com" },
     });
-    fireEvent.input(screen.getByLabelText("パスワード入力"), {
+    fireEvent.input(screen.getByLabelText("パスワード"), {
       target: { value: "password" },
     });
     fireEvent.input(screen.getByLabelText("パスワード確認"), {
@@ -90,30 +77,4 @@ describe("UserRegistration", () => {
       expect(mockPush).toHaveBeenCalledWith("/user/login");
     });
   });
-
-  // サーバーエラーのテスト。Auth0未実装につき、実施しない
-  // it("サーバーエラーが発生した場合、エラーメッセージが表示される", async () => {
-  //   mockRegisterUser.mockRejectedValueOnce(new Error("サーバーエラーです"));
-
-  //   render(<UserRegistration />);
-
-  //   fireEvent.input(screen.getByLabelText("ユーザー名"), {
-  //     target: { value: "tanitune" },
-  //   });
-  //   fireEvent.input(screen.getByLabelText("メールアドレス"), {
-  //     target: { value: "tanisan@example.com" },
-  //   });
-  //   fireEvent.input(screen.getByLabelText("パスワード入力"), {
-  //     target: { value: "password" },
-  //   });
-  //   fireEvent.input(screen.getByLabelText("パスワード確認"), {
-  //     target: { value: "password" },
-  //   });
-
-  //   fireEvent.submit(screen.getByRole("button", { name: "ユーザー登録" }));
-
-  //   await waitFor(() => {
-  //     expect(screen.getByText("サーバーエラーです")).toBeInTheDocument();
-  //   });
-  // });
 });

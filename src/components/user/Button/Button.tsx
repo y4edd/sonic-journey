@@ -1,6 +1,5 @@
 import React from "react";
 import { ButtonProps } from "@mui/material";
-import styles from "./Button.module.css"
 
 const Button:React.FC<ButtonProps> = ({
   type,
@@ -19,4 +18,4 @@ const Button:React.FC<ButtonProps> = ({
 
 }
 
-export default Button
+export default Button;
