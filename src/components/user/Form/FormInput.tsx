@@ -5,7 +5,13 @@ const FormInput: React.FC<FormInputProps> = ({ label, id, type, placeholder, reg
   <>
     <div className={styles.formRegister}>
       <label htmlFor={id}>{label}</label>
-      <input id={id} type={type} placeholder={placeholder} {...register} className={styles.userInput} />
+      <input
+        id={id}
+        type={type}
+        placeholder={placeholder}
+        {...register}
+        className={styles.userInput}
+      />
       {error?.message && <span className={styles.errorMessage}>{error.message}</span>}
     </div>
   </>
