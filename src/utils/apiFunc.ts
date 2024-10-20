@@ -67,3 +67,19 @@ export const getSong = async (song: number) => {
     console.log(error);
   }
 };
+
+// アーティストidからアーティスト情報を取得する関数
+// artistにはアーティストidを入力
+export const getArtist = async (artist: number) => {
+  try {
+    const res = await fetch(`http://localhost:3000/api/artistSearch?artist=${artist}`);
+
+    if (!res.ok) {
+      throw new Error("データが見つかりませんでした");
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
