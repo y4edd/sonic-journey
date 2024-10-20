@@ -1,0 +1,17 @@
+.artistList {
+  margin-top: 1rem;
+  padding: 0 1rem;
+}
+
+.artistList > ul {
+  list-style-type: none;
+}
+
+.horizon {
+  border-bottom: solid 1px #ccc;
+}
+
+.noArtistMessage {
+  text-align: center;
+  color: gray;
+}
