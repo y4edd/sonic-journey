@@ -4,8 +4,10 @@
   width: 13rem;
 }
 
-.input {
-  padding: 0.4em;
+.userInput {
+  padding: 0.2em;
+  font-size:15px;
+  
 }
 
 .formRegister label,
