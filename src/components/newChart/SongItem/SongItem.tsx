@@ -12,31 +12,30 @@ export const SongItem = ({
 }: {
   songs: DeezerChartSong[];
   gridLayout: boolean;
-  weekCheck: string;
+  weekCheck?: string;
 }) => {
-  let selectSongs: DeezerChartSong[] = [];
-
-  if (weekCheck === "this") {
-    selectSongs = songs.filter(
-      (song) =>
-        GETMONDAYOFTHISWEEK.toLocaleDateString().replaceAll("/", "-") <=
-        song.release_date
-    );
-  } else if (weekCheck === "last") {
-    selectSongs = songs.filter(
-      (song) =>
-        GETMONDAYOFTHISWEEK.toLocaleDateString().replaceAll("/", "-") >
-        song.release_date
-    );
-  } else {
-    selectSongs = songs;
+  if (weekCheck) {
+    if (weekCheck === "this") {
+      songs = songs.filter(
+        (song) =>
+          GETMONDAYOFTHISWEEK.toLocaleDateString().replaceAll("/", "-") <=
+          song.release_date
+      );
+    } else if (weekCheck === "last") {
+      songs = songs.filter(
+        (song) =>
+          GETMONDAYOFTHISWEEK.toLocaleDateString().replaceAll("/", "-") >
+          song.release_date
+      );
+    } else {
+    }
   }
 
   return (
     <div className={styles.wrapper}>
       {gridLayout ? (
         <div className={styles.songItemsGridWrapper}>
-          {selectSongs.map((song) => (
+          {songs.map((song) => (
             <div key={song.id} className={styles.songItemGridWrapper}>
               <Image
                 src={song.cover_xl}
@@ -60,7 +59,7 @@ export const SongItem = ({
         </div>
       ) : (
         <div className={styles.songItemsListWrapper}>
-          {selectSongs.map((song) => (
+          {songs.map((song) => (
             <div key={song.id} className={styles.songItemListWrapper}>
               <Image
                 src={song.cover_xl}
