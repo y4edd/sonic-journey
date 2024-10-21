@@ -23,7 +23,7 @@ const FavoriteSongs = async () => {
       <MenuHeader title="お気に入り楽曲" />
       <SortButtons label="登録日" />
       <EditButton />
-      <SongList songs={favoriteSongsInfo} />
+      <SongList songs={favoriteSongsInfo} errorMessage="お気に入り曲は登録されていません" />
     </div>
   );
 };

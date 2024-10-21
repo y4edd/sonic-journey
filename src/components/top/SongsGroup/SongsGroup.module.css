@@ -18,3 +18,12 @@
 .newSongGroup > div:nth-child(3) > img {
   border: 5px solid rgb(193, 60, 60);
 }
+
+.newSongGroup img {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.newSongGroup img:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px #bababa;
+}
