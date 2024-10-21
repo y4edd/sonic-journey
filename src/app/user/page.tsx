@@ -59,40 +59,41 @@ const UserRegistration = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormInput
             label="ユーザー名"
-            id="username"
+            id="userName"
             type="text"
+            name="userName"
             placeholder="tanitune"
-            register={register("name", { required: true, minLength: 1 })}
-            error={errors.name}
+            register={register}
+            error={errors.userName}
           />
           <FormInput
             label="メールアドレス"
             id="mailAddress"
             type="email"
+            name={"mailAddress"}
             placeholder="tani@example.com"
-            register={register("mailAddress", { required: true, minLength: 5 })}
+            register={register}
             error={errors.mailAddress}
           />
           <FormInput
             label="パスワード"
             id="password"
             type="password"
+            name={"password"}
             placeholder="password"
-            register={register("password", { required: true, minLength: 6 })}
+            register={register}
             error={errors.password}
           />
           <FormInput
             label="パスワード確認"
             id="passwordConfirm"
             type="password"
+            name={"passwordConfirm"}
             placeholder="password"
-            register={register("passwordConfirm", {
-              required: true,
-              minLength: 6,
-            })}
+            register={register}
             error={errors.passwordConfirm}
           />
-          <Button type="submit" value="ユーザー登録" className={ButtonStyles.register} />
+          <Button type="submit" className={ButtonStyles.register} text={"ユーザー登録"} />
         </form>
       </div>
       <Guide href="/login" message="登録済みの方" />

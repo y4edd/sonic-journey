@@ -9,11 +9,9 @@
   font-size: 15px;
 }
 
-.formRegister label,
-.formRegister input,
-.formRegister .error-message {
+.userInput,
+.errorMessage {
   display: block;
-  margin-bottom: 0.5rem;
 }
 
 .errorMessage {

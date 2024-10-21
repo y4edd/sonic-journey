@@ -1,9 +1,11 @@
 import type { ButtonProps } from "@mui/material";
 
-const Button: React.FC<ButtonProps> = ({ type, value, className }) => {
+const Button: React.FC<ButtonProps & {text: string }> = ({ type, className, text }) => {
   return (
     <>
-      <input type={type} value={value} className={className} />
+      <button type={type} className={className} >
+        {text}
+      </button>
     </>
   );
 };
