@@ -1,9 +1,9 @@
 import type { ButtonProps } from "@mui/material";
 
-const Button: React.FC<ButtonProps & {text: string }> = ({ type, className, text }) => {
+const Button: React.FC<ButtonProps & { text: string }> = ({ type, className, text }) => {
   return (
     <>
-      <button type={type} className={className} >
+      <button type={type} className={className}>
         {text}
       </button>
     </>

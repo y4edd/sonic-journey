@@ -1,7 +1,15 @@
 import type { FormInputProps } from "@/types/user";
 import styles from "./FormInput.module.css";
 
-const FormInput: React.FC<FormInputProps> = ({ label, id, type, name, placeholder, register, error }) => {
+const FormInput: React.FC<FormInputProps> = ({
+  label,
+  id,
+  type,
+  name,
+  placeholder,
+  register,
+  error,
+}) => {
   const registration = register(name);
 
   return (
@@ -19,6 +27,6 @@ const FormInput: React.FC<FormInputProps> = ({ label, id, type, name, placeholde
       </div>
     </>
   );
-}
+};
 
 export default FormInput;
