@@ -22,6 +22,7 @@ const FormInput: React.FC<FormInputProps> = ({
           placeholder={placeholder}
           {...registration}
           className={styles.userInput}
+          name={name}
         />
         {error?.message && <span className={styles.errorMessage}>{error.message}</span>}
       </div>
