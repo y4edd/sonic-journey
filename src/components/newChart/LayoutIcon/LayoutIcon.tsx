@@ -1,8 +1,8 @@
 "use client";
 
-import styles from "./LayoutIcon.module.css";
-import ViewModuleIcon from "@mui/icons-material/ViewModule";
 import ViewListIcon from "@mui/icons-material/ViewList";
+import ViewModuleIcon from "@mui/icons-material/ViewModule";
+import styles from "./LayoutIcon.module.css";
 
 type UseLayoutChange = {
   gridLayout: boolean;

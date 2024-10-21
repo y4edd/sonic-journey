@@ -7,7 +7,7 @@ type UseLayoutChange = () => {
   handleListLayoutIconClick: () => void;
 };
 
-export const UseLayoutChange = () => {
+export const UseLayoutChange: UseLayoutChange = () => {
   const [gridLayout, setGridLayout] = useState(true);
   const handleGridLayoutIconClick = () => {
     setGridLayout(true);

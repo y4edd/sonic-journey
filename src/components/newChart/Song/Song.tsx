@@ -1,19 +1,18 @@
 "use client";
-import styles from "./Song.module.css";
-import type { DeezerChartSong } from "@/types/deezer";
 import { LayoutIcon } from "@/components/newChart/LayoutIcon/LayoutIcon";
-import { SongItem } from "../SongItem/SongItem";
-import { SelectDate } from "../SelectDate/SelectDate";
-import { UseLayoutChange } from "@/hooks/chart/useLayoutChange";
 import { UseDateCheck } from "@/hooks/chart/useDateCheck";
+import { UseLayoutChange } from "@/hooks/chart/useLayoutChange";
+import type { DeezerChartSong } from "@/types/deezer";
+import { SelectDate } from "../SelectDate/SelectDate";
+import { SongItem } from "../SongItem/SongItem";
+import styles from "./Song.module.css";
 
 export const Song = ({
   songs,
 }: {
   songs: { resultData: DeezerChartSong[] };
 }) => {
-  const { gridLayout, handleGridLayoutIconClick, handleListLayoutIconClick } =
-    UseLayoutChange();
+  const { gridLayout, handleGridLayoutIconClick, handleListLayoutIconClick } = UseLayoutChange();
 
   const { weekCheck, handleLastClick, handleThisClick } = UseDateCheck();
   return (
@@ -30,11 +29,7 @@ export const Song = ({
           handleThisClick={handleThisClick}
         />
       </div>
-      <SongItem
-        songs={songs.resultData}
-        gridLayout={gridLayout}
-        weekCheck={weekCheck}
-      />
+      <SongItem songs={songs.resultData} gridLayout={gridLayout} weekCheck={weekCheck} />
     </>
   );
 };
