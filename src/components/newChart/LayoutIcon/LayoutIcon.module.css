@@ -1,0 +1,17 @@
+.layoutIcons {
+  display: flex;
+  margin-left: 4px;
+}
+.layoutIconList {
+  list-style-type: none;
+}
+
+.gridOn,
+.gridOff {
+  margin: 10px 5px;
+  font-size: 3.5rem;
+}
+
+.gridOff {
+  color: lightgray;
+}

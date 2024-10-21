@@ -1,0 +1,18 @@
+.dateWrapper {
+  display: flex;
+  text-align: center;
+  margin: 15px 20px auto auto;
+}
+
+.weekWrapper {
+  font-size: 1rem;
+}
+
+.border {
+  border-left: 1.5px solid gray;
+  margin: 0 15px;
+}
+
+.otherWeek {
+  color: lightgray;
+}
