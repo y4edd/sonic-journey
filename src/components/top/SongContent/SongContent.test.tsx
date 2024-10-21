@@ -1,4 +1,4 @@
-import { DeezerNewSongDetail, type DeezerSong } from "@/types/deezer";
+import type { DeezerSong } from "@/types/deezer";
 import { render, screen } from "@testing-library/react";
 import SongContent from "./SongContent";
 
@@ -19,11 +19,12 @@ const mockSong: DeezerSong = {
 
 describe("SongContentの単体テスト", () => {
   test("受け取ったpropsを反映し、レンダリングされること", () => {
-    render(<SongContent song={mockSong} />);
+    render(<SongContent song={mockSong} url="music" />);
     const imgElement = screen.getByAltText("シンデレラのジャケット画像");
 
     expect(screen.getByText("シンデレラ")).toBeInTheDocument();
     expect(screen.getByText("サイダーガール")).toBeInTheDocument();
     expect(imgElement).toHaveAttribute("src", mockSong.cover_xl);
+    expect(screen.getByRole("link")).toHaveAttribute("href", "/music/1");
   });
 });

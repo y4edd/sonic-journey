@@ -32,7 +32,7 @@ const TopPage = async () => {
             <ContentTitle title="人気新着" />
             <LinkButton label="もっと見る >" />
           </div>
-          <SongsGroup songs={newSongs} />
+          <SongsGroup songs={newSongs} url="album" />
         </div>
 
         <div className={styles.newSongsContent}>
@@ -40,7 +40,7 @@ const TopPage = async () => {
             <ContentTitle title="シングルランキング" />
             <LinkButton label="もっと見る >" />
           </div>
-          <SongsGroup songs={singleSongs} />
+          <SongsGroup songs={singleSongs} url="music" />
         </div>
         <div className={styles.genreContent}>
           <ContentTitle title="ジャンル一覧" />

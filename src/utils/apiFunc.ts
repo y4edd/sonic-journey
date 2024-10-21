@@ -56,7 +56,9 @@ export const getGenreArtist = async (genre: number) => {
 // songには楽曲のidを入力
 export const getSong = async (song: number) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/songSearch?song=${song}`);
+    const res = await fetch(`http://localhost:3000/api/songSearch?song=${song}`, {
+      cache: "no-cache",
+    });
 
     if (!res.ok) {
       throw new Error("データが見つかりませんでした");
@@ -64,7 +66,28 @@ export const getSong = async (song: number) => {
 
     return await res.json();
   } catch (error) {
-    console.log(error);
+    console.error(error);
+  }
+};
+
+// アーティストの人気曲を取得する関数
+// artistIdにはアーティストのidを、limitには取得件数を入力
+export const getArtistSongs = async (artistId: number, limit: number) => {
+  try {
+    const res = await fetch(
+      `http://localhost:3000/api/artistFavoriteSongs?artistId=${artistId}&limit=${limit}`,
+      {
+        cache: "no-cache",
+      },
+    );
+
+    if (!res.ok) {
+      throw new Error("データが見つかりませんでした");
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error(error);
   }
 };
 
@@ -82,6 +105,6 @@ export const getArtist = async (artist: number) => {
 
     return await res.json();
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };

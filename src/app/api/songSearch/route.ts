@@ -20,9 +20,11 @@ export const GET = async (request: NextRequest) => {
       title: songData.title,
       cover_xl: songData.album.cover_xl,
       release_date: songData.album.release_date,
+      preview: songData.preview,
       artist: {
         id: songData.artist.id,
         name: songData.artist.name,
+        picture_xl: songData.artist.picture_xl,
       },
       album: {
         id: songData.album.id,

@@ -19,19 +19,19 @@ const mockSong: DeezerSong = {
 
 describe("SongListコンポーネントのテスト", () => {
   test("楽曲がない場合、メッセージを表示すること", () => {
-    render(<SongList songs={[]} />);
+    render(<SongList songs={[]} errorMessage="お気に入り曲は登録されていません" />);
     expect(screen.getByText("お気に入り曲は登録されていません")).toBeInTheDocument();
   });
 
   test("楽曲が1つある場合、1つのSongListItemを表示すること", () => {
-    render(<SongList songs={[mockSong]} />);
+    render(<SongList songs={[mockSong]} errorMessage="お気に入り曲は登録されていません" />);
     expect(screen.getByText("分針を噛む")).toBeInTheDocument();
     expect(screen.getAllByRole("listitem")).toHaveLength(1);
   });
 
   test("複数の楽曲がある場合、複数のSongListItemを表示する", () => {
     const songs = [mockSong, { ...mockSong, id: 555, title: "勘鈍くて悔しいわ" }];
-    render(<SongList songs={songs} />);
+    render(<SongList songs={songs} errorMessage="お気に入り曲は登録されていません" />);
 
     expect(screen.getByText("分針を噛む")).toBeInTheDocument();
     expect(screen.getByText("勘鈍くて悔しいわ")).toBeInTheDocument();
