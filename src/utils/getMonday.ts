@@ -1,4 +1,4 @@
-const getMondayOfThisWeek = () => {
+export const getMondayOfThisWeek = () => {
   const today = new Date();
   const dayOfWeek = today.getDay();
   const diff = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
@@ -7,7 +7,7 @@ const getMondayOfThisWeek = () => {
 };
 export const GETMONDAYOFTHISWEEK = getMondayOfThisWeek();
 
-const getMondayOfLastWeek = () => {
+export const getMondayOfLastWeek = () => {
   const today = new Date();
   const dayOfWeek = today.getDay();
   const diff = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;

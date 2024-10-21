@@ -1,42 +1,37 @@
 "use client";
 
-import type { DeezerChartSong } from "@/types/deezer";
-import { getMondayOfThisWeek } from "@/utils/getMonday";
+import type { DeezerSong } from "@/types/deezer";
 import Image from "next/image";
 import styles from "./SongItem.module.css";
 
 export const SongItem = ({
   songs,
   gridLayout,
-  weekCheck,
 }: {
-  songs: DeezerChartSong[];
+  songs: DeezerSong[];
   gridLayout: boolean;
-  weekCheck?: string;
 }) => {
-  if (weekCheck) {
-    if (weekCheck === "this") {
-      songs = songs.filter(
-        (song) =>
-          getMondayOfThisWeek().toLocaleDateString().replaceAll("/", "-") <= song.release_date,
-      );
-    } else if (weekCheck === "last") {
-      songs = songs.filter(
-        (song) =>
-          getMondayOfThisWeek().toLocaleDateString().replaceAll("/", "-") > song.release_date,
-      );
-    } else {
-    }
-  }
-
   return (
     <div className={styles.wrapper}>
       {gridLayout ? (
         <div className={styles.songItemsGridWrapper}>
-          {songs.map((song) => (
+          {songs.map((song, index) => (
             <div key={song.id} className={styles.songItemGridWrapper}>
+              <p
+                className={
+                  index + 1 === 1
+                    ? styles.firstRankGrid
+                    : index + 1 === 2
+                      ? styles.secondRankGrid
+                      : index + 1 === 3
+                        ? styles.thirdRankGrid
+                        : styles.otherRankGrid
+                }
+              >
+                {index + 1}
+              </p>
               <Image
-                src={song.cover_xl}
+                src={song.cover_xl || song.album.cover_xl || ""}
                 alt=""
                 height={160}
                 width={160}
@@ -55,10 +50,23 @@ export const SongItem = ({
         </div>
       ) : (
         <div className={styles.songItemsListWrapper}>
-          {songs.map((song) => (
+          {songs.map((song, index) => (
             <div key={song.id} className={styles.songItemListWrapper}>
+              <p
+                className={
+                  index + 1 === 1
+                    ? styles.firstRankList
+                    : index + 1 === 2
+                      ? styles.secondRankList
+                      : index + 1 === 3
+                        ? styles.thirdRankList
+                        : styles.otherRankList
+                }
+              >
+                {index + 1}
+              </p>
               <Image
-                src={song.cover_xl}
+                src={song.cover_xl || song.album.cover_xl || ""}
                 alt=""
                 height={70}
                 width={70}
