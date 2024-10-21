@@ -14,6 +14,12 @@ jobs:
     steps:
     - uses: actions/checkout@v4
 
+    - name: Set current datetime as env variable
+      run: echo "CURRENT_DATETIME=$(date +'%Y-%m-%d %H:%M:%S')" >> $GITHUB_ENV
+
+    - name: Show current datetime
+      run: echo ${{ env.CURRENT_DATETIME }}
+
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
