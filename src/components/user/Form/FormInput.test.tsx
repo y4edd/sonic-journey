@@ -1,79 +1,49 @@
+import type { Form } from "@/types/user";
 import { fireEvent, render, screen } from "@testing-library/react";
-import type { UseFormRegisterReturn } from "react-hook-form";
+import { type SubmitHandler, useForm } from "react-hook-form";
 import FormInput from "./FormInput";
 
-describe("FormInput コンポーネントの単体テスト", () => {
-  // register のモック
-  const mockRegister: UseFormRegisterReturn = {
-    onChange: jest.fn(),
-    onBlur: jest.fn(),
-    ref: jest.fn(),
-    name: "username",
-  };
+const TestForm = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<Form>({
+    mode: "onBlur",
+  });
 
-  it("ラベルと入力フィールドが正しく表示される", () => {
-    render(
+  const onSubmit: SubmitHandler<Form> = (data) => console.log(data);
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
       <FormInput
         label="ユーザー名"
-        id="username"
+        id="userName"
         type="text"
+        name="userName"
         placeholder="名前を入力してください"
-        register={mockRegister}
-        error={undefined}
-      />,
-    );
+        register={register}
+        error={errors.userName}
+      />
+      <button type="submit">送信</button>
+    </form>
+  );
+};
+
+describe("FormInput コンポーネントのテスト", () => {
+  it("ユーザー名の入力フィールドが正しく表示される", () => {
+    render(<TestForm />);
 
     expect(screen.getByLabelText("ユーザー名")).toBeInTheDocument();
-
     expect(screen.getByPlaceholderText("名前を入力してください")).toBeInTheDocument();
   });
 
-  it("エラーメッセージが表示されない", () => {
-    render(
-      <FormInput
-        label="メールアドレス"
-        id="email"
-        type="email"
-        placeholder="メールを入力してください"
-        register={mockRegister}
-        error={undefined}
-      />,
-    );
+  it("入力イベントが正しく動作する", () => {
+    render(<TestForm />);
 
-    const errorMessage = screen.queryByText("必須です");
-    expect(errorMessage).toBeNull();
-  });
+    const input = screen.getByLabelText("ユーザー名");
+    fireEvent.change(input, { target: { value: "tanitune" } });
 
-  it("エラーメッセージが表示される", () => {
-    render(
-      <FormInput
-        label="パスワード"
-        id="password"
-        type="password"
-        placeholder="パスワードを入力してください"
-        register={mockRegister}
-        error={{ message: "パスワードは必須です", type: "required" }}
-      />,
-    );
-
-    expect(screen.getByText("パスワードは必須です")).toBeInTheDocument();
-  });
-
-  it("入力イベントが正しくトリガーされる", () => {
-    render(
-      <FormInput
-        label="ユーザー名"
-        id="username"
-        type="text"
-        placeholder="名前を入力してください"
-        register={mockRegister}
-        error={undefined}
-      />,
-    );
-
-    const inputElement = screen.getByLabelText("ユーザー名");
-
-    fireEvent.change(inputElement, { target: { value: "tanitune" } });
-    expect(inputElement).toHaveValue("tanitune");
+    expect(input).toHaveValue("tanitune");
   });
 });

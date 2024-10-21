@@ -14,6 +14,13 @@ export type FormInputProps = {
   error?: FieldError;
 };
 
+export type Form = {
+  userName: string;
+  mailAddress: string;
+  password: string;
+  passwordConfirm: string;
+};
+
 export type ButtonProps = {
   type: string;
   value: string;
