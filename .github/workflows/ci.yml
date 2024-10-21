@@ -23,7 +23,7 @@ jobs:
       run: yarn install
 
     - name: Check format
-      run: yarn biome format 
+      run: yarn biome format
 
     - name: Check Lint
       run: yarn biome check

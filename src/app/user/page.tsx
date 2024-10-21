@@ -70,7 +70,7 @@ const UserRegistration = () => {
             label="メールアドレス"
             id="mailAddress"
             type="email"
-            name={"mailAddress"}
+            name="mailAddress"
             placeholder="tani@example.com"
             register={register}
             error={errors.mailAddress}
@@ -79,7 +79,7 @@ const UserRegistration = () => {
             label="パスワード"
             id="password"
             type="password"
-            name={"password"}
+            name="password"
             placeholder="password"
             register={register}
             error={errors.password}
@@ -88,7 +88,7 @@ const UserRegistration = () => {
             label="パスワード確認"
             id="passwordConfirm"
             type="password"
-            name={"passwordConfirm"}
+            name="passwordConfirm"
             placeholder="password"
             register={register}
             error={errors.passwordConfirm}
