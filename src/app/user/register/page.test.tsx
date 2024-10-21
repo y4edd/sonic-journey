@@ -11,7 +11,7 @@ jest.mock("next/navigation", () => ({
   }),
 }));
 
-describe("UserRegistration", () => {
+describe("UserRegistrationコンポーネントのテスト", () => {
   it("フォームが正しくレンダリングされている", () => {
     render(<UserRegistration />);
     expect(screen.getByLabelText("ユーザー名")).toBeInTheDocument();
@@ -29,10 +29,14 @@ describe("UserRegistration", () => {
         screen.getByText("ユーザー名は必須です", { collapseWhitespace: true }),
       ).toBeInTheDocument();
       expect(
-        screen.getByText("正しいメールアドレスを入力してください", { collapseWhitespace: true }),
+        screen.getByText("正しいメールアドレスを入力してください", {
+          collapseWhitespace: true,
+        }),
       ).toBeInTheDocument();
       expect(
-        screen.getByText("パスワードは6文字以上で入力してください", { collapseWhitespace: true }),
+        screen.getByText("パスワードは6文字以上で入力してください", {
+          collapseWhitespace: true,
+        }),
       ).toBeInTheDocument();
       expect(
         screen.getByText("確認用パスワードは6文字以上で入力してください", {
