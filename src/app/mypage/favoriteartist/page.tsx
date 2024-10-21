@@ -32,7 +32,10 @@ const FavoriteArtist = async () => {
       <MenuHeader title="お気に入りアーティスト" />
       <SortButtons label="登録日" />
       <EditButton />
-      <ArtistList artists={favoriteArtistsInfo} />
+      <ArtistList
+        artists={favoriteArtistsInfo}
+        errorMessage="お気に入りアーティストは登録されていません"
+      />
     </div>
   );
 };

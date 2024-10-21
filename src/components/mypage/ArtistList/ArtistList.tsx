@@ -2,11 +2,18 @@ import type { DeezerArtist } from "@/types/deezer";
 import ArtistListItem from "../ArtistListItem/ArtistListItem";
 import styles from "./ArtitstList.module.css";
 
-const ArtistList = ({ artists }: { artists: DeezerArtist[] }) => {
+// const ArtistList = ({ artists }: { artists: DeezerArtist[] }) => {
+const ArtistList = ({
+  artists,
+  errorMessage,
+}: {
+  artists: DeezerArtist[];
+  errorMessage: string;
+}) => {
   return (
     <div className={styles.artistList}>
       {artists.length === 0 ? (
-        <p className={styles.noArtistMessage}>お気に入りアーティストは登録されていません</p>
+        <p className={styles.noArtistMessage}>{errorMessage}</p>
       ) : (
         <ul>
           {artists.map((artist: DeezerArtist) => {
