@@ -9,20 +9,14 @@ const handleThisClick = jest.fn();
 describe("LayoutIconコンポーネントの単体テスト", () => {
   test("レイアウト変更アイコンが表示される", () => {
     const options = { month: "2-digit" as const, day: "2-digit" as const };
-    const lastMondayDate = GETMONDAYOFLASTWEEK.toLocaleDateString(
-      undefined,
-      options
-    );
-    const thisMondayDate = GETMONDAYOFTHISWEEK.toLocaleDateString(
-      undefined,
-      options
-    );
+    const lastMondayDate = GETMONDAYOFLASTWEEK.toLocaleDateString(undefined, options);
+    const thisMondayDate = GETMONDAYOFTHISWEEK.toLocaleDateString(undefined, options);
     render(
       <SelectDate
         weekCheck="all"
         handleLastClick={handleLastClick}
         handleThisClick={handleThisClick}
-      />
+      />,
     );
 
     const lastMonday = screen.getByText("先週");
@@ -40,7 +34,7 @@ describe("LayoutIconコンポーネントの単体テスト", () => {
         weekCheck="all"
         handleLastClick={handleLastClick}
         handleThisClick={handleThisClick}
-      />
+      />,
     );
     const lastMonday = screen.getByText("先週");
     const thisMonday = screen.getByText("今週");
@@ -54,7 +48,7 @@ describe("LayoutIconコンポーネントの単体テスト", () => {
         weekCheck="last"
         handleLastClick={handleLastClick}
         handleThisClick={handleThisClick}
-      />
+      />,
     );
     const lastMonday = screen.getByText("先週");
     const thisMonday = screen.getByText("今週");
@@ -68,7 +62,7 @@ describe("LayoutIconコンポーネントの単体テスト", () => {
         weekCheck="this"
         handleLastClick={handleLastClick}
         handleThisClick={handleThisClick}
-      />
+      />,
     );
     const lastMonday = screen.getByText("先週");
     const thisMonday = screen.getByText("今週");

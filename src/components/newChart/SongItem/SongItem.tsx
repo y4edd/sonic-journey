@@ -1,7 +1,7 @@
 "use client";
 
-import { GETMONDAYOFTHISWEEK } from "@/utils/getMonday";
 import type { DeezerChartSong } from "@/types/deezer";
+import { GETMONDAYOFTHISWEEK } from "@/utils/getMonday";
 import Image from "next/image";
 import styles from "./SongItem.module.css";
 
@@ -18,14 +18,11 @@ export const SongItem = ({
     if (weekCheck === "this") {
       songs = songs.filter(
         (song) =>
-          GETMONDAYOFTHISWEEK.toLocaleDateString().replaceAll("/", "-") <=
-          song.release_date
+          GETMONDAYOFTHISWEEK.toLocaleDateString().replaceAll("/", "-") <= song.release_date,
       );
     } else if (weekCheck === "last") {
       songs = songs.filter(
-        (song) =>
-          GETMONDAYOFTHISWEEK.toLocaleDateString().replaceAll("/", "-") >
-          song.release_date
+        (song) => GETMONDAYOFTHISWEEK.toLocaleDateString().replaceAll("/", "-") > song.release_date,
       );
     } else {
     }
@@ -45,9 +42,7 @@ export const SongItem = ({
                 className={styles.songImageGrid}
               />
               <p className={styles.songNameGrid}>
-                {song.title.length <= 15
-                  ? song.title
-                  : `${song.title.slice(0, 14)}...`}
+                {song.title.length <= 15 ? song.title : `${song.title.slice(0, 14)}...`}
               </p>
               <p className={styles.artistNameGrid}>
                 {song.artist.name.length <= 15
