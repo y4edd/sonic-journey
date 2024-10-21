@@ -16,7 +16,6 @@ const FavoriteArtist = async () => {
     favoriteArtistsId.map(async (artistId) => {
       const artistData = await getArtist(artistId);
 
-      console.log(artistData);
       return artistData.resArtistData;
     }),
   );
