@@ -18,14 +18,12 @@ export const SongItem = ({
     if (weekCheck === "this") {
       songs = songs.filter(
         (song) =>
-          getMondayOfThisWeek().toLocaleDateString().replaceAll("/", "-") <=
-          song.release_date
+          getMondayOfThisWeek().toLocaleDateString().replaceAll("/", "-") <= song.release_date,
       );
     } else if (weekCheck === "last") {
       songs = songs.filter(
         (song) =>
-          getMondayOfThisWeek().toLocaleDateString().replaceAll("/", "-") >
-          song.release_date
+          getMondayOfThisWeek().toLocaleDateString().replaceAll("/", "-") > song.release_date,
       );
     } else {
     }
@@ -45,9 +43,7 @@ export const SongItem = ({
                 className={styles.songImageGrid}
               />
               <p className={styles.songNameGrid}>
-                {song.title.length <= 15
-                  ? song.title
-                  : `${song.title.slice(0, 14)}...`}
+                {song.title.length <= 15 ? song.title : `${song.title.slice(0, 14)}...`}
               </p>
               <p className={styles.artistNameGrid}>
                 {song.artist.name.length <= 15

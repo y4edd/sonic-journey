@@ -13,11 +13,7 @@ type UseDateCheck = {
 
 const options = { month: "2-digit" as const, day: "2-digit" as const };
 
-export const SelectDate = ({
-  weekCheck,
-  handleLastClick,
-  handleThisClick,
-}: UseDateCheck) => {
+export const SelectDate = ({ weekCheck, handleLastClick, handleThisClick }: UseDateCheck) => {
   return (
     <div className={styles.dateWrapper}>
       <div className={styles.weekWrapper}>

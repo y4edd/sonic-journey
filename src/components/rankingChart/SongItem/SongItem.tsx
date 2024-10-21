@@ -22,10 +22,10 @@ export const SongItem = ({
                   index + 1 === 1
                     ? styles.firstRankGrid
                     : index + 1 === 2
-                    ? styles.secondRankGrid
-                    : index + 1 === 3
-                    ? styles.thirdRankGrid
-                    : styles.otherRankGrid
+                      ? styles.secondRankGrid
+                      : index + 1 === 3
+                        ? styles.thirdRankGrid
+                        : styles.otherRankGrid
                 }
               >
                 {index + 1}
@@ -38,9 +38,7 @@ export const SongItem = ({
                 className={styles.songImageGrid}
               />
               <p className={styles.songNameGrid}>
-                {song.title.length <= 15
-                  ? song.title
-                  : `${song.title.slice(0, 14)}...`}
+                {song.title.length <= 15 ? song.title : `${song.title.slice(0, 14)}...`}
               </p>
               <p className={styles.artistNameGrid}>
                 {song.artist.name.length <= 15
@@ -59,10 +57,10 @@ export const SongItem = ({
                   index + 1 === 1
                     ? styles.firstRankList
                     : index + 1 === 2
-                    ? styles.secondRankList
-                    : index + 1 === 3
-                    ? styles.thirdRankList
-                    : styles.otherRankList
+                      ? styles.secondRankList
+                      : index + 1 === 3
+                        ? styles.thirdRankList
+                        : styles.otherRankList
                 }
               >
                 {index + 1}
