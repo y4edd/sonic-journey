@@ -1,0 +1,20 @@
+.formRegister {
+  margin: 0.5rem 1rem;
+  height: 110px;
+  width: 13rem;
+}
+
+.userInput {
+  padding: 0.2em;
+  font-size: 15px;
+}
+
+.userInput,
+.errorMessage {
+  display: block;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 15px;
+}
