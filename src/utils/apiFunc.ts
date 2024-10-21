@@ -72,7 +72,9 @@ export const getSong = async (song: number) => {
 // artistにはアーティストidを入力
 export const getArtist = async (artist: number) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/artistSearch?artist=${artist}`);
+    const res = await fetch(`http://localhost:3000/api/artistSearch?artist=${artist}`, {
+      cache: "no-cache",
+    });
 
     if (!res.ok) {
       throw new Error("データが見つかりませんでした");
