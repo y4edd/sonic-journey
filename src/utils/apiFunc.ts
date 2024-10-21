@@ -66,7 +66,7 @@ export const getSong = async (song: number) => {
 
     return await res.json();
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 
@@ -80,6 +80,24 @@ export const getArtistSongs = async (artistId: number, limit: number) => {
         cache: "no-cache",
       },
     );
+
+    if (!res.ok) {
+      throw new Error("データが見つかりませんでした");
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// アーティストidからアーティスト情報を取得する関数
+// artistにはアーティストidを入力
+export const getArtist = async (artist: number) => {
+  try {
+    const res = await fetch(`http://localhost:3000/api/artistSearch?artist=${artist}`, {
+      cache: "no-cache",
+    });
 
     if (!res.ok) {
       throw new Error("データが見つかりませんでした");

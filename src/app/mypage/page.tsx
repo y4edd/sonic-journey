@@ -1,4 +1,5 @@
 import MenuBox from "@/components/mypage/MenuBox/MenuBox";
+import BreadList from "@/components/top/BreadList/BreadList";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MusicNoteTwoToneIcon from "@mui/icons-material/MusicNoteTwoTone";
@@ -11,6 +12,12 @@ import styles from "./page.module.css";
 const MyPage = () => {
   return (
     <div>
+      <BreadList
+        bread={[
+          { link: "/", title: "TOP" },
+          { link: "/mypage", title: "マイページ" },
+        ]}
+      />
       <div className={styles.menuTitle}>
         <h3>メニュー</h3>
       </div>
