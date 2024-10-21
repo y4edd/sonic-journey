@@ -1,6 +1,6 @@
 "use client";
 
-import { GETMONDAYOFLASTWEEK, GETMONDAYOFTHISWEEK } from "@/utils/getMonday";
+import { getMondayOfLastWeek, getMondayOfThisWeek } from "@/utils/getMonday";
 import styles from "./SelectDate.module.css";
 
 type UseDateCheck = {
@@ -13,7 +13,11 @@ type UseDateCheck = {
 
 const options = { month: "2-digit" as const, day: "2-digit" as const };
 
-export const SelectDate = ({ weekCheck, handleLastClick, handleThisClick }: UseDateCheck) => {
+export const SelectDate = ({
+  weekCheck,
+  handleLastClick,
+  handleThisClick,
+}: UseDateCheck) => {
   return (
     <div className={styles.dateWrapper}>
       <div className={styles.weekWrapper}>
@@ -29,7 +33,7 @@ export const SelectDate = ({ weekCheck, handleLastClick, handleThisClick }: UseD
           onClick={handleLastClick}
           onKeyDown={handleLastClick}
         >
-          ({GETMONDAYOFLASTWEEK.toLocaleDateString(undefined, options)}~)
+          ({getMondayOfLastWeek().toLocaleDateString(undefined, options)}~)
         </p>
       </div>
       <div className={styles.border} />
@@ -46,7 +50,7 @@ export const SelectDate = ({ weekCheck, handleLastClick, handleThisClick }: UseD
           onClick={handleThisClick}
           onKeyDown={handleThisClick}
         >
-          ({GETMONDAYOFTHISWEEK.toLocaleDateString(undefined, options)}~)
+          ({getMondayOfThisWeek().toLocaleDateString(undefined, options)}~)
         </p>
       </div>
     </div>
