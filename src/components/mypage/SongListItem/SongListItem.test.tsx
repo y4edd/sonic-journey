@@ -21,10 +21,15 @@ describe("SongListItemコンポーネントの単体テスト", () => {
   test("受け取ったpropsを反映し、レンダリングされること", () => {
     render(<SongListItem song={mockSong} />);
 
-    const imgElement = screen.getByAltText("分針を噛むのジャケット画像");
+    expect(
+      screen.getByRole("link", {
+        name: "分針を噛むのジャケット画像 分針を噛む ずっと真昼でいいのに",
+      }),
+    ).toHaveAttribute("href", "/music/111");
 
-    expect(screen.getByText("分針を噛む")).toBeInTheDocument();
-    expect(screen.getByText("ずっと真昼でいいのに")).toBeInTheDocument();
-    expect(imgElement).toHaveAttribute("src", mockSong.cover_xl);
+    expect(screen.getByRole("img", { name: "分針を噛むのジャケット画像" })).toHaveAttribute(
+      "src",
+      `${mockSong.cover_xl}`,
+    );
   });
 });
