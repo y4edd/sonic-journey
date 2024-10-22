@@ -31,14 +31,14 @@ describe("Loginコンポーネントのテスト", () => {
     });
   });
 
-  test("パスワードやメールアドレスが一致しない場合、エラーメッセージが表示される", async () => {
+  test("パスワードやメールアドレスが要件を満たさない場合、エラーメッセージが表示される", async () => {
     render(<Login />);
 
     fireEvent.input(screen.getByLabelText("メールアドレス"), {
       target: { value: "tani" },
     });
     fireEvent.input(screen.getByLabelText("パスワード"), {
-      target: { value: "pass" },
+      target: { value: "passw" },
     });
     fireEvent.submit(screen.getByRole("button", { name: "ログイン" }));
 
