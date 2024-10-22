@@ -1,8 +1,8 @@
 "use client";
 
+import type { Result } from "@/types/deezer";
 import { useEffect, useState } from "react";
 import SearchContent from "../SearchContent/SearchContent";
-import { Result } from "@/types/deezer";
 import styles from "./SearchResult.module.css";
 
 const SearchResult = () => {

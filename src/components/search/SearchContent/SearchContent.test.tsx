@@ -1,4 +1,4 @@
-import { Result } from "@/types/deezer";
+import type { Result } from "@/types/deezer";
 import { render } from "@testing-library/react";
 import SearchContent from "./SearchContent";
 

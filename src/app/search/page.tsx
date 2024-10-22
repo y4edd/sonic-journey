@@ -1,9 +1,9 @@
-import SearchResult from "@/components/search/SearchResult/SearchResult";
-import SearchValue from "@/components/search/SearchValue/SearchValue";
-import FreeSearch from "@/components/top/FreeSearch/FreeSearch";
 import SearchKind from "@/components/search/SearchKind/SearchKind";
-import BreadList from "@/components/top/BreadList/BreadList";
+import SearchResult from "@/components/search/SearchResult/SearchResult";
 import SearchTotal from "@/components/search/SearchTotal/SearchTotal";
+import SearchValue from "@/components/search/SearchValue/SearchValue";
+import BreadList from "@/components/top/BreadList/BreadList";
+import FreeSearch from "@/components/top/FreeSearch/FreeSearch";
 const Search = () => {
   return (
     <div>

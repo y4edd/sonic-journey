@@ -1,4 +1,4 @@
-import { Result } from "@/types/deezer";
+import type { Result } from "@/types/deezer";
 import Image from "next/image";
 import styles from "./SearchContent.module.css";
 
