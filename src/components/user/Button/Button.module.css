@@ -9,8 +9,6 @@
   transition: 0.3s;
   height: 40px;
   width: 100%;
-  flex-direction: column;
-  align-items: center;
 }
 
 .register:hover {
