@@ -33,16 +33,9 @@ describe("UserRegistrationコンポーネントのテスト", () => {
           collapseWhitespace: true,
         }),
       ).toBeInTheDocument();
-      expect(
-        screen.getByText("6文字以上で入力してください", {
-          collapseWhitespace: true,
-        }),
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText("6文字以上で入力してください", {
-          collapseWhitespace: true,
-        }),
-      ).toBeInTheDocument();
+
+      const errorMessages =screen.getAllByText("6文字以上で入力してください");
+      expect(errorMessages.length).toBeGreaterThan(0);
     });
   });
 

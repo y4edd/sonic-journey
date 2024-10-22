@@ -11,7 +11,7 @@ jest.mock("next/navigation", () => ({
 
 describe("UserRegistrationコンポーネントのテスト", () => {
   it("フォームが正しくレンダリングされている", () => {
-    render(<UserRegistration />);
+    render(<Login />);
     expect(screen.getByLabelText("ユーザー名")).toBeInTheDocument();
     expect(screen.getByLabelText("メールアドレス")).toBeInTheDocument();
     expect(screen.getByLabelText("パスワード")).toBeInTheDocument();
@@ -19,7 +19,7 @@ describe("UserRegistrationコンポーネントのテスト", () => {
   });
 
   it("必須フィールドが空の場合、エラーメッセージが表示される", async () => {
-    render(<UserRegistration />);
+    render(<Login />);
     fireEvent.submit(screen.getByRole("button", { name: "ユーザー登録" }));
 
     await waitFor(() => {
@@ -45,7 +45,7 @@ describe("UserRegistrationコンポーネントのテスト", () => {
   });
 
   it("パスワードが一致しない場合、エラーメッセージが表示される", async () => {
-    render(<UserRegistration />);
+    render(<Login />);
 
     fireEvent.input(screen.getByLabelText("パスワード"), {
       target: { value: "password1" },
@@ -62,7 +62,7 @@ describe("UserRegistrationコンポーネントのテスト", () => {
   });
 
   it("正しい入力の場合、ページ遷移が行われる", async () => {
-    render(<UserRegistration />);
+    render(<Login />);
 
     fireEvent.input(screen.getByLabelText("ユーザー名"), {
       target: { value: "tanitune" },
