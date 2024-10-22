@@ -6,25 +6,27 @@ export const GET = async (request: NextRequest) => {
     const { searchParams } = request.nextUrl;
     const limit = searchParams.get("limit");
 
-    const singleSongs = await fetch(`https://api.deezer.com/chart/0/tracks?limit=${limit}`);
+    const singleSongs = await fetch(
+      `https://api.deezer.com/chart/0/tracks?limit=${limit}`
+    );
 
     if (!singleSongs) {
       return NextResponse.json({ message: "楽曲情報が見つかりませんでした" });
     }
 
     const songsData = await singleSongs.json();
-    const resultData = await songsData.data.map((data: DeezerSong) => {
+    const resultData = songsData.data.map((data: DeezerSong) => {
       return {
         id: data.id,
-        title: data.title,
+        title: data.title ?? "title",
         artist: {
           id: data.artist.id,
-          name: data.artist.name,
+          name: data.artist.name ?? "artist",
         },
         album: {
           id: data.album.id,
-          title: data.album.title,
-          cover_xl: data.album.cover_xl,
+          title: data.album.title ?? "album",
+          cover_xl: data.album.cover_xl ?? "/images/defaultsong.png",
         },
       };
     });

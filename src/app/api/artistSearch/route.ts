@@ -12,7 +12,7 @@ export const GET = async (request: NextRequest) => {
     if (!getArtist) {
       return NextResponse.json(
         { message: "アーティスト情報が見つかりませんでした" },
-        { status: 404 },
+        { status: 404 }
       );
     }
 
@@ -20,14 +20,17 @@ export const GET = async (request: NextRequest) => {
 
     const resArtistData: DeezerArtist = {
       id: artistData.id,
-      name: artistData.name,
-      link: artistData.link,
-      picture_xl: artistData.picture_xl,
+      name: artistData.name ?? "artist",
+      link: artistData.link ?? "link",
+      picture_xl: artistData.picture_xl ?? "/images/defaultsong.png",
     };
 
     return NextResponse.json({ resArtistData }, { status: 200 });
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ message: "サーバーエラーが発生しました" }, { status: 500 });
+    return NextResponse.json(
+      { message: "サーバーエラーが発生しました" },
+      { status: 500 }
+    );
   }
 };
