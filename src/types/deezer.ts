@@ -200,3 +200,15 @@ export type FavoriteArtistSong = SongInfo & {
   album: AlbumInfo;
   type: string;
 };
+
+//あいまい検索
+export type Result = {
+  id: number;
+  title: string;
+  preview: string;
+  artist: {
+    id: number;
+    name: string;
+    picture_big: string;
+  };
+};
