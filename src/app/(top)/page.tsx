@@ -29,7 +29,7 @@ const TopPage = async () => {
 
         <div className={styles.newSongsContent}>
           <div className={styles.contentTitleGroup}>
-            <ContentTitle title="人気新着" />
+            <ContentTitle title="人気新着アルバム" />
             <LinkButton label="もっと見る >" />
           </div>
           <SongsGroup songs={newSongs} url="album" />
