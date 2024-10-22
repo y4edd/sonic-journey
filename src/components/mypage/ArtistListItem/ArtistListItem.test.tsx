@@ -15,7 +15,7 @@ describe("ArtistListItemコンポーネントの単体テスト", () => {
       screen.getByRole("link", {
         name: "ヒルシカのアーティスト画像 ヒルシカ",
       }),
-    ).toHaveAttribute("href", "/artist/111");
+    ).toHaveAttribute("href", `/artist/${mockArtist.id}`);
 
     expect(screen.getByRole("img", { name: "ヒルシカのアーティスト画像" })).toHaveAttribute(
       "src",
