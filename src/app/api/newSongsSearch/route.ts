@@ -6,15 +6,10 @@ export const GET = async (request: NextRequest) => {
     const { searchParams } = request.nextUrl;
     const limit = searchParams.get("limit");
 
-    const newSongs = await fetch(
-      `https://api.deezer.com/editorial/16/releases?limit=${limit}`
-    );
+    const newSongs = await fetch(`https://api.deezer.com/editorial/16/releases?limit=${limit}`);
 
     if (!newSongs) {
-      return NextResponse.json(
-        { message: "新着楽曲情報が見つかりませんでした" },
-        { status: 404 }
-      );
+      return NextResponse.json({ message: "新着楽曲情報が見つかりませんでした" }, { status: 404 });
     }
 
     const songsData = await newSongs.json();
@@ -34,9 +29,6 @@ export const GET = async (request: NextRequest) => {
     return NextResponse.json({ resultData }, { status: 200 });
   } catch (error) {
     console.error(error);
-    return NextResponse.json(
-      { message: "サーバーエラーが発生しました" },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: "サーバーエラーが発生しました" }, { status: 500 });
   }
 };

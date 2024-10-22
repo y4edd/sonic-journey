@@ -10,10 +10,7 @@ export const GET = async (request: NextRequest) => {
     const getSong = await fetch(`https://api.deezer.com/track/${song}`);
 
     if (!getSong) {
-      return NextResponse.json(
-        { message: "楽曲情報が見つかりませんでした" },
-        { status: 404 }
-      );
+      return NextResponse.json({ message: "楽曲情報が見つかりませんでした" }, { status: 404 });
     }
 
     const songData = await getSong.json();
@@ -39,9 +36,6 @@ export const GET = async (request: NextRequest) => {
     return NextResponse.json({ resSongData }, { status: 200 });
   } catch (error) {
     console.error(error);
-    return NextResponse.json(
-      { message: "サーバーエラーが発生しました" },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: "サーバーエラーが発生しました" }, { status: 500 });
   }
 };

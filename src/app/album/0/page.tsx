@@ -1,7 +1,7 @@
+import StarIcon from "@mui/icons-material/Star";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../../unexpected.module.css";
-import StarIcon from "@mui/icons-material/Star";
 
 const NotFoundPage = () => {
   return (
@@ -18,13 +18,7 @@ const NotFoundPage = () => {
           <br />
           宝くじを買いに行きましょう！！
         </p>
-        <Image
-          src="/images/cat.jpg"
-          alt="not-found画像"
-          width={300}
-          height={200}
-          priority
-        />
+        <Image src="/images/cat.jpg" alt="not-found画像" width={300} height={200} priority />
         <Link href="/">トップページへ戻る</Link>
       </div>
     </div>

@@ -12,7 +12,7 @@ export const GET = async (request: NextRequest) => {
     if (!getArtist) {
       return NextResponse.json(
         { message: "アーティスト情報が見つかりませんでした" },
-        { status: 404 }
+        { status: 404 },
       );
     }
 
@@ -28,9 +28,6 @@ export const GET = async (request: NextRequest) => {
     return NextResponse.json({ resArtistData }, { status: 200 });
   } catch (error) {
     console.error(error);
-    return NextResponse.json(
-      { message: "サーバーエラーが発生しました" },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: "サーバーエラーが発生しました" }, { status: 500 });
   }
 };

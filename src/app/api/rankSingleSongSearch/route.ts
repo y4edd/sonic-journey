@@ -6,9 +6,7 @@ export const GET = async (request: NextRequest) => {
     const { searchParams } = request.nextUrl;
     const limit = searchParams.get("limit");
 
-    const singleSongs = await fetch(
-      `https://api.deezer.com/chart/0/tracks?limit=${limit}`
-    );
+    const singleSongs = await fetch(`https://api.deezer.com/chart/0/tracks?limit=${limit}`);
 
     if (!singleSongs) {
       return NextResponse.json({ message: "楽曲情報が見つかりませんでした" });
