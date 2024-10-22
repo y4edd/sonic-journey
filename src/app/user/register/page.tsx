@@ -96,7 +96,7 @@ const UserRegistration = () => {
           <Button type="submit" className={ButtonStyles.register} text={"ユーザー登録"} />
         </form>
       </div>
-      <Guide href="/user/login" text="登録済みの方は" message="ログイン" />
+      <Guide href="/user/login" guideText="登録済みの方は" message="ログイン" />
     </>
   );
 };
