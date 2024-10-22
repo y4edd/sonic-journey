@@ -9,10 +9,14 @@ describe("MenuBoxコンポーネントの単体テスト", () => {
         mainTitle="メインタイトル"
         subTitle="サブタイトル"
         icon={<AccountBoxIcon data-testid="icon-element" />}
+        link="/example"
       />,
     );
-    expect(screen.getByText("メインタイトル")).toBeInTheDocument();
-    expect(screen.getByText("サブタイトル")).toBeInTheDocument();
+
+    expect(screen.getByRole("link", { name: "メインタイトル サブタイトル" })).toHaveAttribute(
+      "href",
+      "/example",
+    );
     expect(screen.getByTestId("icon-element")).toBeInTheDocument();
   });
 });

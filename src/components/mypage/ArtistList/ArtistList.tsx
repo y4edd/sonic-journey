@@ -1,8 +1,7 @@
 import type { DeezerArtist } from "@/types/deezer";
 import ArtistListItem from "../ArtistListItem/ArtistListItem";
-import styles from "./ArtitstList.module.css";
+import styles from "./ArtistList.module.css";
 
-// const ArtistList = ({ artists }: { artists: DeezerArtist[] }) => {
 const ArtistList = ({
   artists,
   errorMessage,
