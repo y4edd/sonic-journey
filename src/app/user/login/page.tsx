@@ -66,7 +66,7 @@ const Login = () => {
           <Button type="submit" className={ButtonStyles.register} text={"ログイン"} />
         </form>
       </div>
-      <Guide href="/user/register" text="新規登録は" message="こちら" />
+      <Guide href="/user/register" guideText="新規登録は" message="こちら" />
     </>
   );
 };
