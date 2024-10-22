@@ -1,7 +1,5 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { useRouter } from "next/navigation";
 import UserRegistration from "./page";
-import "@testing-library/jest-dom";
 
 // モックの設定
 const mockPush = jest.fn();
@@ -34,7 +32,7 @@ describe("UserRegistrationコンポーネントのテスト", () => {
         }),
       ).toBeInTheDocument();
 
-      const errorMessages =screen.getAllByText("6文字以上で入力してください");
+      const errorMessages = screen.getAllByText("6文字以上で入力してください");
       expect(errorMessages.length).toBeGreaterThan(0);
     });
   });

@@ -24,9 +24,7 @@ const FormInput: React.FC<FormInputProps> = ({
           className={styles.userInput}
           name={name}
         />
-        <div className={styles.errorMessage}>
-          {error?.message && <span>{error.message}</span>}
-        </div>
+        <div className={styles.errorMessage}>{error?.message && <span>{error.message}</span>}</div>
       </div>
     </>
   );

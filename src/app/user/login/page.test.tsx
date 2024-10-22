@@ -1,6 +1,5 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import Login from "./page";
-import "@testing-library/jest-dom";
 
 const mockPush = jest.fn();
 jest.mock("next/navigation", () => ({
@@ -9,78 +8,61 @@ jest.mock("next/navigation", () => ({
   }),
 }));
 
-describe("UserRegistrationコンポーネントのテスト", () => {
+describe("Loginコンポーネントのテスト", () => {
   it("フォームが正しくレンダリングされている", () => {
     render(<Login />);
-    expect(screen.getByLabelText("ユーザー名")).toBeInTheDocument();
     expect(screen.getByLabelText("メールアドレス")).toBeInTheDocument();
     expect(screen.getByLabelText("パスワード")).toBeInTheDocument();
-    expect(screen.getByLabelText("パスワード確認")).toBeInTheDocument();
   });
 
   it("必須フィールドが空の場合、エラーメッセージが表示される", async () => {
     render(<Login />);
-    fireEvent.submit(screen.getByRole("button", { name: "ユーザー登録" }));
+    fireEvent.submit(screen.getByRole("button", { name: "ログイン" }));
 
     await waitFor(() => {
       expect(
-        screen.getByText("ユーザー名は必須です", { collapseWhitespace: true })
+        screen.getByText("正しいメールアドレスを入力してください", { collapseWhitespace: true }),
       ).toBeInTheDocument();
       expect(
-        screen.getByText("正しいメールアドレスを入力してください", {
+        screen.getByText("6文字以上で入力してください", {
           collapseWhitespace: true,
-        })
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText("パスワードは6文字以上で入力してください", {
-          collapseWhitespace: true,
-        })
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText("確認用パスワードは6文字以上で入力してください", {
-          collapseWhitespace: true,
-        })
+        }),
       ).toBeInTheDocument();
     });
   });
 
-  it("パスワードが一致しない場合、エラーメッセージが表示される", async () => {
+  it("パスワードやメールアドレスが一致しない場合、エラーメッセージが表示される", async () => {
     render(<Login />);
 
-    fireEvent.input(screen.getByLabelText("パスワード"), {
-      target: { value: "password1" },
-    });
-    fireEvent.input(screen.getByLabelText("パスワード確認"), {
-      target: { value: "password2" },
-    });
-
-    fireEvent.submit(screen.getByRole("button", { name: "ユーザー登録" }));
-
-    await waitFor(() => {
-      expect(screen.getByText("パスワードが一致しません")).toBeInTheDocument();
-    });
-  });
-
-  it("正しい入力の場合、ページ遷移が行われる", async () => {
-    render(<Login />);
-
-    fireEvent.input(screen.getByLabelText("ユーザー名"), {
-      target: { value: "tanitune" },
-    });
     fireEvent.input(screen.getByLabelText("メールアドレス"), {
-      target: { value: "tanisan@example.com" },
+      target: { value: "tani" },
     });
     fireEvent.input(screen.getByLabelText("パスワード"), {
-      target: { value: "password" },
+      target: { value: "pass" },
     });
-    fireEvent.input(screen.getByLabelText("パスワード確認"), {
-      target: { value: "password" },
-    });
-
-    fireEvent.submit(screen.getByRole("button", { name: "ユーザー登録" }));
+    fireEvent.submit(screen.getByRole("button", { name: "ログイン" }));
 
     await waitFor(() => {
-      expect(mockPush).toHaveBeenCalledWith("/user/login");
+      expect(screen.getByText("6文字以上で入力してください")).toBeInTheDocument();
+      expect(screen.getByText("6文字以上で入力してください")).toBeInTheDocument();
     });
   });
+
+  // 未実装ですが、テストコードだけ書きました
+  // it("正しい入力の場合、ページ遷移が行われる", async () => {
+  //   render(<Login />);
+
+  //   fireEvent.input(screen.getByLabelText("ユーザー名"), {
+  //     target: { value: "tanitune" },
+  //   });
+  //   fireEvent.input(screen.getByLabelText("パスワード"), {
+  //     target: { value: "password" },
+  //   });
+
+  //   fireEvent.submit(screen.getByRole("button", { name: "ログイン" }));
+
+  //   await waitFor(() => {
+  //     expect(mockPush).toHaveBeenCalledWith("/top");
+  //   });
+  // });
 });

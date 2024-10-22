@@ -9,7 +9,7 @@ import Information from "@/components/user/Information/Information";
 import { schema } from "@/lib/validation";
 import type { FormData } from "@/types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import styles from "./page.module.css";
@@ -29,8 +29,7 @@ const Login = () => {
   const router = useRouter();
 
   const onSubmit: SubmitHandler<FormData> = async (_data: FormData) => {
-    router.push("/");
-    console.log(_data);
+    router.push("/top");
   };
 
   return (

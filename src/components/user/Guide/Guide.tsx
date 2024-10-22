@@ -8,7 +8,9 @@ const Guide: React.FC<GuideProps> = ({ text, href, message }) => {
       <div className={styles.login}>
         <p>
           {text}
-          <Link href={href} className={styles.message}>{message}</Link>
+          <Link href={href} className={styles.message}>
+            {message}
+          </Link>
         </p>
       </div>
     </>
