@@ -9,13 +9,13 @@ jest.mock("next/navigation", () => ({
 }));
 
 describe("Loginコンポーネントのテスト", () => {
-  it("フォームが正しくレンダリングされている", () => {
+  test("フォームが正しくレンダリングされている", () => {
     render(<Login />);
     expect(screen.getByLabelText("メールアドレス")).toBeInTheDocument();
     expect(screen.getByLabelText("パスワード")).toBeInTheDocument();
   });
 
-  it("必須フィールドが空の場合、エラーメッセージが表示される", async () => {
+  test("必須フィールドが空の場合、エラーメッセージが表示される", async () => {
     render(<Login />);
     fireEvent.submit(screen.getByRole("button", { name: "ログイン" }));
 
@@ -31,7 +31,7 @@ describe("Loginコンポーネントのテスト", () => {
     });
   });
 
-  it("パスワードやメールアドレスが一致しない場合、エラーメッセージが表示される", async () => {
+  test("パスワードやメールアドレスが一致しない場合、エラーメッセージが表示される", async () => {
     render(<Login />);
 
     fireEvent.input(screen.getByLabelText("メールアドレス"), {
@@ -43,7 +43,7 @@ describe("Loginコンポーネントのテスト", () => {
     fireEvent.submit(screen.getByRole("button", { name: "ログイン" }));
 
     await waitFor(() => {
-      expect(screen.getByText("6文字以上で入力してください")).toBeInTheDocument();
+      expect(screen.getByText("正しいメールアドレスを入力してください")).toBeInTheDocument();
       expect(screen.getByText("6文字以上で入力してください")).toBeInTheDocument();
     });
   });

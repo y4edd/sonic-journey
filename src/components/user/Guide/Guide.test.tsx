@@ -6,7 +6,7 @@ describe("Guide コンポーネントのテスト", () => {
   const href = "/login";
   const message = "こちら";
 
-  it("リンクとメッセージが正しく表示される", () => {
+  test("リンクとメッセージが正しく表示される", () => {
     render(<Guide guideText={text} href={href} message={message} />);
 
     const linkElement = screen.getByRole("link", { name: message });
@@ -16,7 +16,7 @@ describe("Guide コンポーネントのテスト", () => {
     expect(screen.getByText(text)).toBeInTheDocument();
   });
 
-  it("CSSクラスが適用されている", () => {
+  test("CSSクラスが適用されている", () => {
     render(<Guide guideText={text} href={href} message={message} />);
 
     const divElement = screen.getByText(message).closest("div");
