@@ -1,11 +1,11 @@
 import MenuBox from "@/components/mypage/MenuBox/MenuBox";
 import BreadList from "@/components/top/BreadList/BreadList";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import HistoryIcon from "@mui/icons-material/History";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MusicNoteTwoToneIcon from "@mui/icons-material/MusicNoteTwoTone";
 import NoAccountsIcon from "@mui/icons-material/NoAccounts";
 import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
-import PlayArrowTwoToneIcon from "@mui/icons-material/PlayArrowTwoTone";
 import PlaylistPlayTwoToneIcon from "@mui/icons-material/PlaylistPlayTwoTone";
 import styles from "./page.module.css";
 
@@ -36,7 +36,7 @@ const MyPage = () => {
         <MenuBox
           mainTitle="再生履歴"
           subTitle="（最新10件）"
-          icon={<PlayArrowTwoToneIcon fontSize="large" />}
+          icon={<HistoryIcon fontSize="large" />}
         />
       </div>
       <div className={styles.menuTitle}>
