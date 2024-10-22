@@ -1,6 +1,4 @@
 import { UseHamburgerOpen } from "@/hooks/header/useHamburgerOpen";
-import ContactPageIcon from "@mui/icons-material/ContactPage";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import HeadphonesIcon from "@mui/icons-material/Headphones";
 import HistoryIcon from "@mui/icons-material/History";
 import HomeIcon from "@mui/icons-material/Home";
@@ -12,6 +10,9 @@ import PersonIcon from "@mui/icons-material/Person";
 import PlaylistPlayIcon from "@mui/icons-material/PlaylistPlay";
 import Image from "next/image";
 import styles from "./HamburgerMenu.module.css";
+import MusicNoteTwoToneIcon from "@mui/icons-material/MusicNoteTwoTone";
+import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
 
 export const HamburgerMenu = () => {
   const { openMenu, openMenuClick, hamburgerLink } = UseHamburgerOpen();
@@ -33,8 +34,8 @@ export const HamburgerMenu = () => {
                 <Image
                   src="/images/yaetunes_logo_transparent.png"
                   alt="header-logo"
-                  height={25}
-                  width={100}
+                  height={40}
+                  width={160}
                 />
               </div>
               <ul className={styles.hamburgerLists}>
@@ -43,7 +44,7 @@ export const HamburgerMenu = () => {
                   onClick={() => hamburgerLink("/")}
                   onKeyDown={() => hamburgerLink("/")}
                 >
-                  <HomeIcon />
+                  <HomeIcon fontSize="large" />
                   &nbsp;トップページ
                 </li>
                 <li
@@ -51,7 +52,7 @@ export const HamburgerMenu = () => {
                   onClick={() => hamburgerLink("/mypage")}
                   onKeyDown={() => hamburgerLink("/mypage")}
                 >
-                  <HeadphonesIcon />
+                  <HeadphonesIcon fontSize="large" />
                   &nbsp;マイページ
                 </li>
                 <ul>
@@ -60,7 +61,7 @@ export const HamburgerMenu = () => {
                     onClick={() => hamburgerLink("/mypage/playlist")}
                     onKeyDown={() => hamburgerLink("/mypage/playlist")}
                   >
-                    <PlaylistPlayIcon />
+                    <PlaylistPlayIcon fontSize="large" />
                     &nbsp;プレイリスト
                   </li>
                   <li
@@ -68,17 +69,15 @@ export const HamburgerMenu = () => {
                     onClick={() => hamburgerLink("/mypage/favoriteartist")}
                     onKeyDown={() => hamburgerLink("/mypage/favoriteartist")}
                   >
-                    <FavoriteBorderIcon />
-                    &nbsp;お気に入り
-                    <br />
-                    アーティスト
+                    <PeopleOutlineIcon fontSize="large" />
+                    &nbsp;お気に入りアーティスト
                   </li>
                   <li
                     className={styles.hamburgerinList}
                     onClick={() => hamburgerLink("/mypage/favoritesong")}
                     onKeyDown={() => hamburgerLink("/mypage/favoritesong")}
                   >
-                    <FavoriteBorderIcon />
+                    <MusicNoteTwoToneIcon fontSize="large" />
                     &nbsp;お気に入り楽曲
                   </li>
                   <li
@@ -86,13 +85,13 @@ export const HamburgerMenu = () => {
                     onClick={() => hamburgerLink("/mypage/history")}
                     onKeyDown={() => hamburgerLink("/mypage/history")}
                   >
-                    <HistoryIcon />
+                    <HistoryIcon fontSize="large" />
                     &nbsp;再生履歴
                   </li>
                 </ul>
                 <div className={styles.line} />
                 <li className={styles.hamburgerList}>
-                  <PersonIcon />
+                  <PersonIcon fontSize="large" />
                   &nbsp;ユーザー
                 </li>
                 {/* ログイン情報により記載内容変更 */}
@@ -101,7 +100,7 @@ export const HamburgerMenu = () => {
                   onClick={() => hamburgerLink("/user/login")}
                   onKeyDown={() => hamburgerLink("/user/login")}
                 >
-                  <LoginIcon />
+                  <LoginIcon fontSize="large" />
                   &nbsp;ログイン
                 </li>
                 <li
@@ -109,7 +108,7 @@ export const HamburgerMenu = () => {
                   onClick={() => hamburgerLink("/user/register")}
                   onKeyDown={() => hamburgerLink("/user/register")}
                 >
-                  <HowToRegIcon />
+                  <HowToRegIcon fontSize="large" />
                   &nbsp;新規登録
                 </li>
                 <li
@@ -117,7 +116,7 @@ export const HamburgerMenu = () => {
                   onClick={() => hamburgerLink("/user/logout")}
                   onKeyDown={() => hamburgerLink("/user/logout")}
                 >
-                  <LogoutIcon />
+                  <LogoutIcon fontSize="large" />
                   &nbsp;ログアウト
                 </li>
                 <li
@@ -125,7 +124,7 @@ export const HamburgerMenu = () => {
                   onClick={() => hamburgerLink("/user/[:id]")}
                   onKeyDown={() => hamburgerLink("/user/[:id]")}
                 >
-                  <ContactPageIcon />
+                  <AccountBoxIcon fontSize="large" />
                   &nbsp;アカウント情報
                 </li>
               </ul>
