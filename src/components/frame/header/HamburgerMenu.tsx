@@ -1,4 +1,5 @@
 import { UseHamburgerOpen } from "@/hooks/header/useHamburgerOpen";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import HeadphonesIcon from "@mui/icons-material/Headphones";
 import HistoryIcon from "@mui/icons-material/History";
 import HomeIcon from "@mui/icons-material/Home";
@@ -6,13 +7,12 @@ import HowToRegIcon from "@mui/icons-material/HowToReg";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
+import MusicNoteTwoToneIcon from "@mui/icons-material/MusicNoteTwoTone";
+import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import PersonIcon from "@mui/icons-material/Person";
 import PlaylistPlayIcon from "@mui/icons-material/PlaylistPlay";
 import Image from "next/image";
 import styles from "./HamburgerMenu.module.css";
-import MusicNoteTwoToneIcon from "@mui/icons-material/MusicNoteTwoTone";
-import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
-import AccountBoxIcon from "@mui/icons-material/AccountBox";
 
 export const HamburgerMenu = () => {
   const { openMenu, openMenuClick, hamburgerLink } = UseHamburgerOpen();
