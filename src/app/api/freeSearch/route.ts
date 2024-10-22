@@ -11,23 +11,15 @@ export const POST = async (request: NextRequest) => {
 
     // サーバーサイドで検索ワードのバリデーション
     if (!freeWord.trim()) {
-      return NextResponse.json(
-        { message: "検索ワードが正しくありません" },
-        { status: 400 }
-      );
+      return NextResponse.json({ message: "検索ワードが正しくありません" }, { status: 400 });
     }
 
     // 検索ワードを元にdeezerから音楽情報を取得
-    const songsResponse = await fetch(
-      `https://api.deezer.com/search?q=${freeWord}`
-    );
+    const songsResponse = await fetch(`https://api.deezer.com/search?q=${freeWord}`);
 
     // deezerにて音楽情報が見つからなかった場合
     if (!songsResponse) {
-      return NextResponse.json(
-        { message: "楽曲情報が見つかりませんでした。" },
-        { status: 404 }
-      );
+      return NextResponse.json({ message: "楽曲情報が見つかりませんでした。" }, { status: 404 });
     }
     // FIXME: 楽曲情報のみ取得（検索結果ページができたら取得する情報を再考する必要があります。）
     const songsData = await songsResponse.json();
@@ -51,9 +43,6 @@ export const POST = async (request: NextRequest) => {
     return NextResponse.json({ resultData, totalResults }, { status: 200 });
   } catch (error) {
     console.error(error);
-    return NextResponse.json(
-      { message: "サーバーエラーが発生しました" },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: "サーバーエラーが発生しました" }, { status: 500 });
   }
 };
