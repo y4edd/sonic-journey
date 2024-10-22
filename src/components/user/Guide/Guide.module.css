@@ -4,8 +4,6 @@
   align-items: center;
 }
 
-.text {
-  font-size: 20px;
-  text-align: center;
+.message {
   text-decoration: underline;
 }

@@ -1,69 +1,86 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import Login from "./page";
+import "@testing-library/jest-dom";
 
-describe("Login コンポーネントのテスト", () => {
-  it("全てのフォーム要素が正しく表示される", () => {
-    render(<Login />);
+const mockPush = jest.fn();
+jest.mock("next/navigation", () => ({
+  useRouter: () => ({
+    push: mockPush,
+  }),
+}));
 
+describe("UserRegistrationコンポーネントのテスト", () => {
+  it("フォームが正しくレンダリングされている", () => {
+    render(<UserRegistration />);
+    expect(screen.getByLabelText("ユーザー名")).toBeInTheDocument();
     expect(screen.getByLabelText("メールアドレス")).toBeInTheDocument();
     expect(screen.getByLabelText("パスワード")).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "ログイン" })).toBeInTheDocument();
+    expect(screen.getByLabelText("パスワード確認")).toBeInTheDocument();
   });
 
-  it("フォームに値が正常に入力される", () => {
-    render(<Login />);
+  it("必須フィールドが空の場合、エラーメッセージが表示される", async () => {
+    render(<UserRegistration />);
+    fireEvent.submit(screen.getByRole("button", { name: "ユーザー登録" }));
 
-    const emailInput = screen.getByLabelText("メールアドレス");
-    const passwordInput = screen.getByLabelText("パスワード");
-
-    fireEvent.change(emailInput, { target: { value: "test@example.com" } });
-    fireEvent.change(passwordInput, { target: { value: "password123" } });
-
-    expect(emailInput).toHaveValue("test@example.com");
-    expect(passwordInput).toHaveValue("password123");
+    await waitFor(() => {
+      expect(
+        screen.getByText("ユーザー名は必須です", { collapseWhitespace: true })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText("正しいメールアドレスを入力してください", {
+          collapseWhitespace: true,
+        })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText("パスワードは6文字以上で入力してください", {
+          collapseWhitespace: true,
+        })
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText("確認用パスワードは6文字以上で入力してください", {
+          collapseWhitespace: true,
+        })
+      ).toBeInTheDocument();
+    });
   });
 
-  it("空のフォーム送信でバリデーションエラーが表示される", async () => {
-    render(<Login />);
+  it("パスワードが一致しない場合、エラーメッセージが表示される", async () => {
+    render(<UserRegistration />);
 
-    const submitButton = screen.getByRole("button", { name: "ログイン" });
-    fireEvent.click(submitButton);
+    fireEvent.input(screen.getByLabelText("パスワード"), {
+      target: { value: "password1" },
+    });
+    fireEvent.input(screen.getByLabelText("パスワード確認"), {
+      target: { value: "password2" },
+    });
 
-    const emailError = await screen.findByText("正しいメールアドレスを入力してください");
-    const passwordError = await screen.findByText("パスワードは6文字以上で入力してください");
+    fireEvent.submit(screen.getByRole("button", { name: "ユーザー登録" }));
 
-    expect(emailError).toBeInTheDocument();
-    expect(passwordError).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText("パスワードが一致しません")).toBeInTheDocument();
+    });
   });
 
-  it("不十分なパスワードでのバリデーションエラーを表示", async () => {
-    render(<Login />);
+  it("正しい入力の場合、ページ遷移が行われる", async () => {
+    render(<UserRegistration />);
 
-    const emailInput = screen.getByLabelText("メールアドレス");
-    const passwordInput = screen.getByLabelText("パスワード");
-    const submitButton = screen.getByRole("button", { name: "ログイン" });
+    fireEvent.input(screen.getByLabelText("ユーザー名"), {
+      target: { value: "tanitune" },
+    });
+    fireEvent.input(screen.getByLabelText("メールアドレス"), {
+      target: { value: "tanisan@example.com" },
+    });
+    fireEvent.input(screen.getByLabelText("パスワード"), {
+      target: { value: "password" },
+    });
+    fireEvent.input(screen.getByLabelText("パスワード確認"), {
+      target: { value: "password" },
+    });
 
-    fireEvent.change(emailInput, { target: { value: "test@example.com" } });
-    fireEvent.change(passwordInput, { target: { value: "pass" } });
-    fireEvent.click(submitButton);
+    fireEvent.submit(screen.getByRole("button", { name: "ユーザー登録" }));
 
-    const passwordError = await screen.findByText("パスワードは6文字以上で入力してください");
-
-    expect(passwordError).toBeInTheDocument();
-  });
-
-  it("正しい情報が入力された場合、エラーメッセージが表示されない", async () => {
-    render(<Login />);
-
-    const emailInput = screen.getByLabelText("メールアドレス");
-    const passwordInput = screen.getByLabelText("パスワード");
-    const submitButton = screen.getByRole("button", { name: "ログイン" });
-
-    fireEvent.change(emailInput, { target: { value: "test@example.com" } });
-    fireEvent.change(passwordInput, { target: { value: "password123" } });
-    fireEvent.click(submitButton);
-
-    expect(screen.queryByText("正しいメールアドレスを入力してください")).not.toBeInTheDocument();
-    expect(screen.queryByText("パスワードは6文字以上で入力してください")).not.toBeInTheDocument();
+    await waitFor(() => {
+      expect(mockPush).toHaveBeenCalledWith("/user/login");
+    });
   });
 });

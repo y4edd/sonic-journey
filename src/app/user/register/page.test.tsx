@@ -34,12 +34,12 @@ describe("UserRegistrationコンポーネントのテスト", () => {
         }),
       ).toBeInTheDocument();
       expect(
-        screen.getByText("パスワードは6文字以上で入力してください", {
+        screen.getByText("6文字以上で入力してください", {
           collapseWhitespace: true,
         }),
       ).toBeInTheDocument();
       expect(
-        screen.getByText("確認用パスワードは6文字以上で入力してください", {
+        screen.getByText("6文字以上で入力してください", {
           collapseWhitespace: true,
         }),
       ).toBeInTheDocument();

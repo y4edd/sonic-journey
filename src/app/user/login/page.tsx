@@ -9,7 +9,7 @@ import Information from "@/components/user/Information/Information";
 import { schema } from "@/lib/validation";
 import type { FormData } from "@/types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Router } from "next/router";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import styles from "./page.module.css";
@@ -26,13 +26,13 @@ const Login = () => {
     resolver: zodResolver(schema),
   });
 
-  // const router = useRouter();
+  const router = useRouter();
 
   const onSubmit: SubmitHandler<FormData> = async (_data: FormData) => {
-    // ローカルストレージに遷移前のページを保存。
-    // ログイン完了後に元のページに戻るように実装予定
-    // router.push("/top");
+    router.push("/");
+    console.log(_data);
   };
+
   return (
     <>
       <BreadList
@@ -67,7 +67,7 @@ const Login = () => {
           <Button type="submit" className={ButtonStyles.register} text={"ログイン"} />
         </form>
       </div>
-      <Guide href="/user" message="新規登録はこちら" />
+      <Guide href="/user/register" text="新規登録は" message="こちら" />
     </>
   );
 };
