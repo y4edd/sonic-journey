@@ -31,14 +31,14 @@ const TestForm = () => {
 };
 
 describe("FormInput コンポーネントのテスト", () => {
-  it("ユーザー名の入力フィールドが正しく表示される", () => {
+  test("ユーザー名の入力フィールドが正しく表示される", () => {
     render(<TestForm />);
 
     expect(screen.getByLabelText("ユーザー名")).toBeInTheDocument();
     expect(screen.getByPlaceholderText("名前を入力してください")).toBeInTheDocument();
   });
 
-  it("入力イベントが正しく動作する", () => {
+  test("入力イベントが正しく動作する", () => {
     render(<TestForm />);
 
     const input = screen.getByLabelText("ユーザー名");
