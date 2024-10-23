@@ -13,7 +13,7 @@ export const getNewSongs = async (limit: number) => {
     const result = await res.json();
 
     if (result.resultData.length < limit && limit === 4) {
-      for (let i = 0; i < limit - result.resultData.length; i++) {
+      for (let i = 0; i <= limit - result.resultData.length; i++) {
         result.resultData.push({
           id: 0,
           title: "title",
@@ -47,19 +47,21 @@ export const getRankSingleSongs = async (limit: number) => {
     const result = await res.json();
 
     if (result.resultData.length < limit && limit === 4) {
-      result.resultData.push({
-        id: 0,
-        title: "title",
-        artist: {
-          id: 1,
-          name: "artist",
-        },
-        album: {
-          id: 1,
-          title: "album",
-          cover_xl: "/images/defaultsong.png",
-        },
-      });
+      for (let i = 0; i <= limit - result.resultData.length; i++) {
+        result.resultData.push({
+          id: 0,
+          title: "title",
+          artist: {
+            id: 1,
+            name: "artist",
+          },
+          album: {
+            id: 1,
+            title: "album",
+            cover_xl: "/images/defaultsong.png",
+          },
+        });
+      }
     }
 
     return result;
