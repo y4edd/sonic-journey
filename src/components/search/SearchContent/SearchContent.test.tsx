@@ -16,8 +16,14 @@ const mockResult: Result = {
 
 describe("SearchContentコンポーネントのテスト", () => {
   it("アーティスト名が正しく表示されているか", () => {
-    const { getByText } = render(<SearchContent result={mockResult} />);
+    const { getByText, getByAltText } = render(<SearchContent result={mockResult} />);
 
+    //srcとaltが正しく表示されているか
+    const image = getByAltText("Test Artistの画像");
+    expect(image).toHaveAttribute("src", "https://example.com/image.jpg");
+    expect(image).toHaveAttribute("alt", "Test Artistの画像");
+
+    //アーティスト名が表示されているか
     expect(getByText("Test Artist")).toBeInTheDocument();
   });
 });
