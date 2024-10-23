@@ -52,13 +52,8 @@ export const useFreeWordSearch: UseFreeWordSearch = () => {
 
       const data = await response.json();
 
-      //セッションストレージにデータを保持
-      sessionStorage.setItem("searchResults", JSON.stringify(data.resultData));
-
       //useRouterで検索結果ページに移動(クエリパラメータに検索ワードと検索数)
       router.push(`/search?q=${freeWord}&n=${data.totalResults}`);
-      //検索結果ページからさらに検索したときにページをクエリパラメータを保持してリロード
-      window.location.href = `/search?q=${freeWord}&n=${data.totalResults}`;
     } catch (error) {
       console.error(error);
       setError("サーバーエラーが発生しました");
