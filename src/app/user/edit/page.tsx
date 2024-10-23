@@ -41,12 +41,13 @@ const Edit = () => {
     // } catch (err:any){
     //   setServerError(err.message || "サーバーエラーです");
     // }
-    alert("アカウント情報が変更されました");
+    
     router.push("/mypage");
   };
 
-  const handleClick = async () => {
-    router.push("user/information");
+  const handleClick = () => {
+    console.log("クリックを認識");
+    router.push("/user/information");
   };
 
   return (
