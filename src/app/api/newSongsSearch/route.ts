@@ -13,15 +13,15 @@ export const GET = async (request: NextRequest) => {
     }
 
     const songsData = await newSongs.json();
-    const resultData = await songsData.data.map((data: DeezerNewRelease) => {
+    const resultData = songsData.data.map((data: DeezerNewRelease) => {
       return {
         id: data.id,
-        title: data.title,
-        cover_xl: data.cover_xl,
-        release_date: data.release_date,
+        title: data.title ?? "album",
+        cover_xl: data.cover_xl ?? "/images/defaultsong.png",
+        release_date: data.release_date ?? "release_date",
         artist: {
           id: data.artist.id,
-          name: data.artist.name,
+          name: data.artist.name ?? "artist",
         },
       };
     });

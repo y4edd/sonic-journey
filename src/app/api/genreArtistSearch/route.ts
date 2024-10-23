@@ -19,8 +19,8 @@ export const GET = async (request: NextRequest) => {
     const resultData = await artistsData.data.map((data: GenreApiArtist) => {
       return {
         id: data.id,
-        name: data.name,
-        picture_xl: data.picture_xl,
+        name: data.name ?? "artist",
+        picture_xl: data.picture_xl ?? "/images/defaultsong.png",
       };
     });
 

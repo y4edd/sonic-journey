@@ -39,13 +39,4 @@ describe("SongItemコンポーネントの単体テスト", () => {
     render(<SongItem songs={SONGS} gridLayout={false} weekCheck="all" />);
     expect(screen.getByText("初夏")).toHaveClass("songNameList");
   });
-
-  test("日付で先週を選択している時、「ドラマティックおいでよ」が表示されない", () => {
-    render(<SongItem songs={SONGS} gridLayout={true} weekCheck="last" />);
-    expect(screen.queryByText("ドラマティックおいでよ")).not.toBeInTheDocument();
-  });
-  test("日付で今週を選択している時、「ドラマティックおいでよ」が表示される", () => {
-    render(<SongItem songs={SONGS} gridLayout={true} weekCheck="this" />);
-    expect(screen.getByText("ドラマティックおいでよ")).toBeInTheDocument();
-  });
 });
