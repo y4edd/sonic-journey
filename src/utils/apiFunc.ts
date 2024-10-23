@@ -142,3 +142,21 @@ export const getArtist = async (artist: number) => {
     console.error(error);
   }
 };
+
+// アルバムidからアルバム情報を取得する関数
+// albumにはアルバムidを入力
+export const getAlbum = async (album: number) => {
+  try {
+    const res = await fetch(`http://localhost:3000/api/albumSearch?album=${album}`, {
+      cache: "no-cache",
+    });
+
+    if (!res.ok) {
+      throw new Error("データが見つかりませんでした");
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
