@@ -31,10 +31,6 @@
   font-size: 0.9rem;
 }
 
-.songInfoAudio {
-  width: 90%;
-}
-
 .songInfoAddList {
   display: flex;
   background-color: white;

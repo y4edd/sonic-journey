@@ -31,10 +31,6 @@
   font-size: 0.9rem;
 }
 
-.albumInfoAudio {
-  width: 90%;
-}
-
 .albumInfoAddList {
   display: flex;
   background-color: white;
