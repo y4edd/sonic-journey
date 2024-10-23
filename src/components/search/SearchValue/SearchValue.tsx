@@ -1,15 +1,9 @@
-"use client";
-
-import { useSearchParams } from "next/navigation";
 import styles from "./SearchValue.module.css";
 
-const SearchValue = () => {
-  // クエリパラメータを取得
-  const Params = useSearchParams();
-  const search = Params.get("q");
+const SearchValue = ({ freeWord }: { freeWord: string }) => {
   return (
     <div className={styles.searchValue}>
-      <h2>「{search}」の検索結果</h2>
+      <h2>「{freeWord}」の検索結果</h2>
     </div>
   );
 };

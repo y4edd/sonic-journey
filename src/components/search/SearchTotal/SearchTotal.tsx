@@ -1,15 +1,9 @@
-"use client";
-
-import { useSearchParams } from "next/navigation";
 import styles from "./SearchTotal.module.css";
 
-const SearchTotal = () => {
-  // クエリパラメータを取得
-  const Params = useSearchParams();
-  const search = Params.get("n");
+const SearchTotal = ({ searchTotal }: { searchTotal: string }) => {
   return (
     <div className={styles.total}>
-      <p>シングル（{search}件）</p>
+      <p>シングル（{searchTotal}件）</p>
     </div>
   );
 };
