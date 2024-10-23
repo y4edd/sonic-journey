@@ -4,7 +4,17 @@ import SearchTotal from "@/components/search/SearchTotal/SearchTotal";
 import SearchValue from "@/components/search/SearchValue/SearchValue";
 import BreadList from "@/components/top/BreadList/BreadList";
 import FreeSearch from "@/components/top/FreeSearch/FreeSearch";
-const Search = () => {
+import styles from "./page.module.css";
+
+const Search = ({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string };
+}) => {
+  //searchParamsでクエリパラメータを取得
+  const freeWord = searchParams.q;
+  const searchTotal = searchParams.n;
+
   return (
     <div>
       <BreadList
@@ -14,10 +24,10 @@ const Search = () => {
         ]}
       />
       <div>
-        <SearchValue />
+        <SearchValue freeWord={freeWord} />
       </div>
 
-      <div>
+      <div className={styles.searchMargin}>
         <FreeSearch />
       </div>
 
@@ -26,11 +36,11 @@ const Search = () => {
       </div>
 
       <div>
-        <SearchTotal />
+        <SearchTotal searchTotal={searchTotal} />
       </div>
 
       <div>
-        <SearchResult />
+        <SearchResult freeWord={freeWord} />
       </div>
     </div>
   );
