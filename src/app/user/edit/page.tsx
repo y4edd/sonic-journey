@@ -41,7 +41,7 @@ const Edit = () => {
     // } catch (err:any){
     //   setServerError(err.message || "サーバーエラーです");
     // }
-    
+
     router.push("/mypage");
   };
 
