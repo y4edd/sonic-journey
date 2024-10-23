@@ -76,6 +76,6 @@ model Pick {
 model Pick_Song {
   id            Int       @id @default(autoincrement())
   pick_id      Int
-  api_song_id   Int
+  api_song_id   BigInt
   pick    Pick  @relation(fields: [pick_id], references: [id], onDelete: Cascade)
 }
