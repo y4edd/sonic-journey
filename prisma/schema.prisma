@@ -30,7 +30,7 @@ model User {
 model Favorite_Song {
   id            Int      @id @default(autoincrement())
   user_id       String
-  api_song_id   BigInt
+  api_song_id   String
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
   user   User   @relation(fields: [user_id], references: [id], onDelete: Cascade)
@@ -54,14 +54,14 @@ model Playlist {
 model Playlist_Song {
   id            Int       @id @default(autoincrement())
   playlist_id   Int
-  api_song_id   BigInt
+  api_song_id   String
   playlist    Playlist  @relation(fields: [playlist_id], references: [id], onDelete: Cascade)
 }
 
 model History {
   id            Int       @id @default(autoincrement())
   user_id       String
-  api_song_id   BigInt
+  api_song_id   String
   user    User  @relation(fields: [user_id], references: [id], onDelete: Cascade)
 }
 
@@ -76,6 +76,6 @@ model Pick {
 model Pick_Song {
   id            Int       @id @default(autoincrement())
   pick_id      Int
-  api_song_id   BigInt
+  api_song_id   String
   pick    Pick  @relation(fields: [pick_id], references: [id], onDelete: Cascade)
 }
