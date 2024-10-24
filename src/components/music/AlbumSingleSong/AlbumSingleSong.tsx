@@ -11,12 +11,7 @@ type AlbumSingleSongProps = {
 };
 
 const AlbumSingleSong = ({ id, num, title, preview }: AlbumSingleSongProps) => {
-  let displayNum = "";
-  if (num < 10) {
-    displayNum = `0${num}`;
-  } else {
-    displayNum = num.toString();
-  }
+  const displayNum = num.toString().padStart(2, "0");
 
   return (
     <div className={styles.albumSingleContent}>
