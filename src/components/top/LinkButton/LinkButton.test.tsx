@@ -3,8 +3,9 @@ import LinkButton from "./LinkButton";
 
 describe("LinkButtonコンポーネント", () => {
   test("受け取ったpropsを反映し、レンダリングされること", () => {
-    render(<LinkButton label="もっと見る" />);
+    render(<LinkButton label="もっと見る" url="/" />);
     expect(screen.getByRole("button")).toBeInTheDocument();
     expect(screen.getByText("もっと見る")).toBeInTheDocument();
+    expect(screen.getByRole("link")).toHaveAttribute("href", "/");
   });
 });
