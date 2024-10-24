@@ -40,7 +40,7 @@ const Search = ({
       </div>
 
       <div className={styles.searchResult}>
-        <SearchResult freeWord={freeWord} />
+        <SearchResult freeWord={freeWord} url="music" />
       </div>
     </div>
   );
