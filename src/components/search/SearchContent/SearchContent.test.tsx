@@ -16,7 +16,7 @@ const mockResult: Result = {
 
 describe("SearchContentコンポーネントのテスト", () => {
   test("アーティスト名が正しく表示されているか", () => {
-    const { getByText, getByAltText } = render(<SearchContent result={mockResult} />);
+    const { getByText, getByAltText } = render(<SearchContent result={mockResult} url="url" />);
 
     //srcとaltが正しく表示されているか
     const image = getByAltText("Test Artistの画像");
