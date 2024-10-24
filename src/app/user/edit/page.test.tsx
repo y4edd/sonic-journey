@@ -1,6 +1,6 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
-import Edit from "./page";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { useRouter } from "next/navigation";
+import Edit from "./page";
 
 jest.mock("next/navigation", () => ({
   useRouter: jest.fn(),

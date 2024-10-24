@@ -5,13 +5,13 @@ import Button from "@/components/user/Button/Button";
 import ButtonStyles from "@/components/user/Button/Button.module.css";
 import FormInput from "@/components/user/Form/FormInput";
 import Information from "@/components/user/Information/Information";
-import { toast, ToastContainer, ToastOptions } from "react-toastify";
 import { schema } from "@/lib/validation";
 import type { FormData } from "@/types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
+import { ToastContainer, ToastOptions, toast } from "react-toastify";
 import styles from "./page.module.css";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -48,13 +48,13 @@ const Edit = () => {
       position: "top-center",
       autoClose: 1000,
       closeButton: true,
-      hideProgressBar: true, 
+      hideProgressBar: true,
       closeOnClick: true,
       theme: "colored",
     });
-    setTimeout(()=>{
-        router.push("/mypage");
-    },1500);
+    setTimeout(() => {
+      router.push("/mypage");
+    }, 1500);
   };
 
   const handleClick = () => {
@@ -67,7 +67,7 @@ const Edit = () => {
         bread={[
           { link: "/", title: "TOP" },
           { link: "/user/info", title: "アカウント情報" },
-          { link: "/user/edit", title: "アカウント編集" }
+          { link: "/user/edit", title: "アカウント編集" },
         ]}
       />
       <ToastContainer />
@@ -113,7 +113,12 @@ const Edit = () => {
             error={errors.passwordConfirm}
           />
           <Button type="submit" className={ButtonStyles.register} text={"更新"} />
-          <Button type="button" className={ButtonStyles.return} text={"戻る"} onClick={handleClick} />
+          <Button
+            type="button"
+            className={ButtonStyles.return}
+            text={"戻る"}
+            onClick={handleClick}
+          />
         </form>
       </div>
     </>
