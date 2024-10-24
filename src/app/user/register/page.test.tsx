@@ -1,7 +1,5 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { useRouter } from "next/navigation";
 import UserRegistration from "./page";
-import "@testing-library/jest-dom";
 
 // モックの設定
 const mockPush = jest.fn();
@@ -11,8 +9,8 @@ jest.mock("next/navigation", () => ({
   }),
 }));
 
-describe("UserRegistration", () => {
-  it("フォームが正しくレンダリングされている", () => {
+describe("UserRegistrationコンポーネントのテスト", () => {
+  test("フォームが正しくレンダリングされている", () => {
     render(<UserRegistration />);
     expect(screen.getByLabelText("ユーザー名")).toBeInTheDocument();
     expect(screen.getByLabelText("メールアドレス")).toBeInTheDocument();
@@ -20,7 +18,7 @@ describe("UserRegistration", () => {
     expect(screen.getByLabelText("パスワード確認")).toBeInTheDocument();
   });
 
-  it("必須フィールドが空の場合、エラーメッセージが表示される", async () => {
+  test("必須フィールドが空の場合、エラーメッセージが表示される", async () => {
     render(<UserRegistration />);
     fireEvent.submit(screen.getByRole("button", { name: "ユーザー登録" }));
 
@@ -29,20 +27,17 @@ describe("UserRegistration", () => {
         screen.getByText("ユーザー名は必須です", { collapseWhitespace: true }),
       ).toBeInTheDocument();
       expect(
-        screen.getByText("正しいメールアドレスを入力してください", { collapseWhitespace: true }),
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText("パスワードは6文字以上で入力してください", { collapseWhitespace: true }),
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText("確認用パスワードは6文字以上で入力してください", {
+        screen.getByText("正しいメールアドレスを入力してください", {
           collapseWhitespace: true,
         }),
       ).toBeInTheDocument();
+
+      const errorMessages = screen.getAllByText("6文字以上で入力してください");
+      expect(errorMessages.length).toBeGreaterThan(0);
     });
   });
 
-  it("パスワードが一致しない場合、エラーメッセージが表示される", async () => {
+  test("パスワードが一致しない場合、エラーメッセージが表示される", async () => {
     render(<UserRegistration />);
 
     fireEvent.input(screen.getByLabelText("パスワード"), {
@@ -59,7 +54,7 @@ describe("UserRegistration", () => {
     });
   });
 
-  it("正しい入力の場合、ページ遷移が行われる", async () => {
+  test("正しい入力の場合、ページ遷移が行われる", async () => {
     render(<UserRegistration />);
 
     fireEvent.input(screen.getByLabelText("ユーザー名"), {

@@ -15,18 +15,18 @@
   top: 0;
   left: 0;
   z-index: calc(infinity);
-  width: 40vw;
-  height: 470px;
+  width: 80vw;
   border: 1px solid black;
   border-radius: 15px;
   background-color: white;
-  padding: 10px 15px;
-  font-size: 0.8rem;
+  padding: 15px 25px 25px 25px;
+
+  font-size: 1.2rem;
 }
 
 .hamburgerCloseIconMark {
   display: flex;
-  font-size: 30px;
+  font-size: 40px;
   width: 30px;
 }
 
@@ -53,8 +53,8 @@
 .hamburgerinList {
   list-style-type: none;
   display: flex;
-  margin-left: 15px;
-  margin-bottom: 10px;
+  margin-left: 25px;
+  margin-bottom: 13px;
   align-items: center;
 }
 

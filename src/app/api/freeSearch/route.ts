@@ -26,13 +26,13 @@ export const POST = async (request: NextRequest) => {
     const resultData = songsData.data.map((data: DeezerSongs) => {
       return {
         id: data.id,
-        title: data.title,
-        duration: data.duration ?? "不明",
-        preview: data.preview ?? "不明",
+        title: data.title ?? "title",
+        duration: data.duration ?? "duration",
+        preview: data.preview,
         artist: {
           id: data.artist.id,
-          name: data.artist.name ?? "不明",
-          picture_big: data.artist.picture_big ?? "アーティストの画像",
+          name: data.artist.name ?? "artist",
+          picture_big: data.artist.picture_big ?? "/images/defaultsong.png",
         },
       };
     });

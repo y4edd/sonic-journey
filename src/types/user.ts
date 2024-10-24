@@ -30,6 +30,7 @@ export type ButtonProps = {
 };
 
 export type GuideProps = {
+  guideText: string;
   href: string;
   message: string;
 };

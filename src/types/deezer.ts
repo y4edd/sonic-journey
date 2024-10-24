@@ -212,3 +212,14 @@ export type Result = {
     picture_big: string;
   };
 };
+
+// アルバム1曲の型
+export type AlbumSong = {
+  id: number;
+  title: string;
+  duration: number;
+  preview: string;
+  album: {
+    cover_xl: string;
+  };
+};
