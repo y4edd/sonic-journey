@@ -36,7 +36,11 @@ export const POST = async (request: NextRequest) => {
         },
       };
     });
-    return NextResponse.json({ resultData }, { status: 200 });
+
+    // 楽曲の件数を追加
+    const totalResults = resultData.length;
+
+    return NextResponse.json({ resultData, totalResults }, { status: 200 });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ message: "サーバーエラーが発生しました" }, { status: 500 });

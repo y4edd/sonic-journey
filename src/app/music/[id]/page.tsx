@@ -27,7 +27,7 @@ const SongPage = async ({ params }: SongPageProps) => {
       <BreadList
         bread={[
           { link: "/", title: "TOP" },
-          { link: "/music/1", title: "楽曲詳細" },
+          { link: `/music/${resSongData.id}`, title: "楽曲詳細" },
         ]}
       />
       <div className={styles.songPageContent}>

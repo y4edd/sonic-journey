@@ -1,0 +1,17 @@
+.display {
+  text-align: center;
+}
+
+.kind {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0;
+  margin: 0;
+}
+
+.kindList {
+  font-size: 1.3rem;
+  text-align: center;
+}

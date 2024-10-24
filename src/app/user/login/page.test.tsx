@@ -24,7 +24,7 @@ describe("Loginコンポーネントのテスト", () => {
         screen.getByText("正しいメールアドレスを入力してください", { collapseWhitespace: true }),
       ).toBeInTheDocument();
       expect(
-        screen.getByText("6文字以上で入力してください", {
+        screen.getByText("パスワードは6文字以上で入力してください", {
           collapseWhitespace: true,
         }),
       ).toBeInTheDocument();
@@ -44,7 +44,7 @@ describe("Loginコンポーネントのテスト", () => {
 
     await waitFor(() => {
       expect(screen.getByText("正しいメールアドレスを入力してください")).toBeInTheDocument();
-      expect(screen.getByText("6文字以上で入力してください")).toBeInTheDocument();
+      expect(screen.getByText("パスワードは6文字以上で入力してください")).toBeInTheDocument();
     });
   });
 
