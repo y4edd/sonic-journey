@@ -211,3 +211,12 @@ export type AlbumSong = {
     cover_xl: string;
   };
 };
+
+// アルバム詳細ページで表示される楽曲の型
+export type AlbumSingle = {
+  id: number;
+  title: string;
+  duration: number;
+  preview: string;
+  cover_xl: string;
+};
