@@ -2,12 +2,9 @@
 // limitには取得したい件数を入力
 export const getNewSongs = async (limit: number) => {
   try {
-    const res = await fetch(
-      `http://localhost:3000/api/newSongsSearch?limit=${limit}`,
-      {
-        cache: "no-cache",
-      }
-    );
+    const res = await fetch(`http://localhost:3000/api/newSongsSearch?limit=${limit}`, {
+      cache: "no-cache",
+    });
 
     if (!res.ok) {
       throw new Error("データが見つかりませんでした");
@@ -39,12 +36,9 @@ export const getNewSongs = async (limit: number) => {
 // limitには取得したい件数を入力
 export const getRankSingleSongs = async (limit: number) => {
   try {
-    const res = await fetch(
-      `http://localhost:3000/api/rankSingleSongSearch?limit=${limit}`,
-      {
-        cache: "no-cache",
-      }
-    );
+    const res = await fetch(`http://localhost:3000/api/rankSingleSongSearch?limit=${limit}`, {
+      cache: "no-cache",
+    });
 
     if (!res.ok) {
       throw new Error("データが見つかりませんでした");
@@ -80,12 +74,9 @@ export const getRankSingleSongs = async (limit: number) => {
 // genreにはgenreのid
 export const getGenreArtist = async (genre: number) => {
   try {
-    const res = await fetch(
-      `http://localhost:3000/api/genreArtistSearch?genre=${genre}`,
-      {
-        cache: "no-cache",
-      }
-    );
+    const res = await fetch(`http://localhost:3000/api/genreArtistSearch?genre=${genre}`, {
+      cache: "no-cache",
+    });
 
     if (!res.ok) {
       throw new Error("データが見つかりませんでした");
@@ -101,12 +92,9 @@ export const getGenreArtist = async (genre: number) => {
 // songには楽曲のidを入力
 export const getSong = async (song: number) => {
   try {
-    const res = await fetch(
-      `http://localhost:3000/api/songSearch?song=${song}`,
-      {
-        cache: "no-cache",
-      }
-    );
+    const res = await fetch(`http://localhost:3000/api/songSearch?song=${song}`, {
+      cache: "no-cache",
+    });
 
     if (!res.ok) {
       throw new Error("データが見つかりませんでした");
@@ -126,7 +114,7 @@ export const getArtistSongs = async (artistId: number, limit: number) => {
       `http://localhost:3000/api/artistFavoriteSongs?artistId=${artistId}&limit=${limit}`,
       {
         cache: "no-cache",
-      }
+      },
     );
 
     if (!res.ok) {
@@ -143,12 +131,9 @@ export const getArtistSongs = async (artistId: number, limit: number) => {
 // artistにはアーティストidを入力
 export const getArtist = async (artist: number) => {
   try {
-    const res = await fetch(
-      `http://localhost:3000/api/artistSearch?artist=${artist}`,
-      {
-        cache: "no-cache",
-      }
-    );
+    const res = await fetch(`http://localhost:3000/api/artistSearch?artist=${artist}`, {
+      cache: "no-cache",
+    });
 
     if (!res.ok) {
       throw new Error("データが見つかりませんでした");
@@ -164,12 +149,9 @@ export const getArtist = async (artist: number) => {
 // albumにはアルバムidを入力
 export const getAlbum = async (album: number) => {
   try {
-    const res = await fetch(
-      `http://localhost:3000/api/albumSearch?album=${album}`,
-      {
-        cache: "no-cache",
-      }
-    );
+    const res = await fetch(`http://localhost:3000/api/albumSearch?album=${album}`, {
+      cache: "no-cache",
+    });
 
     if (!res.ok) {
       throw new Error("データが見つかりませんでした");
