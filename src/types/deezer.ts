@@ -200,3 +200,34 @@ export type FavoriteArtistSong = SongInfo & {
   album: AlbumInfo;
   type: string;
 };
+
+// PicksDBのデータ情報
+export type SpecialOverView = {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+};
+
+// PickSongDBのデータ情報
+export type SpecialSongs = {
+  id: number;
+  pick_id: number;
+  api_song_id: string;
+};
+
+// 特集ページの記載の為、トラックIDより引っ張ってきた曲情報
+export type DeezerTrackSong = {
+  id: string;
+  title: string;
+  preview: string;
+  artist: {
+    id: string;
+    name: string;
+  };
+  album: {
+    id: string;
+    title: string;
+    cover_xl: string;
+  };
+};

@@ -1,23 +1,17 @@
 import prisma from "@/lib/prisma";
-import { type NextRequest, NextResponse } from "next/server";
-
-type SpecialImages = {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-};
+import { NextResponse } from "next/server";
+import type { SpecialOverView } from "@/types/deezer";
 
 export const GET = async () => {
   try {
-    const specialImages: SpecialImages[] = await prisma.pick.findMany();
-    if (!specialImages) {
+    const specialOverViews: SpecialOverView[] = await prisma.pick.findMany();
+    if (!specialOverViews) {
       return NextResponse.json(
         { message: "特集ページの情報が見つかりませんでした" },
         { status: 404 }
       );
     }
-    return NextResponse.json(specialImages, { status: 200 });
+    return NextResponse.json(specialOverViews, { status: 200 });
   } catch (error) {
     console.error(error);
     return NextResponse.json(
