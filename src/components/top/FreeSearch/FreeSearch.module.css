@@ -17,6 +17,7 @@
   background-color: white;
   margin-left: 0.2rem;
   border-radius: 9999px;
+  cursor: pointer;
 }
 
 .errorMessage {

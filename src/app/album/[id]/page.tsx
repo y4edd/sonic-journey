@@ -1,4 +1,5 @@
 import AlbumInfo from "@/components/music/AlbumInfo/AlbumInfo";
+import AlbumSingles from "@/components/music/AlbumSingles/AlbumSingles";
 import ImageTitleLink from "@/components/music/ImageTitleLink/ImageTitleLink";
 import MusicContentTitle from "@/components/music/MusicContentTitle/MusicContentTitle";
 import SongList from "@/components/mypage/SongList/SongList";
@@ -21,12 +22,13 @@ const AlbumPage = async ({ params }: AlbumPageProps) => {
 
   // 上記で取得したアーティストIDからアーティストの人気楽曲を最大4件取得
   const artistSongs = await getArtistSongs(resultData.artist.id, 4);
+
   return (
     <>
       <BreadList
         bread={[
           { link: "/", title: "TOP" },
-          { link: "/album/1", title: "アルバム詳細" },
+          { link: `/album/${resultData.id}`, title: "アルバム詳細" },
         ]}
       />
 
@@ -39,8 +41,10 @@ const AlbumPage = async ({ params }: AlbumPageProps) => {
             nb_tracks={resultData.nb_tracks}
           />
         </div>
-        {/* ここにアルバム収録曲一覧を表示します。 */}
-        <div className={styles.albumSongsContent} />
+        <div className={styles.albumSongsContent}>
+          <MusicContentTitle title="収録楽曲" />
+          <AlbumSingles singles={resultData.albumSongs} />
+        </div>
         <div className={styles.artistInfoLinkContent}>
           <MusicContentTitle title="アーティスト情報" />
           <ImageTitleLink

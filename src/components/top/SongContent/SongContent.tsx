@@ -15,8 +15,8 @@ const SongContent = ({ song, url }: { song: DeezerSong; url: string }) => {
           height={180}
           priority
         />
-        <p>{song.artist.name}</p>
         <p>{song.title}</p>
+        <p>{song.artist.name}</p>
       </div>
     </Link>
   );
