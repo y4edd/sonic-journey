@@ -27,6 +27,7 @@
   margin: auto;
   font-size: 50px;
   width: 40px;
+  cursor: pointer;
 }
 
 .freeSearch {
@@ -66,4 +67,5 @@
 
 .searchCancelText {
   margin: auto;
+  cursor: pointer;
 }
