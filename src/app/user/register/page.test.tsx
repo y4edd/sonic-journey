@@ -32,7 +32,7 @@ describe("UserRegistrationコンポーネントのテスト", () => {
         }),
       ).toBeInTheDocument();
 
-      const errorMessages = screen.getAllByText("6文字以上で入力してください");
+      const errorMessages = screen.getAllByText("パスワードは6文字以上で入力してください");
       expect(errorMessages.length).toBeGreaterThan(0);
     });
   });

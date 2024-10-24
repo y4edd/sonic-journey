@@ -38,3 +38,8 @@ export type GuideProps = {
 export type InformationProps = {
   text: string;
 };
+
+export type ToastProps = {
+  message: string;
+  type?: "success" | "error";
+};
