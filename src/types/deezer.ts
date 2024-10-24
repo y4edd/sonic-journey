@@ -200,3 +200,14 @@ export type FavoriteArtistSong = SongInfo & {
   album: AlbumInfo;
   type: string;
 };
+
+// アルバム1曲の型
+export type AlbumSong = {
+  id: number;
+  title: string;
+  duration: number;
+  preview: string;
+  album: {
+    cover_xl: string;
+  };
+};
