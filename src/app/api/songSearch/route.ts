@@ -17,19 +17,19 @@ export const GET = async (request: NextRequest) => {
 
     const resSongData: DeezerSong = {
       id: songData.id,
-      title: songData.title,
-      cover_xl: songData.album.cover_xl,
-      release_date: songData.album.release_date,
+      title: songData.title ?? "title",
+      cover_xl: songData.album.cover_xl ?? "/images/defaultsong.png",
+      release_date: songData.album.release_date ?? "release_date",
       preview: songData.preview,
       artist: {
         id: songData.artist.id,
-        name: songData.artist.name,
-        picture_xl: songData.artist.picture_xl,
+        name: songData.artist.name ?? "artist",
+        picture_xl: songData.artist.picture_xl ?? "/images/defaultsong.png",
       },
       album: {
         id: songData.album.id,
-        title: songData.album.title,
-        cover_xl: songData.album.cover_xl,
+        title: songData.album.title ?? "album",
+        cover_xl: songData.album.cover_xl ?? "/images/defaultsong.png",
       },
     };
 

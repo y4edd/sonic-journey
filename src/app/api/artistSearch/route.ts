@@ -20,9 +20,9 @@ export const GET = async (request: NextRequest) => {
 
     const resArtistData: DeezerArtist = {
       id: artistData.id,
-      name: artistData.name,
-      link: artistData.link,
-      picture_xl: artistData.picture_xl,
+      name: artistData.name ?? "artist",
+      link: artistData.link ?? "link",
+      picture_xl: artistData.picture_xl ?? "/images/defaultsong.png",
     };
 
     return NextResponse.json({ resArtistData }, { status: 200 });

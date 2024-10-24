@@ -27,18 +27,18 @@ export const GET = async (request: NextRequest) => {
       );
       return {
         id: data.id,
-        title: data.title,
+        title: data.title ?? "title",
         preview: data.preview,
-        duration: data.duration,
+        duration: data.duration ?? "duration",
         artist: {
           id: data.artist.id,
-          name: data.artist.name,
-          image: artistImage?.picture_big,
+          name: data.artist.name ?? "artist",
+          image: artistImage?.picture_big ?? "/images/defaultsong.png",
         },
         album: {
           id: data.album.id,
-          title: data.album.title,
-          cover_xl: data.album.cover_big,
+          title: data.album.title ?? "album",
+          cover_xl: data.album.cover_big ?? "/images/defaultsong.png",
         },
       };
     });
