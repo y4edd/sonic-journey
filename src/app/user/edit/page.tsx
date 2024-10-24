@@ -30,7 +30,7 @@ const Edit = () => {
   const router = useRouter();
 
   // FIXME: dataを受け取り、データベースの内容を更新する処理実装
-  const onSubmit: SubmitHandler<FormData> = async () => {
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
     // try {
     //   await registerUser(
     //     data.name,
@@ -43,6 +43,7 @@ const Edit = () => {
     // } catch (err:any){
     //   setServerError(err.message || "サーバーエラーです");
     // }
+    console.log(data);
 
     toast.success("編集が完了しました！", {
       position: "top-center",
