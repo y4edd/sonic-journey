@@ -201,6 +201,18 @@ export type FavoriteArtistSong = SongInfo & {
   type: string;
 };
 
+//あいまい検索
+export type Result = {
+  id: number;
+  title: string;
+  preview: string;
+  artist: {
+    id: number;
+    name: string;
+    picture_big: string;
+  };
+};
+
 // アルバム1曲の型
 export type AlbumSong = {
   id: number;
