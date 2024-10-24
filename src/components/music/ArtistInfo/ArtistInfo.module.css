@@ -22,4 +22,12 @@
   color: white;
   border-radius: 10px;
   cursor: pointer;
+  padding: 0.2rem 0.6rem;
+  border: 2px solid white;
+}
+
+.artistInfoContent > div:hover {
+  background-color: white;
+  color: #ff9e9e;
+  border: 2px solid #ff9e9e;
 }
