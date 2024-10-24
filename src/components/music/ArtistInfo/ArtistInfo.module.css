@@ -1,0 +1,25 @@
+.artistInfoContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.artistInfoContent > img {
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px -5px #777777;
+}
+
+.artistInfoContent > p {
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin: 0.5rem auto;
+}
+
+.artistInfoContent > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ff9e9e;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
