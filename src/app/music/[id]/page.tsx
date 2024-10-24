@@ -50,7 +50,11 @@ const SongPage = async ({ params }: SongPageProps) => {
 
         <div className={styles.artistFavoriteSongsContent}>
           <MusicContentTitle title="人気楽曲" />
-          <SongList songs={songs.resultData} errorMessage="人気楽曲を取得できませんでした" />
+          <SongList
+            songs={songs.resultData}
+            url="music"
+            errorMessage="人気楽曲を取得できませんでした"
+          />
         </div>
       </div>
     </>
