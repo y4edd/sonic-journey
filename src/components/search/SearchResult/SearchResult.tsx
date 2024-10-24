@@ -10,7 +10,7 @@ const SearchResult = async ({ freeWord }: { freeWord: string }) => {
   const results: Result[] = res.resultData;
 
   return (
-    <div className={styles.SongGroup}>
+    <div className={styles.songGroup}>
       {results.map((result) => {
         return <SearchContent key={result.id} result={result} />;
       })}
