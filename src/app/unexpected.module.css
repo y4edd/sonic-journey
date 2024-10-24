@@ -1,6 +1,6 @@
 .unexpectedPage {
   padding: 2rem;
-  height: calc(100vh - 80px - 130px);
+  height: calc(100vh - 130px - 79px);
   background-color: #efefef;
 }
 
@@ -10,14 +10,14 @@
   justify-content: center;
   align-items: center;
   border-radius: 10px;
-  padding: 1rem;
   background-color: #efefef;
   text-align: center;
   line-height: 1.6;
+  font-size: 0.9rem;
 }
 
 .unexpectedContent > h1 {
-  font-size: 2rem;
+  font-size: 1.6rem;
   padding: 1rem;
 }
 
