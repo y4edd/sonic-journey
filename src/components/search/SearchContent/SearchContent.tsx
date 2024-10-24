@@ -1,7 +1,7 @@
 import type { Result } from "@/types/deezer";
 import Image from "next/image";
-import styles from "./SearchContent.module.css";
 import Link from "next/link";
+import styles from "./SearchContent.module.css";
 
 const SearchContent = ({ result, url }: { result: Result; url: string }) => {
   return (
