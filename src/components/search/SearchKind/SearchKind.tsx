@@ -1,7 +1,7 @@
 import styles from "./SearchKind.module.css";
 const SearchKind = () => {
   return (
-    <div>
+    <div className={styles.display}>
       {/*FIXME: これから機能作ります */}
       <ul className={styles.kind}>
         <li className={styles.kindList}>シングル</li>

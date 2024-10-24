@@ -23,7 +23,7 @@ const Search = ({
           { link: "/search", title: "検索結果" },
         ]}
       />
-      <div>
+      <div className={styles.searchValue}>
         <SearchValue freeWord={freeWord} />
       </div>
 
@@ -35,11 +35,11 @@ const Search = ({
         <SearchKind />
       </div>
 
-      <div>
+      <div className={styles.searchTotal}>
         <SearchTotal searchTotal={searchTotal} />
       </div>
 
-      <div>
+      <div className={styles.searchResult}>
         <SearchResult freeWord={freeWord} />
       </div>
     </div>
