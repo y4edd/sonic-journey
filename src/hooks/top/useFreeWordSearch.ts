@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 type UseFreeWordSearch = () => {
@@ -14,6 +15,8 @@ export const useFreeWordSearch: UseFreeWordSearch = () => {
   const [freeWord, setFreeWord] = useState("");
   // apiへのリクエストが失敗した時のエラーを格納
   const [error, setError] = useState("");
+  //検索結果ページに移動するために使用
+  const router = useRouter();
 
   // 検索ワード入力時の関数
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,8 +51,9 @@ export const useFreeWordSearch: UseFreeWordSearch = () => {
       }
 
       const data = await response.json();
-      // FIXME: 検索結果ページができていないため、consoleで取得データを確認（クライアント）
-      console.log(data);
+
+      //useRouterで検索結果ページに移動(クエリパラメータに検索ワードと検索数)
+      router.push(`/search?q=${freeWord}&n=${data.totalResults}`);
     } catch (error) {
       console.error(error);
       setError("サーバーエラーが発生しました");

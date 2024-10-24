@@ -180,3 +180,25 @@ export const getArtistAlbum = async (artist: string) => {
     console.error(error);
   }
 };
+
+// FreeSearchの検索ワードを使用して楽曲を取得する関数
+export const getSearchSongs = async (freeWord: string) => {
+  try {
+    const res = await fetch("http://localhost:3000/api/freeSearch", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ freeWord }),
+    });
+
+    // 失敗した場合の処理
+    if (!res.ok) {
+      throw new Error("データが見つかりませんでした");
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
