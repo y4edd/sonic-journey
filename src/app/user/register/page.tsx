@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import styles from "./page.module.css";
+import { signIn } from "next-auth/react";
 
 const UserRegistration = () => {
   // useStateでサーバーエラー管理
@@ -28,21 +29,27 @@ const UserRegistration = () => {
 
   const router = useRouter();
 
-  const onSubmit: SubmitHandler<FormData> = async (_data: FormData) => {
-    // try {
-    //   await registerUser(
-    //     data.name,
-    //     data.email,
-    //     data.password,
-    //     data.confirmPassword
-    //   );
-    //   alert("ユーザー登録完了");
-    //   router.push("/user/login");
-    // } catch (err:any){
-    //   setServerError(err.message || "サーバーエラーです");
-    // }
-    router.push("/user/login");
-  };
+  const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
+
+    const response = await fetch("@/api/user/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name:data.userName,
+        email:data.mailAddress,
+        password:data.password,
+      })
+    })
+
+    if(response.ok) {
+      router.push("@/api/user/login");
+    } else {
+      const errorMessage = await response.json();
+      _setServerError(errorMessage.message || "サーバーエラーが発生しました");
+    }
+  }
 
   return (
     <>

@@ -3,13 +3,16 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-export const options: NextAuthOptions = {
+const options: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   debug: true,
   pages: {
     signIn: "/user/login",
   },
-  session: {strategy: "jwt"},
+  session: {
+    strategy: "jwt",
+    maxAge: 1 * 24 * 60 * 60, 
+  },
   providers: [
     CredentialsProvider({
       name: "Sign in",
@@ -34,33 +37,38 @@ export const options: NextAuthOptions = {
         if (res.ok && user) {
           return {id: user.id, name: user.email, email: user.email, role: "admin"}
         }
-        return null
+        if(!res.ok) {
+          throw new Error("認証に失敗しました。メールアドレスかパスワードが間違っています")
+        }
+        return user;
       }
     })
   ],
 
   callbacks: {
-    async jwt({token, user, account, profile}){
+    async jwt({ token, user, account, profile }) {
       if (user) {
-        token.user = user;
+        token.user = user
         const u = user as any
         token.role = u.role
       }
       if (account) {
         token.accessToken = account.access_token
       }
+
       return token
     },
-    async session({ session, token, user}) {
-      token.accessToken
-      session.user = token.user as any
+    async session({ session, token}) {
       return {
         ...session,
         user: {
           ...session.user,
           role: token.role
-        }
-      }
+        },
+        accessToken: token.accessToken,
+      };
     }
   }
 }
+
+export default options;
