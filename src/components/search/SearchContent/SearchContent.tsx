@@ -8,10 +8,11 @@ const SearchContent = ({ result, url }: { result: Result; url: string }) => {
     <div className={styles.songInfo}>
       <Link href={`/${url}/${result.id}`}>
         <Image
-          src={result.artist.picture_big}
+          src={result.cover}
           alt={`${result.artist.name}の画像`}
           width={180}
           height={180}
+          className={styles.songImage}
         />
       </Link>
       <p>{result.title}</p>
