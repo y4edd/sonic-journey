@@ -4,6 +4,7 @@ import type { SpecialSongs } from "@/types/deezer";
 import type { DeezerTrackSong } from "@/types/deezer";
 import { SpecialHeader } from "../SpecialHeader/SpecialHeader";
 import { SpecialTitles } from "../SpecialTitles/SpecialTitles";
+import { SpecialPlaylist } from "../SpecialPlaylist/SpecialPlaylist";
 
 const getSpecialImage = async () => {
   const response = await fetch("http://localhost:3000/api/getSpecialImage", {
@@ -59,19 +60,7 @@ export const Special = async ({ id }: { id: number }) => {
       <SpecialHeader specialOverView={specialOverView} />
       <div className={styles.specialBody}>
         <SpecialTitles specialOverView={specialOverView} />
-        {/* <SpecialPlaylist specialOverView={specialOverView} /> */}
-        {specialPlaylistInfo.map((info, index) => (
-          <div key={index}>
-            {/* <p>{info.title}</p>
-            <p>{info.id}</p>
-            <p>{info.preview}</p>
-            <p>{info.artist.id}</p>
-            <p>{info.artist.name}</p>
-            <p>{info.album.id}</p>
-            <p>{info.album.title}</p> */}
-            <p>{info.album.cover_xl}</p>
-          </div>
-        ))}
+        <SpecialPlaylist specialPlaylistInfo={specialPlaylistInfo} />
       </div>
     </>
   );

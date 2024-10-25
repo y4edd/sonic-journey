@@ -24,6 +24,8 @@ export const POST = async (request: NextRequest) => {
             id: songInfo.id,
             title: songInfo.title_short,
             preview: songInfo.preview,
+            cover_xl: songInfo.album.cover_xl,
+            duration: songInfo.duration,
             artist: {
               id: songInfo.artist.id,
               name: songInfo.artist.name,
@@ -31,7 +33,6 @@ export const POST = async (request: NextRequest) => {
             album: {
               id: songInfo.album.id,
               title: songInfo.album.title,
-              cover_xl: songInfo.album.cover_xl,
             },
           };
         })

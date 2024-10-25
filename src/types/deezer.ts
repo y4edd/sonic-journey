@@ -221,6 +221,8 @@ export type DeezerTrackSong = {
   id: string;
   title: string;
   preview: string;
+  cover_xl: string;
+  duration: number;
   artist: {
     id: string;
     name: string;
@@ -228,7 +230,6 @@ export type DeezerTrackSong = {
   album: {
     id: string;
     title: string;
-    cover_xl: string;
   };
 };
 
