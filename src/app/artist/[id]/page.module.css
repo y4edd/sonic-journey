@@ -1,0 +1,18 @@
+.artistDetailPage {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.artistInfoContent {
+  display: flex;
+  justify-content: center;
+}
+
+.artistInfoContent,
+.singleContent,
+.albumContent {
+  margin-top: 1.5rem;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 1.5rem;
+}

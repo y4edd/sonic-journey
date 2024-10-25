@@ -163,6 +163,24 @@ export const getAlbum = async (album: number) => {
   }
 };
 
+// アーティストのアルバムを4件取得する関数
+// albumにはアーティスト名を入力
+export const getArtistAlbum = async (artist: string) => {
+  try {
+    const res = await fetch(`http://localhost:3000/api/artistAlbums?artistName=${artist}`, {
+      cache: "no-cache",
+    });
+
+    if (!res.ok) {
+      throw new Error("データが見つかりませんでした");
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 // FreeSearchの検索ワードを使用して楽曲を取得する関数
 export const getSearchSongs = async (freeWord: string) => {
   try {

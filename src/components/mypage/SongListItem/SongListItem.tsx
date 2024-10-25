@@ -4,9 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./SongListItem.module.css";
 
-const SongListItem = ({ song }: { song: DeezerSong }) => {
+const SongListItem = ({ song, url }: { song: DeezerSong; url: string }) => {
   return (
-    <Link href={`/music/${song.id}`}>
+    <Link href={`/${url}/${song.id}`}>
       <div className={styles.songInfo}>
         <Image
           src={song.cover_xl || song.album.cover_xl || ""}
