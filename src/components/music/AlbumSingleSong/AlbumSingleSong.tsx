@@ -1,10 +1,10 @@
 "use client";
 
+import { useAlbumAudio } from "@/context/AlbumAudioContext";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Link from "next/link";
 import AlbumSingleSongAudio from "../AlbumSingleSongAudio/AlbumSingleSongAudio";
 import styles from "./AlbumSingleSong.module.css";
-import { useAlbumAudio } from "@/context/AlbumAudioContext";
 
 type AlbumSingleSongProps = {
   id: number;

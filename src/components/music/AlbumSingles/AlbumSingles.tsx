@@ -1,9 +1,9 @@
 "use client";
 
+import { AlbumAudioProvider } from "@/context/AlbumAudioContext";
 import type { AlbumSingle } from "@/types/deezer";
 import AlbumSingleSong from "../AlbumSingleSong/AlbumSingleSong";
 import styles from "./AlbumSingles.module.css";
-import { AlbumAudioProvider } from "@/context/AlbumAudioContext";
 
 type AlbumSong = {
   id: number;
