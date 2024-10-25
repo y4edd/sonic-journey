@@ -211,6 +211,7 @@ export type Result = {
     name: string;
     picture_big: string;
   };
+  cover: string;
 };
 
 // アルバム1曲の型
