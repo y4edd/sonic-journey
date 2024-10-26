@@ -13,10 +13,11 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import styles from "./page.module.css";
+import { signIn } from "next-auth/react";
 
 const UserRegistration = () => {
   // useStateでサーバーエラー管理
-  const [_serverError, _setServerError] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
   // React hook formでフォーム管理
   const {
     register,
@@ -33,7 +34,7 @@ const UserRegistration = () => {
     const response = await fetch("/api/user/register", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         name:data.userName,
@@ -42,14 +43,26 @@ const UserRegistration = () => {
       })
     })
 
-    if(!response.ok) {
-      const errorData = await response.json();
-      console.error(errorData.message);
-    } else {
-      router.push("/user/login");
+    if (!response.ok) {
+      // 詳細なエラーメッセージ取得
+      const error = await response.text();
+      setError(error);
+      return;
     }
-    
-  }
+
+    // 登録成功後、signInを呼び出してログインセッションを開始
+    const result = await signIn("credentials", {
+      redirect: false,
+      email: data.mailAddress,
+      password: data.password,
+    });
+
+    if (!result?.error) {
+      router.push("/user/login");
+    } else {
+      setError("ログインに失敗しました。");
+    }
+};
 
   return (
     <>

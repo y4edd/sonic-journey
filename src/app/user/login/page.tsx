@@ -10,14 +10,13 @@ import { schema } from "@/lib/validation";
 import type { FormData } from "@/types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import styles from "./page.module.css";
 import { signIn } from "next-auth/react";
+import { useState } from "react";
 
 const Login = () => {
-  // useStateでサーバーエラー管理
-  const [_serverError, _setServerError] = useState<string | null>(null);
+  const [serverError, setServerError] = useState<string | null>(null);
   // React hook formでフォーム管理
   const {
     register,
@@ -29,8 +28,23 @@ const Login = () => {
 
   const router = useRouter();
 
-  const onSubmit: SubmitHandler<FormData> = async (_data: FormData) => {
-    router.push("/top");
+  const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
+    const mail = data.mailAddress;
+    const password = data.password;
+
+    await signIn("credentials", {
+      redirect: false,
+      email: mail,
+      password: password,
+    }).then(res => {
+      if (res?.ok) {
+        router.push("/top");
+      } if(res?.error) {
+        setServerError(res.error);
+      }
+    }).catch(err => {
+      console.log(err)
+    })
   };
 
   return (
