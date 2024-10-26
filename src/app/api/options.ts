@@ -7,7 +7,7 @@ const options: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
   debug: true,
   pages: {
-    signIn: "/user/login",
+    signIn: "/user/register",
   },
   session: {
     strategy: "jwt",

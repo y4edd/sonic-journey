@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import styles from "./page.module.css";
+import { signIn } from "next-auth/react";
 
 const Login = () => {
   // useStateでサーバーエラー管理
