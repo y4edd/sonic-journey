@@ -12,18 +12,23 @@ const mockResult: Result = {
     name: "Test Artist",
     picture_big: "https://example.com/image.jpg",
   },
+  cover: "https://example.com/cover.jpg",
 };
 
 describe("SearchContentコンポーネントのテスト", () => {
   test("アーティスト名が正しく表示されているか", () => {
-    const { getByText, getByAltText } = render(<SearchContent result={mockResult} url="url" />);
-
-    //srcとaltが正しく表示されているか
-    const image = getByAltText("Test Artistの画像");
-    expect(image).toHaveAttribute("src", "https://example.com/image.jpg");
-    expect(image).toHaveAttribute("alt", "Test Artistの画像");
+    const { getByText } = render(<SearchContent result={mockResult} url="url" />);
 
     //アーティスト名が表示されているか
     expect(getByText("Test Artist")).toBeInTheDocument();
+  });
+
+  test("曲の画像が正しく表示されているか", () => {
+    const { getByAltText } = render(<SearchContent result={mockResult} url="url" />);
+
+    //srcとaltが正しく表示されているか
+    const image = getByAltText("Test Artistの画像");
+    expect(image).toHaveAttribute("src", "https://example.com/cover.jpg");
+    expect(image).toHaveAttribute("alt", "Test Artistの画像");
   });
 });

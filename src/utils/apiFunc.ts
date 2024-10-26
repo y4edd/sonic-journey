@@ -190,6 +190,7 @@ export const getSearchSongs = async (freeWord: string) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ freeWord }),
+      cache: "no-cache",
     });
 
     // 失敗した場合の処理
