@@ -10,6 +10,6 @@ describe("specialHeaderコンポーネントの単体テスト", () => {
   };
   test("レンダリングが行われ、適切に画像が表示される", () => {
     render(<SpecialHeader specialOverView={specialOverView} />);
-    expect(screen.getAllByAltText("特集ページ見出し"));
+    expect(screen.getAllByAltText("ずとまよ特集"));
   });
 });
