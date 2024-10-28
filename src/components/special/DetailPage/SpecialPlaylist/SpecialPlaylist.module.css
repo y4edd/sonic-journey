@@ -3,11 +3,3 @@
   display: flex;
   flex-direction: column;
 }
-
-.albumDetailContent,
-.albumSongsContent,
-.artistInfoLinkContent,
-.artistFavoriteSongsContent {
-  padding: 2rem 0;
-  border-bottom: 2px solid #c7c7c7;
-}
