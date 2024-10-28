@@ -22,7 +22,12 @@ export const TopPageLink = async () => {
       {specialImages.map((specialImage) => (
         <div className={styles.imageItem} key={specialImage.id}>
           <Link href={`/special/${specialImage.id}`}>
-            <Image src={`/images/${specialImage.image}`} alt="" height={180} width={360} />
+            <Image
+              src={`/images/${specialImage.image}`}
+              alt="各特集の見出し"
+              height={180}
+              width={360}
+            />
           </Link>
         </div>
       ))}
