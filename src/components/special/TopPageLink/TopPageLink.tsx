@@ -2,7 +2,7 @@ import Image from "next/image";
 import styles from "./TopPageLink.module.css";
 import Link from "next/link";
 
-import type { SpecialImages } from "@/types/deezer";
+type SpecialImages = { id: number; image: string };
 
 export const getSpecialImage = async () => {
   const response = await fetch("http://localhost:3000/api/getSpecialImage", {

@@ -15,7 +15,7 @@ const PickSong = ({ singles }: { singles: DeezerTrackSong[] }) => {
   return (
     <AlbumAudioProvider>
       <div className={styles.albumSinglesContent}>
-        {singles.map((song: DeezerTrackSong, index: number) => {
+        {singles.map((song: DeezerTrackSong) => {
           return (
             <div key={song.id} className={styles.albumSingleSong}>
               <PickSongs pickSong={song} />
