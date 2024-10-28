@@ -1,13 +1,13 @@
 "use client";
 
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import Link from "next/link";
-import Image from "next/image";
 import AlbumSingleSongAudio from "@/components/music/AlbumSingleSongAudio/AlbumSingleSongAudio";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import Image from "next/image";
+import Link from "next/link";
 
-import styles from "./PickSongs.module.css";
-import type { DeezerTrackSong } from "@/types/deezer";
 import { useAlbumAudio } from "@/context/AlbumAudioContext";
+import type { DeezerTrackSong } from "@/types/deezer";
+import styles from "./PickSongs.module.css";
 
 const PickSongs = ({ pickSong }: { pickSong: DeezerTrackSong }) => {
   const { currentlyPlayingId, setCurrentlyPlayingId } = useAlbumAudio();

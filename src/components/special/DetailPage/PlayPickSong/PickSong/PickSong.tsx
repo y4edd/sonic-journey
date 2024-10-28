@@ -1,9 +1,9 @@
 "use client";
 
+import { AlbumAudioProvider } from "@/context/AlbumAudioContext";
+import type { DeezerTrackSong } from "@/types/deezer";
 import PickSongs from "../PickSongs/PickSongs";
 import styles from "./PickSong.module.css";
-import type { DeezerTrackSong } from "@/types/deezer";
-import { AlbumAudioProvider } from "@/context/AlbumAudioContext";
 
 type PickSong = {
   id: number;

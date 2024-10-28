@@ -1,6 +1,6 @@
+import { AlbumAudioProvider } from "@/context/AlbumAudioContext";
 import { render, screen } from "@testing-library/react";
 import PickSongs from "./PickSongs";
-import { AlbumAudioProvider } from "@/context/AlbumAudioContext";
 
 beforeAll(() => {
   jest.spyOn(HTMLMediaElement.prototype, "play").mockImplementation(() => {
@@ -34,7 +34,7 @@ describe("PickSongsコンポーネントの単体テスト", () => {
     render(
       <AlbumAudioProvider>
         <PickSongs pickSong={pickSong} />
-      </AlbumAudioProvider>
+      </AlbumAudioProvider>,
     );
     expect(screen.getByText("あいつら全員まよねーず")).toBeInTheDocument();
     expect(screen.getByRole("button")).toBeInTheDocument();

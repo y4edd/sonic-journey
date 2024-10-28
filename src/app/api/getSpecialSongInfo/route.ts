@@ -1,5 +1,5 @@
-import { type NextRequest, NextResponse } from "next/server";
 import type { SpecialSongs } from "@/types/deezer";
+import { type NextRequest, NextResponse } from "next/server";
 
 export const POST = async (request: NextRequest) => {
   try {
@@ -7,10 +7,7 @@ export const POST = async (request: NextRequest) => {
     const songs: SpecialSongs[] = body.songs;
 
     if (!songs || songs.length === 0) {
-      return NextResponse.json(
-        { message: "曲情報が見つかりませんでした" },
-        { status: 404 }
-      );
+      return NextResponse.json({ message: "曲情報が見つかりませんでした" }, { status: 404 });
     }
 
     const songInfoPromises = songs.map((song) =>
@@ -35,7 +32,7 @@ export const POST = async (request: NextRequest) => {
               title: songInfo.album.title,
             },
           };
-        })
+        }),
     );
 
     const songInfos = await Promise.all(songInfoPromises);
@@ -43,9 +40,6 @@ export const POST = async (request: NextRequest) => {
     return NextResponse.json(songInfos, { status: 200 });
   } catch (error) {
     console.error(error);
-    return NextResponse.json(
-      { message: "サーバーエラーが発生しました" },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: "サーバーエラーが発生しました" }, { status: 500 });
   }
 };

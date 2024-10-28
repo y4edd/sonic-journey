@@ -1,6 +1,6 @@
 import Image from "next/image";
-import styles from "./TopPageLink.module.css";
 import Link from "next/link";
+import styles from "./TopPageLink.module.css";
 
 type SpecialImages = { id: number; image: string };
 
@@ -22,12 +22,7 @@ export const TopPageLink = async () => {
       {specialImages.map((specialImage) => (
         <div className={styles.imageItem} key={specialImage.id}>
           <Link href={`/special/${specialImage.id}`}>
-            <Image
-              src={`/images/${specialImage.image}`}
-              alt=""
-              height={180}
-              width={360}
-            />
+            <Image src={`/images/${specialImage.image}`} alt="" height={180} width={360} />
           </Link>
         </div>
       ))}

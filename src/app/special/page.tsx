@@ -1,6 +1,6 @@
 import { ChartTitle } from "@/components/newChart/ChartTitle/ChartTitle";
-import BreadList from "@/components/top/BreadList/BreadList";
 import { TopPageLink } from "@/components/special/TopPageLink/TopPageLink";
+import BreadList from "@/components/top/BreadList/BreadList";
 
 const Page = () => {
   return (

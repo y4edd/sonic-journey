@@ -1,6 +1,6 @@
-import { ReadonlyURLSearchParams } from "next/navigation";
-import BreadList from "@/components/top/BreadList/BreadList";
 import { Special } from "@/components/special/DetailPage/Special/Special";
+import BreadList from "@/components/top/BreadList/BreadList";
+import type { ReadonlyURLSearchParams } from "next/navigation";
 
 type SongPageProps = {
   params: { id: number };

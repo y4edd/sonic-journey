@@ -1,6 +1,6 @@
 import prisma from "@/lib/prisma";
-import { type NextRequest, NextResponse } from "next/server";
 import type { PrismaSpecialSongs, SpecialSongs } from "@/types/deezer";
+import { type NextRequest, NextResponse } from "next/server";
 
 export const GET = async (request: NextRequest) => {
   try {
@@ -20,7 +20,7 @@ export const GET = async (request: NextRequest) => {
     if (!specialSongs) {
       return NextResponse.json(
         { message: "特集ページのプレイリスト曲の情報が見つかりませんでした" },
-        { status: 404 }
+        { status: 404 },
       );
     }
     const numSpecialSongs: SpecialSongs[] = [];
@@ -37,9 +37,6 @@ export const GET = async (request: NextRequest) => {
     return NextResponse.json(numSpecialSongs, { status: 200 });
   } catch (error) {
     console.error(error);
-    return NextResponse.json(
-      { message: "サーバーエラーが発生しました" },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: "サーバーエラーが発生しました" }, { status: 500 });
   }
 };

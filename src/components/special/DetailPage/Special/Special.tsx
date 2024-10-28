@@ -1,10 +1,10 @@
-import styles from "./Special.module.css";
 import type { SpecialOverView } from "@/types/deezer";
 import type { SpecialSongs } from "@/types/deezer";
 import type { DeezerTrackSong } from "@/types/deezer";
 import { SpecialHeader } from "../SpecialHeader/SpecialHeader";
-import { SpecialTitles } from "../SpecialTitles/SpecialTitles";
 import { SpecialPlaylist } from "../SpecialPlaylist/SpecialPlaylist";
+import { SpecialTitles } from "../SpecialTitles/SpecialTitles";
+import styles from "./Special.module.css";
 
 const getSpecialImage = async () => {
   const response = await fetch("http://localhost:3000/api/getSpecialImage", {
@@ -18,12 +18,9 @@ const getSpecialImage = async () => {
 };
 
 const getSpecialSongs = async (id: number) => {
-  const response = await fetch(
-    `http://localhost:3000/api/getSpecialSongs?id=${id}`,
-    {
-      cache: "no-store",
-    }
-  );
+  const response = await fetch(`http://localhost:3000/api/getSpecialSongs?id=${id}`, {
+    cache: "no-store",
+  });
   if (!response.ok) {
     throw new Error("特集ページのプレイリストの情報の取得に失敗しました");
   }
@@ -33,7 +30,7 @@ const getSpecialSongs = async (id: number) => {
 
 const getSpecialSongInfo = async (id: number) => {
   const playlistSongs = await getSpecialSongs(id);
-  const response = await fetch(`http://localhost:3000/api/getSpecialSongInfo`, {
+  const response = await fetch("http://localhost:3000/api/getSpecialSongInfo", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

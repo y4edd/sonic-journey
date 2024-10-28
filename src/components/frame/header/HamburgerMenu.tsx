@@ -69,10 +69,7 @@ export const HamburgerMenu = () => {
                     onClick={() => hamburgerLink("/mypage/favoriteartist")}
                     onKeyDown={() => hamburgerLink("/mypage/favoriteartist")}
                   >
-                    <PeopleOutlineIcon
-                      fontSize="large"
-                      sx={{ cursor: "pointer" }}
-                    />
+                    <PeopleOutlineIcon fontSize="large" sx={{ cursor: "pointer" }} />
                     &nbsp;お気に入りアーティスト
                   </li>
                   <li

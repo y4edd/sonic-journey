@@ -1,6 +1,6 @@
 import prisma from "@/lib/prisma";
-import { NextResponse } from "next/server";
 import type { SpecialOverView } from "@/types/deezer";
+import { NextResponse } from "next/server";
 
 export const GET = async () => {
   try {
@@ -8,15 +8,12 @@ export const GET = async () => {
     if (!specialOverViews) {
       return NextResponse.json(
         { message: "特集ページの情報が見つかりませんでした" },
-        { status: 404 }
+        { status: 404 },
       );
     }
     return NextResponse.json(specialOverViews, { status: 200 });
   } catch (error) {
     console.error(error);
-    return NextResponse.json(
-      { message: "サーバーエラーが発生しました" },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: "サーバーエラーが発生しました" }, { status: 500 });
   }
 };

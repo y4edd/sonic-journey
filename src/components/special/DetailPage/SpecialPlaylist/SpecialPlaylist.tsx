@@ -1,6 +1,6 @@
-import styles from "./SpecialPlaylist.module.css";
 import type { DeezerTrackSong } from "@/types/deezer";
 import PickSong from "../PlayPickSong/PickSong/PickSong";
+import styles from "./SpecialPlaylist.module.css";
 
 export const SpecialPlaylist = ({
   specialPlaylistInfo,
