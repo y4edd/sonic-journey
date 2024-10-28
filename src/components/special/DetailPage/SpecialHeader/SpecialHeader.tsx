@@ -12,7 +12,7 @@ export const SpecialHeader = ({
       <div className={styles.headerImg}>
         <Image
           src={`/images/${specialOverView.image}`}
-          alt="特集ページ見出し"
+          alt={specialOverView.title}
           height={215}
           width={430}
         />
