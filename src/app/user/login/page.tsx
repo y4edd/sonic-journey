@@ -12,7 +12,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import styles from "./page.module.css";
-import { signIn } from "next-auth/react";
 import { useState } from "react";
 
 const Login = () => {
@@ -29,22 +28,8 @@ const Login = () => {
   const router = useRouter();
 
   const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
-    const mail = data.mailAddress;
-    const password = data.password;
-
-    await signIn("credentials", {
-      redirect: false,
-      email: mail,
-      password: password,
-    }).then(res => {
-      if (res?.ok) {
-        router.push("/top");
-      } if(res?.error) {
-        setServerError(res.error);
-      }
-    }).catch(err => {
-      console.log(err)
-    })
+    
+      router.push("/");
   };
 
   return (
@@ -78,7 +63,11 @@ const Login = () => {
             register={register}
             error={errors.password}
           />
-          <Button type="submit" className={ButtonStyles.register} text={"ログイン"} />
+          <Button
+            type="submit"
+            className={ButtonStyles.register}
+            text={"ログイン"}
+          />
         </form>
       </div>
       <Guide href="/user/register" guideText="新規登録は" message="こちら" />

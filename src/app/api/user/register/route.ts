@@ -1,9 +1,9 @@
 import bcrypt from "bcrypt";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
 // ユーザー新規登録API
-export const POST = async (req: Request) => {
+export const POST = async (req: NextRequest) => {
   try {
     // 受け取る
     const { name, email, password } = await req.json();

@@ -13,7 +13,6 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import styles from "./page.module.css";
-import { signIn } from "next-auth/react";
 
 const UserRegistration = () => {
   // useStateでサーバーエラー管理
@@ -48,21 +47,10 @@ const UserRegistration = () => {
       const error = await response.text();
       setError(error);
       return;
-    }
-
-    // 登録成功後、signInを呼び出してログインセッションを開始
-    const result = await signIn("credentials", {
-      redirect: false,
-      email: data.mailAddress,
-      password: data.password,
-    });
-
-    if (!result?.error) {
+    }else {
       router.push("/user/login");
-    } else {
-      setError("ログインに失敗しました。");
     }
-};
+  }
 
   return (
     <>
