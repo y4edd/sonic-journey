@@ -1,8 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./TopPageLink.module.css";
-
-type SpecialImages = { id: number; image: string };
+import type { SpecialOverView } from "@/types/deezer";
 
 export const getSpecialImage = async () => {
   const response = await fetch("http://localhost:3000/api/getSpecialImage", {
@@ -11,7 +10,7 @@ export const getSpecialImage = async () => {
   if (!response.ok) {
     throw new Error("特集ページの情報の取得に失敗しました");
   }
-  const images: SpecialImages[] = await response.json();
+  const images: SpecialOverView[] = await response.json();
   return images;
 };
 
@@ -24,7 +23,7 @@ export const TopPageLink = async () => {
           <Link href={`/special/${specialImage.id}`}>
             <Image
               src={`/images/${specialImage.image}`}
-              alt="各特集の見出し"
+              alt={specialImage.title}
               height={180}
               width={360}
             />
