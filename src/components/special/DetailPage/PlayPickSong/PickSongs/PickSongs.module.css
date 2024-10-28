@@ -17,6 +17,11 @@
   border: 1px solid #fc9aff;
   border-radius: 5px;
   padding: 0.2rem 0.6rem 0;
+  margin-left: 1rem;
+}
+
+.albumSingleInfo > link {
+  margin-left: 2rem;
 }
 
 .linkImage {
