@@ -201,6 +201,47 @@ export type FavoriteArtistSong = SongInfo & {
   type: string;
 };
 
+// PicksDBのデータ情報
+export type SpecialOverView = {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+};
+
+// PickSongDBのデータ情報
+export type PrismaSpecialSongs = {
+  id: number;
+  pick_id: number;
+  api_song_id: bigint;
+};
+
+// ↓ 変換
+
+// PickSongのデータ
+export type SpecialSongs = {
+  id: number;
+  pick_id: number;
+  api_song_id: number;
+};
+
+// 特集ページの記載の為、トラックIDより引っ張ってきた曲情報
+export type DeezerTrackSong = {
+  id: number;
+  title: string;
+  preview: string;
+  cover_xl: string;
+  duration: number;
+  artist: {
+    id: number;
+    name: string;
+  };
+  album: {
+    id: number;
+    title: string;
+  };
+};
+
 //あいまい検索
 export type Result = {
   id: number;

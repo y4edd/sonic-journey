@@ -5,8 +5,9 @@
 .songItemsGridWrapper {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 34px;
-  margin: 0px 38px;
+  row-gap: 34px;
+  column-gap: 3vw;
+  margin: 0px 5vw;
 }
 
 .songImageGrid {

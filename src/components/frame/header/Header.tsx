@@ -31,7 +31,11 @@ const Header = () => {
                   placeholder={error ? error : "アーティスト・アルバム・楽曲で検索"}
                 />
                 <button type="submit">
-                  <SearchIcon />
+                  <SearchIcon
+                    sx={{
+                      cursor: "pointer",
+                    }}
+                  />
                 </button>
               </form>
               <div className={styles.searchCancel}>
