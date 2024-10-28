@@ -57,6 +57,7 @@ const AlbumPage = async ({ params }: AlbumPageProps) => {
           <MusicContentTitle title="人気楽曲" />
           <SongList
             songs={artistSongs.resultData}
+            url="music"
             errorMessage="人気楽曲を取得できませんでした"
           />
         </div>
