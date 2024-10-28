@@ -1,7 +1,7 @@
+import type { SpecialOverView } from "@/types/deezer";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./TopPageLink.module.css";
-import type { SpecialOverView } from "@/types/deezer";
 
 export const getSpecialImage = async () => {
   const response = await fetch("http://localhost:3000/api/getSpecialImage", {
