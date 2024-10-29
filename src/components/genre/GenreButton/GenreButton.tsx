@@ -1,8 +1,17 @@
+import { Dispatch, SetStateAction } from "react";
 import type { GenreInfo } from "@/types/deezer";
 import styles from "./GenreButton.module.css";
-// import { url } from "inspector";
 
-const GenreButton = ({ genre }: { genre: GenreInfo }) => {
+const GenreButton = ({
+  genre,
+  setSelectGenre,
+}: {
+  genre: GenreInfo;
+  setSelectGenre: Dispatch<SetStateAction<number>>;
+}) => {
+  const handleGenreBtnClick = (id: number) => {
+    setSelectGenre(id);
+  };
   return (
     <div className={styles.genreContent}>
       <button
@@ -12,6 +21,7 @@ const GenreButton = ({ genre }: { genre: GenreInfo }) => {
           WebkitTextStroke: "0.7px black",
           color: genre.id === 0 ? "black" : "white",
         }}
+        onClick={() => handleGenreBtnClick(genre.id)}
       >
         {genre.name}
       </button>
