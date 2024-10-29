@@ -1,16 +1,30 @@
-import { GENRE_ARTISTS } from "@/constants/constant";
-import type { GenreArtist } from "@/types/deezer";
+"use client";
+
+import type { GenreInfo } from "@/types/deezer";
 import GenreButton from "../GenreButton/GenreButton";
 import styles from "./GenreButtons.module.css";
+import useSWR from "swr";
 
+const fetcher = async (key: string) => {
+  return await fetch(key).then((res) => res.json());
+};
 const GenreButtons = () => {
-  return (
-    <div className={styles.genreGroup}>
-      {GENRE_ARTISTS.map((genre: GenreArtist) => {
-        return <GenreButton genre={genre} key={genre.id} />;
-      })}
-    </div>
+  const { data, error, isLoading } = useSWR<GenreInfo[]>(
+    "http://localhost:3000/api/getGenreArtistId",
+    fetcher
   );
+
+  if (error) return <div>エラー</div>;
+  if (isLoading) return <div>ジャンルの情報を取得中...</div>;
+  if (data) {
+    return (
+      <div className={styles.genreGroup}>
+        {data.map((genre: GenreInfo) => {
+          return <GenreButton genre={genre} key={genre.id} />;
+        })}
+      </div>
+    );
+  }
 };
 
 export default GenreButtons;

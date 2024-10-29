@@ -20,3 +20,8 @@
   background-color: #cdcdcd;
   cursor: pointer;
 }
+
+.genreBtn {
+  text-shadow: 2px solid black;
+  color: black;
+}
