@@ -1,4 +1,5 @@
-import { type NextRequest, NextResponse } from "next/server";
+import { GENRE_ARTISTS } from "@/constants/constant";
+import { NextResponse } from "next/server";
 
 interface GenreData {
   id: number;
@@ -11,14 +12,8 @@ interface GenreData {
   type: "genre";
 }
 
-export const GET = async (request: NextRequest) => {
+export const GET = async () => {
   try {
-    // const {searchParams} = request.nextUrl;
-    // const genreName = searchParams.get("genre");
-    // if(!genreName) {
-    //   throw new Error("クエリの受け渡しに失敗しました");
-    // }
-
     const genreInfos = await fetch("https://api.deezer.com/genre");
     if (!genreInfos) {
       return NextResponse.json(
@@ -32,17 +27,10 @@ export const GET = async (request: NextRequest) => {
     }
 
     const genreData = await genreInfos.json();
-    const filterData = await genreData.data.filter((data: GenreData) => {
-      return (
-        data.name === "すべて" ||
-        data.name === "ポップス" ||
-        data.name === "ロック" ||
-        data.name === "R&B" ||
-        data.name === "ダンス" ||
-        data.name === "メタル" ||
-        data.name === "アジア音楽" ||
-        data.name === "キッズ" ||
-        data.name === "映画/ゲーム"
+
+    const filterData = genreData.data.filter((data: GenreData) => {
+      return GENRE_ARTISTS.some(
+        (GENRE_ARTIST) => data.name === GENRE_ARTIST.name
       );
     });
     const resultData = await filterData.map((data: GenreData) => {
