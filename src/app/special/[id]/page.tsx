@@ -1,7 +1,7 @@
 import { Special } from "@/components/special/DetailPage/Special/Special";
+import { getSpecialImage } from "@/components/special/TopPageLink/TopPageLink";
 import BreadList from "@/components/top/BreadList/BreadList";
 import type { ReadonlyURLSearchParams } from "next/navigation";
-import { getSpecialImage } from "@/components/special/TopPageLink/TopPageLink";
 
 type SongPageProps = {
   params: { id: number };
