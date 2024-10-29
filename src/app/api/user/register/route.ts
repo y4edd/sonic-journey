@@ -1,16 +1,12 @@
 import bcrypt from "bcrypt";
-// Node.js環境下だから"next/server"下のNextRequestは使えない。.res等も使えなくなる
-import { NextApiRequest, NextApiResponse } from "next";
+import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
 
 // ユーザー新規登録API
-const handler = async (req: NextApiRequest, res:NextApiResponse) => {
-  if(req.method === "POST") {
+export const POST = async (req: NextRequest, res:NextResponse) => {
     try {
-      // 受け取る
-      const { name, email, password } = await req.body();
-      // デバッグ用（DELETE）
-      console.log("受け取ったデータ:", { name, email });
+      // 入力データを受け取る
+      const { name, email, password } = await req.json();
 
       // 登録済のメールアドレスを除外する
       const exitingUser = await prisma.user.findUnique({
@@ -18,7 +14,7 @@ const handler = async (req: NextApiRequest, res:NextApiResponse) => {
       });
 
       if(exitingUser) {
-        res.status(409).json({ message: "このメールアドレスはすでに登録されています"});
+        return NextResponse.json({ message: "このメールアドレスはすでに登録されています"},{status:409});
       }
 
       // hash化(2の12乗)
@@ -34,16 +30,11 @@ const handler = async (req: NextApiRequest, res:NextApiResponse) => {
         },
       });
 
-      return res.status(201).json({ message: "ユーザーの登録に成功しました", user: newUser });
+      return NextResponse.json({ message: "ユーザーの登録に成功しました", user: newUser },{status:201});
     } catch (err) {
       // 開発者向けログ
       console.error("サーバーエラーが発生しました", err);
       // ユーザー向けエラー表示
-      return res.status(500).json({err: "サーバーエラーが発生しました" });
+      return NextResponse.json({err: "サーバーエラーが発生しました" },{status:500});
     }
-  } else {
-      res.setHeader("Allow", ["POST"]);
-      res.status(405).end(`${req.method}メソッドは使用できません`);
-    };
 }
-export default handler;

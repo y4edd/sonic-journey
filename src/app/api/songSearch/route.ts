@@ -12,7 +12,7 @@ export const GET = async (request: NextRequest) => {
     if (!getSong) {
       return NextResponse.json({ message: "楽曲情報が見つかりませんでした" }, { status: 404 });
     }
-
+    
     const songData = await getSong.json();
 
     const resSongData: DeezerSong = {
