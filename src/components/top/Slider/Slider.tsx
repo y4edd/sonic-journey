@@ -36,7 +36,7 @@ const Slider = ({ getPicksInfo }: { getPicksInfo: SpecialOverView[] }) => {
               <Link href={`/special/${getPickInfo.id}`}>
                 <Image
                   src={`/images/${getPickInfo.image}`}
-                  alt="スライダー画像"
+                  alt={`${getPickInfo.title}サムネイル`}
                   width={300}
                   height={150}
                   priority
