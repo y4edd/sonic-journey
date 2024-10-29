@@ -4,9 +4,11 @@ import styles from "./GenreButton.module.css";
 
 const GenreButton = ({
   genre,
+  selectGenre,
   setSelectGenre,
 }: {
   genre: GenreInfo;
+  selectGenre: number;
   setSelectGenre: Dispatch<SetStateAction<number>>;
 }) => {
   const handleGenreBtnClick = (id: number) => {
@@ -16,11 +18,12 @@ const GenreButton = ({
     <div className={styles.genreContent}>
       <button
         type="button"
-        style={{
-          backgroundImage: `url(${genre.picture})`,
-          WebkitTextStroke: "0.7px black",
-          color: genre.id === 0 ? "black" : "white",
-        }}
+        // style={{
+        //   backgroundImage: `url(${genre.picture})`,
+        // }}
+        className={
+          genre.id !== selectGenre ? styles.genreBtn : styles.selectGenreBtn
+        }
         onClick={() => handleGenreBtnClick(genre.id)}
       >
         {genre.name}

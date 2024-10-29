@@ -4,5 +4,30 @@
   grid-template-rows: 1fr 1fr 1fr;
   gap: 1.5rem;
   place-items: center;
-  margin-top: 1rem;
+}
+
+.genreTitle,
+.allGenreTitle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 6rem;
+  padding: 0.5rem 0;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.genreTitle {
+  color: white;
+  text-shadow: 1px 1px 0 black, -1px 1px 0 black, 1px -1px 0 black,
+    -1px -1px 0 black;
+  filter: grayscale(40%);
+}
+
+.allGenreTitle {
+  color: rgb(82, 80, 80);
+}
+.firstTitleLine {
+  font-size: 2rem;
 }

@@ -224,21 +224,3 @@ export const getSearchSongs = async (freeWord: string) => {
     console.error(error);
   }
 };
-
-// 選択したジャンルに属するアーティストを取得する関数
-export const getGenreArtists = async (id: number) => {
-  try {
-    const res = await fetch(
-      `http://localhost:3000/api/genreArtistSearch?genre=${id}`,
-      {
-        cache: "no-cache",
-      }
-    );
-    if (!res.ok) {
-      throw new Error("データが見つかりませんでした");
-    }
-    return await res.json();
-  } catch (error) {
-    console.error(error);
-  }
-};

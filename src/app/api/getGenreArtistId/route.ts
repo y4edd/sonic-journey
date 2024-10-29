@@ -37,7 +37,7 @@ export const GET = async () => {
       return {
         id: data.id,
         name: data.name,
-        picture: data.picture_xl,
+        picture: data.picture_medium,
       };
     });
     return NextResponse.json(resultData, { status: 200 });
