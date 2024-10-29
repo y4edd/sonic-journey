@@ -1,0 +1,22 @@
+.genreContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.genreContent > button {
+  padding: 0.5rem 0.6rem;
+  font-weight: bold;
+  color: white;
+  background-color: #a8a8a8;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0px 0px 15px -5px #777777;
+  flex: 1;
+}
+
+.genreContent > button:hover {
+  background-color: #cdcdcd;
+  cursor: pointer;
+}
