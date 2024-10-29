@@ -232,3 +232,9 @@ export type AlbumSingle = {
   preview: string;
   cover_xl: string;
 };
+
+// プレイリストの型
+export type Playlist = {
+  id: number;
+  name: string;
+};
