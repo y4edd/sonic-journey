@@ -6,7 +6,7 @@ import { SpecialPlaylist } from "../SpecialPlaylist/SpecialPlaylist";
 import { SpecialTitles } from "../SpecialTitles/SpecialTitles";
 import styles from "./Special.module.css";
 
-const getSpecialImage = async () => {
+export const getSpecialImage = async () => {
   const response = await fetch("http://localhost:3000/api/getSpecialImage", {
     cache: "no-store",
   });
@@ -17,7 +17,7 @@ const getSpecialImage = async () => {
   return specialOverViews;
 };
 
-const getSpecialSongs = async (id: number) => {
+export const getSpecialSongs = async (id: number) => {
   const response = await fetch(`http://localhost:3000/api/getSpecialSongs?id=${id}`, {
     cache: "no-store",
   });
@@ -28,7 +28,7 @@ const getSpecialSongs = async (id: number) => {
   return specialSongs;
 };
 
-const getSpecialSongInfo = async (id: number) => {
+export const getSpecialSongInfo = async (id: number) => {
   const playlistSongs = await getSpecialSongs(id);
   const response = await fetch("http://localhost:3000/api/getSpecialSongInfo", {
     method: "POST",
