@@ -1,9 +1,11 @@
+import ActionButton from "@/components/mypage/ActionButton/ActionButton";
 import ArtistList from "@/components/mypage/ArtistList/ArtistList";
-import EditButton from "@/components/mypage/EditButton/EditButton";
 import MenuHeader from "@/components/mypage/MenuHeader/MenuHeader";
 import SortButtons from "@/components/mypage/SortButtons/SortButtons";
 import BreadList from "@/components/top/BreadList/BreadList";
 import { getArtist } from "@/utils/apiFunc";
+import EditIcon from "@mui/icons-material/Edit";
+import styles from "./page.module.css";
 
 const FavoriteArtist = async () => {
   // FIXME: ログインユーザーidを取得する
@@ -31,7 +33,9 @@ const FavoriteArtist = async () => {
       />
       <MenuHeader title="お気に入りアーティスト" />
       <SortButtons label="登録日" />
-      <EditButton />
+      <div className={styles.actionButtonContainer}>
+        <ActionButton name="編集" icon={<EditIcon />} url="/mypage/favoriteartist/edit" />
+      </div>
       <ArtistList
         artists={favoriteArtistsInfo}
         errorMessage="お気に入りアーティストは登録されていません"
