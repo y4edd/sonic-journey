@@ -11,12 +11,12 @@
   font-size: 0.9rem;
   list-style-type: none;
   text-align: center;
-  padding: 15px 5px 0 5px;
-  height: 100%;
+  align-content: center;
+  transition: background-color 0.8s ease;
 }
 
 .otherPageHeading:hover {
-  background-color: rgba(220, 220, 220, 0.377);
+  background-color: rgba(153, 240, 211, 0.575);
 }
 
 .thePageHeading {
