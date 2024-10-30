@@ -21,7 +21,10 @@ const TopPage = async () => {
       <BreadList bread={[{ link: "/", title: "TOP" }]} />
       <div>
         <div className={styles.specialContent}>
-          <ContentTitle title="特集" />
+          <div className={styles.contentTitleGroup}>
+            <ContentTitle title="特集" />
+            <LinkButton label="もっと見る >" url="/special" />
+          </div>
           <Slider getPicksInfo={getPicksInfo} />
         </div>
 
