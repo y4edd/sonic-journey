@@ -20,7 +20,7 @@ const FreeSearch = () => {
           placeholder="アーティスト・アルバム・楽曲で検索"
         />
         <button type="submit">
-          <SearchIcon />
+          <SearchIcon className={styles.searchIcon} />
         </button>
       </form>
       <p className={styles.errorMessage}>{error}</p>
