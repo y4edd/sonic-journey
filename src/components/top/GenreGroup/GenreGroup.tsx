@@ -1,4 +1,3 @@
-import { GENRE_ARTISTS } from "@/constants/constant";
 import type { GenreInfo } from "@/types/deezer";
 import { getGenreInfo } from "@/utils/apiFunc";
 import GenreContent from "../GenreContent/GenreContent";
