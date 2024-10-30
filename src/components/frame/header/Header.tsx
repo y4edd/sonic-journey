@@ -1,6 +1,7 @@
 "use client";
 
 import { useFreeWordSearch } from "@/hooks/top/useFreeWordSearch";
+import CancelIcon from "@mui/icons-material/Cancel";
 import SearchIcon from "@mui/icons-material/Search";
 import Image from "next/image";
 import Link from "next/link";
