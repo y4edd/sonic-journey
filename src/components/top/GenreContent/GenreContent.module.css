@@ -4,8 +4,11 @@
   align-items: center;
   width: 100%;
 }
+.link {
+  width: 100%;
+}
 
-.genreContent > button {
+.link > button {
   padding: 0.5rem 0.6rem;
   font-weight: bold;
   color: white;
@@ -14,9 +17,10 @@
   border: none;
   box-shadow: 0px 0px 15px -5px #777777;
   flex: 1;
+  width: 100%;
 }
 
-.genreContent > button:hover {
+.genreContent button:hover {
   background-color: #cdcdcd;
   cursor: pointer;
 }

@@ -1,12 +1,14 @@
 import { GENRE_ARTISTS } from "@/constants/constant";
-import type { GenreArtist } from "@/types/deezer";
+import type { GenreInfo } from "@/types/deezer";
 import GenreContent from "../GenreContent/GenreContent";
 import styles from "./GenreGroup.module.css";
+import { getGenreInfo } from "@/utils/apiFunc";
 
-const GenreGroup = () => {
+const GenreGroup = async () => {
+  const genreArtistInfo: GenreInfo[] = await getGenreInfo();
   return (
     <div className={styles.genreGroup}>
-      {GENRE_ARTISTS.map((genre: GenreArtist) => {
+      {genreArtistInfo.map((genre: GenreInfo) => {
         return <GenreContent genre={genre} key={genre.id} />;
       })}
     </div>

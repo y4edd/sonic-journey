@@ -5,8 +5,9 @@ import GenreButtons from "../GenreButtons/GenreButtons";
 import { GenreArtist } from "../GenreArtist/GenreArtist";
 import { useState } from "react";
 
-const GenreState = () => {
-  const [selectGenre, setSelectGenre] = useState(0);
+const GenreState = ({ transitionId }: { transitionId: number }) => {
+  const [selectGenre, setSelectGenre] = useState(transitionId);
+
   return (
     <div className={styles.wrapper}>
       <GenreButtons selectGenre={selectGenre} setSelectGenre={setSelectGenre} />

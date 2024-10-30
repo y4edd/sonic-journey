@@ -1,8 +1,12 @@
+"use client";
+
 import BreadList from "@/components/top/BreadList/BreadList";
 import { ChartTitle } from "@/components/newChart/ChartTitle/ChartTitle";
 import GenreState from "@/components/genre/GenreState/GenreState";
+import { UseGenreNumChange } from "@/hooks/chart/useGenreNumChange";
 
 const Page = () => {
+  const { transitionId } = UseGenreNumChange();
   return (
     <>
       <BreadList
@@ -12,7 +16,7 @@ const Page = () => {
         ]}
       />
       <ChartTitle title="ジャンル" />
-      <GenreState />
+      <GenreState transitionId={transitionId} />
     </>
   );
 };
