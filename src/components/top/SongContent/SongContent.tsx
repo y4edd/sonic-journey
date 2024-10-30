@@ -5,8 +5,7 @@ import styles from "./SongContent.module.css";
 
 const SongContent = ({ song, url }: { song: DeezerSong; url: string }) => {
   return (
-    // FIXME: 後でリンクにする必要があります。
-    <Link href={`/${url}/${song.id}`}>
+    <Link href={`/${url}/${song.id}`} className={styles.songContentLink}>
       <div className={styles.songInfo}>
         <Image
           src={song.cover_xl || song.album.cover_xl || ""}
