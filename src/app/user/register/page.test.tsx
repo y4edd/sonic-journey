@@ -76,4 +76,26 @@ describe("UserRegistrationコンポーネントのテスト", () => {
       expect(mockPush).toHaveBeenCalledWith("/user/login");
     });
   });
+
+  test("サーバーエラーが発生した場合、エラーメッセージが表示される", async () => {
+    (global.fetch as jest.Mock).mockResolvedValueOnce({
+      ok: false,
+      status: 500,
+      json: async () => ({ message: "サーバーエラーが発生しました" }),
+    });
+
+    render(<UserRegistration />);
+
+    fireEvent.input(screen.getByLabelText("ユーザー名"), { target: { value: "tanitune" } });
+    fireEvent.input(screen.getByLabelText("メールアドレス"), { target: { value: "tani@example.com" } });
+    fireEvent.input(screen.getByLabelText("パスワード"), { target: { value: "password" } });
+    fireEvent.input(screen.getByLabelText("パスワード確認"), { target: { value: "password" } });
+
+    fireEvent.submit(screen.getByRole("button", { name: "ユーザー登録" }));
+
+    await waitFor(() => {
+      expect(screen.getByText("サーバーエラーが発生しました")).toBeInTheDocument();
+    });    
+  });
+
 });

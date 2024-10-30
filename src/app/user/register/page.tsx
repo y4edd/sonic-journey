@@ -16,7 +16,7 @@ import styles from "./page.module.css";
 
 const UserRegistration = () => {
   // useStateでサーバーエラー管理
-  const [error, setError] = useState<string | null>(null);
+  const [serverError, setServerError] = useState<string | null>(null);
   // React hook formでフォーム管理
   const {
     register,
@@ -29,26 +29,33 @@ const UserRegistration = () => {
   const router = useRouter();
 
   const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
-
-    const response = await fetch("/api/user/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        name:data.userName,
-        email:data.mailAddress,
-        password:data.password,
+    try{
+      const response = await fetch("/api/user/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          name:data.userName,
+          email:data.mailAddress,
+          password:data.password,
+        })
       })
-    })
 
-    if (!response.ok) {
-      // 詳細なエラーメッセージ取得
-      const error = await response.text();
-      setError(error);
-      return;
-    }else {
-      router.push("/user/login");
+      if (!response.ok) {
+        // 詳細なエラーメッセージ取得
+        const error = await response.json();
+        setServerError(error.message);
+        throw new Error(error.message);
+      }else {
+        router.push("/user/login");
+      }
+    } catch (err) {
+      if (err instanceof Error){
+        setServerError(err.message);
+      } else {
+        setServerError("予期しないエラーが発生しました");
+      }
     }
   }
 
@@ -102,6 +109,7 @@ const UserRegistration = () => {
             error={errors.passwordConfirm}
           />
           <Button type="submit" className={ButtonStyles.register} text={"ユーザー登録"} />
+          {serverError && <div role="alert" className="error-message">{serverError}</div>}
         </form>
       </div>
       <Guide href="/user/login" guideText="登録済みの方は" message="ログイン" />

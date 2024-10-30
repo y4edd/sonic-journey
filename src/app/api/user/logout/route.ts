@@ -8,6 +8,6 @@ export const POST = async ( req: NextRequest, res:NextResponse ) => {
     return response;
   }catch(err){
     console.error("サーバーエラーが発生しました");
-    return NextResponse.json({err:"サーバーエラーが発生しました"},{status:500});
+    return NextResponse.json({message:"サーバーエラーが発生しました"},{status:500});
   }
 }

@@ -28,8 +28,33 @@ const Login = () => {
   const router = useRouter();
 
   const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
-    
-    router.push("/");
+    try{
+      const response = await fetch("/api/user/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email:data.mailAddress,
+          password:data.password,
+        })
+      })
+
+      if (!response.ok) {
+        // 詳細なエラーメッセージ取得
+        const error = await response.json();
+        setServerError(error.message);
+        throw new Error(error.message);
+      }else {
+        router.push("/");
+      }
+    } catch (err) {
+      if (err instanceof Error){
+        setServerError(err.message);
+      } else {
+        setServerError("予期しないエラーが発生しました");
+      }
+    }
   };
 
   return (
@@ -68,6 +93,7 @@ const Login = () => {
             className={ButtonStyles.register}
             text={"ログイン"}
           />
+          {serverError && <div role="alert" className="error-message">{serverError}</div>}
         </form>
       </div>
       <Guide href="/user/register" guideText="新規登録は" message="こちら" />
