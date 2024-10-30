@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import type { SpecialOverView } from "@/types/deezer";
 import Link from "next/link";
+import styles from "./Slider.module.css";
 
 const Slider = ({ getPicksInfo }: { getPicksInfo: SpecialOverView[] }) => {
   return (
@@ -40,6 +41,7 @@ const Slider = ({ getPicksInfo }: { getPicksInfo: SpecialOverView[] }) => {
                   width={300}
                   height={150}
                   priority
+                  className={styles.sliderImg}
                 />
               </Link>
             </SwiperSlide>

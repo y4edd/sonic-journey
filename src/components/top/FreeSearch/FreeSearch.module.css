@@ -25,3 +25,11 @@
   margin-top: 1rem;
   font-size: 0.8rem;
 }
+
+.searchIcon {
+  transition: transform 0.3s ease-in-out;
+}
+
+.searchIcon:hover {
+  transform: scale(1.2);
+}
