@@ -29,7 +29,7 @@ const Login = () => {
 
   const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
     
-      router.push("/");
+    router.push("/");
   };
 
   return (
