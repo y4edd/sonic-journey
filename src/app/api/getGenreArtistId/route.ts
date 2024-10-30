@@ -22,16 +22,14 @@ export const GET = async () => {
         },
         {
           status: 500,
-        }
+        },
       );
     }
 
     const genreData = await genreInfos.json();
 
     const filterData = genreData.data.filter((data: GenreData) => {
-      return GENRE_ARTISTS.some(
-        (GENRE_ARTIST) => data.name === GENRE_ARTIST.name
-      );
+      return GENRE_ARTISTS.some((GENRE_ARTIST) => data.name === GENRE_ARTIST.name);
     });
     const resultData = await filterData.map((data: GenreData) => {
       return {
@@ -49,7 +47,7 @@ export const GET = async () => {
       },
       {
         status: 500,
-      }
+      },
     );
   }
 };

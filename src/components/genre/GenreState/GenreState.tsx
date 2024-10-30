@@ -1,9 +1,9 @@
 "use client";
 
-import styles from "./GenreState.module.css";
-import GenreButtons from "../GenreButtons/GenreButtons";
-import { GenreArtist } from "../GenreArtist/GenreArtist";
 import { useState } from "react";
+import { GenreArtist } from "../GenreArtist/GenreArtist";
+import GenreButtons from "../GenreButtons/GenreButtons";
+import styles from "./GenreState.module.css";
 
 const GenreState = ({ transitionId }: { transitionId: number }) => {
   const [selectGenre, setSelectGenre] = useState(transitionId);

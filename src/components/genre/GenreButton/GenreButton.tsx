@@ -1,5 +1,5 @@
-import { Dispatch, SetStateAction } from "react";
 import type { GenreInfo } from "@/types/deezer";
+import type { Dispatch, SetStateAction } from "react";
 import styles from "./GenreButton.module.css";
 
 const GenreButton = ({
@@ -18,9 +18,7 @@ const GenreButton = ({
     <div className={styles.genreContent}>
       <button
         type="button"
-        className={
-          genre.id !== selectGenre ? styles.genreBtn : styles.selectGenreBtn
-        }
+        className={genre.id !== selectGenre ? styles.genreBtn : styles.selectGenreBtn}
         onClick={() => handleGenreBtnClick(genre.id)}
       >
         {genre.name}
