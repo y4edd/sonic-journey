@@ -167,7 +167,7 @@ export const getAlbum = async (album: number) => {
 // albumにはアーティスト名を入力
 export const getArtistAlbum = async (artist: string) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/artistAlbums?artistName=${artist}`, {
+    const res = await fetch(`http://localhost:3000/api/artistAlbums?artistName=${artist}&limit=4`, {
       cache: "no-cache",
     });
 
@@ -194,6 +194,23 @@ export const getSearchSongs = async (freeWord: string) => {
     });
 
     // 失敗した場合の処理
+    if (!res.ok) {
+      throw new Error("データが見つかりませんでした");
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// アルバムを取得する関数
+export const getSearchAlbum = async (artist: string) => {
+  try {
+    const res = await fetch(`http://localhost:3000/api/artistAlbums?artistName=${artist}&limit=`, {
+      cache: "no-cache",
+    });
+
     if (!res.ok) {
       throw new Error("データが見つかりませんでした");
     }
