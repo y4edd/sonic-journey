@@ -77,7 +77,7 @@ describe("ヘッダーコンポーネントの単体テスト", () => {
 
     const input = screen.getByPlaceholderText("アーティスト・アルバム・楽曲で検索");
     expect(input).toBeInTheDocument();
-    expect(screen.getByText("キャンセル")).toBeInTheDocument();
+    expect(screen.getByTestId("cancel-button")).toBeInTheDocument();
   });
 
   test("未入力状態で検索をかけるとplaceholderに「検索ワードを入力してください。」と表示される", async () => {
@@ -100,7 +100,7 @@ describe("ヘッダーコンポーネントの単体テスト", () => {
     const searchIcon = screen.getByTestId("search-icon");
     fireEvent.click(searchIcon);
 
-    const searchCancel = screen.getByText("キャンセル");
+    const searchCancel = screen.getByTestId("cancel-button");
     fireEvent.click(searchCancel);
 
     expect(screen.getByTestId("hamburger-menu")).toBeInTheDocument();

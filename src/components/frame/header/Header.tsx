@@ -39,13 +39,15 @@ const Header = () => {
                 </button>
               </form>
               <div className={styles.searchCancel}>
-                <p
-                  className={styles.searchCancelText}
+                <button
+                  type="button"
+                  className={styles.searchCancelButton}
                   onClick={handleClickSearch}
                   onKeyDown={handleClickSearch}
+                  data-testid="cancel-button"
                 >
-                  キャンセル
-                </p>
+                  <CancelIcon />
+                </button>
               </div>
             </div>
           ) : (
