@@ -18,9 +18,6 @@ const GenreButton = ({
     <div className={styles.genreContent}>
       <button
         type="button"
-        // style={{
-        //   backgroundImage: `url(${genre.picture})`,
-        // }}
         className={
           genre.id !== selectGenre ? styles.genreBtn : styles.selectGenreBtn
         }
