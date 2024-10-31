@@ -1,0 +1,74 @@
+.formContainer {
+  border: solid 1px lightgray;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+.formContainer fieldset{
+  width: 100%;
+  border: none;
+  min-width: 0
+}
+
+.formContainer legend {
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+.formTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+}
+
+.formInput {
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.formInput > input {
+  font-size: 0.9rem;
+  margin-top: 3px;
+  padding: 0.3rem;
+  width: 100%;
+  border: solid 1px lightgray;
+  border-radius: 5px;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 0.7rem;
+  margin-top: 3px;
+  height: 1rem;
+}
+
+.buttonContainer {
+  margin-top: 0.5rem;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.buttonContainer > button {
+  padding: 5px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 150px;
+}
+
+.cancelButton {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+.createButton {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+}
