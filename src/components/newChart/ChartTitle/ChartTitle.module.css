@@ -1,7 +1,6 @@
 .titleWrapper {
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-align: center;
-  padding: 1rem;
-  border-bottom: 1px solid lightgray;
+  color: rgb(87, 87, 87);
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin: 0.5rem;
 }

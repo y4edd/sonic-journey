@@ -4,12 +4,14 @@
   align-items: center;
   width: 100%;
 }
-.link {
-  width: 100%;
+
+.genreBtn:hover {
+  background-color: #cdcdcd;
+  cursor: pointer;
 }
 
-.link > button {
-  width: 100%;
+.genreBtn,
+.selectGenreBtn {
   padding: 1.5rem 0.3rem;
   font-size: 1.1rem;
   font-weight: 900;
@@ -21,7 +23,10 @@
   flex: 1;
 }
 
-.genreContent button:hover {
-  background-color: #cdcdcd;
-  cursor: pointer;
+.genreBtn {
+  background-color: #a8a8a8;
+}
+
+.selectGenreBtn {
+  background-color: #6feabd;
 }
