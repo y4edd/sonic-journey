@@ -28,12 +28,12 @@ describe("Loginコンポーネントのテスト", () => {
       expect(
         screen.getByText("正しいメールアドレスを入力してください", {
           collapseWhitespace: true,
-        })
+        }),
       ).toBeInTheDocument();
       expect(
         screen.getByText("パスワードは6文字以上で入力してください", {
           collapseWhitespace: true,
-        })
+        }),
       ).toBeInTheDocument();
     });
   });
@@ -50,12 +50,8 @@ describe("Loginコンポーネントのテスト", () => {
     fireEvent.submit(screen.getByRole("button", { name: "ログイン" }));
 
     await waitFor(() => {
-      expect(
-        screen.getByText("正しいメールアドレスを入力してください")
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText("パスワードは6文字以上で入力してください")
-      ).toBeInTheDocument();
+      expect(screen.getByText("正しいメールアドレスを入力してください")).toBeInTheDocument();
+      expect(screen.getByText("パスワードは6文字以上で入力してください")).toBeInTheDocument();
     });
   });
 

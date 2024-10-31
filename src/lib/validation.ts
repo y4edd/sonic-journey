@@ -27,15 +27,14 @@ export const registerSchema = z
     path: ["passwordConfirm"],
   });
 
-export const loginSchema = z
-  .object({
-    email: z
-      .string()
-      .email("正しいメールアドレスを入力してください")
-      .refine((value) => !/\s/.test(value), "空白は無効です"),
-    password: z
-      .string()
-      .min(6, "パスワードは6文字以上で入力してください")
-      .max(20, "パスワードは20文字以内で入力してください")
-      .refine((value) => !/\s/.test(value), "空白は無効です"),
-  });
+export const loginSchema = z.object({
+  email: z
+    .string()
+    .email("正しいメールアドレスを入力してください")
+    .refine((value) => !/\s/.test(value), "空白は無効です"),
+  password: z
+    .string()
+    .min(6, "パスワードは6文字以上で入力してください")
+    .max(20, "パスワードは20文字以内で入力してください")
+    .refine((value) => !/\s/.test(value), "空白は無効です"),
+});

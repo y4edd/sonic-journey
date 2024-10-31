@@ -5,7 +5,7 @@ export type FormData = {
   email: string;
   password: string;
   passwordConfirm: string;
-}
+};
 
 export type FormInputProps = {
   label: string;

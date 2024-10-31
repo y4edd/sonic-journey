@@ -87,7 +87,9 @@ describe("UserRegistrationコンポーネントのテスト", () => {
     render(<UserRegistration />);
 
     fireEvent.input(screen.getByLabelText("ユーザー名"), { target: { value: "tanitune" } });
-    fireEvent.input(screen.getByLabelText("メールアドレス"), { target: { value: "tani@example.com" } });
+    fireEvent.input(screen.getByLabelText("メールアドレス"), {
+      target: { value: "tani@example.com" },
+    });
     fireEvent.input(screen.getByLabelText("パスワード"), { target: { value: "password" } });
     fireEvent.input(screen.getByLabelText("パスワード確認"), { target: { value: "password" } });
 
@@ -95,7 +97,6 @@ describe("UserRegistrationコンポーネントのテスト", () => {
 
     await waitFor(() => {
       expect(screen.getByText("サーバーエラーが発生しました")).toBeInTheDocument();
-    });    
+    });
   });
-
 });

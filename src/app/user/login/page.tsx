@@ -10,9 +10,9 @@ import { loginSchema } from "@/lib/validation";
 import type { FormData } from "@/types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import styles from "./page.module.css";
-import { useState } from "react";
 
 const Login = () => {
   const [serverError, setServerError] = useState<string | null>(null);
@@ -29,7 +29,6 @@ const Login = () => {
   const router = useRouter();
 
   const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
-
     try {
       const response = await fetch("/api/user/login", {
         method: "POST",
@@ -47,7 +46,7 @@ const Login = () => {
 
       router.push("/");
     } catch (err) {
-      console.error("エラー発生:", err);
+      console.log("エラー発生:", err);
     }
   };
 
@@ -87,11 +86,7 @@ const Login = () => {
             register={register}
             error={errors.password}
           />
-          <Button
-            type="submit"
-            className={ButtonStyles.register}
-            text={"ログイン"}
-          />
+          <Button type="submit" className={ButtonStyles.register} text={"ログイン"} />
           {serverError && (
             <div role="alert" className="error-message">
               {serverError}

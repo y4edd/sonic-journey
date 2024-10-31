@@ -29,35 +29,35 @@ const UserRegistration = () => {
   const router = useRouter();
 
   const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
-    try{
+    try {
       const response = await fetch("/api/user/register", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json"
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          name:data.name,
-          email:data.email,
-          password:data.password,
-        })
-      })
+          name: data.name,
+          email: data.email,
+          password: data.password,
+        }),
+      });
 
       if (!response.ok) {
         // 詳細なエラーメッセージ取得
         const error = await response.json();
         setServerError(error.message);
         throw new Error(error.message);
-      }else {
+      } else {
         router.push("/user/login");
       }
     } catch (err) {
-      if (err instanceof Error){
+      if (err instanceof Error) {
         setServerError(err.message);
       } else {
         setServerError("予期しないエラーが発生しました");
       }
     }
-  }
+  };
 
   return (
     <>
@@ -109,7 +109,11 @@ const UserRegistration = () => {
             error={errors.passwordConfirm}
           />
           <Button type="submit" className={ButtonStyles.register} text={"ユーザー登録"} />
-          {serverError && <div role="alert" className="error-message">{serverError}</div>}
+          {serverError && (
+            <div role="alert" className="error-message">
+              {serverError}
+            </div>
+          )}
         </form>
       </div>
       <Guide href="/user/login" guideText="登録済みの方は" message="ログイン" />

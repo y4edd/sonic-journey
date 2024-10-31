@@ -1,8 +1,8 @@
 import prisma from "@/lib/prisma";
 import bcrypt from "bcrypt";
-import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
-import { NextRequest, NextResponse } from "next/server";
+import { cookies } from "next/headers";
+import { type NextRequest, NextResponse } from "next/server";
 
 export const POST = async (req: NextRequest) => {
   try {
@@ -41,7 +41,7 @@ export const POST = async (req: NextRequest) => {
     });
 
     return response;
-  } catch (err: any) {
+  } catch (err) {
     console.error(err);
     return NextResponse.json({ message: "サーバーエラーが発生しました。" }, { status: 500 });
   }
