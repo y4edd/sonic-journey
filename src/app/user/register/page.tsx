@@ -7,7 +7,7 @@ import FormInput from "@/components/user/Form/FormInput";
 import Guide from "@/components/user/Guide/Guide";
 import Information from "@/components/user/Information/Information";
 import { registerSchema } from "@/lib/validation";
-import type { registerFormData } from "@/types/user";
+import type { FormData } from "@/types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -22,13 +22,13 @@ const UserRegistration = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<registerFormData>({
+  } = useForm<FormData>({
     resolver: zodResolver(registerSchema),
   });
 
   const router = useRouter();
 
-  const onSubmit: SubmitHandler<registerFormData> = async (data: registerFormData) => {
+  const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
     try{
       const response = await fetch("/api/user/register", {
         method: "POST",

@@ -27,7 +27,7 @@ export const registerSchema = z
     path: ["passwordConfirm"],
   });
 
-  export const loginSchema = z
+export const loginSchema = z
   .object({
     email: z
       .string()
@@ -38,4 +38,4 @@ export const registerSchema = z
       .min(6, "パスワードは6文字以上で入力してください")
       .max(20, "パスワードは20文字以内で入力してください")
       .refine((value) => !/\s/.test(value), "空白は無効です"),
-  })
+  });

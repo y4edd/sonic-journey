@@ -7,7 +7,7 @@ import FormInput from "@/components/user/Form/FormInput";
 import Guide from "@/components/user/Guide/Guide";
 import Information from "@/components/user/Information/Information";
 import { loginSchema } from "@/lib/validation";
-import type { loginFormData } from "@/types/user";
+import type { FormData } from "@/types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { type SubmitHandler, useForm } from "react-hook-form";
@@ -22,13 +22,13 @@ const Login = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<loginFormData>({
+  } = useForm<FormData>({
     resolver: zodResolver(loginSchema),
   });
 
   const router = useRouter();
 
-  const onSubmit: SubmitHandler<loginFormData> = async (data: loginFormData) => {
+  const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
 
     try {
       const response = await fetch("/api/user/login", {
