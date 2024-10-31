@@ -305,3 +305,10 @@ export type ArtistAlbum = {
   };
   type: string;
 };
+
+// deezerAPIから取得したgenreデータ
+export type GenreInfo = {
+  id: number;
+  name: string;
+  picture: string;
+};
