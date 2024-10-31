@@ -18,15 +18,13 @@ const GenreButtons = ({
 }) => {
   const { data, error, isLoading } = useSWR<GenreInfo[]>(
     "http://localhost:3000/api/getGenreArtistId",
-    fetcher
+    fetcher,
   );
 
   if (error) return <div>エラー</div>;
   if (isLoading) return <div>ジャンルの情報を取得中...</div>;
   if (data) {
-    const selectGenreInfoArr: GenreInfo[] = data.filter(
-      (data) => data.id === selectGenre
-    );
+    const selectGenreInfoArr: GenreInfo[] = data.filter((data) => data.id === selectGenre);
     const selectGenreInfo = selectGenreInfoArr[0];
     return (
       <div className={styles.genreWrapper}>
@@ -43,18 +41,16 @@ const GenreButtons = ({
           })}
         </div>
         <div
-          className={
-            selectGenreInfo.id !== 0 ? styles.genreTitle : styles.allGenreTitle
-          }
+          className={selectGenreInfo.id !== 0 ? styles.genreTitle : styles.allGenreTitle}
           style={{
             backgroundImage: `url(${selectGenreInfo.picture})`,
           }}
         >
           <p className={styles.firstTitleLine}>
             「{selectGenreInfo.name}」ジャンル
+            <br />
+            のアーティスト
           </p>
-
-          <p>のアーティスト</p>
         </div>
       </div>
     );
