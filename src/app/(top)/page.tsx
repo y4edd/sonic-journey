@@ -1,3 +1,4 @@
+import { getSpecialImage } from "@/components/special/TopPageLink/TopPageLink";
 import BreadList from "@/components/top/BreadList/BreadList";
 import ContentTitle from "@/components/top/ContentTitle/ContentTitle";
 import FreeSearch from "@/components/top/FreeSearch/FreeSearch";
@@ -13,14 +14,18 @@ const TopPage = async () => {
   const newSongs = await getNewSongs(4);
   // シングルランキング楽曲を取得
   const singleSongs = await getRankSingleSongs(4);
-
+  // sliderの特集情報を取得
+  const getPicksInfo = await getSpecialImage();
   return (
     <div>
       <BreadList bread={[{ link: "/", title: "TOP" }]} />
       <div>
         <div className={styles.specialContent}>
-          <ContentTitle title="特集" />
-          <Slider />
+          <div className={styles.contentTitleGroup}>
+            <ContentTitle title="特集" />
+            <LinkButton label="もっと見る >" url="/special" />
+          </div>
+          <Slider getPicksInfo={getPicksInfo} />
         </div>
 
         <div className={styles.freeSearchContent}>

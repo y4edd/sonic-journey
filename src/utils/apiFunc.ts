@@ -70,6 +70,21 @@ export const getRankSingleSongs = async (limit: number) => {
   }
 };
 
+// ジャンルごとの情報を取得する関数
+export const getGenreInfo = async () => {
+  try {
+    const res = await fetch("http://localhost:3000/api/getGenreArtistId", {
+      cache: "no-cache",
+    });
+    if (!res.ok) {
+      throw new Error("データが見つかりませんでした");
+    }
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 // ジャンルごとのアーティスト情報を取得する関数
 // genreにはgenreのid
 export const getGenreArtist = async (genre: number) => {
@@ -163,6 +178,24 @@ export const getAlbum = async (album: number) => {
   }
 };
 
+// アーティストのアルバムを4件取得する関数
+// albumにはアーティスト名を入力
+export const getArtistAlbum = async (artist: string) => {
+  try {
+    const res = await fetch(`http://localhost:3000/api/artistAlbums?artistName=${artist}`, {
+      cache: "no-cache",
+    });
+
+    if (!res.ok) {
+      throw new Error("データが見つかりませんでした");
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 // FreeSearchの検索ワードを使用して楽曲を取得する関数
 export const getSearchSongs = async (freeWord: string) => {
   try {
@@ -172,6 +205,7 @@ export const getSearchSongs = async (freeWord: string) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ freeWord }),
+      cache: "no-cache",
     });
 
     // 失敗した場合の処理

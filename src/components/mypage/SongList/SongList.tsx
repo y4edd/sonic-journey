@@ -4,9 +4,11 @@ import styles from "./SongList.module.css";
 
 const SongList = ({
   songs,
+  url,
   errorMessage,
 }: {
   songs: DeezerSong[];
+  url: string;
   errorMessage: string;
 }) => {
   return (
@@ -18,7 +20,7 @@ const SongList = ({
           {songs.map((song: DeezerSong) => {
             return (
               <li key={song.id}>
-                <SongListItem song={song} />
+                <SongListItem song={song} url={url} />
               </li>
             );
           })}

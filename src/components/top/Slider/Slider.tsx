@@ -1,18 +1,19 @@
 "use client";
 
 import Image from "next/image";
-import "swiper/css";
 import { Autoplay, Keyboard, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import { SLIDER_IMAGES } from "@/constants/constant";
+import type { SpecialOverView } from "@/types/deezer";
+import Link from "next/link";
+import styles from "./Slider.module.css";
 
-const Slider = () => {
+const Slider = ({ getPicksInfo }: { getPicksInfo: SpecialOverView[] }) => {
   return (
     <div>
       <Swiper
-        slidesPerView={2}
+        slidesPerView={1.5}
         spaceBetween={15}
         centeredSlides={true}
         keyboard={{
@@ -30,10 +31,19 @@ const Slider = () => {
         modules={[Autoplay, Keyboard, Pagination, Navigation]}
         className="mySwiper"
       >
-        {SLIDER_IMAGES.map((image) => {
+        {getPicksInfo.map((getPickInfo) => {
           return (
-            <SwiperSlide key={image}>
-              <Image src={image} alt="スライダー画像" width={150} height={100} priority />
+            <SwiperSlide key={getPickInfo.id}>
+              <Link href={`/special/${getPickInfo.id}`}>
+                <Image
+                  src={`/images/${getPickInfo.image}`}
+                  alt={`${getPickInfo.title}サムネイル`}
+                  width={300}
+                  height={150}
+                  priority
+                  className={styles.sliderImg}
+                />
+              </Link>
             </SwiperSlide>
           );
         })}

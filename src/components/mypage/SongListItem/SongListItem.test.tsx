@@ -19,13 +19,15 @@ const mockSong: DeezerSong = {
 
 describe("SongListItemコンポーネントの単体テスト", () => {
   test("受け取ったpropsを反映し、レンダリングされること", () => {
-    render(<SongListItem song={mockSong} />);
+    render(<SongListItem song={mockSong} url="music" />);
 
     expect(
       screen.getByRole("link", {
         name: "分針を噛むのジャケット画像 分針を噛む ずっと真昼でいいのに",
       }),
     ).toHaveAttribute("href", `/music/${mockSong.id}`);
+
+    expect(screen.getByRole("link")).toHaveAttribute("href", "/music/111");
 
     expect(screen.getByRole("img", { name: "分針を噛むのジャケット画像" })).toHaveAttribute(
       "src",

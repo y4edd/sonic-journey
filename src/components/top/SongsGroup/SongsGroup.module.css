@@ -3,8 +3,7 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
   gap: 1rem;
-  place-items: center;
-  align-items: start;
+  place-items: stretch;
 }
 
 .newSongGroup > div:nth-child(1) > img {
@@ -17,13 +16,4 @@
 
 .newSongGroup > div:nth-child(3) > img {
   border: 5px solid rgb(193, 60, 60);
-}
-
-.newSongGroup img {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.newSongGroup img:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 20px #bababa;
 }

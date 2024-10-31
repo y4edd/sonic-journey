@@ -1,6 +1,14 @@
 import { render, screen } from "@testing-library/react";
 import AlbumSingles from "./AlbumSingles";
 
+beforeAll(() => {
+  jest.spyOn(HTMLMediaElement.prototype, "play").mockImplementation(() => {
+    return Promise.resolve();
+  });
+
+  jest.spyOn(HTMLMediaElement.prototype, "pause").mockImplementation(() => {});
+});
+
 const AlbumSingleProps = [
   {
     id: 1,

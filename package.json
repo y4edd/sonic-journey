@@ -33,6 +33,7 @@
     "react-toastify": "^10.0.6",
     "storybook": "7.6.20",
     "swiper": "^11.1.14",
+    "swr": "^2.2.5",
     "ts-node": "^10.9.2",
     "tsconfig-paths-webpack-plugin": "^4.1.0",
     "zod": "^3.23.8"

@@ -13,7 +13,7 @@ const Page = async () => {
           { link: "/newarrival", title: "新着" },
         ]}
       />
-      <ChartTitle title="新着（アルバム）" />
+      <ChartTitle title="新着アルバム" />
       <Song songs={getSongs} />
     </>
   );
