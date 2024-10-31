@@ -1,9 +1,10 @@
 .headerBottom {
-  height: 50px;
+  height: 40px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   border-top: 1px solid gray;
   border-bottom: 1px solid gray;
+  background-color: white;
 }
 
 .thePageHeading,
