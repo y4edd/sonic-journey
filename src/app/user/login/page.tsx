@@ -88,7 +88,7 @@ const Login = () => {
           />
           <Button type="submit" className={ButtonStyles.register} text={"ログイン"} />
           {serverError && (
-            <div role="alert" className="error-message">
+            <div className={styles.errorMessage}>
               {serverError}
             </div>
           )}
