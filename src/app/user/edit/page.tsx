@@ -5,7 +5,7 @@ import Button from "@/components/user/Button/Button";
 import ButtonStyles from "@/components/user/Button/Button.module.css";
 import FormInput from "@/components/user/Form/FormInput";
 import Information from "@/components/user/Information/Information";
-import { schema } from "@/lib/validation";
+import { registerSchema } from "@/lib/validation";
 import type { FormData } from "@/types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -24,7 +24,7 @@ const Edit = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(registerSchema),
   });
 
   const router = useRouter();
@@ -81,19 +81,19 @@ const Edit = () => {
             label="ユーザー名"
             id="userName"
             type="text"
-            name="userName"
+            name="name"
             placeholder="tanitune"
             register={register}
-            error={errors.userName}
+            error={errors.name}
           />
           <FormInput
             label="メールアドレス"
             id="mailAddress"
             type="email"
-            name="mailAddress"
+            name="email"
             placeholder="tani@example.com"
             register={register}
-            error={errors.mailAddress}
+            error={errors.email}
           />
           <FormInput
             label="パスワード"
