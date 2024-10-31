@@ -8,3 +8,7 @@
   padding: 1rem;
   font-size: 0.9rem;
 }
+
+.error-message{
+  color: red;
+}

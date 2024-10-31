@@ -6,8 +6,8 @@ import ButtonStyles from "@/components/user/Button/Button.module.css";
 import FormInput from "@/components/user/Form/FormInput";
 import Guide from "@/components/user/Guide/Guide";
 import Information from "@/components/user/Information/Information";
-import { schema } from "@/lib/validation";
-import type { FormData } from "@/types/user";
+import { registerSchema } from "@/lib/validation";
+import type { registerFormData } from "@/types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -22,13 +22,13 @@ const UserRegistration = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormData>({
-    resolver: zodResolver(schema),
+  } = useForm<registerFormData>({
+    resolver: zodResolver(registerSchema),
   });
 
   const router = useRouter();
 
-  const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
+  const onSubmit: SubmitHandler<registerFormData> = async (data: registerFormData) => {
     try{
       const response = await fetch("/api/user/register", {
         method: "POST",
@@ -36,8 +36,8 @@ const UserRegistration = () => {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          name:data.userName,
-          email:data.mailAddress,
+          name:data.name,
+          email:data.email,
           password:data.password,
         })
       })
@@ -76,19 +76,19 @@ const UserRegistration = () => {
             label="ユーザー名"
             id="userName"
             type="text"
-            name="userName"
+            name="name"
             placeholder="tanitune"
             register={register}
-            error={errors.userName}
+            error={errors.name}
           />
           <FormInput
             label="メールアドレス"
             id="mailAddress"
             type="email"
-            name="mailAddress"
+            name="email"
             placeholder="tani@example.com"
             register={register}
-            error={errors.mailAddress}
+            error={errors.email}
           />
           <FormInput
             label="パスワード"

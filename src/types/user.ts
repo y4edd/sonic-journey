@@ -1,24 +1,26 @@
-import type { schema } from "@/lib/validation";
+import type { registerSchema, loginSchema } from "@/lib/validation";
 import type { FieldError, UseFormRegister } from "react-hook-form";
 import type { z } from "zod";
 
-export type FormData = z.infer<typeof schema>;
+export type registerFormData = z.infer<typeof registerSchema>;
+
+export type loginFormData = z.infer<typeof loginSchema>;
+
+export type FormData = {
+  name?:string;
+  email: string;
+  password: string;
+  passwordConfirm?: string;
+}
 
 export type FormInputProps = {
   label: string;
   id: string;
   type: string;
-  name: keyof FormData;
+  name: string;
   placeholder: string;
   register: UseFormRegister<FormData>;
   error?: FieldError;
-};
-
-export type Form = {
-  userName: string;
-  mailAddress: string;
-  password: string;
-  passwordConfirm: string;
 };
 
 export type ButtonProps = {

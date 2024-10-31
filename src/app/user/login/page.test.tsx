@@ -2,11 +2,16 @@ import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import Login from "./page";
 
 const mockPush = jest.fn();
+
 jest.mock("next/navigation", () => ({
   useRouter: () => ({
     push: mockPush,
   }),
 }));
+
+beforeEach(() => {
+  jest.clearAllMocks();
+});
 
 describe("Loginコンポーネントのテスト", () => {
   test("フォームが正しくレンダリングされている", () => {
@@ -21,12 +26,14 @@ describe("Loginコンポーネントのテスト", () => {
 
     await waitFor(() => {
       expect(
-        screen.getByText("正しいメールアドレスを入力してください", { collapseWhitespace: true }),
+        screen.getByText("正しいメールアドレスを入力してください", {
+          collapseWhitespace: true,
+        })
       ).toBeInTheDocument();
       expect(
         screen.getByText("パスワードは6文字以上で入力してください", {
           collapseWhitespace: true,
-        }),
+        })
       ).toBeInTheDocument();
     });
   });
@@ -43,8 +50,12 @@ describe("Loginコンポーネントのテスト", () => {
     fireEvent.submit(screen.getByRole("button", { name: "ログイン" }));
 
     await waitFor(() => {
-      expect(screen.getByText("正しいメールアドレスを入力してください")).toBeInTheDocument();
-      expect(screen.getByText("パスワードは6文字以上で入力してください")).toBeInTheDocument();
+      expect(
+        screen.getByText("正しいメールアドレスを入力してください")
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText("パスワードは6文字以上で入力してください")
+      ).toBeInTheDocument();
     });
   });
 
@@ -52,7 +63,7 @@ describe("Loginコンポーネントのテスト", () => {
     render(<Login />);
 
     fireEvent.input(screen.getByLabelText("メールアドレス"), {
-      target: { value: "tanitune" },
+      target: { value: "tanitune@example.com" },
     });
     fireEvent.input(screen.getByLabelText("パスワード"), {
       target: { value: "password" },
@@ -74,8 +85,12 @@ describe("Loginコンポーネントのテスト", () => {
 
     render(<Login />);
 
-    fireEvent.input(screen.getByLabelText("メールアドレス"), { target: { value: "tani@example.com" } });
-    fireEvent.input(screen.getByLabelText("パスワード"), { target: { value: "password" } });
+    fireEvent.input(screen.getByLabelText("メールアドレス"), {
+      target: { value: "tani@example.com" },
+    });
+    fireEvent.input(screen.getByLabelText("パスワード"), {
+      target: { value: "password" },
+    });
 
     fireEvent.submit(screen.getByRole("button", { name: "ログイン" }));
 

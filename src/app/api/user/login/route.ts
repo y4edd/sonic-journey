@@ -4,47 +4,45 @@ import { cookies } from "next/headers";
 import jwt from "jsonwebtoken";
 import { NextRequest, NextResponse } from "next/server";
 
-export const POST = async(req:NextRequest,res:NextResponse) => {
+export const POST = async (req: NextRequest) => {
   try {
-
     const secretKey = process.env.JWT_SECRET_KEY;
 
-    if(!secretKey){
-      return NextResponse.json({message: "権限がありません"},{status:401});
+    if (!secretKey) {
+      return NextResponse.json({ message: "権限がありません" }, { status: 401 });
     }
 
-    const {mail,password} = await req.json();
+    const { email, password } = await req.json();
 
     const User = await prisma.user.findUnique({
-      where:{email: mail },
+      where: { email },
     });
 
-    if(!User){
-      NextResponse.json({message: "このメールアドレスは無効です"},{status:401});
+    if (!User) {
+      return NextResponse.json({ message: "このメールアドレスは無効です" }, { status: 401 });
     }
 
-    const isPasswordCorrect = await bcrypt.compare(password, User!.password);
+    const isPasswordCorrect = await bcrypt.compare(password, User.password);
 
-    if(!isPasswordCorrect){
-      NextResponse.json({message: "パスワードが一致しません"},{status:401});
+    if (!isPasswordCorrect) {
+      return NextResponse.json({ message: "パスワードが一致しません" }, { status: 401 });
     }
-    
-    const  jwtPayload = { id:User!.id };
-    const token = jwt.sign(jwtPayload, secretKey,{ expiresIn: "1d" });
-    // HttpOnlyクッキーにJWTを保存
-    cookies().set({
-      name: "token",
-      value: token,
-      path: "/",
+
+    const jwtPayload = { id: User.id };
+    const token = jwt.sign(jwtPayload, secretKey, { expiresIn: "1d" });
+
+    const response = NextResponse.json({ message: "ログインに成功しました。" }, { status: 200 });
+    response.cookies.set("token", token, {
       httpOnly: true,
       secure: true,
       sameSite: "strict",
       maxAge: 60 * 60 * 24,
+      path: "/",
     });
 
-    return NextResponse.json({message: "ログインに成功しました。"},{status:200});
-  }catch (err: any) {
+    return response;
+  } catch (err: any) {
     console.error(err);
-    return NextResponse.json({message: "サーバーエラーが発生しました。"},{status:500});
-  } 
+    return NextResponse.json({ message: "サーバーエラーが発生しました。" }, { status: 500 });
+  }
 };
