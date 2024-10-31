@@ -41,8 +41,8 @@ export const DELETE = async (req: NextRequest, _res: NextResponse) => {
     response.cookies.delete("token");
 
     return response;
-  } catch (_err) {
-    console.error("サーバーエラーが発生しました");
+  } catch (err) {
+    console.error(err);
     return NextResponse.json({ message: "サーバーエラーが発生しました" }, { status: 500 });
   }
 };
