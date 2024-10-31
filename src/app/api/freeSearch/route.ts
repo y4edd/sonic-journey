@@ -34,6 +34,7 @@ export const POST = async (request: NextRequest) => {
           name: data.artist.name ?? "artist",
           picture_big: data.artist.picture_big ?? "/images/defaultsong.png",
         },
+        cover: data.album.cover_big ?? "/images/defaultsong.png",
       };
     });
 

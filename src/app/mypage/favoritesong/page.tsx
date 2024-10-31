@@ -35,7 +35,11 @@ const FavoriteSongs = async () => {
       <div className={styles.actionButtonContainer}>
         <ActionButton name="編集" icon={<EditIcon />} url="/mypage/favoritesong/edit" />
       </div>
-      <SongList songs={favoriteSongsInfo} errorMessage="お気に入り曲は登録されていません" />
+      <SongList
+        songs={favoriteSongsInfo}
+        url="music"
+        errorMessage="お気に入り曲は登録されていません"
+      />
     </div>
   );
 };

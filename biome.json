@@ -50,11 +50,11 @@
       "jest",
       "beforeEach",
       "afterEach",
+      "beforeAll",
+      "afterAll",
       "describe",
       "expect",
-      "React",
-      "beforeAll",
-      "afterAll"
+      "React"
     ]
   }
 }

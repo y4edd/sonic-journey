@@ -1,6 +1,7 @@
 "use client";
 
 import { useFreeWordSearch } from "@/hooks/top/useFreeWordSearch";
+import CancelIcon from "@mui/icons-material/Cancel";
 import SearchIcon from "@mui/icons-material/Search";
 import Image from "next/image";
 import Link from "next/link";
@@ -31,17 +32,23 @@ const Header = () => {
                   placeholder={error ? error : "アーティスト・アルバム・楽曲で検索"}
                 />
                 <button type="submit">
-                  <SearchIcon />
+                  <SearchIcon
+                    sx={{
+                      cursor: "pointer",
+                    }}
+                  />
                 </button>
               </form>
               <div className={styles.searchCancel}>
-                <p
-                  className={styles.searchCancelText}
+                <button
+                  type="button"
+                  className={styles.searchCancelButton}
                   onClick={handleClickSearch}
                   onKeyDown={handleClickSearch}
+                  data-testid="cancel-button"
                 >
-                  キャンセル
-                </p>
+                  <CancelIcon />
+                </button>
               </div>
             </div>
           ) : (

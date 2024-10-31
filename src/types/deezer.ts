@@ -201,6 +201,47 @@ export type FavoriteArtistSong = SongInfo & {
   type: string;
 };
 
+// PicksDBのデータ情報
+export type SpecialOverView = {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+};
+
+// PickSongDBのデータ情報
+export type PrismaSpecialSongs = {
+  id: number;
+  pick_id: number;
+  api_song_id: bigint;
+};
+
+// ↓ 変換
+
+// PickSongのデータ
+export type SpecialSongs = {
+  id: number;
+  pick_id: number;
+  api_song_id: number;
+};
+
+// 特集ページの記載の為、トラックIDより引っ張ってきた曲情報
+export type DeezerTrackSong = {
+  id: number;
+  title: string;
+  preview: string;
+  cover_xl: string;
+  duration: number;
+  artist: {
+    id: number;
+    name: string;
+  };
+  album: {
+    id: number;
+    title: string;
+  };
+};
+
 //あいまい検索
 export type Result = {
   id: number;
@@ -211,6 +252,7 @@ export type Result = {
     name: string;
     picture_big: string;
   };
+  cover: string;
 };
 
 // アルバム1曲の型
@@ -231,6 +273,44 @@ export type AlbumSingle = {
   duration: number;
   preview: string;
   cover_xl: string;
+};
+
+// アーティストのアルバム情報を取得するapiで使用する型
+export type ArtistAlbum = {
+  id: number;
+  title: string;
+  link: string;
+  cover: string;
+  cover_small: string;
+  cover_medium: string;
+  cover_big: string;
+  cover_xl: string;
+  md5_image: string;
+  genre_id: number;
+  nb_tracks: number;
+  record_type: string;
+  tracklist: string;
+  explicit_lyrics: boolean;
+  artist: {
+    id: number;
+    name: string;
+    link: string;
+    picture: string;
+    picture_small: string;
+    picture_medium: string;
+    picture_big: string;
+    picture_xl: string;
+    tracklist: string;
+    type: string;
+  };
+  type: string;
+};
+
+// deezerAPIから取得したgenreデータ
+export type GenreInfo = {
+  id: number;
+  name: string;
+  picture: string;
 };
 
 // プレイリストの型
