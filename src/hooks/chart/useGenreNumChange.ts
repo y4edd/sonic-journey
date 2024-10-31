@@ -1,5 +1,6 @@
 "use client";
 
+import { GENRE_ARTISTS } from "@/constants/constant";
 import { useSearchParams } from "next/navigation";
 
 type UseGenreNumChange = () => {
@@ -8,20 +9,9 @@ type UseGenreNumChange = () => {
 
 export const UseGenreNumChange: UseGenreNumChange = () => {
   const searchParams = useSearchParams();
-  let transitionId = Number(searchParams.get("id"));
-  if (
-    transitionId !== 0 &&
-    transitionId !== 16 &&
-    transitionId !== 95 &&
-    transitionId !== 113 &&
-    transitionId !== 132 &&
-    transitionId !== 152 &&
-    transitionId !== 165 &&
-    transitionId !== 173 &&
-    transitionId !== 464
-  ) {
-    transitionId = 0;
-  }
+  const ParamsId = Number(searchParams.get("id"));
+  const ALLOWED_GENRE_IDS = GENRE_ARTISTS.map((ele) => ele.id);
+  const transitionId = ALLOWED_GENRE_IDS.includes(ParamsId) ? ParamsId : 0;
   return {
     transitionId,
   };
