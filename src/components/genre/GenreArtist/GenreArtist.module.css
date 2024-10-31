@@ -6,23 +6,27 @@
 .artistItem {
   list-style-type: none;
   display: flex;
-  margin-top: 1rem;
-  padding-bottom: 0.5rem;
+  align-items: center;
   border-bottom: 1px solid gray;
 }
 
 .artistLink {
-  width: 95%;
+  width: 100%;
 }
 
 .artistLink > img {
   border-radius: 5px;
 }
 
-.artistItem > * {
+.artistItem > a {
   display: flex;
   align-items: center;
   font-size: 1rem;
+  padding: 10px 0;
+}
+
+.artistItem > a:hover {
+  background-color: #c9c9c92d;
 }
 
 .artistName {
