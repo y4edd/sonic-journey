@@ -4,10 +4,10 @@
   padding: 1rem;
 }
 
-.formContainer fieldset{
+.formContainer fieldset {
   width: 100%;
   border: none;
-  min-width: 0
+  min-width: 0;
 }
 
 .formContainer legend {
