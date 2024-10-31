@@ -12,5 +12,6 @@
 .errorMessage {
   color: red;
   font-size: 0.74rem;
+  height: 10px;
   text-align: center;
 }

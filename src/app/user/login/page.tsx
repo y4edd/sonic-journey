@@ -87,7 +87,7 @@ const Login = () => {
             error={errors.password}
           />
           <Button type="submit" className={ButtonStyles.register} text={"ログイン"} />
-          {serverError && <div className={styles.errorMessage}>{serverError}</div>}
+          <div className={styles.errorMessage}>{serverError}</div>
         </form>
       </div>
       <Guide href="/user/register" guideText="新規登録は" message="こちら" />
