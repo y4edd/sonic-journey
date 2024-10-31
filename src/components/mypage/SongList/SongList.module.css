@@ -1,14 +1,14 @@
-.songList {
-  margin-top: 1rem;
+.songListContainer {
+  margin: 1rem 0;
   padding: 0 1rem;
 }
 
-.songList > ul {
+.songListContainer > ul {
   list-style-type: none;
 }
 
-.horizon {
-  border-bottom: solid 1px #ccc;
+.songListContainer li:last-child {
+  border-bottom: 1px solid lightgray;
 }
 
 .noSongsMessage {

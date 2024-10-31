@@ -16,7 +16,6 @@ const PlaylistList = ({ playlists }: { playlists: Playlist[] }) => {
               </li>
             );
           })}
-          <div className={styles.horizon} />
         </ul>
       )}
     </div>
