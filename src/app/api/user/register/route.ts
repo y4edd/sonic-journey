@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import { type NextRequest, NextResponse } from "next/server";
 
 // ユーザー新規登録API
-export const POST = async (req: NextRequest, _res: NextResponse) => {
+export const POST = async (req: NextRequest) => {
   try {
     const { name, email, password } = await req.json();
 
