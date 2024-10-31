@@ -14,21 +14,21 @@ export const POST = async (req: NextRequest) => {
 
     const { email, password } = await req.json();
 
-    const User = await prisma.user.findUnique({
+    const user = await prisma.user.findUnique({
       where: { email },
     });
 
-    if (!User) {
+    if (!user) {
       return NextResponse.json({ message: "このメールアドレスは無効です" }, { status: 401 });
     }
 
-    const isPasswordCorrect = await bcrypt.compare(password, User.password);
+    const isPasswordCorrect = await bcrypt.compare(password, user.password);
 
     if (!isPasswordCorrect) {
       return NextResponse.json({ message: "パスワードが一致しません" }, { status: 401 });
     }
 
-    const jwtPayload = { id: User.id };
+    const jwtPayload = { id: user.id };
     const token = jwt.sign(jwtPayload, secretKey, { expiresIn: "1d" });
 
     const response = NextResponse.json({ message: "ログインに成功しました。" }, { status: 200 });
