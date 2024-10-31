@@ -25,7 +25,6 @@ export const POST = async (req: NextRequest, _res: NextResponse) => {
         name,
         email,
         password: hashedPassword,
-        createdAt: new Date(),
       },
     });
 
