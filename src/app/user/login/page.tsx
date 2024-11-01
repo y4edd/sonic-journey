@@ -39,14 +39,15 @@ const Login = () => {
       });
 
       if (!response.ok) {
+        // 詳細なエラーメッセージ取得
         const error = await response.json();
         setServerError(error.message);
-        throw new Error(error.message);
+      } else {
+        router.push("/");
       }
-
-      router.push("/");
     } catch (err) {
-      console.log("エラー発生:", err);
+      console.log(err);
+      setServerError("予期せぬエラーが発生しました");
     }
   };
 

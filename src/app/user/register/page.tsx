@@ -46,15 +46,12 @@ const UserRegistration = () => {
         // 詳細なエラーメッセージ取得
         const error = await response.json();
         setServerError(error.message);
-        throw new Error(error.message);
       } else {
         router.push("/user/login");
       }
     } catch (err) {
-      if (err instanceof Error) {
-      } else {
-        setServerError("予期しないエラーが発生しました");
-      }
+      console.log(err);
+      setServerError("予期せぬエラーが発生しました");
     }
   };
 
