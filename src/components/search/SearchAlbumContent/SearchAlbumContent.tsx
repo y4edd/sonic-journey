@@ -1,4 +1,4 @@
-import type { ArtistAlbum } from "@/types/deezer";
+import type { SearchAlbum } from "@/types/deezer";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -8,7 +8,7 @@ const SearchAlbumContent = ({
   result,
   url,
 }: {
-  result: ArtistAlbum;
+  result: SearchAlbum;
   url: string;
 }) => {
   return (

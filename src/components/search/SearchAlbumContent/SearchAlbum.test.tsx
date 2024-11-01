@@ -1,35 +1,14 @@
-import type { ArtistAlbum } from "@/types/deezer";
+import type { SearchAlbum } from "@/types/deezer";
 import { render, screen } from "@testing-library/react";
 import SearchAlbumContent from "./SearchAlbumContent";
 
-const mockResult: ArtistAlbum = {
+const mockResult: SearchAlbum = {
   id: 222,
   title: "sampleAlbum",
-  link: "使わない",
-  cover: "使わない",
-  cover_small: "使わない",
-  cover_medium: "使わない",
-  cover_big: "使わない",
   cover_xl: "https://sample.com/sample-cover.jpg",
-  md5_image: "使わない",
-  genre_id: 0,
-  nb_tracks: 0,
-  record_type: "使わない",
-  tracklist: "使わない",
-  explicit_lyrics: false,
   artist: {
-    id: 333,
     name: "sampleArtist",
-    link: "使わない",
-    picture: "使わない",
-    picture_small: "使わない",
-    picture_medium: "使わない",
-    picture_big: "使わない",
-    picture_xl: "使わない",
-    tracklist: "使わない",
-    type: "使わない",
   },
-  type: "使わない",
 };
 
 const url = "album";
