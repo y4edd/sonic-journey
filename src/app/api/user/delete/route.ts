@@ -1,6 +1,5 @@
 import prisma from "@/lib/prisma";
-import jwt, { JwtPayload } from "jsonwebtoken";
-import { cookies } from "next/headers";
+import jwt from "jsonwebtoken";
 import { type NextRequest, NextResponse } from "next/server";
 
 export const DELETE = async (req: NextRequest, _res: NextResponse) => {
