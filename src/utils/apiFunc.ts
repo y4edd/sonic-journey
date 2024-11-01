@@ -254,3 +254,18 @@ export const getUserPlaylists = async () => {
     console.error(error);
   }
 };
+
+// ログイン時、ユーザー情報をDBから取得する関数
+export const getUserInfo = async () => {
+  try {
+    const res = await fetch("http://localhost:3000/api/user/getUserInfo", {
+      cache: "no-cache",
+    });
+    if (!res.ok) {
+      throw new Error("ログインデータが見つかりませんでした");
+    }
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
