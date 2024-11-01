@@ -62,9 +62,7 @@ const Login = () => {
         <Information text="ログイン" />
       </div>
       <div className={styles.container}>
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-        >
+        <form onSubmit={handleSubmit(onSubmit)}>
           <FormInput
             label="メールアドレス"
             id="mailAddress"
