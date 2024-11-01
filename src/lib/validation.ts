@@ -38,3 +38,14 @@ export const loginSchema = z.object({
     .max(20, "パスワードは20文字以内で入力してください")
     .refine((value) => !/\s/.test(value), "空白は無効です"),
 });
+
+// NOTE: プレイリスト入力フォーム用のスキーマ
+export const playlistTitleSchema = z.object({
+  playlistTitle: z
+    .string()
+    .min(1, "プレイリスト名を入力してください")
+    .max(20, "プレイリスト名は20文字以上で入力してください")
+    .refine((value) => {
+      return Boolean(value.trim().length);
+    }, "空白文字だけの入力は無効です"),
+});
