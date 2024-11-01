@@ -1,6 +1,7 @@
 import prisma from "@/lib/prisma";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { COOKIE_MAX_AGE } from "@/constants/constant"; 
 import { type NextRequest, NextResponse } from "next/server";
 
 export const POST = async (req: NextRequest) => {
@@ -35,7 +36,7 @@ export const POST = async (req: NextRequest) => {
       httpOnly: true,
       secure: true,
       sameSite: "strict",
-      maxAge: 60 * 60 * 24,
+      maxAge: COOKIE_MAX_AGE,
       path: "/",
     });
 
