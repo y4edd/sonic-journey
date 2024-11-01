@@ -1,4 +1,4 @@
-import type { Form } from "@/types/user";
+import type { FormData } from "@/types/user";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import FormInput from "./FormInput";
@@ -8,11 +8,11 @@ const TestForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Form>({
+  } = useForm<FormData>({
     mode: "onBlur",
   });
 
-  const onSubmit: SubmitHandler<Form> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<FormData> = (data) => console.log(data);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -20,10 +20,10 @@ const TestForm = () => {
         label="ユーザー名"
         id="userName"
         type="text"
-        name="userName"
+        name="name"
         placeholder="名前を入力してください"
         register={register}
-        error={errors.userName}
+        error={errors.name}
       />
       <button type="submit">送信</button>
     </form>

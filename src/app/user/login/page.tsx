@@ -6,7 +6,7 @@ import ButtonStyles from "@/components/user/Button/Button.module.css";
 import FormInput from "@/components/user/Form/FormInput";
 import Guide from "@/components/user/Guide/Guide";
 import Information from "@/components/user/Information/Information";
-import { schema } from "@/lib/validation";
+import { loginSchema } from "@/lib/validation";
 import type { FormData } from "@/types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -15,21 +15,40 @@ import { type SubmitHandler, useForm } from "react-hook-form";
 import styles from "./page.module.css";
 
 const Login = () => {
-  // useStateでサーバーエラー管理
-  const [_serverError, _setServerError] = useState<string | null>(null);
-  // React hook formでフォーム管理
+  const [serverError, setServerError] = useState<string | null>(null);
+
+  // React Hook Formでフォーム管理
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(loginSchema),
   });
 
   const router = useRouter();
 
-  const onSubmit: SubmitHandler<FormData> = async (_data: FormData) => {
-    router.push("/top");
+  const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
+    try {
+      const response = await fetch("/api/user/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        // 詳細なエラーメッセージ取得
+        const error = await response.json();
+        setServerError(error.message);
+      } else {
+        router.push("/");
+      }
+    } catch (err) {
+      console.log(err);
+      setServerError("予期せぬエラーが発生しました");
+    }
   };
 
   return (
@@ -49,10 +68,10 @@ const Login = () => {
             label="メールアドレス"
             id="mailAddress"
             type="email"
-            name="mailAddress"
+            name="email"
             placeholder="tani@example.com"
             register={register}
-            error={errors.mailAddress}
+            error={errors.email}
           />
           <FormInput
             label="パスワード"
@@ -64,6 +83,7 @@ const Login = () => {
             error={errors.password}
           />
           <Button type="submit" className={ButtonStyles.register} text={"ログイン"} />
+          <div className={styles.errorMessage}>{serverError}</div>
         </form>
       </div>
       <Guide href="/user/register" guideText="新規登録は" message="こちら" />
