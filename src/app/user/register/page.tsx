@@ -6,7 +6,7 @@ import ButtonStyles from "@/components/user/Button/Button.module.css";
 import FormInput from "@/components/user/Form/FormInput";
 import Guide from "@/components/user/Guide/Guide";
 import Information from "@/components/user/Information/Information";
-import { schema } from "@/lib/validation";
+import { registerSchema } from "@/lib/validation";
 import type { FormData } from "@/types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
@@ -16,32 +16,43 @@ import styles from "./page.module.css";
 
 const UserRegistration = () => {
   // useStateでサーバーエラー管理
-  const [_serverError, _setServerError] = useState<string | null>(null);
+  const [serverError, setServerError] = useState<string | null>(null);
   // React hook formでフォーム管理
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(registerSchema),
   });
 
   const router = useRouter();
 
-  const onSubmit: SubmitHandler<FormData> = async (_data: FormData) => {
-    // try {
-    //   await registerUser(
-    //     data.name,
-    //     data.email,
-    //     data.password,
-    //     data.confirmPassword
-    //   );
-    //   alert("ユーザー登録完了");
-    //   router.push("/user/login");
-    // } catch (err:any){
-    //   setServerError(err.message || "サーバーエラーです");
-    // }
-    router.push("/user/login");
+  const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
+    try {
+      const response = await fetch("/api/user/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          password: data.password,
+        }),
+      });
+
+      if (!response.ok) {
+        // 詳細なエラーメッセージ取得
+        const error = await response.json();
+        setServerError(error.message);
+      } else {
+        router.push("/user/login");
+      }
+    } catch (err) {
+      console.log(err);
+      setServerError("予期せぬエラーが発生しました");
+    }
   };
 
   return (
@@ -61,19 +72,19 @@ const UserRegistration = () => {
             label="ユーザー名"
             id="userName"
             type="text"
-            name="userName"
+            name="name"
             placeholder="tanitune"
             register={register}
-            error={errors.userName}
+            error={errors.name}
           />
           <FormInput
             label="メールアドレス"
             id="mailAddress"
             type="email"
-            name="mailAddress"
+            name="email"
             placeholder="tani@example.com"
             register={register}
-            error={errors.mailAddress}
+            error={errors.email}
           />
           <FormInput
             label="パスワード"
@@ -94,6 +105,7 @@ const UserRegistration = () => {
             error={errors.passwordConfirm}
           />
           <Button type="submit" className={ButtonStyles.register} text={"ユーザー登録"} />
+          <div className={styles.errorMessage}>{serverError}</div>
         </form>
       </div>
       <Guide href="/user/login" guideText="登録済みの方は" message="ログイン" />

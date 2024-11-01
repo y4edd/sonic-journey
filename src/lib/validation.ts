@@ -1,13 +1,13 @@
 import { z } from "zod";
 
-export const schema = z
+export const registerSchema = z
   .object({
-    userName: z
+    name: z
       .string()
       .min(1, "ユーザー名は必須です")
       .max(20, "20文字以内で入力してください")
       .refine((value) => !/\s/.test(value), "空白は無効です"),
-    mailAddress: z
+    email: z
       .string()
       .email("正しいメールアドレスを入力してください")
       .refine((value) => !/\s/.test(value), "空白は無効です"),
@@ -26,6 +26,18 @@ export const schema = z
     message: "パスワードが一致しません",
     path: ["passwordConfirm"],
   });
+
+export const loginSchema = z.object({
+  email: z
+    .string()
+    .email("正しいメールアドレスを入力してください")
+    .refine((value) => !/\s/.test(value), "空白は無効です"),
+  password: z
+    .string()
+    .min(6, "パスワードは6文字以上で入力してください")
+    .max(20, "パスワードは20文字以内で入力してください")
+    .refine((value) => !/\s/.test(value), "空白は無効です"),
+});
 
 // NOTE: プレイリスト入力フォーム用のスキーマ
 export const playlistTitleSchema = z.object({
