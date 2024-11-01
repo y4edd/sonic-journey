@@ -41,6 +41,8 @@ model Favorite_Artist {
   user_id       String
   api_artist_id BigInt
   user    User  @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 }
 
 model Playlist {
@@ -49,6 +51,8 @@ model Playlist {
   name          String
   user    User  @relation(fields: [user_id], references: [id], onDelete: Cascade)
   playlist_songs    Playlist_Song[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 }
 
 model Playlist_Song {
@@ -56,6 +60,8 @@ model Playlist_Song {
   playlist_id   Int
   api_song_id   BigInt
   playlist    Playlist  @relation(fields: [playlist_id], references: [id], onDelete: Cascade)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 }
 
 model History {
@@ -63,6 +69,8 @@ model History {
   user_id       String
   api_song_id   BigInt
   user    User  @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
 }
 
 model Pick {
