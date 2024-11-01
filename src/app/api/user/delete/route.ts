@@ -27,7 +27,7 @@ export const DELETE = async (req: NextRequest, _res: NextResponse) => {
     if (!user) {
       return NextResponse.json({ message: "ユーザーが見つかりませんでした" }, { status: 401 });
     }
-    const _deleteUser = await prisma.user.delete({
+    await prisma.user.delete({
       where: {
         email: decoded.email,
       },
