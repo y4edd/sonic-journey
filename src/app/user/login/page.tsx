@@ -63,10 +63,7 @@ const Login = () => {
       </div>
       <div className={styles.container}>
         <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleSubmit(onSubmit)(e);
-          }}
+          onSubmit={handleSubmit(onSubmit)}
         >
           <FormInput
             label="メールアドレス"
