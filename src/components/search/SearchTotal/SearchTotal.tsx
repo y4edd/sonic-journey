@@ -10,7 +10,7 @@ const SearchTotal = ({
   return (
     <div className={styles.total}>
       <p>
-        {name}（{searchTotal}件）
+        {name}({searchTotal}件)
       </p>
     </div>
   );
