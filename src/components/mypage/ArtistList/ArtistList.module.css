@@ -1,14 +1,14 @@
-.artistList {
-  margin-top: 1rem;
+.artistListContainer {
+  margin: 1rem 0;
   padding: 0 1rem;
 }
 
-.artistList > ul {
+.artistListContainer > ul {
   list-style-type: none;
 }
 
-.horizon {
-  border-bottom: solid 1px #ccc;
+.artistListContainer li:last-child {
+  border-bottom: 1px solid lightgrey;
 }
 
 .noArtistMessage {

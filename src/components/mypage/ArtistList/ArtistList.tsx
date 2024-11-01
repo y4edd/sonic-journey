@@ -10,7 +10,7 @@ const ArtistList = ({
   errorMessage: string;
 }) => {
   return (
-    <div className={styles.artistList}>
+    <div className={styles.artistListContainer}>
       {artists.length === 0 ? (
         <p className={styles.noArtistMessage}>{errorMessage}</p>
       ) : (
@@ -22,7 +22,6 @@ const ArtistList = ({
               </li>
             );
           })}
-          <div className={styles.horizon} />
         </ul>
       )}
     </div>

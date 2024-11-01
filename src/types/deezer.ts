@@ -312,3 +312,9 @@ export type GenreInfo = {
   name: string;
   picture: string;
 };
+
+// プレイリストの型
+export type Playlist = {
+  id: number;
+  name: string;
+};
