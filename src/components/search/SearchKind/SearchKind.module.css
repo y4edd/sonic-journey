@@ -21,3 +21,8 @@
   border-bottom: 0.2rem solid rgb(86, 236, 186);
   padding-bottom: 0.2rem;
 }
+
+.hr {
+  border: 0.2rem solid rgb(203, 203, 203);
+  margin: 1rem 0;
+}

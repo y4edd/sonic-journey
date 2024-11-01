@@ -53,6 +53,7 @@ const SearchKind = ({
       {kind === "all" && (
         <div>
           <SearchResult freeWord={freeWord} url="music" searchTotal={searchTotal} />
+          <hr className={styles.hr} />
           <SearchAlbumResult freeWord={freeWord} url="album" />
         </div>
       )}
