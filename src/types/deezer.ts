@@ -315,3 +315,16 @@ export type SearchAlbum = {
     name: string;
   };
 };
+
+// deezerAPIから取得したgenreデータ
+export type GenreInfo = {
+  id: number;
+  name: string;
+  picture: string;
+};
+
+// プレイリストの型
+export type Playlist = {
+  id: number;
+  name: string;
+};

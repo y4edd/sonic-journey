@@ -20,14 +20,18 @@
   margin-left: 1rem;
 }
 
-.albumSingleInfo > link {
-  margin-left: 2rem;
+.albumSingleInfo > p > a:hover {
+  color: #77ffcc;
 }
 
 .linkImage {
   cursor: pointer;
   margin-right: 12px;
   margin-top: 3px;
+}
+
+.linkImage:hover {
+  opacity: 0.8;
 }
 
 .linkImage > img {

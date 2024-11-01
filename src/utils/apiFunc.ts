@@ -70,6 +70,21 @@ export const getRankSingleSongs = async (limit: number) => {
   }
 };
 
+// ジャンルごとの情報を取得する関数
+export const getGenreInfo = async () => {
+  try {
+    const res = await fetch("http://localhost:3000/api/getGenreArtistId", {
+      cache: "no-cache",
+    });
+    if (!res.ok) {
+      throw new Error("データが見つかりませんでした");
+    }
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 // ジャンルごとのアーティスト情報を取得する関数
 // genreにはgenreのid
 export const getGenreArtist = async (genre: number) => {

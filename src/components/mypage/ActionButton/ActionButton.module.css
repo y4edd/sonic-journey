@@ -1,11 +1,9 @@
-.editButtonWrapper {
+.buttonContainer {
   display: flex;
   align-items: center;
-  justify-content: end;
-  margin-right: 1.5rem;
 }
 
-.editButtonWrapper > button {
+.buttonContainer > button {
   font-size: 1rem;
   border: none;
   background-color: white;

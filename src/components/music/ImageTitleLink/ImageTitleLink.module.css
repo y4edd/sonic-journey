@@ -15,3 +15,7 @@
 .imageTitleContent > p {
   text-align: center;
 }
+
+.imageTitleContent:hover {
+  background-color: #dcdcdc79;
+}

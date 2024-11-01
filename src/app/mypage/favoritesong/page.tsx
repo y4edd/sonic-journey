@@ -1,9 +1,11 @@
-import EditButton from "@/components/mypage/EditButton/EditButton";
+import ActionButton from "@/components/mypage/ActionButton/ActionButton";
 import MenuHeader from "@/components/mypage/MenuHeader/MenuHeader";
 import SongList from "@/components/mypage/SongList/SongList";
 import SortButtons from "@/components/mypage/SortButtons/SortButtons";
 import BreadList from "@/components/top/BreadList/BreadList";
 import { getSong } from "@/utils/apiFunc";
+import EditIcon from "@mui/icons-material/Edit";
+import styles from "./page.module.css";
 
 const FavoriteSongs = async () => {
   // FIXME: ログインユーザーidを取得する
@@ -30,7 +32,9 @@ const FavoriteSongs = async () => {
       />
       <MenuHeader title="お気に入り楽曲" />
       <SortButtons label="登録日" />
-      <EditButton />
+      <div className={styles.actionButtonContainer}>
+        <ActionButton name="編集" icon={<EditIcon />} url="/mypage/favoritesong/edit" />
+      </div>
       <SongList
         songs={favoriteSongsInfo}
         url="music"

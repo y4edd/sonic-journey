@@ -12,7 +12,7 @@ const SongList = ({
   errorMessage: string;
 }) => {
   return (
-    <div className={styles.songList}>
+    <div className={styles.songListContainer}>
       {songs.length === 0 ? (
         <p className={styles.noSongsMessage}>{errorMessage}</p>
       ) : (
@@ -24,7 +24,6 @@ const SongList = ({
               </li>
             );
           })}
-          <div className={styles.horizon} />
         </ul>
       )}
     </div>

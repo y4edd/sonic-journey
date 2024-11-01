@@ -5,6 +5,13 @@
   border: 1px solid lightgray;
   border-radius: 10px;
   margin: 5% 10% 5%;
-  padding: 1rem;
+  padding: 1rem 1rem 2rem;
   font-size: 0.9rem;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 0.74rem;
+  height: 10px;
+  text-align: center;
 }
