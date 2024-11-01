@@ -1,17 +1,17 @@
-.songListContainer {
+.playlistListContainer {
   margin: 1rem 0;
   padding: 0 1rem;
 }
 
-.songListContainer > ul {
+.playlistListContainer > ul {
   list-style-type: none;
 }
 
-.songListContainer li:last-child {
+.playlistListContainer li:last-child {
   border-bottom: 1px solid lightgray;
 }
 
-.noSongsMessage {
+.noPlaylistMessage {
   text-align: center;
   color: gray;
 }

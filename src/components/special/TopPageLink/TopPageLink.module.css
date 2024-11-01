@@ -6,3 +6,11 @@
 .imageItem {
   margin-bottom: 1.5rem;
 }
+
+.imageItem a:hover {
+  opacity: 0.8;
+}
+
+.imageItem img {
+  border-radius: 10px;
+}
