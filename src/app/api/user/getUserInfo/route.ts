@@ -19,7 +19,7 @@ export const GET = async (req: NextRequest, _res: NextResponse) => {
   }
   try {
     const decoded = jwt.verify(token.value, secretKey) as { email: string };
-    const userInfo = await prisma.user.findMany({
+    const userInfo = await prisma.user.findFirst({
       where: {
         email: decoded.email,
       },
