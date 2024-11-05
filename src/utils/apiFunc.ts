@@ -178,13 +178,16 @@ export const getAlbum = async (album: number) => {
   }
 };
 
-// アーティストのアルバムを4件取得する関数
+// アーティストのアルバムをlimit件取得する関数
 // albumにはアーティスト名を入力
-export const getArtistAlbum = async (artist: string) => {
+export const getArtistAlbum = async (artist: string, limit?: number) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/artistAlbums?artistName=${artist}`, {
-      cache: "no-cache",
-    });
+    const res = await fetch(
+      `http://localhost:3000/api/artistAlbums?artistName=${artist}&limit=${limit}`,
+      {
+        cache: "no-cache",
+      },
+    );
 
     if (!res.ok) {
       throw new Error("データが見つかりませんでした");

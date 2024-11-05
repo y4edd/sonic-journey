@@ -20,7 +20,7 @@ const ArtistPage = async ({ params }: ArtistPageProps) => {
   const artistSingleSongs = await getArtistSongs(Number(id), 4);
 
   // 取得したアーティスト名からアルバム情報を取得
-  const artistAlbums = await getArtistAlbum(artistData.resArtistData.name);
+  const artistAlbums = await getArtistAlbum(artistData.resArtistData.name, 4);
 
   return (
     <>
