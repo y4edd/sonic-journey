@@ -317,4 +317,7 @@ export type GenreInfo = {
 export type Playlist = {
   id: number;
   name: string;
+  user_id: string;
+  createdAt: Date;
+  updatedAt: Date;
 };

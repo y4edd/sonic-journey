@@ -1,5 +1,7 @@
 import styles from "./page.module.css";
 import BreadList from "@/components/top/BreadList/BreadList";
+import { PlaylistEdit } from "@/components/mypage/PlaylistsEdit/PlaylistEdit";
+
 const Page = () => {
   return (
     <>
@@ -11,7 +13,7 @@ const Page = () => {
           { link: "/mypage/playlist/edit", title: "編集" },
         ]}
       />
-      <div className={styles.wrapper}>*ここに編集機能を</div>
+      <PlaylistEdit />
     </>
   );
 };

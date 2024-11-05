@@ -6,7 +6,9 @@ const PlaylistList = ({ playlists }: { playlists: Playlist[] }) => {
   return (
     <div className={styles.playlistListContainer}>
       {playlists.length === 0 ? (
-        <p className={styles.noPlaylistMessage}>プレイリストは登録されていません</p>
+        <p className={styles.noPlaylistMessage}>
+          プレイリストは登録されていません
+        </p>
       ) : (
         <ul>
           {playlists.map((playlist: Playlist) => {

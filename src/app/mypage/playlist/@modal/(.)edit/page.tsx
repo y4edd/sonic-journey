@@ -1,10 +1,11 @@
 import Modal from "@/components/mypage/Modal/Modal";
+import { PlaylistEdit } from "@/components/mypage/PlaylistsEdit/PlaylistEdit";
 
 const Page = () => {
   return (
     <>
       <Modal>
-        <p>モーダルだよｎ</p>
+        <PlaylistEdit />
       </Modal>
     </>
   );

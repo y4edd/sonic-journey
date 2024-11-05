@@ -4,12 +4,13 @@ import { playlistTitleSchema } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { type SubmitHandler, useForm } from "react-hook-form";
+import { useState, useEffect } from "react";
 import type { z } from "zod";
 import styles from "./PlaylistForm.module.css";
 
 type PlayListFormData = z.infer<typeof playlistTitleSchema>;
 
-const PlaylistForm = () => {
+const PlaylistForm = ({ user_id }: { user_id: string }) => {
   // NOTE: React Hook Formのフック
   const {
     register,
@@ -18,14 +19,44 @@ const PlaylistForm = () => {
   } = useForm<PlayListFormData>({
     resolver: zodResolver(playlistTitleSchema),
   });
-
   const router = useRouter();
+  const [formData, setFormData] = useState<PlayListFormData | null>(null);
 
-  const onSubmit: SubmitHandler<PlayListFormData> = async (data: PlayListFormData) => {
-    // FIXME: プレイリスト作成ボタンを押下したときの処理を追加する
-    console.log(data.playlistTitle); // 入力データ確認用
-    router.back();
+  const onSubmit: SubmitHandler<PlayListFormData> = (
+    data: PlayListFormData
+  ) => {
+    setFormData(data);
   };
+  useEffect(() => {
+    const createPlaylist = async () => {
+      if (!formData) return;
+
+      try {
+        const res = await fetch("http://localhost:3000/api/createPlaylist", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: formData.playlistTitle,
+            user_id: user_id,
+          }),
+          cache: "no-cache",
+        });
+
+        if (!res.ok) {
+          throw new Error("データが見つかりませんでした");
+        } else {
+          alert("プレイリストが新規作成されました");
+          router.back();
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    createPlaylist();
+  }, [formData]);
 
   const onDismiss = () => {
     router.back();
@@ -45,11 +76,17 @@ const PlaylistForm = () => {
               {...register("playlistTitle")}
             />
             <div className={styles.errorMessage}>
-              {errors.playlistTitle?.message && <span>{errors.playlistTitle.message}</span>}
+              {errors.playlistTitle?.message && (
+                <span>{errors.playlistTitle.message}</span>
+              )}
             </div>
           </div>
           <div className={styles.buttonContainer}>
-            <button type="button" onClick={onDismiss} className={styles.cancelButton}>
+            <button
+              type="button"
+              onClick={onDismiss}
+              className={styles.cancelButton}
+            >
               キャンセル
             </button>
             <button type="submit" className={styles.createButton}>

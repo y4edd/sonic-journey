@@ -39,3 +39,11 @@ export type ToastProps = {
   message: string;
   type?: "success" | "error";
 };
+
+export type UserInfo = {
+  id: string;
+  name: string;
+  email: string;
+  createdAt: Date;
+  updatedAt: Date;
+};

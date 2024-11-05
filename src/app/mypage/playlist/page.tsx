@@ -4,15 +4,20 @@ import PlaylistList from "@/components/mypage/PlaylistList/PlaylistList";
 import BreadList from "@/components/top/BreadList/BreadList";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import EditIcon from "@mui/icons-material/Edit";
+import { getUserInfo, getUserPlaylist } from "@/utils/apiFunc";
+import type { UserInfo } from "@/types/user";
 import styles from "./page.module.css";
 
 const PlayListPage = async () => {
+  const user: UserInfo = await getUserInfo();
+  console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", user);
+  const playlists = await getUserPlaylist("cm2y53h6s00002p7fm1lscjg1");
   // FIXME:　表示確認用のデータです。
-  const playlists = [
-    { id: 1, name: "ランニング用" },
-    { id: 2, name: "ドライブ用" },
-    { id: 3, name: "雨の日に聞く" },
-  ];
+  // const playlists = [
+  //   { id: 1, name: "ランニング用" },
+  //   { id: 2, name: "ドライブ用" },
+  //   { id: 3, name: "雨の日に聞く" },
+  // ];
 
   return (
     <>
@@ -25,8 +30,16 @@ const PlayListPage = async () => {
       />
       <MenuHeader title="プレイリスト" />
       <div className={styles.actionButtonContainer}>
-        <ActionButton name="追加" icon={<AddBoxIcon />} url="/mypage/playlist/create" />
-        <ActionButton name="編集" icon={<EditIcon />} url="/mypage/playlist/edit" />
+        <ActionButton
+          name="追加"
+          icon={<AddBoxIcon />}
+          url="/mypage/playlist/create"
+        />
+        <ActionButton
+          name="編集"
+          icon={<EditIcon />}
+          url="/mypage/playlist/edit"
+        />
       </div>
       <PlaylistList playlists={playlists} />
     </>
