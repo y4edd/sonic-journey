@@ -24,10 +24,9 @@ const CreatePage = () => {
       }
     };
     getUser();
-  }, [router]);
+  }, []);
 
   if (!user) return <div>Loading...</div>;
-  console.log(user);
   return (
     <>
       <BreadList

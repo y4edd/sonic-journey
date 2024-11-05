@@ -1,3 +1,5 @@
+"use client";
+
 import ActionButton from "@/components/mypage/ActionButton/ActionButton";
 import MenuHeader from "@/components/mypage/MenuHeader/MenuHeader";
 import PlaylistList from "@/components/mypage/PlaylistList/PlaylistList";
@@ -6,18 +8,21 @@ import AddBoxIcon from "@mui/icons-material/AddBox";
 import EditIcon from "@mui/icons-material/Edit";
 import { getUserInfo, getUserPlaylist } from "@/utils/apiFunc";
 import type { UserInfo } from "@/types/user";
+import type { Playlist } from "@prisma/client";
 import styles from "./page.module.css";
+import { useEffect, useState } from "react";
 
-const PlayListPage = async () => {
-  const user: UserInfo = await getUserInfo();
-  console.log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", user);
-  const playlists = await getUserPlaylist("cm2y53h6s00002p7fm1lscjg1");
-  // FIXME:　表示確認用のデータです。
-  // const playlists = [
-  //   { id: 1, name: "ランニング用" },
-  //   { id: 2, name: "ドライブ用" },
-  //   { id: 3, name: "雨の日に聞く" },
-  // ];
+const PlayListPage = () => {
+  const [playlists, setPlaylists] = useState<Playlist[]>([]);
+  useEffect(() => {
+    const getUser = async () => {
+      const user: UserInfo = await getUserInfo();
+      if (!user) return <div>Loading...</div>;
+      const getPlaylists = await getUserPlaylist(user.id);
+      setPlaylists(getPlaylists);
+    };
+    getUser();
+  }, []);
 
   return (
     <>

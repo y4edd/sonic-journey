@@ -44,7 +44,9 @@ const PlaylistForm = ({ user_id }: { user_id: string }) => {
           cache: "no-cache",
         });
 
-        if (!res.ok) {
+        if (res.status === 409) {
+          alert("同名のプレイリストが既に作成されています");
+        } else if (!res.ok) {
           throw new Error("データが見つかりませんでした");
         } else {
           alert("プレイリストが新規作成されました");
