@@ -9,15 +9,16 @@ import { registerSchema } from "@/lib/validation";
 import type { FormData } from "@/types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
-import { ToastContainer, ToastOptions, toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import styles from "./page.module.css";
 import "react-toastify/dist/ReactToastify.css";
 
 const Edit = () => {
-  // useStateでサーバーエラーとトーストの表示管理
-  const [_serverError, _setServerError] = useState<string | null>(null);
+  // useStateでサーバーエラーの管理
+  const [_serverError, setServerError] = useState<string | null>(null);
+  const [_userId, setUserId ] = useState<string | null>(null);
   // React hook formでフォーム管理
   const {
     register,
@@ -28,6 +29,37 @@ const Edit = () => {
   });
 
   const router = useRouter();
+
+  const fetchUser = async () => {
+    try {
+      const response = await fetch("/api/user/checkLogin");
+      if(response.ok) {
+        const data = await response.json();
+        setUserId(data.id);
+      }else {
+        const error = await response.json();
+        setServerError(error.message);
+        toast.error("ログインしてください", {
+          toastId: "loginError",
+          position: "top-center",
+          autoClose: 1000,
+          closeButton: true,
+          hideProgressBar: true,
+          closeOnClick: true,
+          theme: "colored",
+        });
+        setTimeout(() => {
+          router.push("/user/login");
+        }, 1000);
+      };
+    } catch (err) {
+      setServerError("サーバーエラーが発生しました");
+    } 
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
   // FIXME: dataを受け取り、データベースの内容を更新する処理実装
   const onSubmit: SubmitHandler<FormData> = async (data) => {
