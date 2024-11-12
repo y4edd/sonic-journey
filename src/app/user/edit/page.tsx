@@ -20,7 +20,7 @@ import "react-toastify/dist/ReactToastify.css";
 const Edit = () => {
   // useStateでサーバーエラーの管理
   const [loading, setLoading] = useState(true);
-  const [_serverError, setServerError] = useState<string | null>(null);
+  const [serverError, setServerError] = useState<string | null>("");
   const [userId, setUserId] = useState<string | null>(null);
   // React hook formでフォーム管理
   const {
@@ -154,6 +154,7 @@ const Edit = () => {
             text={"戻る"}
             onClick={handleClick}
           />
+          <div className={styles.errorMessage}>{serverError}</div>
         </form>
       </div>
     </>
