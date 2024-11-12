@@ -15,10 +15,12 @@ import { ToastContainer, toast } from "react-toastify";
 import styles from "./page.module.css";
 import "react-toastify/dist/ReactToastify.css";
 
-const Edit = () => {
+// FIXME: userの型定義
+const Edit = ({user}:any) => {
   // useStateでサーバーエラーの管理
+  const [ loading, setLoading ] = useState(true);
   const [_serverError, setServerError] = useState<string | null>(null);
-  const [_userId, setUserId ] = useState<string | null>(null);
+  const [userId, setUserId ] = useState<string | null>(null);
   // React hook formでフォーム管理
   const {
     register,
@@ -30,6 +32,10 @@ const Edit = () => {
 
   const router = useRouter();
 
+  const clickToLogin = () => {
+    router.push("/user/login");
+  }
+
   const fetchUser = async () => {
     try {
       const response = await fetch("/api/user/checkLogin");
@@ -39,27 +45,46 @@ const Edit = () => {
       }else {
         const error = await response.json();
         setServerError(error.message);
-        toast.error("ログインしてください", {
-          toastId: "loginError",
-          position: "top-center",
-          autoClose: 1000,
-          closeButton: true,
-          hideProgressBar: true,
-          closeOnClick: true,
-          theme: "colored",
-        });
-        setTimeout(() => {
-          router.push("/user/login");
-        }, 1000);
       };
     } catch (err) {
       setServerError("サーバーエラーが発生しました");
-    } 
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
     fetchUser();
   }, []);
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+  if (userId === null || userId !== user.id) {
+    toast.error("ログインしてください", {
+      toastId: "loginError",
+      position: "top-center",
+      autoClose: 1000,
+      closeButton: true,
+      hideProgressBar: true,
+      closeOnClick: true,
+      theme: "colored",
+    });
+    return (
+      <>
+        <div className={styles.invalidContainer}>
+          <p className={styles.invalidMessage}>不正な画面遷移です。<br />下記ボタンよりログインしてください</p>
+          <Button
+            type="button"
+            className={ButtonStyles.register}
+            text={"ログイン"}
+            onClick={clickToLogin}
+          />
+        </div>
+      </>
+    );
+  }
+
 
   // FIXME: dataを受け取り、データベースの内容を更新する処理実装
   const onSubmit: SubmitHandler<FormData> = async (data) => {
