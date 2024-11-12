@@ -33,10 +33,6 @@ const Edit = () => {
 
   const router = useRouter();
 
-  const clickToLogin = () => {
-    router.push("/user/login");
-  };
-
   const fetchUser = async () => {
     try {
       const response = await fetch("/api/user/checkLogin");
@@ -64,7 +60,7 @@ const Edit = () => {
     return <p className="loading">Loading...</p>;
   }
   if (userId === null) {
-    return <Unauthenticated clickToLogin={clickToLogin} />;
+    return <Unauthenticated />;
   }
 
   // FIXME: dataを受け取り、データベースの内容を更新する処理実装

@@ -3,9 +3,8 @@ import UnAuthenticated from "./invalid";
 
 describe("UnAuthenticatedコンポーネントのテスト", () => {
   test("不正な画面遷移のメッセージが表示されること", () => {
-    const mockClickToLogin = jest.fn();
 
-    render(<UnAuthenticated clickToLogin={mockClickToLogin} />);
+    render(<UnAuthenticated />);
 
     expect(
       screen.getByText(/不正な画面遷移です.*下記ボタンよりログインしてください/),
@@ -15,7 +14,7 @@ describe("UnAuthenticatedコンポーネントのテスト", () => {
   test("ログインボタンが表示されること", () => {
     const mockClickToLogin = jest.fn();
 
-    render(<UnAuthenticated clickToLogin={mockClickToLogin} />);
+    render(<UnAuthenticated />);
 
     const loginButton = screen.getByRole("button", { name: "ログイン" });
     expect(loginButton).toBeInTheDocument();
@@ -24,7 +23,7 @@ describe("UnAuthenticatedコンポーネントのテスト", () => {
   test("ログインボタンがクリックされたとき、clickToLoginが呼び出されること", () => {
     const mockClickToLogin = jest.fn();
 
-    render(<UnAuthenticated clickToLogin={mockClickToLogin} />);
+    render(<UnAuthenticated />);
 
     const loginButton = screen.getByRole("button", { name: "ログイン" });
     fireEvent.click(loginButton);
