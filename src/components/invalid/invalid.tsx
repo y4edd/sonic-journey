@@ -3,17 +3,12 @@ import Button from "../user/Button/Button";
 import ButtonStyles from "../user/Button/Button.module.css";
 import styles from "./invalid.module.css";
 
-type UnAuthenticated = {
-  clickToLogin: () => void;
-};
-
 const UnAuthenticated = () => {
-
   const router = useRouter();
 
   const clickToLogin = () => {
     router.push("/user/login");
-  }
+  };
   return (
     <>
       <div className={styles.invalidContainer}>

@@ -17,6 +17,6 @@ describe("Editコンポーネントのテスト", () => {
     expect(
       screen.getByText(/不正な画面遷移です.*下記ボタンよりログインしてください/),
     ).toBeInTheDocument();
-    expect(screen.getByRole("button", { name: "ログイン" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "ログインページへ移動" })).toBeInTheDocument();
   });
 });

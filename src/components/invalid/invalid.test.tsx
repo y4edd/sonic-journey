@@ -1,33 +1,32 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { useRouter } from "next/navigation";
 import UnAuthenticated from "./invalid";
 
-describe("UnAuthenticatedコンポーネントのテスト", () => {
-  test("不正な画面遷移のメッセージが表示されること", () => {
+jest.mock("next/navigation", () => ({
+  useRouter: jest.fn(),
+}));
 
+describe("UnAuthenticatedコンポーネントのテスト", () => {
+  test("ボタンとメッセージが表示される", () => {
     render(<UnAuthenticated />);
 
     expect(
       screen.getByText(/不正な画面遷移です.*下記ボタンよりログインしてください/),
     ).toBeInTheDocument();
+
+    const button = screen.getByRole("button", { name: "ログインページへ移動" });
+    expect(button).toBeInTheDocument();
   });
 
-  test("ログインボタンが表示されること", () => {
-    const mockClickToLogin = jest.fn();
+  test("ボタン押下時、ログインページへ移動する", () => {
+    const pushMock = jest.fn();
+    (useRouter as jest.Mock).mockReturnValue({ push: pushMock });
 
     render(<UnAuthenticated />);
 
-    const loginButton = screen.getByRole("button", { name: "ログイン" });
-    expect(loginButton).toBeInTheDocument();
-  });
+    const button = screen.getByRole("button", { name: "ログインページへ移動" });
+    fireEvent.click(button);
 
-  test("ログインボタンがクリックされたとき、clickToLoginが呼び出されること", () => {
-    const mockClickToLogin = jest.fn();
-
-    render(<UnAuthenticated />);
-
-    const loginButton = screen.getByRole("button", { name: "ログイン" });
-    fireEvent.click(loginButton);
-
-    expect(mockClickToLogin).toHaveBeenCalledTimes(1);
+    expect(pushMock).toHaveBeenCalledWith("/user/login");
   });
 });
