@@ -7,7 +7,7 @@ export const GET = async (req: NextRequest) => {
   const secretKey = process.env.JWT_SECRET_KEY;
 
   if (!secretKey) {
-    return NextResponse.json({ message: "権限がありません" }, { status: 500 });
+    return NextResponse.json({ message: "権限がありません" }, { status: 403 });
   }
 
   const token = req.cookies.get("token");
