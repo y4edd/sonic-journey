@@ -23,7 +23,6 @@ const PlayListPage = () => {
     };
     getUser();
   }, []);
-
   return (
     <>
       <BreadList
