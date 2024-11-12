@@ -51,3 +51,10 @@ a {
 .swiper-pagination-clickable .swiper-pagination-bullet {
   background-color: white;
 }
+
+/* 不正な画面遷移時に表示 */
+.loading {
+  text-align: center;
+  margin: 30% 10% 5%;
+  font-size: 1.1rem;
+}

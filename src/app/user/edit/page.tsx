@@ -5,6 +5,7 @@ import Button from "@/components/user/Button/Button";
 import ButtonStyles from "@/components/user/Button/Button.module.css";
 import FormInput from "@/components/user/Form/FormInput";
 import Information from "@/components/user/Information/Information";
+import Unauthenticated from "@/components/invalid/invalid";
 import { registerSchema } from "@/lib/validation";
 import type { FormData } from "@/types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -13,6 +14,7 @@ import { useEffect, useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import styles from "./page.module.css";
+import  "@/app/globals.css"
 import "react-toastify/dist/ReactToastify.css";
 
 // FIXME: userの型定義
@@ -58,33 +60,13 @@ const Edit = ({user}:any) => {
   }, []);
 
   if (loading) {
-    return <p>Loading...</p>;
+    return <p className="loading">Loading...</p>;
   }
   if (userId === null || userId !== user.id) {
-    toast.error("ログインしてください", {
-      toastId: "loginError",
-      position: "top-center",
-      autoClose: 1000,
-      closeButton: true,
-      hideProgressBar: true,
-      closeOnClick: true,
-      theme: "colored",
-    });
     return (
-      <>
-        <div className={styles.invalidContainer}>
-          <p className={styles.invalidMessage}>不正な画面遷移です。<br />下記ボタンよりログインしてください</p>
-          <Button
-            type="button"
-            className={ButtonStyles.register}
-            text={"ログイン"}
-            onClick={clickToLogin}
-          />
-        </div>
-      </>
-    );
+    <Unauthenticated clickToLogin={clickToLogin} />
+    )
   }
-
 
   // FIXME: dataを受け取り、データベースの内容を更新する処理実装
   const onSubmit: SubmitHandler<FormData> = async (data) => {
