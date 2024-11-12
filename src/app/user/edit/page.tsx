@@ -1,11 +1,11 @@
 "use client";
 
+import Unauthenticated from "@/components/invalid/invalid";
 import BreadList from "@/components/top/BreadList/BreadList";
 import Button from "@/components/user/Button/Button";
 import ButtonStyles from "@/components/user/Button/Button.module.css";
 import FormInput from "@/components/user/Form/FormInput";
 import Information from "@/components/user/Information/Information";
-import Unauthenticated from "@/components/invalid/invalid";
 import { registerSchema } from "@/lib/validation";
 import type { FormData } from "@/types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -14,15 +14,14 @@ import { useEffect, useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import styles from "./page.module.css";
-import  "@/app/globals.css"
+import "@/app/globals.css";
 import "react-toastify/dist/ReactToastify.css";
 
-// FIXME: userの型定義
-const Edit = ({user}:any) => {
+const Edit = () => {
   // useStateでサーバーエラーの管理
-  const [ loading, setLoading ] = useState(true);
+  const [loading, setLoading] = useState(true);
   const [_serverError, setServerError] = useState<string | null>(null);
-  const [userId, setUserId ] = useState<string | null>(null);
+  const [userId, setUserId] = useState<string | null>(null);
   // React hook formでフォーム管理
   const {
     register,
@@ -36,25 +35,27 @@ const Edit = ({user}:any) => {
 
   const clickToLogin = () => {
     router.push("/user/login");
-  }
+  };
 
   const fetchUser = async () => {
     try {
       const response = await fetch("/api/user/checkLogin");
-      if(response.ok) {
+      if (response.ok) {
         const data = await response.json();
         setUserId(data.id);
-      }else {
+      } else {
         const error = await response.json();
         setServerError(error.message);
-      };
+      }
     } catch (err) {
+      console.log(err);
       setServerError("サーバーエラーが発生しました");
     } finally {
       setLoading(false);
     }
   };
 
+  // biome-ignore lint: 依存配列を空にし、初回レンダリングのみ実行
   useEffect(() => {
     fetchUser();
   }, []);
@@ -62,10 +63,8 @@ const Edit = ({user}:any) => {
   if (loading) {
     return <p className="loading">Loading...</p>;
   }
-  if (userId === null || userId !== user.id) {
-    return (
-    <Unauthenticated clickToLogin={clickToLogin} />
-    )
+  if (userId === null) {
+    return <Unauthenticated clickToLogin={clickToLogin} />;
   }
 
   // FIXME: dataを受け取り、データベースの内容を更新する処理実装
