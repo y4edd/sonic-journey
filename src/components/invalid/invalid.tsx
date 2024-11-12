@@ -18,7 +18,7 @@ const UnAuthenticated = ({ clickToLogin }: UnAuthenticated) => {
         <Button
           type="button"
           className={ButtonStyles.register}
-          text={"ログイン"}
+          text={"ログインページへ移動"}
           onClick={clickToLogin}
         />
       </div>
