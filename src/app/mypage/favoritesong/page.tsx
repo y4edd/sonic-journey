@@ -1,23 +1,23 @@
-import ActionButton from "@/components/mypage/ActionButton/ActionButton";
+import FavoriteSongsContainer from "@/components/mypage/FavoriteSongsContainer/FavoriteSongsContainer";
 import MenuHeader from "@/components/mypage/MenuHeader/MenuHeader";
-import SongList from "@/components/mypage/SongList/SongList";
-import SortButtons from "@/components/mypage/SortButtons/SortButtons";
 import BreadList from "@/components/top/BreadList/BreadList";
-import { getSong } from "@/utils/apiFunc";
-import EditIcon from "@mui/icons-material/Edit";
-import styles from "./page.module.css";
+import type { DeezerSong } from "@/types/deezer";
+import { getFavoriteSongs, getSong } from "@/utils/apiFunc";
+
+type favoriteSong = {
+  songId: number;
+  updatedAt: Date;
+};
 
 const FavoriteSongs = async () => {
-  // FIXME: ログインユーザーidを取得する
-  // FIXME: ログインユーザーのお気に入り曲をDBから取得する
+  // NOTE: DBからお気に入り楽曲を取得
+  const favoriteSongs: { resultData: favoriteSong[] } = await getFavoriteSongs();
 
-  // MEMO: 表示確認のため、仮で曲idの配列を定義する
-  const favoriteSongsId = [2122792287, 467267512, 1117825182, 2121510947, 2326140975];
-
-  const favoriteSongsInfo = await Promise.all(
-    favoriteSongsId.map(async (songId) => {
-      const songData = await getSong(songId);
-      return songData.resSongData;
+  // NOTE: お気に入り楽曲の楽曲idをもとに、楽曲情報を取得
+  const favoriteSongsData = await Promise.all(
+    favoriteSongs.resultData.map(async (song) => {
+      const songData: { resSongData: DeezerSong } = await getSong(song.songId);
+      return { ...song, songData: songData.resSongData };
     }),
   );
 
@@ -31,15 +31,7 @@ const FavoriteSongs = async () => {
         ]}
       />
       <MenuHeader title="お気に入り楽曲" />
-      <SortButtons label="登録日" />
-      <div className={styles.actionButtonContainer}>
-        <ActionButton name="編集" icon={<EditIcon />} url="/mypage/favoritesong/edit" />
-      </div>
-      <SongList
-        songs={favoriteSongsInfo}
-        url="music"
-        errorMessage="お気に入り曲は登録されていません"
-      />
+      <FavoriteSongsContainer songsInfo={favoriteSongsData} />
     </div>
   );
 };
