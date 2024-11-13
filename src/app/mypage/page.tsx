@@ -1,3 +1,4 @@
+import Logout from "@/components/mypage/Logout/Logout";
 import MenuBox from "@/components/mypage/MenuBox/MenuBox";
 import BreadList from "@/components/top/BreadList/BreadList";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
@@ -7,7 +8,6 @@ import NoAccountsIcon from "@mui/icons-material/NoAccounts";
 import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import PlaylistPlayTwoToneIcon from "@mui/icons-material/PlaylistPlayTwoTone";
 import styles from "./page.module.css";
-import Logout from "@/components/mypage/Logout/Logout";
 
 const MyPage = () => {
   return (
