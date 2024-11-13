@@ -5,13 +5,14 @@ import SongAudio from "../SongAudio/SongAudio";
 import styles from "./SongInfoContent.module.css";
 
 type SongInfoContentProps = {
+  id: number;
   title: string;
   artist: string;
   image: string;
   preview?: string;
 };
 
-const SongInfoContent = ({ title, artist, image, preview }: SongInfoContentProps) => {
+const SongInfoContent = ({ id, title, artist, image, preview }: SongInfoContentProps) => {
   return (
     <div>
       <div className={styles.songInfoContent}>
@@ -20,7 +21,7 @@ const SongInfoContent = ({ title, artist, image, preview }: SongInfoContentProps
           <h2>{title}</h2>
           <p>{artist}</p>
           <div>
-            <SongAudio preview={preview} />
+            <SongAudio preview={preview} id={id} />
           </div>
           {/* FIXME: プレイリストに追加する処理を記述する必要があります。 */}
           <div className={styles.songInfoAddFavorite}>

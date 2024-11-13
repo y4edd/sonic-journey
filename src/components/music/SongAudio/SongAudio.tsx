@@ -1,5 +1,6 @@
 "use client";
 
+import { savePlayHistory } from "@/actions/savePlayHistory";
 import MusicNoteIcon from "@mui/icons-material/MusicNote";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
@@ -7,7 +8,7 @@ import Slider from "@mui/material/Slider";
 import { useEffect, useRef, useState } from "react";
 import styles from "./SongAudio.module.css";
 
-const SongAudio = ({ preview }: { preview?: string }) => {
+const SongAudio = ({ preview, id }: { preview?: string; id: number }) => {
   // 再生中かどうかstateで管理
   const [isPlaying, setIsPlaying] = useState(false);
   // 再レンダリングさせたくないので、useRefでaudio要素を参照
@@ -50,10 +51,15 @@ const SongAudio = ({ preview }: { preview?: string }) => {
   };
 
   // 曲を再生
-  const handlePlay = () => {
+  const handlePlay = async () => {
     if (audioRef.current) {
-      audioRef.current.play();
-      setIsPlaying(true);
+      try {
+        await audioRef.current.play();
+        setIsPlaying(true);
+        await savePlayHistory(id);
+      } catch (error) {
+        console.error("履歴の保存に失敗しました:", error);
+      }
     }
   };
 
