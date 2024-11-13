@@ -39,3 +39,24 @@
   font-size: 2.3rem;
   color: rgba(204, 15, 15, 0.635);
 }
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.closeButton {
+  padding: 5px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 150px;
+  background-color: gray;
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+
+.closeButton:hover {
+  opacity: 0.8;
+}

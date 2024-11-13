@@ -6,20 +6,33 @@ import type { Playlist } from "@prisma/client";
 import { useEffect, useState } from "react";
 import { getUserInfo, getUserPlaylist } from "@/utils/apiFunc";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useRouter } from "next/navigation";
+import { Dispatch, SetStateAction } from "react";
 
-export const PlaylistEdit = () => {
+export const PlaylistEdit = ({
+  setEditModalOpen,
+}: {
+  setEditModalOpen: Dispatch<SetStateAction<boolean>>;
+}) => {
+  const [user, setUser] = useState<UserInfo | null>(null);
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
-  const router = useRouter();
   useEffect(() => {
     const getUser = async () => {
-      const user: UserInfo = await getUserInfo();
-      if (!user) return <div>Loading...</div>;
-      const getPlaylists = await getUserPlaylist(user.id);
-      setPlaylists(getPlaylists);
+      const fetchUser: UserInfo = await getUserInfo();
+      setUser(fetchUser);
     };
     getUser();
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      const getPlaylists = async () => {
+        const getPlaylists = await getUserPlaylist(user.id);
+        setPlaylists(getPlaylists);
+      };
+      getPlaylists();
+    }
+  }, [user]);
+
   const handlePlaylistDelete = async (playlist: Playlist) => {
     const deleteCheck = confirm(
       `「${playlist.name}」\nプレイリストを削除しますか？`
@@ -39,7 +52,9 @@ export const PlaylistEdit = () => {
         if (!res.ok) {
           throw new Error("正常に削除できませんでした");
         }
-        router.back();
+        setPlaylists((prevState) =>
+          prevState.filter((deletePlaylist) => deletePlaylist !== playlist)
+        );
       } catch (error) {
         console.error(error);
       }
@@ -63,6 +78,15 @@ export const PlaylistEdit = () => {
             </li>
           ))}
         </ul>
+      </div>
+      <div className={styles.buttonContainer}>
+        <button
+          type="button"
+          onClick={() => setEditModalOpen(false)}
+          className={styles.closeButton}
+        >
+          閉じる
+        </button>
       </div>
     </div>
   );

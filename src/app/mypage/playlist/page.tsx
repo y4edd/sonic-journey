@@ -11,18 +11,35 @@ import type { UserInfo } from "@/types/user";
 import type { Playlist } from "@prisma/client";
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
+import Modal from "@/components/mypage/Modal/Modal";
+import PlaylistForm from "@/components/mypage/PlaylistForm/PlaylistForm";
+import { PlaylistEdit } from "@/components/mypage/PlaylistsEdit/PlaylistEdit";
 
 const PlayListPage = () => {
+  const [user, setUser] = useState<UserInfo | null>(null);
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
+  const [createModalOpen, setCreateModalOpen] = useState(false);
+  const [editModalOpen, setEditModalOpen] = useState(false);
+
   useEffect(() => {
     const getUser = async () => {
-      const user: UserInfo = await getUserInfo();
-      if (!user) return <div>Loading...</div>;
-      const getPlaylists = await getUserPlaylist(user.id);
-      setPlaylists(getPlaylists);
+      const fetchUser: UserInfo = await getUserInfo();
+      setUser(fetchUser);
     };
     getUser();
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      const getPlaylists = async () => {
+        const getPlaylists = await getUserPlaylist(user.id);
+        setPlaylists(getPlaylists);
+      };
+      getPlaylists();
+    }
+  }, [user, createModalOpen, editModalOpen]);
+
+  if (!user) return <div>Loading...</div>;
   return (
     <>
       <BreadList
@@ -37,15 +54,28 @@ const PlayListPage = () => {
         <ActionButton
           name="追加"
           icon={<AddBoxIcon />}
-          url="/mypage/playlist/create"
+          setFunc={setCreateModalOpen}
         />
         <ActionButton
           name="編集"
           icon={<EditIcon />}
-          url="/mypage/playlist/edit"
+          setFunc={setEditModalOpen}
         />
       </div>
       <PlaylistList playlists={playlists} />
+      {createModalOpen && (
+        <Modal setFunc={setCreateModalOpen}>
+          <PlaylistForm
+            user_id={user.id}
+            setCreateModalOpen={setCreateModalOpen}
+          />
+        </Modal>
+      )}
+      {editModalOpen && (
+        <Modal setFunc={setEditModalOpen}>
+          <PlaylistEdit setEditModalOpen={setEditModalOpen} />
+        </Modal>
+      )}
     </>
   );
 };

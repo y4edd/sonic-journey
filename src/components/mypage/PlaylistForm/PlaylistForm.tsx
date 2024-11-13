@@ -2,15 +2,21 @@
 
 import { playlistTitleSchema } from "@/lib/validation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useRouter } from "next/navigation";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 import type { z } from "zod";
+import { Dispatch, SetStateAction } from "react";
 import styles from "./PlaylistForm.module.css";
 
 type PlayListFormData = z.infer<typeof playlistTitleSchema>;
 
-const PlaylistForm = ({ user_id }: { user_id: string }) => {
+const PlaylistForm = ({
+  user_id,
+  setCreateModalOpen,
+}: {
+  user_id: string;
+  setCreateModalOpen: Dispatch<SetStateAction<boolean>>;
+}) => {
   // NOTE: React Hook Formのフック
   const {
     register,
@@ -19,7 +25,6 @@ const PlaylistForm = ({ user_id }: { user_id: string }) => {
   } = useForm<PlayListFormData>({
     resolver: zodResolver(playlistTitleSchema),
   });
-  const router = useRouter();
   const [formData, setFormData] = useState<PlayListFormData | null>(null);
 
   const onSubmit: SubmitHandler<PlayListFormData> = (
@@ -50,7 +55,7 @@ const PlaylistForm = ({ user_id }: { user_id: string }) => {
           throw new Error("データが見つかりませんでした");
         } else {
           alert("プレイリストが新規作成されました");
-          router.back();
+          setCreateModalOpen(false);
         }
       } catch (error) {
         console.error(error);
@@ -61,7 +66,7 @@ const PlaylistForm = ({ user_id }: { user_id: string }) => {
   }, [formData]);
 
   const onDismiss = () => {
-    router.back();
+    setCreateModalOpen(false);
   };
 
   return (

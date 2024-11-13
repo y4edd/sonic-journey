@@ -1,21 +1,21 @@
-import Link from "next/link";
+import { Dispatch, SetStateAction } from "react";
 import type { ReactNode } from "react";
 import styles from "./ActionButton.module.css";
 
 type ActionButtonProps = {
   name: string;
   icon: ReactNode;
-  url: string;
+  setFunc: Dispatch<SetStateAction<boolean>>;
 };
 
-const ActionButton = ({ name, icon, url }: ActionButtonProps) => {
+const ActionButton = ({ name, icon, setFunc }: ActionButtonProps) => {
   return (
-    <Link href={url}>
-      <div className={styles.buttonContainer}>
-        {icon}
-        <button type="button">{name}</button>
-      </div>
-    </Link>
+    <div className={styles.buttonContainer}>
+      {icon}
+      <button type="button" onClick={() => setFunc(true)}>
+        {name}
+      </button>
+    </div>
   );
 };
 

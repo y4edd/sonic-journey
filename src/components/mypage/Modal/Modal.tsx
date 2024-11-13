@@ -1,13 +1,18 @@
 "use client";
 
 import CloseIcon from "@mui/icons-material/Close";
-import { useRouter } from "next/navigation";
 import { type ElementRef, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import { Dispatch, SetStateAction } from "react";
 import styles from "./Modal.module.css";
 
-const Modal = ({ children }: { children: React.ReactNode }) => {
-  const router = useRouter();
+const Modal = ({
+  setFunc,
+  children,
+}: {
+  setFunc: Dispatch<SetStateAction<boolean>>;
+  children: React.ReactNode;
+}) => {
   const dialogRef = useRef<ElementRef<"dialog">>(null);
 
   useEffect(() => {
@@ -17,7 +22,7 @@ const Modal = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   const onDismiss = () => {
-    router.back();
+    setFunc(false);
   };
 
   const modalRoot = document.getElementById("modal-root");
@@ -29,12 +34,16 @@ const Modal = ({ children }: { children: React.ReactNode }) => {
     <div className={styles.modalBackdrop}>
       <dialog ref={dialogRef} className={styles.modal} onClose={onDismiss}>
         {children}
-        <button type="button" onClick={onDismiss} className={styles.closeButton}>
+        <button
+          type="button"
+          onClick={onDismiss}
+          className={styles.closeButton}
+        >
           <CloseIcon />
         </button>
       </dialog>
     </div>,
-    modalRoot,
+    modalRoot
   );
 };
 
