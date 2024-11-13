@@ -59,7 +59,7 @@ const SongPage = async ({ params }: SongPageProps) => {
         </div>
 
         <div className={styles.historySongsContent}>
-          <MusicContentTitle title="視聴履歴" />
+          <MusicContentTitle title="試聴履歴" />
           <PlayHistory />
         </div>
       </div>
