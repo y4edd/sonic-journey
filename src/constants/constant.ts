@@ -1,11 +1,3 @@
-// スライダーに表示させる画像パス、今後リンクにする必要があります(topページ)
-export const SLIDER_IMAGES = [
-  "/images/sliderImage1.png",
-  "/images/sliderImage2.png",
-  "/images/sliderImage3.png",
-  "/images/sliderImage4.png",
-];
-
 // 表示させるアーティストのジャンル
 export const GENRE_ARTISTS = [
   { id: 0, name: "すべて" },
@@ -21,3 +13,43 @@ export const GENRE_ARTISTS = [
 
 // cookieの有効期限(1日)
 export const COOKIE_MAX_AGE = 60 * 60 * 24;
+
+// FIXME: 視聴履歴表示に伴う仮の情報。今後deezerから取得したデータに変更する必要があります。
+export const HISTORY = [
+  {
+    id: 1,
+    image: "/images/defaultsong.png",
+    title: "楽曲名1文字列が続きます。文字列が続きます。",
+    artist: "アーティスト名文字列が続きます。文字列が続きます。",
+  },
+  {
+    id: 2,
+    image: "/images/defaultsong.png",
+    title: "楽曲名2文字列が続きます。",
+    artist: "アーティスト名文字列が続きます。",
+  },
+  {
+    id: 3,
+    image: "/images/defaultsong.png",
+    title: "楽曲名3",
+    artist: "アーティスト名",
+  },
+  {
+    id: 4,
+    image: "/images/defaultsong.png",
+    title: "楽曲名4",
+    artist: "アーティスト名",
+  },
+  {
+    id: 5,
+    image: "/images/defaultsong.png",
+    title: "楽曲名5",
+    artist: "アーティスト名",
+  },
+  {
+    id: 6,
+    image: "/images/defaultsong.png",
+    title: "楽曲名6",
+    artist: "アーティスト名",
+  },
+];

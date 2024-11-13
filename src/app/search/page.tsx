@@ -1,6 +1,4 @@
 import SearchKind from "@/components/search/SearchKind/SearchKind";
-import SearchResult from "@/components/search/SearchResult/SearchResult";
-import SearchTotal from "@/components/search/SearchTotal/SearchTotal";
 import SearchValue from "@/components/search/SearchValue/SearchValue";
 import BreadList from "@/components/top/BreadList/BreadList";
 import FreeSearch from "@/components/top/FreeSearch/FreeSearch";
@@ -14,7 +12,7 @@ const Search = ({
   //searchParamsでクエリパラメータを取得
   const freeWord = searchParams.q;
   const searchTotal = searchParams.n;
-
+  const kind = searchParams.k;
   return (
     <div>
       <BreadList
@@ -23,24 +21,18 @@ const Search = ({
           { link: "/search", title: "検索結果" },
         ]}
       />
-      <div className={styles.searchValue}>
-        <SearchValue freeWord={freeWord} />
-      </div>
+      <div className={styles.search}>
+        <div>
+          <SearchValue freeWord={freeWord} />
+        </div>
 
-      <div className={styles.searchMargin}>
-        <FreeSearch />
-      </div>
+        <div>
+          <FreeSearch />
+        </div>
 
-      <div>
-        <SearchKind />
-      </div>
-
-      <div className={styles.searchTotal}>
-        <SearchTotal searchTotal={searchTotal} />
-      </div>
-
-      <div className={styles.searchResult}>
-        <SearchResult freeWord={freeWord} url="music" />
+        <div>
+          <SearchKind freeWord={freeWord} searchTotal={searchTotal} kind={kind} />
+        </div>
       </div>
     </div>
   );
