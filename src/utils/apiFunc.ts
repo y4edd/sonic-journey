@@ -221,3 +221,16 @@ export const getSearchSongs = async (freeWord: string) => {
     console.error(error);
   }
 };
+
+export const fetchUser = async () => {
+  try {
+    const response = await fetch("/api/user/checkLogin");
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(`エラー: ${response.status} - ${data.message}`);
+    }
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
