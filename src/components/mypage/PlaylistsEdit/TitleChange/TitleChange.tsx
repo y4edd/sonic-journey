@@ -86,6 +86,7 @@ export const TitleChange = ({
               type="text"
               placeholder={playlist.name}
               {...register("playlistTitle")}
+              autoFocus
               className={styles.input}
             />
             <div className={styles.errorMessage}>
