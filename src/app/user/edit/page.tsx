@@ -9,15 +9,18 @@ import { registerSchema } from "@/lib/validation";
 import type { FormData } from "@/types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
-import { ToastContainer, ToastOptions, toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import styles from "./page.module.css";
 import "react-toastify/dist/ReactToastify.css";
+import UnauthorizedAccess from "@/components/invalid/UnauthorizedAccess";
 
 const Edit = () => {
-  // useStateでサーバーエラーとトーストの表示管理
-  const [_serverError, _setServerError] = useState<string | null>(null);
+  // useStateでサーバーエラーの管理
+  const [loading, setLoading] = useState(true);
+  const [serverError, setServerError] = useState<string | null>("");
+  const [userId, setUserId] = useState<string | null>(null);
   // React hook formでフォーム管理
   const {
     register,
@@ -28,6 +31,36 @@ const Edit = () => {
   });
 
   const router = useRouter();
+
+  const fetchUser = async () => {
+    try {
+      const response = await fetch("/api/user/checkLogin");
+      if (response.ok) {
+        const data = await response.json();
+        setUserId(data.id);
+      } else {
+        const error = await response.json();
+        setServerError(error.message);
+      }
+    } catch (err) {
+      console.log(err);
+      setServerError("サーバーエラーが発生しました");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // biome-ignore lint: 依存配列を空にし、初回レンダリングのみ実行
+  useEffect(() => {
+    fetchUser();
+  }, []);
+
+  if (loading) {
+    return <p className="loading">Loading...</p>;
+  }
+  if (userId === null) {
+    return <UnauthorizedAccess />;
+  }
 
   // FIXME: dataを受け取り、データベースの内容を更新する処理実装
   const onSubmit: SubmitHandler<FormData> = async (data) => {
@@ -120,6 +153,7 @@ const Edit = () => {
             text={"戻る"}
             onClick={handleClick}
           />
+          <div className={styles.errorMessage}>{serverError}</div>
         </form>
       </div>
     </>
