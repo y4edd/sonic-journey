@@ -5,6 +5,7 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import Image from "next/image";
 import Link from "next/link";
 
+import { savePlayHistory } from "@/actions/savePlayHistory";
 import { useAlbumAudio } from "@/context/AlbumAudioContext";
 import type { DeezerTrackSong } from "@/types/deezer";
 import styles from "./PickSongs.module.css";
@@ -12,12 +13,18 @@ import styles from "./PickSongs.module.css";
 const PickSongs = ({ pickSong }: { pickSong: DeezerTrackSong }) => {
   const { currentlyPlayingId, setCurrentlyPlayingId } = useAlbumAudio();
   const isPlaying = currentlyPlayingId === pickSong.id;
-  const handlePlay = () => {
-    setCurrentlyPlayingId(pickSong.id);
+  const handlePlay = async () => {
+    try {
+      setCurrentlyPlayingId(pickSong.id);
+      await savePlayHistory(pickSong.id);
+    } catch (error) {
+      console.error("履歴の保存に失敗しました", error);
+    }
   };
   const handlePause = () => {
     setCurrentlyPlayingId(null);
   };
+
   return (
     <div className={styles.albumSingleContent}>
       <Link href={`/album/${pickSong.album.id}`} className={styles.linkImage}>
