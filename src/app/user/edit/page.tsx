@@ -14,7 +14,8 @@ import { type SubmitHandler, useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import styles from "./page.module.css";
 import "react-toastify/dist/ReactToastify.css";
-import UnauthorizedAccess from "@/components/invalid/UnauthorizedAccess";
+import UnauthorizedAccess from "@/components/UnauthorizedAccess/UnauthorizedAccess";
+import { fetchUser } from "@/app/api/user/returnUserId/route";
 
 const Edit = () => {
   // useStateでサーバーエラーの管理
@@ -32,27 +33,15 @@ const Edit = () => {
 
   const router = useRouter();
 
-  const fetchUser = async () => {
-    try {
-      const response = await fetch("/api/user/checkLogin");
-      if (response.ok) {
-        const data = await response.json();
-        setUserId(data.id);
-      } else {
-        const error = await response.json();
-        setServerError(error.message);
-      }
-    } catch (err) {
-      console.log(err);
-      setServerError("サーバーエラーが発生しました");
-    } finally {
-      setLoading(false);
-    }
-  };
-
   // biome-ignore lint: 依存配列を空にし、初回レンダリングのみ実行
   useEffect(() => {
-    fetchUser();
+    const checkUser = async () => {
+      const { id, error } = await fetchUser();
+      setUserId(id);
+      setServerError(error);
+      setLoading(false);
+    };
+    checkUser();
   }, []);
 
   if (loading) {
@@ -146,7 +135,11 @@ const Edit = () => {
             register={register}
             error={errors.passwordConfirm}
           />
-          <Button type="submit" className={ButtonStyles.register} text={"更新"} />
+          <Button
+            type="submit"
+            className={ButtonStyles.register}
+            text={"更新"}
+          />
           <Button
             type="button"
             className={ButtonStyles.return}

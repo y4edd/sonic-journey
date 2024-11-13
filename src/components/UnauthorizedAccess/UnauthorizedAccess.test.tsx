@@ -1,6 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { useRouter } from "next/navigation";
-import UnauthorizedAccess from "./UnauthorizedAccess";
+import UnauthorizedAccess from ".";
 
 jest.mock("next/navigation", () => ({
   useRouter: jest.fn(),
@@ -11,7 +11,7 @@ describe("UnAuthenticatedコンポーネントのテスト", () => {
     render(<UnauthorizedAccess />);
 
     expect(
-      screen.getByText(/不正な画面遷移です.*下記ボタンよりログインしてください/),
+      screen.getByText(/不正な画面遷移です.*下記ボタンよりログインしてください/)
     ).toBeInTheDocument();
 
     const button = screen.getByRole("button", { name: "ログインページへ移動" });

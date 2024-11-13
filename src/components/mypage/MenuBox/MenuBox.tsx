@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { ReactNode } from "react";
+import { ReactNode } from "react";
 import styles from "./MenuBox.module.css";
 
 type MenuBoxProps = {
@@ -9,10 +9,10 @@ type MenuBoxProps = {
   link: string;
 };
 
-const MenuBox = ({ mainTitle, subTitle, icon, link }: MenuBoxProps) => {
+const MenuBox = ({ mainTitle, subTitle, icon, link, }: MenuBoxProps) => {
   return (
-    <Link href={link}>
-      <div className={styles.menuBox}>
+    <Link href={link} >
+      <div className={styles.menuBox} >
         <div className={styles.menuIcon}>{icon}</div>
         <p>{mainTitle}</p>
         <p>{subTitle}</p>
