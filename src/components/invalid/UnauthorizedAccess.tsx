@@ -3,7 +3,7 @@ import Button from "../user/Button/Button";
 import ButtonStyles from "../user/Button/Button.module.css";
 import styles from "./invalid.module.css";
 
-const UnAuthenticated = () => {
+const UnauthorizedAccess = () => {
   const router = useRouter();
 
   const clickToLogin = () => {
@@ -28,4 +28,4 @@ const UnAuthenticated = () => {
   );
 };
 
-export default UnAuthenticated;
+export default UnauthorizedAccess;

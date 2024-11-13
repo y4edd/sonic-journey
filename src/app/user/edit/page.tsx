@@ -1,6 +1,5 @@
 "use client";
 
-import Unauthenticated from "@/components/invalid/invalid";
 import BreadList from "@/components/top/BreadList/BreadList";
 import Button from "@/components/user/Button/Button";
 import ButtonStyles from "@/components/user/Button/Button.module.css";
@@ -16,6 +15,7 @@ import { ToastContainer, toast } from "react-toastify";
 import styles from "./page.module.css";
 import "@/app/globals.css";
 import "react-toastify/dist/ReactToastify.css";
+import UnauthorizedAccess from "@/components/invalid/UnauthorizedAccess";
 
 const Edit = () => {
   // useStateでサーバーエラーの管理
@@ -60,7 +60,7 @@ const Edit = () => {
     return <p className="loading">Loading...</p>;
   }
   if (userId === null) {
-    return <Unauthenticated />;
+    return <UnauthorizedAccess />;
   }
 
   // FIXME: dataを受け取り、データベースの内容を更新する処理実装
@@ -147,7 +147,11 @@ const Edit = () => {
             register={register}
             error={errors.passwordConfirm}
           />
-          <Button type="submit" className={ButtonStyles.register} text={"更新"} />
+          <Button
+            type="submit"
+            className={ButtonStyles.register}
+            text={"更新"}
+          />
           <Button
             type="button"
             className={ButtonStyles.return}
