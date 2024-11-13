@@ -1,5 +1,6 @@
 import ImageTitleLink from "@/components/music/ImageTitleLink/ImageTitleLink";
 import MusicContentTitle from "@/components/music/MusicContentTitle/MusicContentTitle";
+import PlayHistory from "@/components/music/PlayHistory/PlayHistory";
 import SongInfoContent from "@/components/music/SongInfoContent/SongInfoContent";
 import SongList from "@/components/mypage/SongList/SongList";
 import BreadList from "@/components/top/BreadList/BreadList";
@@ -55,6 +56,11 @@ const SongPage = async ({ params }: SongPageProps) => {
             url="music"
             errorMessage="人気楽曲を取得できませんでした"
           />
+        </div>
+
+        <div className={styles.historySongsContent}>
+          <MusicContentTitle title="試聴履歴" />
+          <PlayHistory />
         </div>
       </div>
     </>
