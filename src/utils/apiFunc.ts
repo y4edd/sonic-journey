@@ -1,3 +1,4 @@
+import { getAllCookies } from "./getAllCookies";
 // 人気新着楽曲を取得する関数
 // limitには取得したい件数を入力
 export const getNewSongs = async (limit: number) => {
@@ -209,6 +210,29 @@ export const getSearchSongs = async (freeWord: string) => {
     });
 
     // 失敗した場合の処理
+    if (!res.ok) {
+      throw new Error("データが見つかりませんでした");
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// DBからお気に入り楽曲の楽曲idと更新日を取得する関数
+export const getFavoriteSongs = async () => {
+  try {
+    // NOTE: cookieを取得
+    const cookie = getAllCookies();
+
+    const res = await fetch("http://localhost:3000/api/favoriteSongs", {
+      cache: "no-cache",
+      headers: {
+        Cookie: cookie,
+      },
+    });
+
     if (!res.ok) {
       throw new Error("データが見つかりませんでした");
     }
