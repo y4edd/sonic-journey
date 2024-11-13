@@ -25,7 +25,7 @@ const PlayHistory = () => {
           },
         )
       ) : (
-        <p className={styles.nothingHistory}>視聴履歴がありません</p>
+        <p className={styles.nothingHistory}>試聴履歴がありません</p>
       )}
     </div>
   );
