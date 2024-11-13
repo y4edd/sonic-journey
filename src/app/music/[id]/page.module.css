@@ -6,7 +6,8 @@
 
 .artistInfoLinkContent,
 .artistFavoriteSongsContent,
-.songDetailContent {
+.songDetailContent,
+.historySongsContent {
   padding-top: 2rem;
   padding-bottom: 2rem;
   border-bottom: 2px solid #c7c7c7;
