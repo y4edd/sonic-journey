@@ -1,5 +1,6 @@
 import ArtistInfo from "@/components/music/ArtistInfo/ArtistInfo";
 import MusicContentTitle from "@/components/music/MusicContentTitle/MusicContentTitle";
+import PlayHistory from "@/components/music/PlayHistory/PlayHistory";
 import SongList from "@/components/mypage/SongList/SongList";
 import BreadList from "@/components/top/BreadList/BreadList";
 import { getArtist, getArtistAlbum, getArtistSongs } from "@/utils/apiFunc";
@@ -54,6 +55,11 @@ const ArtistPage = async ({ params }: ArtistPageProps) => {
             url="album"
             errorMessage="アルバムを取得できませんでした"
           />
+        </div>
+
+        <div className={styles.historySongsContent}>
+          <MusicContentTitle title="視聴履歴" />
+          <PlayHistory />
         </div>
       </div>
     </>

@@ -2,6 +2,7 @@ import AlbumInfo from "@/components/music/AlbumInfo/AlbumInfo";
 import AlbumSingles from "@/components/music/AlbumSingles/AlbumSingles";
 import ImageTitleLink from "@/components/music/ImageTitleLink/ImageTitleLink";
 import MusicContentTitle from "@/components/music/MusicContentTitle/MusicContentTitle";
+import PlayHistory from "@/components/music/PlayHistory/PlayHistory";
 import SongList from "@/components/mypage/SongList/SongList";
 import BreadList from "@/components/top/BreadList/BreadList";
 import { getAlbum, getArtistSongs } from "@/utils/apiFunc";
@@ -60,6 +61,11 @@ const AlbumPage = async ({ params }: AlbumPageProps) => {
             url="music"
             errorMessage="人気楽曲を取得できませんでした"
           />
+        </div>
+
+        <div className={styles.historySongsContent}>
+          <MusicContentTitle title="視聴履歴" />
+          <PlayHistory />
         </div>
       </div>
     </>
