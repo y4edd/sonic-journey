@@ -1,11 +1,13 @@
 "use client";
 
 import styles from "./PlaylistEdit.module.css";
+import { TitleChange } from "./TitleChange/TitleChange";
 import type { UserInfo } from "@/types/user";
 import type { Playlist } from "@prisma/client";
 import { useEffect, useState } from "react";
 import { getUserInfo, getUserPlaylist } from "@/utils/apiFunc";
 import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import { Dispatch, SetStateAction } from "react";
 
 export const PlaylistEdit = ({
@@ -15,6 +17,7 @@ export const PlaylistEdit = ({
 }) => {
   const [user, setUser] = useState<UserInfo | null>(null);
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
+  const [titleChangeFlag, setTitleChangeFlag] = useState<boolean[]>([]);
   useEffect(() => {
     const getUser = async () => {
       const fetchUser: UserInfo = await getUserInfo();
@@ -32,6 +35,14 @@ export const PlaylistEdit = ({
       getPlaylists();
     }
   }, [user]);
+
+  // プレイリスト名編集のための状態関数を作成
+  useEffect(() => {
+    setTitleChangeFlag([]);
+    for (let i = 1; i <= playlists.length; i++) {
+      setTitleChangeFlag((prevState) => [...prevState, false]);
+    }
+  }, [playlists]);
 
   const handlePlaylistDelete = async (playlist: Playlist) => {
     const deleteCheck = confirm(
@@ -66,17 +77,41 @@ export const PlaylistEdit = ({
       <p className={styles.editTitle}>プレイリスト編集</p>
       <div className={styles.listWrapper}>
         <ul className={styles.playlists}>
-          {playlists.map((playlist) => (
-            <li key={playlist.id} className={styles.playlistList}>
-              <p className={styles.listTitle}>{playlist.name}</p>
-              <button
-                type="button"
-                onClick={() => handlePlaylistDelete(playlist)}
-              >
-                <DeleteIcon className={styles.deleteIcon} />
-              </button>
-            </li>
-          ))}
+          {playlists.map((playlist, index) =>
+            titleChangeFlag[index] ? (
+              <TitleChange
+                key={index}
+                playlist={playlist}
+                // playlists={playlists}
+                setTitleChangeFlag={setTitleChangeFlag}
+                index={index}
+              />
+            ) : (
+              <li key={playlist.id} className={styles.playlistList}>
+                <p className={styles.listTitle}>{playlist.name}</p>
+                <div className={styles.editIcons}>
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setTitleChangeFlag(
+                        playlists.map((playlist, i) =>
+                          index === i ? true : false
+                        )
+                      )
+                    }
+                  >
+                    <EditIcon className={styles.editIcon} />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handlePlaylistDelete(playlist)}
+                  >
+                    <DeleteIcon className={styles.deleteIcon} />
+                  </button>
+                </div>
+              </li>
+            )
+          )}
         </ul>
       </div>
       <div className={styles.buttonContainer}>

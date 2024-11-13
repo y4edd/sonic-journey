@@ -1,10 +1,13 @@
 .wrapper {
-  margin: 1rem 3rem;
+  margin: 1rem 1rem;
   max-width: 85%;
 }
 
 .editTitle {
+  display: flex;
   text-align: center;
+  width: 100%;
+  margin: 0.5rem 2.5rem;
   padding-top: 1rem;
   font-size: 1.5rem;
   font-weight: 600;
@@ -25,19 +28,26 @@
 }
 
 .listTitle {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   margin: 0 2rem 0 0.5rem;
 }
 
-.playlistList > button {
+.editIcons {
   margin: auto 0 auto auto;
+}
+.editIcons > button {
   background-color: white;
   border: none;
 }
-
 .deleteIcon {
-  font-size: 2.3rem;
+  margin-left: 0.3rem;
+  font-size: 2rem;
   color: rgba(204, 15, 15, 0.635);
+}
+
+.editIcon {
+  font-size: 2rem;
+  color: rgb(62, 154, 59);
 }
 
 .buttonContainer {
