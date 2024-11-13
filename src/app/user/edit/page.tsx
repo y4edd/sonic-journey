@@ -13,7 +13,6 @@ import { useEffect, useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import styles from "./page.module.css";
-import "@/app/globals.css";
 import "react-toastify/dist/ReactToastify.css";
 import UnauthorizedAccess from "@/components/invalid/UnauthorizedAccess";
 

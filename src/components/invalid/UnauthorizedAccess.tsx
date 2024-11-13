@@ -1,7 +1,7 @@
 import { useRouter } from "next/navigation";
 import Button from "../user/Button/Button";
 import ButtonStyles from "../user/Button/Button.module.css";
-import styles from "./invalid.module.css";
+import styles from "./UnauthorizedAccess.module.css";
 
 const UnauthorizedAccess = () => {
   const router = useRouter();
