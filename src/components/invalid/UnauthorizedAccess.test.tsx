@@ -11,7 +11,7 @@ describe("UnAuthenticatedコンポーネントのテスト", () => {
     render(<UnauthorizedAccess />);
 
     expect(
-      screen.getByText(/不正な画面遷移です.*下記ボタンよりログインしてください/)
+      screen.getByText(/不正な画面遷移です.*下記ボタンよりログインしてください/),
     ).toBeInTheDocument();
 
     const button = screen.getByRole("button", { name: "ログインページへ移動" });

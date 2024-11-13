@@ -147,11 +147,7 @@ const Edit = () => {
             register={register}
             error={errors.passwordConfirm}
           />
-          <Button
-            type="submit"
-            className={ButtonStyles.register}
-            text={"更新"}
-          />
+          <Button type="submit" className={ButtonStyles.register} text={"更新"} />
           <Button
             type="button"
             className={ButtonStyles.return}
