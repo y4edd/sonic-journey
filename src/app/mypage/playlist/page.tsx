@@ -6,8 +6,7 @@ import PlaylistList from "@/components/mypage/PlaylistList/PlaylistList";
 import BreadList from "@/components/top/BreadList/BreadList";
 import AddBoxIcon from "@mui/icons-material/AddBox";
 import EditIcon from "@mui/icons-material/Edit";
-import { getUserInfo, getUserPlaylist } from "@/utils/apiFunc";
-import type { UserInfo } from "@/types/user";
+import { fetchUser, getUserPlaylist } from "@/utils/apiFunc";
 import type { Playlist } from "@prisma/client";
 import styles from "./page.module.css";
 import { useEffect, useState } from "react";
@@ -16,15 +15,15 @@ import PlaylistForm from "@/components/mypage/PlaylistForm/PlaylistForm";
 import { PlaylistEdit } from "@/components/mypage/PlaylistsEdit/PlaylistEdit";
 
 const PlayListPage = () => {
-  const [user, setUser] = useState<UserInfo | null>(null);
+  const [user, setUser] = useState<string | null>(null);
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
   const [createModalOpen, setCreateModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
 
   useEffect(() => {
     const getUser = async () => {
-      const fetchUser: UserInfo = await getUserInfo();
-      setUser(fetchUser);
+      const data = await fetchUser();
+      setUser(data.id);
     };
     getUser();
   }, []);
@@ -32,7 +31,7 @@ const PlayListPage = () => {
   useEffect(() => {
     if (user) {
       const getPlaylists = async () => {
-        const getPlaylists = await getUserPlaylist(user.id);
+        const getPlaylists = await getUserPlaylist(user);
         setPlaylists(getPlaylists);
       };
       getPlaylists();
@@ -66,7 +65,7 @@ const PlayListPage = () => {
       {createModalOpen && (
         <Modal setFunc={setCreateModalOpen}>
           <PlaylistForm
-            user_id={user.id}
+            user_id={user}
             setCreateModalOpen={setCreateModalOpen}
           />
         </Modal>

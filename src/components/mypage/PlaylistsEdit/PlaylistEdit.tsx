@@ -2,10 +2,9 @@
 
 import styles from "./PlaylistEdit.module.css";
 import { TitleChange } from "./TitleChange/TitleChange";
-import type { UserInfo } from "@/types/user";
 import type { Playlist } from "@prisma/client";
 import { useEffect, useState } from "react";
-import { getUserInfo, getUserPlaylist } from "@/utils/apiFunc";
+import { fetchUser, getUserPlaylist } from "@/utils/apiFunc";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { Dispatch, SetStateAction } from "react";
@@ -15,13 +14,13 @@ export const PlaylistEdit = ({
 }: {
   setEditModalOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const [user, setUser] = useState<UserInfo | null>(null);
+  const [user, setUser] = useState<string | null>(null);
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
   const [titleChangeFlag, setTitleChangeFlag] = useState<boolean[]>([]);
   useEffect(() => {
     const getUser = async () => {
-      const fetchUser: UserInfo = await getUserInfo();
-      setUser(fetchUser);
+      const data = await fetchUser();
+      setUser(data.id);
     };
     getUser();
   }, []);
@@ -29,7 +28,7 @@ export const PlaylistEdit = ({
   useEffect(() => {
     if (user) {
       const getPlaylists = async () => {
-        const getPlaylists = await getUserPlaylist(user.id);
+        const getPlaylists = await getUserPlaylist(user);
         setPlaylists(getPlaylists);
       };
       getPlaylists();
