@@ -8,6 +8,8 @@ import NoAccountsIcon from "@mui/icons-material/NoAccounts";
 import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import PlaylistPlayTwoToneIcon from "@mui/icons-material/PlaylistPlayTwoTone";
 import styles from "./page.module.css";
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const MyPage = () => {
   return (
@@ -18,6 +20,7 @@ const MyPage = () => {
           { link: "/mypage", title: "マイページ" },
         ]}
       />
+      <ToastContainer />
       <div className={styles.menuTitle}>
         <h3>メニュー</h3>
       </div>

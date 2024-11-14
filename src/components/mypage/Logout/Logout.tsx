@@ -1,13 +1,14 @@
 "use client";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { redirect } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import menuStyles from "../MenuBox/MenuBox.module.css";
 import styles from "./Logout.module.css";
+import { useRouter } from "next/navigation";
 
 const Logout = () => {
   const [serverError, setServerError] = useState("");
+  const router = useRouter();
   const logoutUser = async () => {
     try {
       const response = await fetch("/api/user/logout", {
@@ -24,8 +25,8 @@ const Logout = () => {
           theme: "colored",
         });
         setTimeout(() => {
-          redirect("/");
-        }, 1500);
+          router.push("/");
+        }, 500);
       } else {
         toast.error("ログアウトに失敗しました。もう一度お試しください。");
       }
