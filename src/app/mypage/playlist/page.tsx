@@ -2,17 +2,17 @@
 
 import ActionButton from "@/components/mypage/ActionButton/ActionButton";
 import MenuHeader from "@/components/mypage/MenuHeader/MenuHeader";
-import PlaylistList from "@/components/mypage/PlaylistList/PlaylistList";
-import BreadList from "@/components/top/BreadList/BreadList";
-import AddBoxIcon from "@mui/icons-material/AddBox";
-import EditIcon from "@mui/icons-material/Edit";
-import { fetchUser, getUserPlaylist } from "@/utils/apiFunc";
-import type { Playlist } from "@prisma/client";
-import styles from "./page.module.css";
-import { useEffect, useState } from "react";
 import Modal from "@/components/mypage/Modal/Modal";
 import PlaylistForm from "@/components/mypage/PlaylistForm/PlaylistForm";
+import PlaylistList from "@/components/mypage/PlaylistList/PlaylistList";
 import { PlaylistEdit } from "@/components/mypage/PlaylistsEdit/PlaylistEdit";
+import BreadList from "@/components/top/BreadList/BreadList";
+import { fetchUser, getUserPlaylist } from "@/utils/apiFunc";
+import AddBoxIcon from "@mui/icons-material/AddBox";
+import EditIcon from "@mui/icons-material/Edit";
+import type { Playlist } from "@prisma/client";
+import { useEffect, useState } from "react";
+import styles from "./page.module.css";
 
 const PlayListPage = () => {
   const [user, setUser] = useState<string | null>(null);
@@ -28,6 +28,7 @@ const PlayListPage = () => {
     getUser();
   }, []);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: プレイリスト作成、編集モーダルの開閉により更新
   useEffect(() => {
     if (user) {
       const getPlaylists = async () => {
@@ -50,24 +51,13 @@ const PlayListPage = () => {
       />
       <MenuHeader title="プレイリスト" />
       <div className={styles.actionButtonContainer}>
-        <ActionButton
-          name="追加"
-          icon={<AddBoxIcon />}
-          setFunc={setCreateModalOpen}
-        />
-        <ActionButton
-          name="編集"
-          icon={<EditIcon />}
-          setFunc={setEditModalOpen}
-        />
+        <ActionButton name="追加" icon={<AddBoxIcon />} setFunc={setCreateModalOpen} />
+        <ActionButton name="編集" icon={<EditIcon />} setFunc={setEditModalOpen} />
       </div>
       <PlaylistList playlists={playlists} />
       {createModalOpen && (
         <Modal setFunc={setCreateModalOpen}>
-          <PlaylistForm
-            user_id={user}
-            setCreateModalOpen={setCreateModalOpen}
-          />
+          <PlaylistForm user_id={user} setCreateModalOpen={setCreateModalOpen} />
         </Modal>
       )}
       {editModalOpen && (

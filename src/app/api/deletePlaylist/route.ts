@@ -1,5 +1,5 @@
 import prisma from "@/lib/prisma";
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
 export const DELETE = async (req: NextRequest) => {
   try {
@@ -12,14 +12,8 @@ export const DELETE = async (req: NextRequest) => {
         id: id,
       },
     });
-    return NextResponse.json(
-      { message: "プレイリストの削除に成功しました" },
-      { status: 200 }
-    );
-  } catch (err) {
-    return NextResponse.json(
-      { message: "サーバエラーが発生しました" },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: "プレイリストの削除に成功しました" }, { status: 200 });
+  } catch (_err) {
+    return NextResponse.json({ message: "サーバエラーが発生しました" }, { status: 500 });
   }
 };

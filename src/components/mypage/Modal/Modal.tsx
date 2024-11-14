@@ -2,8 +2,8 @@
 
 import CloseIcon from "@mui/icons-material/Close";
 import { type ElementRef, useEffect, useRef } from "react";
+import type { Dispatch, SetStateAction } from "react";
 import { createPortal } from "react-dom";
-import { Dispatch, SetStateAction } from "react";
 import styles from "./Modal.module.css";
 
 const Modal = ({
@@ -34,16 +34,12 @@ const Modal = ({
     <div className={styles.modalBackdrop}>
       <dialog ref={dialogRef} className={styles.modal} onClose={onDismiss}>
         {children}
-        <button
-          type="button"
-          onClick={onDismiss}
-          className={styles.closeButton}
-        >
+        <button type="button" onClick={onDismiss} className={styles.closeButton}>
           <CloseIcon />
         </button>
       </dialog>
     </div>,
-    modalRoot
+    modalRoot,
   );
 };
 

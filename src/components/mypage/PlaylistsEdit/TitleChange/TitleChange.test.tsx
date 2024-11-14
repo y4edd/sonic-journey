@@ -14,11 +14,7 @@ describe("TitleChangeコンポーネントの単体テスト", () => {
 
   it("レンダリングが適切に行われていること", () => {
     render(
-      <TitleChange
-        playlist={playlist}
-        setTitleChangeFlag={mockSetTitleChangeFlag}
-        index={index}
-      />
+      <TitleChange playlist={playlist} setTitleChangeFlag={mockSetTitleChangeFlag} index={index} />,
     );
 
     expect(screen.getByPlaceholderText("勉強用")).toBeInTheDocument();
@@ -29,11 +25,7 @@ describe("TitleChangeコンポーネントの単体テスト", () => {
 
   it("キャンセルボタンを押した際にtitleChangeFlag(状態関数)が書き換わる", () => {
     render(
-      <TitleChange
-        playlist={playlist}
-        setTitleChangeFlag={mockSetTitleChangeFlag}
-        index={index}
-      />
+      <TitleChange playlist={playlist} setTitleChangeFlag={mockSetTitleChangeFlag} index={index} />,
     );
 
     const cancelButton = screen.getByRole("button", { name: "cancel" });
@@ -44,19 +36,13 @@ describe("TitleChangeコンポーネントの単体テスト", () => {
 
   it("プレイリスト名が未入力の状態で変更ボタンを押したときにエラーメッセージが表示される", async () => {
     render(
-      <TitleChange
-        playlist={playlist}
-        setTitleChangeFlag={mockSetTitleChangeFlag}
-        index={index}
-      />
+      <TitleChange playlist={playlist} setTitleChangeFlag={mockSetTitleChangeFlag} index={index} />,
     );
 
     const submitButton = screen.getByRole("button", { name: "submit" });
     fireEvent.click(submitButton);
 
-    const errorMessage = await screen.findByText(
-      "プレイリスト名を入力してください"
-    );
+    const errorMessage = await screen.findByText("プレイリスト名を入力してください");
     expect(errorMessage).toBeInTheDocument();
   });
 });

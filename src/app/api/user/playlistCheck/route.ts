@@ -20,9 +20,6 @@ export const GET = async (req: NextRequest) => {
     return NextResponse.json(playlist, { status: 200 });
   } catch (err) {
     console.error(err);
-    return NextResponse.json(
-      { message: "サーバーエラーが発生しました" },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: "サーバーエラーが発生しました" }, { status: 500 });
   }
 };

@@ -3,8 +3,7 @@ import { type NextRequest, NextResponse } from "next/server";
 
 export const PUT = async (req: NextRequest) => {
   try {
-    const { id, name, user_id }: { id: number; name: string; user_id: string } =
-      await req.json();
+    const { id, name, user_id }: { id: number; name: string; user_id: string } = await req.json();
 
     const sameTitleCheck = await prisma.playlist.findFirst({
       where: {
@@ -15,7 +14,7 @@ export const PUT = async (req: NextRequest) => {
     if (sameTitleCheck) {
       return NextResponse.json(
         { message: "同名のプレイリストが作成されています" },
-        { status: 409 }
+        { status: 409 },
       );
     }
 
@@ -28,18 +27,15 @@ export const PUT = async (req: NextRequest) => {
       },
     });
 
-    return NextResponse.json(
-      { message: "プレイリスト名の変更が完了しました" },
-      { status: 200 }
-    );
-  } catch (err) {
+    return NextResponse.json({ message: "プレイリスト名の変更が完了しました" }, { status: 200 });
+  } catch (_err) {
     return NextResponse.json(
       {
         message: "サーバエラーが発生しました",
       },
       {
         status: 500,
-      }
+      },
     );
   }
 };

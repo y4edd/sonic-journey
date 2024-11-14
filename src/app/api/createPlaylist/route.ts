@@ -17,7 +17,7 @@ export const POST = async (req: NextRequest) => {
         { message: "同名のプレイリストを作成しています" },
         {
           status: 409,
-        }
+        },
       );
     }
 
@@ -28,14 +28,8 @@ export const POST = async (req: NextRequest) => {
       },
     });
 
-    return NextResponse.json(
-      { message: "プレイリストの作成が成功しました" },
-      { status: 200 }
-    );
-  } catch (error) {
-    return NextResponse.json(
-      { message: "サーバーエラーが発生しました" },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: "プレイリストの作成が成功しました" }, { status: 200 });
+  } catch (_error) {
+    return NextResponse.json({ message: "サーバーエラーが発生しました" }, { status: 500 });
   }
 };

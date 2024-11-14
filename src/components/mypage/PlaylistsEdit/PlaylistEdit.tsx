@@ -1,13 +1,13 @@
 "use client";
 
-import styles from "./PlaylistEdit.module.css";
-import { TitleChange } from "./TitleChange/TitleChange";
-import type { Playlist } from "@prisma/client";
-import { useEffect, useState } from "react";
 import { fetchUser, getUserPlaylist } from "@/utils/apiFunc";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import { Dispatch, SetStateAction } from "react";
+import type { Playlist } from "@prisma/client";
+import { useEffect, useState } from "react";
+import type { Dispatch, SetStateAction } from "react";
+import styles from "./PlaylistEdit.module.css";
+import { TitleChange } from "./TitleChange/TitleChange";
 
 export const PlaylistEdit = ({
   setEditModalOpen,
@@ -44,9 +44,7 @@ export const PlaylistEdit = ({
   }, [playlists]);
 
   const handlePlaylistDelete = async (playlist: Playlist) => {
-    const deleteCheck = confirm(
-      `「${playlist.name}」\nプレイリストを削除しますか？`
-    );
+    const deleteCheck = confirm(`「${playlist.name}」\nプレイリストを削除しますか？`);
     if (deleteCheck) {
       try {
         const res = await fetch("http://localhost:3000/api/deletePlaylist", {
@@ -63,7 +61,7 @@ export const PlaylistEdit = ({
           throw new Error("正常に削除できませんでした");
         }
         setPlaylists((prevState) =>
-          prevState.filter((deletePlaylist) => deletePlaylist !== playlist)
+          prevState.filter((deletePlaylist) => deletePlaylist !== playlist),
         );
       } catch (error) {
         console.error(error);
@@ -79,10 +77,10 @@ export const PlaylistEdit = ({
           {playlists.map((playlist, index) =>
             titleChangeFlag[index] ? (
               <TitleChange
-                key={index}
+                key={playlist.id}
                 playlist={playlist}
                 setTitleChangeFlag={setTitleChangeFlag}
-                index={index}
+                playlistIndex={index}
               />
             ) : (
               <li key={playlist.id} className={styles.playlistList}>
@@ -90,13 +88,7 @@ export const PlaylistEdit = ({
                 <div className={styles.editIcons}>
                   <button
                     type="button"
-                    onClick={() =>
-                      setTitleChangeFlag(
-                        playlists.map((playlist, i) =>
-                          index === i ? true : false
-                        )
-                      )
-                    }
+                    onClick={() => setTitleChangeFlag(playlists.map((_playlist, i) => index === i))}
                     aria-label="edit"
                   >
                     <EditIcon className={styles.editIcon} />
@@ -110,7 +102,7 @@ export const PlaylistEdit = ({
                   </button>
                 </div>
               </li>
-            )
+            ),
           )}
         </ul>
       </div>

@@ -2,24 +2,24 @@
 
 import { playlistTitleSchema } from "@/lib/validation";
 import type { Playlist } from "@/types/deezer";
-import { type SubmitHandler, useForm } from "react-hook-form";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import styles from "./TitleChange.module.css";
-import type { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import CancelIcon from "@mui/icons-material/Cancel";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { type Dispatch, type SetStateAction, useEffect, useState } from "react";
+import { type SubmitHandler, useForm } from "react-hook-form";
+import type { z } from "zod";
+import styles from "./TitleChange.module.css";
 
 type PlaylistFormData = z.infer<typeof playlistTitleSchema>;
 
 export const TitleChange = ({
   playlist,
   setTitleChangeFlag,
-  index,
+  playlistIndex,
 }: {
   playlist: Playlist;
   setTitleChangeFlag: Dispatch<SetStateAction<boolean[]>>;
-  index: number;
+  playlistIndex: number;
 }) => {
   const {
     register,
@@ -31,15 +31,13 @@ export const TitleChange = ({
 
   const [formData, setFormData] = useState<PlaylistFormData | null>(null);
 
-  const onSubmit: SubmitHandler<PlaylistFormData> = (
-    data: PlaylistFormData
-  ) => {
+  const onSubmit: SubmitHandler<PlaylistFormData> = (data: PlaylistFormData) => {
     setFormData(data);
   };
 
   const onCancel = () => {
     setTitleChangeFlag((prevState) =>
-      prevState.map((ele, i) => (index === i ? false : ele))
+      prevState.map((ele, i) => (playlistIndex === i ? false : ele)),
     );
   };
 
@@ -66,7 +64,7 @@ export const TitleChange = ({
         } else {
           playlist.name = formData.playlistTitle;
           setTitleChangeFlag((prevState) =>
-            prevState.map((ele, i) => (index === i ? false : ele))
+            prevState.map((ele, i) => (playlistIndex === i ? false : ele)),
           );
         }
       } catch (error) {
@@ -74,7 +72,7 @@ export const TitleChange = ({
       }
     };
     createPlaylist();
-  }, [formData]);
+  }, [formData, playlist, playlistIndex, setTitleChangeFlag]);
 
   return (
     <div className={styles.playlistList}>
@@ -85,21 +83,14 @@ export const TitleChange = ({
               type="text"
               placeholder={playlist.name}
               {...register("playlistTitle")}
-              autoFocus
               className={styles.input}
             />
             <div className={styles.errorMessage}>
-              {errors.playlistTitle?.message && (
-                <span>{errors.playlistTitle.message}</span>
-              )}
+              {errors.playlistTitle?.message && <span>{errors.playlistTitle.message}</span>}
             </div>
           </div>
           <div className={styles.button}>
-            <button
-              type="submit"
-              className={styles.createButton}
-              aria-label="submit"
-            >
+            <button type="submit" className={styles.createButton} aria-label="submit">
               <CheckCircleIcon className={styles.checkIcon} />
             </button>
             <button

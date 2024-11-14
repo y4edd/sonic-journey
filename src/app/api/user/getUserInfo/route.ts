@@ -12,10 +12,7 @@ export const GET = async (req: NextRequest, _res: NextResponse) => {
   const token = req.cookies.get("token");
 
   if (!token) {
-    return NextResponse.json(
-      { message: "ログインが必要です" },
-      { status: 401 }
-    );
+    return NextResponse.json({ message: "ログインが必要です" }, { status: 401 });
   }
   try {
     const decoded = jwt.verify(token.value, secretKey) as { email: string };
@@ -25,17 +22,11 @@ export const GET = async (req: NextRequest, _res: NextResponse) => {
       },
     });
     if (!userInfo) {
-      return NextResponse.json(
-        { message: "ユーザーが見つかりませんでした" },
-        { status: 401 }
-      );
+      return NextResponse.json({ message: "ユーザーが見つかりませんでした" }, { status: 401 });
     }
     return NextResponse.json(userInfo, { status: 200 });
   } catch (error) {
     console.error(error);
-    return NextResponse.json(
-      { message: "サーバーエラーが発生しました" },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: "サーバーエラーが発生しました" }, { status: 500 });
   }
 };

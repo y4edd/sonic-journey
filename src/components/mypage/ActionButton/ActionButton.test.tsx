@@ -10,7 +10,7 @@ describe("ActionButtonコンポーネントの単体テスト", () => {
         name="テスト"
         icon={<EditIcon data-testid="icon-element" />}
         setFunc={mockSetFunc}
-      />
+      />,
     );
     expect(screen.getByRole("button", { name: "テスト" })).toBeInTheDocument();
     expect(screen.getByTestId("icon-element")).toBeInTheDocument();

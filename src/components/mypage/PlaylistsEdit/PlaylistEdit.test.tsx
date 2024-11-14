@@ -1,22 +1,17 @@
+import type { Playlist } from "@/types/deezer";
+import { fetchUser, getUserPlaylist } from "@/utils/apiFunc";
 import { render, screen, waitFor } from "@testing-library/react";
 import { PlaylistEdit } from "./PlaylistEdit";
-import { getUserInfo, getUserPlaylist } from "@/utils/apiFunc";
-import type { UserInfo } from "@/types/user";
-import type { Playlist } from "@/types/deezer";
 
 jest.mock("@/utils/apiFunc", () => ({
-  getUserInfo: jest.fn(),
+  fetchUser: jest.fn(),
   getUserPlaylist: jest.fn(),
 }));
 
 describe("PlaylistEditコンポーネントの単体テスト", () => {
   const mockSetEditModalOpen = jest.fn();
-  const mockUser: UserInfo = {
+  const mockUser: { id: string } = {
     id: "1",
-    name: "tani",
-    email: "tani@ex.com",
-    createdAt: new Date(),
-    updatedAt: new Date(),
   };
   const mockPlaylists: Playlist[] = [
     {
@@ -35,7 +30,7 @@ describe("PlaylistEditコンポーネントの単体テスト", () => {
     },
   ];
 
-  (getUserInfo as jest.Mock).mockResolvedValue(mockUser);
+  (fetchUser as jest.Mock).mockResolvedValue(mockUser);
   (getUserPlaylist as jest.Mock).mockResolvedValue(mockPlaylists);
   it("レンダリングが適切に行われていること", async () => {
     render(<PlaylistEdit setEditModalOpen={mockSetEditModalOpen} />);
@@ -43,7 +38,7 @@ describe("PlaylistEditコンポーネントの単体テスト", () => {
     expect(screen.getByText("プレイリスト編集")).toBeInTheDocument();
 
     await waitFor(() => {
-      mockPlaylists.forEach((playlist) => {
+      mockPlaylists.map((playlist) => {
         expect(screen.getByText(playlist.name)).toBeInTheDocument();
       });
     });

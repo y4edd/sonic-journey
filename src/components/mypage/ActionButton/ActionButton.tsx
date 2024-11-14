@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import type { Dispatch, SetStateAction } from "react";
 import type { ReactNode } from "react";
 import styles from "./ActionButton.module.css";
 
