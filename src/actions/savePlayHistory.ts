@@ -9,7 +9,7 @@ const JWT_SECRET = process.env.JWT_SECRET_KEY as string;
 
 // Server Actionを定義
 export const savePlayHistory = async (songId: number | bigint) => {
-  // cookieからログイン情報は存在するトークンを取得
+  // cookieからログイン情報として存在するトークンを取得
   const cookieStore = cookies();
   const token = cookieStore.get("token")?.value;
 
@@ -23,40 +23,13 @@ export const savePlayHistory = async (songId: number | bigint) => {
     const decoded = jwt.verify(token, JWT_SECRET) as { id: string };
     const userId = decoded.id;
 
-    // 既存のユーザーと楽曲の履歴を削除
+    // 既存のユーザーと楽曲の履歴を削除（重複防止）
     await prisma.history.deleteMany({
       where: {
         user_id: userId,
         api_song_id: songId,
       },
     });
-
-    // ユーザーの現在の履歴数を取得
-    const historyCount = await prisma.history.count({
-      where: {
-        user_id: userId,
-      },
-    });
-
-    // 履歴が10件以上の場合、最も古い履歴を削除
-    if (historyCount >= 10) {
-      const oldestHistory = await prisma.history.findFirst({
-        where: {
-          user_id: userId,
-        },
-        orderBy: {
-          createdAt: "asc",
-        },
-      });
-
-      if (oldestHistory) {
-        await prisma.history.delete({
-          where: {
-            id: oldestHistory.id,
-          },
-        });
-      }
-    }
 
     // Prismaを使用してHistoryテーブルにデータを保存
     await prisma.history.create({
@@ -65,6 +38,30 @@ export const savePlayHistory = async (songId: number | bigint) => {
         api_song_id: songId,
       },
     });
+
+    // ユーザーの履歴を最新順に取得し、10件を超える古い履歴を削除
+    const historiesToDelete = await prisma.history.findMany({
+      where: {
+        user_id: userId,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+      skip: 10,
+      select: {
+        id: true,
+      },
+    });
+
+    // 10件を超えたユーザーの履歴を削除
+    if (historiesToDelete.length > 0) {
+      const idsDelete = historiesToDelete.map((history) => history.id);
+      await prisma.history.deleteMany({
+        where: {
+          id: { in: idsDelete },
+        },
+      });
+    }
   } catch (error) {
     console.error("履歴の保存に失敗しました", error);
   }
