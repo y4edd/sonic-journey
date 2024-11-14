@@ -12,7 +12,6 @@ const Logout = () => {
     try {
       const response = await fetch("/api/user/logout", {
         method: "POST",
-        credentials: "include",
       });
 
       if (response.ok) {
