@@ -82,7 +82,6 @@ export const PlaylistEdit = ({
               <TitleChange
                 key={index}
                 playlist={playlist}
-                // playlists={playlists}
                 setTitleChangeFlag={setTitleChangeFlag}
                 index={index}
               />
@@ -99,12 +98,14 @@ export const PlaylistEdit = ({
                         )
                       )
                     }
+                    aria-label="edit"
                   >
                     <EditIcon className={styles.editIcon} />
                   </button>
                   <button
                     type="button"
                     onClick={() => handlePlaylistDelete(playlist)}
+                    aria-label="delete"
                   >
                     <DeleteIcon className={styles.deleteIcon} />
                   </button>

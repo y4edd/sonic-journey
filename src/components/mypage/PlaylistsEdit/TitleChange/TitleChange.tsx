@@ -64,7 +64,6 @@ export const TitleChange = ({
         } else if (!res.ok) {
           throw new Error("データが見つかりませんでした");
         } else {
-          // alert("プレイリスト名が変更されました");
           playlist.name = formData.playlistTitle;
           setTitleChangeFlag((prevState) =>
             prevState.map((ele, i) => (index === i ? false : ele))
@@ -96,13 +95,18 @@ export const TitleChange = ({
             </div>
           </div>
           <div className={styles.button}>
-            <button type="submit" className={styles.createButton}>
+            <button
+              type="submit"
+              className={styles.createButton}
+              aria-label="submit"
+            >
               <CheckCircleIcon className={styles.checkIcon} />
             </button>
             <button
               type="button"
               className={styles.cancelButton}
               onClick={onCancel}
+              aria-label="cancel"
             >
               <CancelIcon className={styles.cancelIcon} />
             </button>
