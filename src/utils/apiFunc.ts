@@ -1,4 +1,3 @@
-import { getAllCookies } from "./getAllCookies";
 // 人気新着楽曲を取得する関数
 // limitには取得したい件数を入力
 export const getNewSongs = async (limit: number) => {
@@ -237,16 +236,13 @@ export const fetchUser = async () => {
   }
 };
 
-// DBからお気に入り楽曲の楽曲idと更新日を取得する関数
-export const getFavoriteSongs = async () => {
+// DBからお気に入り楽曲の楽曲idと更新日を取得する関数（Cookieのtokenを引数にとる）
+export const getFavoriteSongs = async (token: string) => {
   try {
-    // NOTE: cookieを取得
-    const cookie = getAllCookies();
-
     const res = await fetch("http://localhost:3000/api/favoriteSongs", {
       cache: "no-cache",
       headers: {
-        Cookie: cookie,
+        Cookie: token,
       },
     });
 
@@ -257,5 +253,22 @@ export const getFavoriteSongs = async () => {
     return await res.json();
   } catch (error) {
     console.error(error);
+  }
+};
+
+// サーバーサイドからログインしているか確認する関数（Cookieのtokenを引数にとる）
+export const checkLoggedInServer = async (token: string): Promise<boolean> => {
+  try {
+    const response = await fetch("http://localhost:3000/api/user/checkLogin", {
+      cache: "no-cache",
+      headers: {
+        Cookie: token,
+      },
+    });
+
+    return response.ok;
+  } catch (error) {
+    console.error(error);
+    return false;
   }
 };
