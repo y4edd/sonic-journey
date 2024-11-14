@@ -11,7 +11,8 @@
 
 .artistInfoContent,
 .singleContent,
-.albumContent {
+.albumContent,
+.historySongsContent {
   margin-top: 1.5rem;
   border-bottom: 1px solid lightgray;
   padding-bottom: 1.5rem;

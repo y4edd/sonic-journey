@@ -5,8 +5,10 @@ export const GET = async (request: NextRequest) => {
   try {
     const { searchParams } = request.nextUrl;
     const artistName = searchParams.get("artistName");
-
-    const artistAlbums = await fetch(`https://api.deezer.com/search/album?q=${artistName}&limit=4`);
+    const resultLimit = searchParams.get("limit");
+    const artistAlbums = await fetch(
+      `https://api.deezer.com/search/album?q=${artistName}&limit=${resultLimit}`,
+    );
 
     if (!artistAlbums) {
       return NextResponse.json(

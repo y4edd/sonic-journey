@@ -53,7 +53,7 @@ export const useFreeWordSearch: UseFreeWordSearch = () => {
       const data = await response.json();
 
       //useRouterで検索結果ページに移動(クエリパラメータに検索ワードと検索数)
-      router.push(`/search?q=${freeWord}&n=${data.totalResults}`);
+      router.push(`/search?q=${freeWord}&n=${data.totalResults}&k=all`);
     } catch (error) {
       console.error(error);
       setError("サーバーエラーが発生しました");

@@ -1,0 +1,17 @@
+.menuBox {
+  height: 125px;
+  width: 125px;
+  display: grid;
+  place-content: center;
+  place-items: center;
+  border: 1px solid black;
+  margin-top: 1rem;
+  background-color: white;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 0.74rem;
+  height: 10px;
+  text-align: center;
+}
