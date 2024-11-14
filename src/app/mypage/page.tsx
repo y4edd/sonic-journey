@@ -7,9 +7,10 @@ import MusicNoteTwoToneIcon from "@mui/icons-material/MusicNoteTwoTone";
 import NoAccountsIcon from "@mui/icons-material/NoAccounts";
 import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import PlaylistPlayTwoToneIcon from "@mui/icons-material/PlaylistPlayTwoTone";
-import styles from "./page.module.css";
 import { ToastContainer } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+
+import styles from "./page.module.css";
+import "react-toastify/dist/ReactToastify.css";
 
 const MyPage = () => {
   return (
