@@ -14,7 +14,8 @@ import { type SubmitHandler, useForm } from "react-hook-form";
 import { ToastContainer, toast } from "react-toastify";
 import styles from "./page.module.css";
 import "react-toastify/dist/ReactToastify.css";
-import UnauthorizedAccess from "@/components/invalid/UnauthorizedAccess";
+import UnauthorizedAccess from "@/components/UnauthorizedAccess/UnauthorizedAccess";
+import { fetchUser } from "@/utils/apiFunc";
 
 const Edit = () => {
   // useStateでサーバーエラーの管理
@@ -32,27 +33,24 @@ const Edit = () => {
 
   const router = useRouter();
 
-  const fetchUser = async () => {
+  const loadUser = async () => {
     try {
-      const response = await fetch("/api/user/checkLogin");
-      if (response.ok) {
-        const data = await response.json();
+      const data = await fetchUser();
+      if (data?.id) {
         setUserId(data.id);
       } else {
-        const error = await response.json();
-        setServerError(error.message);
+        setUserId(null);
       }
-    } catch (err) {
-      console.log(err);
+    } catch {
       setServerError("サーバーエラーが発生しました");
     } finally {
       setLoading(false);
     }
   };
 
-  // biome-ignore lint: 依存配列を空にし、初回レンダリングのみ実行
+  // biome-ignore lint/correctness/useExhaustiveDependencies: マウント時のみ実行
   useEffect(() => {
-    fetchUser();
+    loadUser();
   }, []);
 
   if (loading) {

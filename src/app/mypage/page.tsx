@@ -1,8 +1,8 @@
+import Logout from "@/components/mypage/Logout/Logout";
 import MenuBox from "@/components/mypage/MenuBox/MenuBox";
 import BreadList from "@/components/top/BreadList/BreadList";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import HistoryIcon from "@mui/icons-material/History";
-import LogoutIcon from "@mui/icons-material/Logout";
 import MusicNoteTwoToneIcon from "@mui/icons-material/MusicNoteTwoTone";
 import NoAccountsIcon from "@mui/icons-material/NoAccounts";
 import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
@@ -56,11 +56,7 @@ const MyPage = () => {
           icon={<AccountBoxIcon fontSize="large" />}
           link="/user/edit"
         />
-        <MenuBox
-          mainTitle="ログアウト"
-          icon={<LogoutIcon fontSize="large" />}
-          link="/user/logout"
-        />
+        <Logout />
         <div className={styles.gridRow}>
           <MenuBox
             mainTitle="退会"
