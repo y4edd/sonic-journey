@@ -13,7 +13,7 @@ export const GET = async (req: NextRequest) => {
   const token = req.cookies.get("token");
 
   if (!token) {
-    return NextResponse.json({ message: "ログインが必要です" }, { status: 200 });
+    return NextResponse.json({ message: "ログインが必要です" }, { status: 401});
   }
 
   try {
