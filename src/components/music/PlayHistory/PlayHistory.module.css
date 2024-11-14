@@ -1,0 +1,50 @@
+.playHistoryGroup {
+  display: grid;
+  grid-template-columns: repeat(3, 30%);
+  grid-template-rows: repeat(2, 1fr);
+  place-items: stretch;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.playHistorySong {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  border-radius: 10px;
+  padding: 0.2rem;
+}
+
+.playHistorySong:hover {
+  background-color: #c9c9c92d;
+}
+
+.playHistorySong > img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px -5px #777777;
+  transition: opacity 0.3s ease-in;
+}
+
+.playHistorySong > img:hover {
+  opacity: 0.8;
+}
+
+.playHistorySong > p {
+  font-size: 0.8rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.playHistorySong > p:first-of-type {
+  font-weight: bold;
+}
+
+.nothingHistory {
+  font-weight: bold;
+  text-wrap: nowrap;
+}

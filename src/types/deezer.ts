@@ -306,6 +306,16 @@ export type ArtistAlbum = {
   type: string;
 };
 
+//SearchAlbumで使用する型
+export type SearchAlbum = {
+  id: number;
+  title: string;
+  cover_xl: string;
+  artist: {
+    name: string;
+  };
+};
+
 // deezerAPIから取得したgenreデータ
 export type GenreInfo = {
   id: number;
