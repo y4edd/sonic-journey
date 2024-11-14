@@ -1,6 +1,6 @@
 "use client";
 
-import { savePlayHistory } from "@/actions/savePlayHistory";
+import { savePlayHistory } from "@/utils/history";
 import MusicNoteIcon from "@mui/icons-material/MusicNote";
 import PlayCircleIcon from "@mui/icons-material/PlayCircle";
 import StopCircleIcon from "@mui/icons-material/StopCircle";
@@ -53,13 +53,9 @@ const SongAudio = ({ preview, id }: { preview?: string; id: number }) => {
   // 曲を再生
   const handlePlay = async () => {
     if (audioRef.current) {
-      try {
-        await audioRef.current.play();
-        setIsPlaying(true);
-        await savePlayHistory(id);
-      } catch (error) {
-        console.error("履歴の保存に失敗しました:", error);
-      }
+      await audioRef.current.play();
+      setIsPlaying(true);
+      await savePlayHistory(id);
     }
   };
 

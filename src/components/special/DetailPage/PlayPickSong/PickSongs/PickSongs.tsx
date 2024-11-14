@@ -1,26 +1,23 @@
 "use client";
 
 import AlbumSingleSongAudio from "@/components/music/AlbumSingleSongAudio/AlbumSingleSongAudio";
+import { useAlbumAudio } from "@/context/AlbumAudioContext";
+import type { DeezerTrackSong } from "@/types/deezer";
+import { savePlayHistory } from "@/utils/history";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Image from "next/image";
 import Link from "next/link";
-
-import { savePlayHistory } from "@/actions/savePlayHistory";
-import { useAlbumAudio } from "@/context/AlbumAudioContext";
-import type { DeezerTrackSong } from "@/types/deezer";
 import styles from "./PickSongs.module.css";
 
 const PickSongs = ({ pickSong }: { pickSong: DeezerTrackSong }) => {
   const { currentlyPlayingId, setCurrentlyPlayingId } = useAlbumAudio();
   const isPlaying = currentlyPlayingId === pickSong.id;
+
   const handlePlay = async () => {
-    try {
-      setCurrentlyPlayingId(pickSong.id);
-      await savePlayHistory(pickSong.id);
-    } catch (error) {
-      console.error("履歴の保存に失敗しました", error);
-    }
+    setCurrentlyPlayingId(pickSong.id);
+    await savePlayHistory(pickSong.id);
   };
+
   const handlePause = () => {
     setCurrentlyPlayingId(null);
   };

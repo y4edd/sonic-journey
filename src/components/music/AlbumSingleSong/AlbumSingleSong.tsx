@@ -1,7 +1,7 @@
 "use client";
 
-import { savePlayHistory } from "@/actions/savePlayHistory";
 import { useAlbumAudio } from "@/context/AlbumAudioContext";
+import { savePlayHistory } from "@/utils/history";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Link from "next/link";
 import AlbumSingleSongAudio from "../AlbumSingleSongAudio/AlbumSingleSongAudio";
@@ -23,12 +23,8 @@ const AlbumSingleSong = ({ id, num, title, preview }: AlbumSingleSongProps) => {
 
   // 再生中の楽曲のidをstateに格納
   const handlePlay = async () => {
-    try {
-      setCurrentlyPlayingId(id);
-      await savePlayHistory(id);
-    } catch (error) {
-      console.error("履歴の保存に失敗しました:", error);
-    }
+    setCurrentlyPlayingId(id);
+    await savePlayHistory(id);
   };
 
   // 止めたらstateから削除
