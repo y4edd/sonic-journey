@@ -36,19 +36,19 @@ const Edit = () => {
   const loadUser = async () => {
     try {
       const data = await fetchUser();
-      if (data && data.id) {
+      if (data?.id) {
         setUserId(data.id);
       } else {
         setUserId(null);
       }
-    } catch (error) {
+    } catch {
       setServerError("サーバーエラーが発生しました");
     } finally {
       setLoading(false);
     }
-  }
+  };
 
-  // biome-disable-next-line: 依存配列を空にし、初回レンダリングのみ実行
+  // biome-ignore lint/correctness/useExhaustiveDependencies: マウント時のみ実行
   useEffect(() => {
     loadUser();
   }, []);

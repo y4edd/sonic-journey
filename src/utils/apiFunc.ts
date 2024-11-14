@@ -222,6 +222,7 @@ export const getSearchSongs = async (freeWord: string) => {
   }
 };
 
+// ログイン状態を確認し、idを返す
 export const fetchUser = async () => {
   try {
     const response = await fetch("/api/user/checkLogin");
