@@ -1,8 +1,10 @@
+import UnauthorizedAccess from "@/components/UnauthorizedAccess/UnauthorizedAccess";
 import FavoriteSongsContainer from "@/components/mypage/FavoriteSongsContainer/FavoriteSongsContainer";
 import MenuHeader from "@/components/mypage/MenuHeader/MenuHeader";
 import BreadList from "@/components/top/BreadList/BreadList";
 import type { DeezerSong } from "@/types/deezer";
-import { getFavoriteSongs, getSong } from "@/utils/apiFunc";
+import { checkLoggedInServer, getFavoriteSongs, getSong } from "@/utils/apiFunc";
+import { getTokenFromCookie } from "@/utils/getTokenFromCookie";
 
 type favoriteSong = {
   songId: number;
@@ -10,10 +12,18 @@ type favoriteSong = {
 };
 
 const FavoriteSongs = async () => {
-  // NOTE: DBからお気に入り楽曲を取得
-  const favoriteSongs: { resultData: favoriteSong[] } = await getFavoriteSongs();
+  // NOTE: cookieからtokenを取得し、ログインしているか確認
+  const token = getTokenFromCookie();
+  const isLoggedin = await checkLoggedInServer(token);
 
-  // NOTE: お気に入り楽曲の楽曲idをもとに、楽曲情報を取得
+  if (!isLoggedin) {
+    return <UnauthorizedAccess />;
+  }
+
+  // NOTE: DBからお気に入り楽曲を取得
+  const favoriteSongs: { resultData: favoriteSong[] } = await getFavoriteSongs(token);
+
+  // NOTE: お気に入り楽曲の楽曲idをもとに、楽曲情報を取得してデータに加える
   const favoriteSongsData = await Promise.all(
     favoriteSongs.resultData.map(async (song) => {
       const songData: { resSongData: DeezerSong } = await getSong(song.songId);
