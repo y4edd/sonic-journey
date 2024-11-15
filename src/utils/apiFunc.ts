@@ -266,7 +266,12 @@ export const checkLoggedInServer = async (token: string): Promise<boolean> => {
       },
     });
 
-    return response.ok;
+    const responseMessage = await response.json();
+
+    if (!response.ok || responseMessage.message === "ログインが必要です") {
+      return false;
+    }
+    return true;
   } catch (error) {
     console.error(error);
     return false;
