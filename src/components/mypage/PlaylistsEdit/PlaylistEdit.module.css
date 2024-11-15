@@ -1,0 +1,74 @@
+.wrapper {
+  margin: 1rem 2rem;
+  max-width: 85%;
+}
+
+.editTitle {
+  display: flex;
+  text-align: center;
+  width: 100%;
+  margin: 1.1rem;
+  padding-top: 1rem;
+  padding-left: 0.9rem;
+  padding-right: 0.9rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.playlists {
+  display: flex;
+  flex-direction: column;
+  margin: 3rem auto;
+  width: 100%;
+}
+
+.playlistList {
+  display: flex;
+  list-style-type: none;
+  border-bottom: 1px solid black;
+  margin-bottom: 1rem;
+}
+
+.listTitle {
+  font-size: 1.1rem;
+  margin: 0 2rem 0 0.5rem;
+}
+
+.editIcons {
+  margin: auto 0 auto auto;
+}
+.editIcons > button {
+  background-color: white;
+  border: none;
+}
+.deleteIcon {
+  margin-left: 0.3rem;
+  font-size: 2rem;
+  color: rgba(204, 15, 15, 0.635);
+}
+
+.editIcon {
+  font-size: 2rem;
+  color: rgb(62, 154, 59);
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.closeButton {
+  padding: 5px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 150px;
+  background-color: gray;
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+
+.closeButton:hover {
+  opacity: 0.8;
+}
