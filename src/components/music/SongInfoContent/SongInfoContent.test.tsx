@@ -20,6 +20,7 @@ jest.mock("@mui/icons-material/CreateNewFolder", () => ({
 
 describe("SongInfoContent", () => {
   const testProps = {
+    id: 1,
     title: "ALONES",
     artist: "Aquatimez",
     image: "example.jpeg",

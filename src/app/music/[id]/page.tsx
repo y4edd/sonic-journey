@@ -34,6 +34,7 @@ const SongPage = async ({ params }: SongPageProps) => {
       <div className={styles.songPageContent}>
         <div className={styles.songDetailContent}>
           <SongInfoContent
+            id={resSongData.id}
             title={resSongData.title}
             artist={resSongData.artist.name}
             image={resSongData.cover_xl}
