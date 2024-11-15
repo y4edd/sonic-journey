@@ -1,9 +1,9 @@
 ---
 name: 機能改善
 about: 追加・改修する機能について記述してください.
-title: "[enhancement] "
+title: '[enhancement] '
 labels: enhancement
-assignees: ""
+assignees: ''
 ---
 
 ## 課題

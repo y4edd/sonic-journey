@@ -1,9 +1,9 @@
 ---
 name: 朝会議事録
 about: 日々の朝会前に登録し、朝会後にクローズします.
-title: "[ds] "
-labels: "daily standup"
-assignees: ""
+title: '[ds] '
+labels: 'daily standup'
+assignees: ''
 ---
 
 ## yyyy-MM-dd (E)

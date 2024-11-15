@@ -1,9 +1,9 @@
 ---
 name: タスク
 about: 目的を達成するために必要なタスクを作成してください.
-title: "[feature] "
+title: '[feature] '
 labels: feature
-assignees: ""
+assignees: ''
 ---
 
 ## 説明

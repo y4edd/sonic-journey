@@ -1,9 +1,9 @@
 ---
 name: 不具合報告
 about: 円滑な問題解決のために, 不具合を報告してください.
-title: "[bug] "
+title: '[bug] '
 labels: bug
-assignees: ""
+assignees: ''
 ---
 
 ## 不具合の概要
