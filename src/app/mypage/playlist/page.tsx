@@ -13,14 +13,12 @@ import EditIcon from "@mui/icons-material/Edit";
 import type { Playlist } from "@prisma/client";
 import { useEffect, useState } from "react";
 import styles from "./page.module.css";
-import { useRouter } from "next/navigation";
 
 const PlayListPage = () => {
   const [user, setUser] = useState<string | null>(null);
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
   const [createModalOpen, setCreateModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
-  const router = useRouter();
 
   useEffect(() => {
     const getUser = async () => {
@@ -40,11 +38,7 @@ const PlayListPage = () => {
       getPlaylists();
     }
   }, [user, createModalOpen, editModalOpen]);
-  if (!user) {
-    alert("プレイリスト機能はログインユーザのみ利用できます");
-    router.push("/user/login");
-    return <div></div>;
-  }
+  if (!user) return <div>Loading...</div>;
   if (!playlists) return <div>Loading...</div>;
   return (
     <>
