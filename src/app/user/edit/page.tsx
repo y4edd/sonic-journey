@@ -33,6 +33,7 @@ const Edit = () => {
 
   const router = useRouter();
 
+  // ユーザーIDを取得
   const loadUser = async () => {
     try {
       const data = await fetchUser();
@@ -60,33 +61,40 @@ const Edit = () => {
     return <UnauthorizedAccess />;
   }
 
-  // FIXME: dataを受け取り、データベースの内容を更新する処理実装
+  // dataを受け取り、データベースの内容を更新する処理実装
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    // try {
-    //   await registerUser(
-    //     data.name,
-    //     data.email,
-    //     data.password,
-    //     data.confirmPassword
-    //   );
-    //   alert("アカウント情報変更完了");
-    //   router.push("/user/login");
-    // } catch (err:any){
-    //   setServerError(err.message || "サーバーエラーです");
-    // }
-    console.log(data);
-
-    toast.success("編集が完了しました！", {
-      position: "top-center",
-      autoClose: 1000,
-      closeButton: true,
-      hideProgressBar: true,
-      closeOnClick: true,
-      theme: "colored",
-    });
-    setTimeout(() => {
-      router.push("/mypage");
-    }, 1500);
+    try {
+      const response = await fetch ("/api/user/edit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: data.name,
+          email: data.email,
+          password: data.password,
+        }),
+      });
+      if (!response.ok) {
+        // 詳細なエラーメッセージ取得
+        const error = await response.json();
+        setServerError(error.message);
+      } else {
+        toast.success("編集が完了しました！", {
+          position: "top-center",
+          autoClose: 1000,
+          closeButton: true,
+          hideProgressBar: true,
+          closeOnClick: true,
+          theme: "colored",
+        });
+        setTimeout(() => {
+          router.push("/");
+        }, 1500);
+      }
+    } catch (err:any){
+      setServerError(err.message || "サーバーエラーです");
+    }
   };
 
   const handleClick = () => {
