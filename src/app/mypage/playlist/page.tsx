@@ -1,8 +1,8 @@
 "use client";
 
-import ActionButton from "@/components/mypage/ActionButton/ActionButton";
 import MenuHeader from "@/components/mypage/MenuHeader/MenuHeader";
 import Modal from "@/components/mypage/Modal/Modal";
+import PlaylistButton from "@/components/mypage/PlaylistButton/PlaylistButton";
 import PlaylistForm from "@/components/mypage/PlaylistForm/PlaylistForm";
 import PlaylistList from "@/components/mypage/PlaylistList/PlaylistList";
 import { PlaylistEdit } from "@/components/mypage/PlaylistsEdit/PlaylistEdit";
@@ -51,8 +51,8 @@ const PlayListPage = () => {
       />
       <MenuHeader title="プレイリスト" />
       <div className={styles.actionButtonContainer}>
-        <ActionButton name="追加" icon={<AddBoxIcon />} setFunc={setCreateModalOpen} />
-        <ActionButton name="編集" icon={<EditIcon />} setFunc={setEditModalOpen} />
+        <PlaylistButton name="追加" icon={<AddBoxIcon />} setFunc={setCreateModalOpen} />
+        <PlaylistButton name="編集" icon={<EditIcon />} setFunc={setEditModalOpen} />
       </div>
       <PlaylistList playlists={playlists} />
       {createModalOpen && (
