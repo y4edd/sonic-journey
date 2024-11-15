@@ -13,12 +13,14 @@ import EditIcon from "@mui/icons-material/Edit";
 import type { Playlist } from "@prisma/client";
 import { useEffect, useState } from "react";
 import styles from "./page.module.css";
+import { useRouter } from "next/navigation";
 
 const PlayListPage = () => {
   const [user, setUser] = useState<string | null>(null);
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
   const [createModalOpen, setCreateModalOpen] = useState(false);
   const [editModalOpen, setEditModalOpen] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     const getUser = async () => {
@@ -38,7 +40,11 @@ const PlayListPage = () => {
       getPlaylists();
     }
   }, [user, createModalOpen, editModalOpen]);
-  if (!user) return <div>Loading...</div>;
+  if (!user) {
+    alert("プレイリスト機能はログインユーザのみ利用できます");
+    router.push("/user/login");
+    return <div></div>;
+  }
   if (!playlists) return <div>Loading...</div>;
   return (
     <>
@@ -51,13 +57,24 @@ const PlayListPage = () => {
       />
       <MenuHeader title="プレイリスト" />
       <div className={styles.actionButtonContainer}>
-        <PlaylistButton name="追加" icon={<AddBoxIcon />} setFunc={setCreateModalOpen} />
-        <PlaylistButton name="編集" icon={<EditIcon />} setFunc={setEditModalOpen} />
+        <PlaylistButton
+          name="追加"
+          icon={<AddBoxIcon />}
+          setFunc={setCreateModalOpen}
+        />
+        <PlaylistButton
+          name="編集"
+          icon={<EditIcon />}
+          setFunc={setEditModalOpen}
+        />
       </div>
       <PlaylistList playlists={playlists} />
       {createModalOpen && (
         <Modal setFunc={setCreateModalOpen}>
-          <PlaylistForm user_id={user} setCreateModalOpen={setCreateModalOpen} />
+          <PlaylistForm
+            user_id={user}
+            setCreateModalOpen={setCreateModalOpen}
+          />
         </Modal>
       )}
       {editModalOpen && (
