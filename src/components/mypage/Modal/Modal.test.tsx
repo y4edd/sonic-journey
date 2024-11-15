@@ -1,11 +1,7 @@
 import { cleanup, fireEvent, render, screen } from "@testing-library/react";
-import { useRouter } from "next/navigation";
 import Modal from "./Modal";
 
-// useRouterをモック
-jest.mock("next/navigation", () => ({
-  useRouter: jest.fn(),
-}));
+const mockSetFunc = jest.fn();
 
 describe("Modalコンポーネントのテスト", () => {
   beforeAll(() => {
@@ -24,38 +20,32 @@ describe("Modalコンポーネントのテスト", () => {
 
   test("Modalコンポーネントで囲んだ要素がレンダリングされること", () => {
     render(
-      <Modal>
+      <Modal setFunc={mockSetFunc}>
         <p>テストコンテンツ</p>
-      </Modal>,
+      </Modal>
     );
     expect(screen.getByText("テストコンテンツ")).toBeInTheDocument();
   });
 
   test("xボタンを押下するとモーダルが閉じること", () => {
-    // router.back() のモック
-    const mockBack = jest.fn();
-    (useRouter as jest.Mock).mockReturnValue({
-      back: mockBack,
-    });
-
     render(
-      <Modal>
+      <Modal setFunc={mockSetFunc}>
         <p>テストコンテンツ</p>
-      </Modal>,
+      </Modal>
     );
 
     const closeButton = screen.getByRole("button", { hidden: true });
     fireEvent.click(closeButton);
-    expect(mockBack).toHaveBeenCalled();
+    expect(mockSetFunc).toHaveBeenCalled();
   });
 
   test("idに modal-root を持つ要素がないとき、何もレンダリングされないこと", () => {
     document.getElementById("modal-root")?.remove();
 
     render(
-      <Modal>
+      <Modal setFunc={mockSetFunc}>
         <p>テストコンテンツ</p>
-      </Modal>,
+      </Modal>
     );
 
     expect(screen.queryByText("テストコンテンツ")).toBeNull();
