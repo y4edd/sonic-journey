@@ -12,8 +12,15 @@ export const DELETE = async (req: NextRequest) => {
         id: id,
       },
     });
-    return NextResponse.json({ message: "プレイリストの削除に成功しました" }, { status: 200 });
-  } catch (_err) {
-    return NextResponse.json({ message: "サーバエラーが発生しました" }, { status: 500 });
+    return NextResponse.json(
+      { message: "プレイリストの削除に成功しました" },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { message: "サーバーエラーが発生しました" },
+      { status: 500 }
+    );
   }
 };
