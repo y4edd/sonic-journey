@@ -61,9 +61,9 @@ const Edit = () => {
     return <UnauthorizedAccess />;
   }
 
-  const onSubmit: SubmitHandler<FormData> = async (data:FormData) => {
+  const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
     try {
-      const response = await fetch ("/api/user/edit", {
+      const response = await fetch("/api/user/edit", {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -87,8 +87,9 @@ const Edit = () => {
           router.push("/");
         }, 1500);
       }
-    } catch (err:any){
-      setServerError(err.message || "サーバーエラーです");
+    } catch (err) {
+      console.log(err);
+      setServerError("予期せぬエラーが発生しました");
     }
   };
 
