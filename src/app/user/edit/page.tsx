@@ -61,19 +61,14 @@ const Edit = () => {
     return <UnauthorizedAccess />;
   }
 
-  // dataを受け取り、データベースの内容を更新する処理実装
-  const onSubmit: SubmitHandler<FormData> = async (data) => {
+  const onSubmit: SubmitHandler<FormData> = async (data:FormData) => {
     try {
       const response = await fetch ("/api/user/edit", {
-        method: "POST",
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          name: data.name,
-          email: data.email,
-          password: data.password,
-        }),
+        body: JSON.stringify(data),
       });
       if (!response.ok) {
         // 詳細なエラーメッセージ取得

@@ -2,17 +2,17 @@ import prisma from "@/lib/prisma";
 import jwt from "jsonwebtoken";
 import { type NextRequest, NextResponse } from "next/server";
 
-export const DELETE = async (req: NextRequest, _res: NextResponse) => {
+export const DELETE = async (request: NextRequest) => {
   const secretKey = process.env.JWT_SECRET_KEY;
 
   if (!secretKey) {
-    return NextResponse.json({ message: "権限がありません" }, { status: 500 });
+    return NextResponse.json({ message: "権限がありません" }, { status: 401 });
   }
 
-  const token = req.cookies.get("token");
+  const token = request.cookies.get("token");
 
   if (!token) {
-    return NextResponse.json({ message: "ログインが必要です" }, { status: 401 });
+    return NextResponse.json({ message: "ログインが必要です" }, { status: 200 });
   }
 
   try {
