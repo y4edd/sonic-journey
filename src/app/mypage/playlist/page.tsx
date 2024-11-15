@@ -51,24 +51,13 @@ const PlayListPage = () => {
       />
       <MenuHeader title="プレイリスト" />
       <div className={styles.actionButtonContainer}>
-        <ActionButton
-          name="追加"
-          icon={<AddBoxIcon />}
-          setFunc={setCreateModalOpen}
-        />
-        <ActionButton
-          name="編集"
-          icon={<EditIcon />}
-          setFunc={setEditModalOpen}
-        />
+        <ActionButton name="追加" icon={<AddBoxIcon />} setFunc={setCreateModalOpen} />
+        <ActionButton name="編集" icon={<EditIcon />} setFunc={setEditModalOpen} />
       </div>
       <PlaylistList playlists={playlists} />
       {createModalOpen && (
         <Modal setFunc={setCreateModalOpen}>
-          <PlaylistForm
-            user_id={user}
-            setCreateModalOpen={setCreateModalOpen}
-          />
+          <PlaylistForm user_id={user} setCreateModalOpen={setCreateModalOpen} />
         </Modal>
       )}
       {editModalOpen && (
