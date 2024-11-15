@@ -1,23 +1,27 @@
 "use client";
 
 import AlbumSingleSongAudio from "@/components/music/AlbumSingleSongAudio/AlbumSingleSongAudio";
+import { useAlbumAudio } from "@/context/AlbumAudioContext";
+import type { DeezerTrackSong } from "@/types/deezer";
+import { savePlayHistory } from "@/utils/history";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Image from "next/image";
 import Link from "next/link";
-
-import { useAlbumAudio } from "@/context/AlbumAudioContext";
-import type { DeezerTrackSong } from "@/types/deezer";
 import styles from "./PickSongs.module.css";
 
 const PickSongs = ({ pickSong }: { pickSong: DeezerTrackSong }) => {
   const { currentlyPlayingId, setCurrentlyPlayingId } = useAlbumAudio();
   const isPlaying = currentlyPlayingId === pickSong.id;
-  const handlePlay = () => {
+
+  const handlePlay = async () => {
     setCurrentlyPlayingId(pickSong.id);
+    await savePlayHistory(pickSong.id);
   };
+
   const handlePause = () => {
     setCurrentlyPlayingId(null);
   };
+
   return (
     <div className={styles.albumSingleContent}>
       <Link href={`/album/${pickSong.album.id}`} className={styles.linkImage}>
