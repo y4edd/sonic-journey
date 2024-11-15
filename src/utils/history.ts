@@ -15,3 +15,23 @@ export const savePlayHistory = async (songId: number) => {
     console.error(error);
   }
 };
+
+// ログインユーザーの試聴履歴の楽曲idを取得する関数
+export const getPlayHistory = async (token: string, take: number) => {
+  try {
+    const res = await fetch(`http://localhost:3000/api/getPlayHistory?take=${take}`, {
+      cache: "no-cache",
+      headers: {
+        Cookie: token,
+      },
+    });
+
+    if (!res.ok) {
+      throw new Error("再生履歴の取得に失敗しました");
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
