@@ -38,7 +38,7 @@ const PlayListPage = () => {
       getPlaylists();
     }
   }, [user, createModalOpen, editModalOpen]);
-
+  if (!user) return <div>Loading...</div>;
   if (!playlists) return <div>Loading...</div>;
   return (
     <>
