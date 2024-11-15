@@ -52,6 +52,8 @@ model Playlist {
   playlist_songs    Playlist_Song[]
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+
+  @@unique([user_id, name], name: "playlist_identifier")
 }
 
 model Playlist_Song {
