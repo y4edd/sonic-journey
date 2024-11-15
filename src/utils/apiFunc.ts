@@ -235,3 +235,45 @@ export const fetchUser = async () => {
     console.error(error);
   }
 };
+
+// DBからお気に入り楽曲の楽曲idと更新日を取得する関数（Cookieのtokenを引数にとる）
+export const getFavoriteSongs = async (token: string) => {
+  try {
+    const res = await fetch("http://localhost:3000/api/favoriteSongs", {
+      cache: "no-cache",
+      headers: {
+        Cookie: token,
+      },
+    });
+
+    if (!res.ok) {
+      throw new Error("データが見つかりませんでした");
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// サーバーサイドからログインしているか確認する関数（Cookieのtokenを引数にとる）
+export const checkLoggedInServer = async (token: string): Promise<boolean> => {
+  try {
+    const response = await fetch("http://localhost:3000/api/user/checkLogin", {
+      cache: "no-cache",
+      headers: {
+        Cookie: token,
+      },
+    });
+
+    const responseMessage = await response.json();
+
+    if (!response.ok || responseMessage.message === "ログインが必要です") {
+      return false;
+    }
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+};
