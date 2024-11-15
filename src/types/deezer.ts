@@ -90,7 +90,7 @@ export type DeezerNewSongDetail = {
 export type DeezerSong = {
   id: number;
   title: string;
-  cover_xl?: string;
+  cover_xl: string;
   release_date?: string;
   preview?: string;
   duration?: string;
