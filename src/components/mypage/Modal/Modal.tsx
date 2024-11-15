@@ -1,13 +1,18 @@
 "use client";
 
 import CloseIcon from "@mui/icons-material/Close";
-import { useRouter } from "next/navigation";
 import { type ElementRef, useEffect, useRef } from "react";
+import type { Dispatch, SetStateAction } from "react";
 import { createPortal } from "react-dom";
 import styles from "./Modal.module.css";
 
-const Modal = ({ children }: { children: React.ReactNode }) => {
-  const router = useRouter();
+const Modal = ({
+  setFunc,
+  children,
+}: {
+  setFunc: Dispatch<SetStateAction<boolean>>;
+  children: React.ReactNode;
+}) => {
   const dialogRef = useRef<ElementRef<"dialog">>(null);
 
   useEffect(() => {
@@ -17,7 +22,7 @@ const Modal = ({ children }: { children: React.ReactNode }) => {
   }, []);
 
   const onDismiss = () => {
-    router.back();
+    setFunc(false);
   };
 
   const modalRoot = document.getElementById("modal-root");

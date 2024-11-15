@@ -222,6 +222,21 @@ export const getSearchSongs = async (freeWord: string) => {
   }
 };
 
+// ユーザー毎のプレイリストを取得する関数
+export const getUserPlaylist = async (user_id: string) => {
+  try {
+    const res = await fetch(`http://localhost:3000/api/user/playlistCheck?user_id=${user_id}`, {
+      cache: "no-cache",
+    });
+    if (!res.ok) {
+      throw new Error("データが見つかりませんでした");
+    }
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 // ログイン状態を確認し、idを返す
 export const fetchUser = async () => {
   try {
