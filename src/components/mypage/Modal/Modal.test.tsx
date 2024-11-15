@@ -22,7 +22,7 @@ describe("Modalコンポーネントのテスト", () => {
     render(
       <Modal setFunc={mockSetFunc}>
         <p>テストコンテンツ</p>
-      </Modal>
+      </Modal>,
     );
     expect(screen.getByText("テストコンテンツ")).toBeInTheDocument();
   });
@@ -31,7 +31,7 @@ describe("Modalコンポーネントのテスト", () => {
     render(
       <Modal setFunc={mockSetFunc}>
         <p>テストコンテンツ</p>
-      </Modal>
+      </Modal>,
     );
 
     const closeButton = screen.getByRole("button", { hidden: true });
@@ -45,7 +45,7 @@ describe("Modalコンポーネントのテスト", () => {
     render(
       <Modal setFunc={mockSetFunc}>
         <p>テストコンテンツ</p>
-      </Modal>
+      </Modal>,
     );
 
     expect(screen.queryByText("テストコンテンツ")).toBeNull();

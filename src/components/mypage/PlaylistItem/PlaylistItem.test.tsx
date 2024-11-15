@@ -14,8 +14,9 @@ describe("PlaylistItemの単体テスト", () => {
   test("受け取ったpropsを反映し、レンダリングされること", () => {
     render(<PlaylistItem playlist={mockPlaylist} />);
 
-    expect(
-      screen.getByRole("link", { name: mockPlaylist.name })
-    ).toHaveAttribute("href", `/mypage/playlist/${mockPlaylist.id}`);
+    expect(screen.getByRole("link", { name: mockPlaylist.name })).toHaveAttribute(
+      "href",
+      `/mypage/playlist/${mockPlaylist.id}`,
+    );
   });
 });
