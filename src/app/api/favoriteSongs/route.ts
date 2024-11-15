@@ -29,8 +29,9 @@ export const GET = async (req: NextRequest) => {
       },
     });
 
+    // NOTE: お気に入り楽曲が登録されていない場合は空の配列を返す
     if (!favoriteSongs.length) {
-      return NextResponse.json({ message: "お気に入り楽曲が見つかりません" }, { status: 404 });
+      return NextResponse.json({ resultData: [] }, { status: 200 });
     }
 
     const resultData = favoriteSongs.map((song) => {
