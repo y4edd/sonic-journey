@@ -11,6 +11,7 @@ import styles from "./page.module.css";
 import "react-toastify/dist/ReactToastify.css";
 import UnauthorizedAccess from "@/components/UnauthorizedAccess/UnauthorizedAccess";
 import { fetchUser } from "@/utils/apiFunc";
+import UserDetail from "@/components/user/UserDetail/UserDetail";
 
 const Info = () => {
 
@@ -74,9 +75,9 @@ const Info = () => {
         <Information text="アカウント情報" />
       </div>
       <div className={styles.container}>
-        <UserDetail name={"ユーザー名"} data={data.name} />
-        <UserDetail name={"メールアドレス"} data={data.email} />
-        <UserDetail name={"パスワード"} data={data.password} />
+        <UserDetail label={"ユーザー名"} userData="name" />
+        <UserDetail label={"メールアドレス"} userData="email@mail.com" />
+        <UserDetail label={"パスワード"} userData="*****" />
         <Button type="button" className={ButtonStyles.register} text={"編集"} onClick={handleEdit} />
         <Button type="button" className={ButtonStyles.delete} text={"退会"} onClick={handleDelete} />
         <Button type="button" className={ButtonStyles.return} text={"戻る"} onClick={handleBack} />

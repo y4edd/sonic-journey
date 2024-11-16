@@ -33,3 +33,22 @@
   background-color: black;
   color: white;
 }
+
+.delete {
+  background-color: red;
+  font-size: 16px;
+  color: white;
+  margin-top: 10px;
+  padding: 5px 0px;
+  border-radius: 10px;
+  border-color: red;
+  cursor: pointer;
+  transition: 0.3s;
+  height: 40px;
+  width: 100%;
+}
+
+.delete:hover {
+  background-color: white;
+  color: red;
+}

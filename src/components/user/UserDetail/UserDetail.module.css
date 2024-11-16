@@ -1,0 +1,13 @@
+.userLabel {
+  padding: 10px 0px;
+  width: 100%;
+  margin-left: 1.5rem;
+}
+
+.userData {
+  margin-top: 3px;
+  margin-left: 2.5rem;
+  padding: 0.3rem;
+  font-size: 1.4rem;
+  width: 100%;
+}
