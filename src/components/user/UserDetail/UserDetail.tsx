@@ -7,10 +7,12 @@ type UserDetailProps = {
 
 const UserDetail = ({label, userData}: UserDetailProps) => {
   return (
-    <div>
-      <p className={styles.userLabel}>{label}</p>
-      <p className={styles.userData}>{userData}</p>
-    </div>
+    <>
+      <div className={styles.userInfo}>
+        <p className={styles.userLabel}>{label}</p>
+        <p className={styles.userData}>{userData}</p>
+        </div>
+    </>
   )
 }
 

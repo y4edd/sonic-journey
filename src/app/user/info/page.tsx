@@ -12,16 +12,17 @@ import "react-toastify/dist/ReactToastify.css";
 import UnauthorizedAccess from "@/components/UnauthorizedAccess/UnauthorizedAccess";
 import { fetchUser } from "@/utils/apiFunc";
 import UserDetail from "@/components/user/UserDetail/UserDetail";
+import { UserData } from "@/types/user";
 
 const Info = () => {
 
   const [loading, setLoading] = useState(true);
   const [serverError, setServerError] = useState<string | null>("");
   const [userId, setUserId] = useState<string | null>(null);
+  const [userData,setUserData] = useState<UserData | undefined>(undefined); 
 
   const router = useRouter();
 
-  // FIXME:ユーザ情報取得
   const loadUser = async () => {
     try {
       const data = await fetchUser();
@@ -42,6 +43,32 @@ const Info = () => {
     loadUser();
   }, []);
 
+  // FIXME:ユーザー情報(name、emailを返り値とするAPI実装)
+  const getUserInfo = async () => {
+    try {
+      const response = await fetch("/api/user/getUserInfo");
+      const data = await response.json();
+
+      if (!response.ok) {
+        // 詳細なエラーメッセージ取得
+        setServerError(data.message);
+        return;
+      }
+
+      setUserData(data);
+    } catch(error) {
+      console.log(error);
+      setServerError("ユーザー情報の取得に失敗しました");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: マウント時のみ実行
+  useEffect(() => {
+    getUserInfo();
+  }, []);
+
   if (loading) {
     return <p className="loading">Loading...</p>;
   }
@@ -54,7 +81,7 @@ const Info = () => {
   };
 
   const handleDelete = () => {
-    // 警告してから削除
+    // 本当にいいか確認してから削除(modalを使う！)
     router.push("/");
   };
 
@@ -75,9 +102,15 @@ const Info = () => {
         <Information text="アカウント情報" />
       </div>
       <div className={styles.container}>
-        <UserDetail label={"ユーザー名"} userData="name" />
-        <UserDetail label={"メールアドレス"} userData="email@mail.com" />
-        <UserDetail label={"パスワード"} userData="*****" />
+        {userData ? (
+          <>
+            <UserDetail label={"ユーザー名"} userData={userData.name} />
+            <UserDetail label={"メールアドレス"} userData={userData.email} />
+            <UserDetail label={"パスワード"} userData="*****" />
+          </>
+        ) : (
+          <div>Loading...</div>
+        )}
         <Button type="button" className={ButtonStyles.register} text={"編集"} onClick={handleEdit} />
         <Button type="button" className={ButtonStyles.delete} text={"退会"} onClick={handleDelete} />
         <Button type="button" className={ButtonStyles.return} text={"戻る"} onClick={handleBack} />
