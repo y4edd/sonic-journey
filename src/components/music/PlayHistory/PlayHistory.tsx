@@ -28,8 +28,6 @@ const PlayHistory = async () => {
     return playHistorySong.resSongData;
   });
 
-  console.log(playHistorySongs);
-
   return (
     <div className={styles.playHistoryGroup}>
       {playHistorySongs.length > 0 ? (
