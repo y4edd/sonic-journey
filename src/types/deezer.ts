@@ -90,7 +90,7 @@ export type DeezerNewSongDetail = {
 export type DeezerSong = {
   id: number;
   title: string;
-  cover_xl: string;
+  cover_xl?: string;
   release_date?: string;
   preview?: string;
   duration?: string;
@@ -327,4 +327,14 @@ export type GenreInfo = {
 export type Playlist = {
   id: number;
   name: string;
+};
+
+// 試聴履歴PlayHistoryで使用する型
+export type PlayHistorySong = {
+  id: number;
+  cover_xl: string;
+  title: string;
+  artist: {
+    name: string;
+  };
 };

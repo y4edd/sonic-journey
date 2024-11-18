@@ -1,4 +1,4 @@
-import type { DeezerSong } from "@/types/deezer";
+import type { PlayHistorySong } from "@/types/deezer";
 import { getSong } from "@/utils/apiFunc";
 import { getTokenFromCookie } from "@/utils/getTokenFromCookie";
 import { getPlayHistory } from "@/utils/history";
@@ -33,7 +33,7 @@ const PlayHistory = async () => {
   return (
     <div className={styles.playHistoryGroup}>
       {playHistorySongs.length > 0 ? (
-        playHistorySongs.map((song: DeezerSong) => {
+        playHistorySongs.map((song: PlayHistorySong) => {
           return (
             <Link href={`/music/${song.id}`} key={song.id} className={styles.playHistorySong}>
               <Image src={song.cover_xl} alt={`${song.title}の画像`} width={150} height={150} />
