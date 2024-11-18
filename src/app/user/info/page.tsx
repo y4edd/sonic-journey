@@ -85,7 +85,8 @@ const Info = () => {
     setIsModalOpen(true);
   };
 
-  const choiceDelete = async () => {
+  const choiceDelete = async (event:React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
     try{
       const response = await fetch("/api/user/delete");
       if(!response.ok){
