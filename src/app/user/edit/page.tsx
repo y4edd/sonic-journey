@@ -102,7 +102,7 @@ const Edit = () => {
       <BreadList
         bread={[
           { link: "/", title: "TOP" },
-          { link: "/user/info", title: "アカウント情報" },
+          { link: "/user/[id]", title: "アカウント情報" },
           { link: "/user/edit", title: "アカウント編集" },
         ]}
       />
