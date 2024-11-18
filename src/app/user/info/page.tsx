@@ -87,12 +87,16 @@ const Info = () => {
 
   const choiceDelete = async (event:React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
+    if(deleteProcessing) return;
+    setDeleteProcessing(true);
     try{
       const response = await fetch("/api/user/delete");
       if(!response.ok){
         const error = await response.json();
         setServerError(error.message);
       }
+      // 削除実行
+      // ボタンを押せないように
       router.push("/");
     } catch(error) {
       console.log(error);
@@ -112,7 +116,7 @@ const Info = () => {
       <Modal setFunc={setIsModalOpen}>
         <p>本当に退会しますか?</p>
         <p>※このアカウントのデータ、作成したプレイリストはすべて削除されます</p>
-        <button onClick={choiceDelete}>退会する</button>
+        <button onClick={choiceDelete} disabled={deleteProcessing}>退会する</button>
         <button onClick={() => setIsModalOpen(false)}>キャンセル</button>
       </Modal>
     )}
