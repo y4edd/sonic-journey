@@ -28,7 +28,7 @@ export const POST = async (req: NextRequest) => {
     });
 
     return NextResponse.json(
-      { message: "ユーザーの登録に成功しました", user: newUser },
+      { message: "ユーザーの登録に成功しました" },
       { status: 201 },
     );
   } catch (err) {
