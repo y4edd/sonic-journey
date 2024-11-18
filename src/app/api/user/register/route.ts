@@ -19,7 +19,7 @@ export const POST = async (req: NextRequest) => {
 
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    const newUser = await prisma.user.create({
+    const _newUser = await prisma.user.create({
       data: {
         name,
         email,
@@ -27,10 +27,7 @@ export const POST = async (req: NextRequest) => {
       },
     });
 
-    return NextResponse.json(
-      { message: "ユーザーの登録に成功しました" },
-      { status: 201 },
-    );
+    return NextResponse.json({ message: "ユーザーの登録に成功しました" }, { status: 201 });
   } catch (err) {
     console.error("サーバーエラーが発生しました", err);
     return NextResponse.json({ message: "サーバーエラーが発生しました" }, { status: 500 });
