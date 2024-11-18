@@ -48,6 +48,8 @@ describe("PlayHistoryコンポーネントの単体テスト", () => {
     const jsx = await PlayHistory();
     render(jsx);
 
+    expect(screen.getAllByRole("link")).toHaveLength(2);
+
     for (const song of mockSongs) {
       expect(screen.getByText(song.title)).toBeInTheDocument();
       expect(screen.getByText(song.artist.name)).toBeInTheDocument();
