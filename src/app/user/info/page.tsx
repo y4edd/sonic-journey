@@ -5,9 +5,8 @@ import Button from "@/components/user/Button/Button";
 import ButtonStyles from "@/components/user/Button/Button.module.css";
 import Information from "@/components/user/Information/Information";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./page.module.css";
-import "react-toastify/dist/ReactToastify.css";
 import UnauthorizedAccess from "@/components/UnauthorizedAccess/UnauthorizedAccess";
 import { fetchUser } from "@/utils/apiFunc";
 import UserDetail from "@/components/user/UserDetail/UserDetail";
@@ -21,6 +20,7 @@ const Info = () => {
   const [userId, setUserId] = useState<string | null>(null);
   const [userData,setUserData] = useState<UserData | undefined>(undefined); 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false); 
+  const [deleteProcessing, setDeleteProcessing] = useState<boolean>(false);
 
   const router = useRouter();
 
@@ -86,9 +86,19 @@ const Info = () => {
   };
 
   const choiceDelete = async () => {
-    const response = await fetch("api/user/delete");
-    
-    router.push("/");
+    try{
+      const response = await fetch("/api/user/delete");
+      if(!response.ok){
+        const error = await response.json();
+        setServerError(error.message);
+      }
+      router.push("/");
+    } catch(error) {
+      console.log(error);
+      setServerError("アカウントの削除に失敗しました");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleBack = () => {
