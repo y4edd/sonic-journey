@@ -16,11 +16,11 @@ export const DELETE = async (request: NextRequest) => {
   }
 
   try {
-    const decoded = jwt.verify(token.value, secretKey) as { email: string };
+    const decoded = jwt.verify(token.value, secretKey) as { id: string };
 
     const user = await prisma.user.findUnique({
       where: {
-        email: decoded.email,
+        id: decoded.id,
       },
     });
 
@@ -29,7 +29,7 @@ export const DELETE = async (request: NextRequest) => {
     }
     await prisma.user.delete({
       where: {
-        email: decoded.email,
+        id: decoded.id,
       },
     });
 
