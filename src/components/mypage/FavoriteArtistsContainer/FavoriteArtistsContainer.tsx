@@ -1,7 +1,7 @@
 "use client";
 import type { DeezerArtist } from "@/types/deezer";
 import EditIcon from "@mui/icons-material/Edit";
-import { useEffect, useMemo, useState } from "react";
+import { useState } from "react";
 import ActionButton from "../ActionButton/ActionButton";
 import ArtistList from "../ArtistList/ArtistList";
 import SortButtons from "../SortButtons/SortButtons";
@@ -16,33 +16,18 @@ type FavoriteArtistsContainerProps = {
 };
 
 const FavoriteArtistsContainer = ({ artistsInfo }: FavoriteArtistsContainerProps) => {
-  // NOTE: 降順のアーティストデータをキャッシュ
-  const descArtistData = useMemo(
-    () => artistsInfo.map((artist) => artist.artistData),
-    [artistsInfo],
-  );
-
-  // NOTE: 昇順のアーティストデータをキャッシュ
-  const ascArtistData = useMemo(() => {
-    return artistsInfo
-      .toSorted((artistA, artistB) => {
-        return artistA.updatedAt < artistB.updatedAt ? -1 : 1;
-      })
-      .map((artist) => artist.artistData);
-  }, [artistsInfo]);
-
-  // NOTE: useStateで昇順、降順の状態を管理
+  // NOTE: 昇順フラグの状態を管理
   const [ascFlag, setAscFlag] = useState(false);
-  const [artistData, setArtistData] = useState(descArtistData);
 
-  // NOTE: useEffectでascFlagが変化したときにartistDataを更新
-  useEffect(() => {
-    if (ascFlag) {
-      setArtistData(ascArtistData);
-    } else {
-      setArtistData(descArtistData);
-    }
-  }, [ascFlag, ascArtistData, descArtistData]);
+  const descArtistData = artistsInfo.map((artist) => artist.artistData);
+
+  const ascArtistData = artistsInfo
+    .toSorted((artistA, artistB) => {
+      return artistA.updatedAt < artistB.updatedAt ? -1 : 1;
+    })
+    .map((artist) => artist.artistData);
+
+  const artistData = ascFlag ? ascArtistData : descArtistData;
 
   return (
     <>
