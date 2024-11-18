@@ -2,7 +2,7 @@ import prisma from "@/lib/prisma";
 import jwt from "jsonwebtoken";
 import { type NextRequest, NextResponse } from "next/server";
 
-export const DELETE = async (req: NextRequest, _res: NextResponse) => {
+export const DELETE = async (req: NextRequest) => {
   const secretKey = process.env.JWT_SECRET_KEY;
 
   if (!secretKey) {
