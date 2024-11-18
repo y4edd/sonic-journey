@@ -44,7 +44,7 @@ export const PATCH = async (request: NextRequest) => {
       },
     });
 
-    return NextResponse.json({ message: "ユーザー情報の編集に成功しました" }, { status: 201 });
+    return NextResponse.json({ message: "ユーザー情報の編集に成功しました" }, { status: 200 });
   } catch (err) {
     console.error(err);
     return NextResponse.json({ message: "サーバーエラーが発生しました" }, { status: 500 });
