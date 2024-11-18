@@ -2,25 +2,25 @@ import prisma from "@/lib/prisma";
 import jwt from "jsonwebtoken";
 import { type NextRequest, NextResponse } from "next/server";
 
-export const DELETE = async (req: NextRequest) => {
+export const DELETE = async (request: NextRequest) => {
   const secretKey = process.env.JWT_SECRET_KEY;
 
   if (!secretKey) {
-    return NextResponse.json({ message: "権限がありません" }, { status: 500 });
+    return NextResponse.json({ message: "権限がありません" }, { status: 401 });
   }
 
-  const token = req.cookies.get("token");
+  const token = request.cookies.get("token");
 
   if (!token) {
     return NextResponse.json({ message: "ログインが必要です" }, { status: 401 });
   }
 
   try {
-    const decoded = jwt.verify(token.value, secretKey) as { email: string };
+    const decoded = jwt.verify(token.value, secretKey) as { id: string };
 
     const user = await prisma.user.findUnique({
       where: {
-        email: decoded.email,
+        id: decoded.id,
       },
     });
 
@@ -29,7 +29,7 @@ export const DELETE = async (req: NextRequest) => {
     }
     await prisma.user.delete({
       where: {
-        email: decoded.email,
+        id: decoded.id,
       },
     });
 

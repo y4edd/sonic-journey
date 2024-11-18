@@ -33,6 +33,7 @@ const Edit = () => {
 
   const router = useRouter();
 
+  // ユーザーIDを取得
   const loadUser = async () => {
     try {
       const data = await fetchUser();
@@ -60,33 +61,36 @@ const Edit = () => {
     return <UnauthorizedAccess />;
   }
 
-  // FIXME: dataを受け取り、データベースの内容を更新する処理実装
-  const onSubmit: SubmitHandler<FormData> = async (data) => {
-    // try {
-    //   await registerUser(
-    //     data.name,
-    //     data.email,
-    //     data.password,
-    //     data.confirmPassword
-    //   );
-    //   alert("アカウント情報変更完了");
-    //   router.push("/user/login");
-    // } catch (err:any){
-    //   setServerError(err.message || "サーバーエラーです");
-    // }
-    console.log(data);
-
-    toast.success("編集が完了しました！", {
-      position: "top-center",
-      autoClose: 1000,
-      closeButton: true,
-      hideProgressBar: true,
-      closeOnClick: true,
-      theme: "colored",
-    });
-    setTimeout(() => {
-      router.push("/mypage");
-    }, 1500);
+  const onSubmit: SubmitHandler<FormData> = async (data: FormData) => {
+    try {
+      const response = await fetch("/api/user/edit", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) {
+        // 詳細なエラーメッセージ取得
+        const error = await response.json();
+        setServerError(error.message);
+      } else {
+        toast.success("編集が完了しました！", {
+          position: "top-center",
+          autoClose: 1000,
+          closeButton: true,
+          hideProgressBar: true,
+          closeOnClick: true,
+          theme: "colored",
+        });
+        setTimeout(() => {
+          router.push("/");
+        }, 1500);
+      }
+    } catch (err) {
+      console.log(err);
+      setServerError("予期せぬエラーが発生しました");
+    }
   };
 
   const handleClick = () => {
@@ -98,7 +102,7 @@ const Edit = () => {
       <BreadList
         bread={[
           { link: "/", title: "TOP" },
-          { link: "/user/info", title: "アカウント情報" },
+          { link: "/user/[id]", title: "アカウント情報" },
           { link: "/user/edit", title: "アカウント編集" },
         ]}
       />
