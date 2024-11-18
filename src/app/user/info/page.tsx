@@ -6,13 +6,13 @@ import ButtonStyles from "@/components/user/Button/Button.module.css";
 import Information from "@/components/user/Information/Information";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
 import styles from "./page.module.css";
 import "react-toastify/dist/ReactToastify.css";
 import UnauthorizedAccess from "@/components/UnauthorizedAccess/UnauthorizedAccess";
 import { fetchUser } from "@/utils/apiFunc";
 import UserDetail from "@/components/user/UserDetail/UserDetail";
 import { UserData } from "@/types/user";
+import Modal from "@/components/mypage/Modal/Modal";
 
 const Info = () => {
 
@@ -20,6 +20,7 @@ const Info = () => {
   const [serverError, setServerError] = useState<string | null>("");
   const [userId, setUserId] = useState<string | null>(null);
   const [userData,setUserData] = useState<UserData | undefined>(undefined); 
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false); 
 
   const router = useRouter();
 
@@ -43,7 +44,6 @@ const Info = () => {
     loadUser();
   }, []);
 
-  // FIXME:ユーザー情報(name、emailを返り値とするAPI実装)
   const getUserInfo = async () => {
     try {
       const response = await fetch("/api/user/getUserInfo");
@@ -81,7 +81,13 @@ const Info = () => {
   };
 
   const handleDelete = () => {
-    // 本当にいいか確認してから削除(modalを使う！)
+    // モーダルを開く
+    setIsModalOpen(true);
+  };
+
+  const choiceDelete = async () => {
+    const response = await fetch("api/user/delete");
+    
     router.push("/");
   };
 
@@ -91,13 +97,20 @@ const Info = () => {
 
   return (
     <>
+    {isModalOpen && (
+      <Modal setFunc={setIsModalOpen}>
+        <p>本当に退会しますか?</p>
+        <p>※このアカウントのデータ、作成したプレイリストはすべて削除されます</p>
+        <button onClick={choiceDelete}>退会する</button>
+        <button onClick={() => setIsModalOpen(false)}>キャンセル</button>
+      </Modal>
+    )}
       <BreadList
         bread={[
           { link: "/", title: "TOP" },
           { link: "/user/info", title: "アカウント情報" },
         ]}
       />
-      <ToastContainer />
       <div>
         <Information text="アカウント情報" />
       </div>
