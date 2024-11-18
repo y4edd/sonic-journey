@@ -1,4 +1,3 @@
-import { HISTORY } from "@/constants/constant";
 import type { DeezerSong } from "@/types/deezer";
 import { getSong } from "@/utils/apiFunc";
 import { getTokenFromCookie } from "@/utils/getTokenFromCookie";
@@ -10,6 +9,16 @@ import styles from "./PlayHistory.module.css";
 const PlayHistory = async () => {
   // クッキーからトークン取得
   const token = getTokenFromCookie();
+
+  if (!token) {
+    return (
+      <div className={styles.playHistoryGroup}>
+        <Link href="/user/login" className={styles.noLoginHistory}>
+          ログインユーザーの機能です
+        </Link>
+      </div>
+    );
+  }
   // ログインユーザーの試聴履歴楽曲のidを取得
   const playHistory = await getPlayHistory(token, 6);
   // 取得したidを使って楽曲情報を取得

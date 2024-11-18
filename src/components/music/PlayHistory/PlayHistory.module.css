@@ -48,3 +48,12 @@
   font-weight: bold;
   text-wrap: nowrap;
 }
+
+.noLoginHistory {
+  font-weight: bold;
+  text-wrap: nowrap;
+}
+
+.noLoginHistory:hover {
+  color: #77ffcc;
+}
