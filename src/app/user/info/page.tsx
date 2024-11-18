@@ -5,18 +5,19 @@ import Button from "@/components/user/Button/Button";
 import ButtonStyles from "@/components/user/Button/Button.module.css";
 import Information from "@/components/user/Information/Information";
 import { useRouter } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./page.module.css";
 import UnauthorizedAccess from "@/components/UnauthorizedAccess/UnauthorizedAccess";
 import { fetchUser } from "@/utils/apiFunc";
 import UserDetail from "@/components/user/UserDetail/UserDetail";
 import { UserData } from "@/types/user";
 import Modal from "@/components/mypage/Modal/Modal";
+import DeleteConfirm from "@/components/user/DeleteConfirm/DeleteConfirm";
 
 const Info = () => {
 
   const [loading, setLoading] = useState(true);
-  const [serverError, setServerError] = useState<string | null>("");
+  const [serverError, setServerError] = useState<string | "">("");
   const [userId, setUserId] = useState<string | null>(null);
   const [userData,setUserData] = useState<UserData | undefined>(undefined); 
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false); 
@@ -83,6 +84,7 @@ const Info = () => {
   const handleDelete = () => {
     // モーダルを開く
     setIsModalOpen(true);
+    console.log(isModalOpen);
   };
 
   const choiceDelete = async (event:React.MouseEvent<HTMLButtonElement>) => {
@@ -95,14 +97,11 @@ const Info = () => {
         const error = await response.json();
         setServerError(error.message);
       }
-      // 削除実行
-      // ボタンを押せないように
+      
       router.push("/");
     } catch(error) {
       console.log(error);
       setServerError("アカウントの削除に失敗しました");
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -112,14 +111,6 @@ const Info = () => {
 
   return (
     <>
-    {isModalOpen && (
-      <Modal setFunc={setIsModalOpen}>
-        <p>本当に退会しますか?</p>
-        <p>※このアカウントのデータ、作成したプレイリストはすべて削除されます</p>
-        <button onClick={choiceDelete} disabled={deleteProcessing}>退会する</button>
-        <button onClick={() => setIsModalOpen(false)}>キャンセル</button>
-      </Modal>
-    )}
       <BreadList
         bread={[
           { link: "/", title: "TOP" },
@@ -130,6 +121,12 @@ const Info = () => {
         <Information text="アカウント情報" />
       </div>
       <div className={styles.container}>
+      {isModalOpen && (
+        <Modal setFunc={setIsModalOpen}>
+          <DeleteConfirm />
+        </Modal>
+      )
+      }
         {userData ? (
           <>
             <UserDetail label={"ユーザー名"} userData={userData.name} />
