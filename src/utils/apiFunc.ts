@@ -314,7 +314,7 @@ export const getFavoriteArtists = async (token: string) => {
 };
 
 // トークンからuserIDを取得する関数（Cookieのtokenを引数にとる）
-export const getUserID = async(token:string) => {
+export const getUserID = async (token: string) => {
   try {
     const response = await fetch("http://localhost:3000/api/user/checkLogin", {
       cache: "no-cache",
@@ -328,8 +328,8 @@ export const getUserID = async(token:string) => {
       return data.message;
     }
     return data.id;
-  } catch (error:any) {
+  } catch (error) {
     console.error(error);
     return error;
   }
-}
+};

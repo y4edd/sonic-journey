@@ -1,7 +1,7 @@
 .modal {
   border: solid 1px lightgray;
   border-radius: 10px;
-  padding: 2.5rem 1.5rem ;
+  padding: 2.5rem 1.5rem;
 }
 
 .modal legend {
@@ -14,13 +14,12 @@
   font-weight: bold;
   color: red;
   font-size: 1.4rem;
-} 
+}
 
 .message {
   text-align: center;
   font-size: 1.1rem;
 }
-
 
 .buttonContainer {
   margin-top: 0.5rem;
@@ -50,7 +49,6 @@
   background-color: white;
   color: red;
 }
-
 
 .cancelButton {
   background-color: black;

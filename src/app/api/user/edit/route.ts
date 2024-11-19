@@ -1,7 +1,7 @@
 import prisma from "@/lib/prisma";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import { NextRequest, NextResponse } from "next/server";
+import { type NextRequest, NextResponse } from "next/server";
 
 export const PATCH = async (request: NextRequest) => {
   const secretKey = process.env.JWT_SECRET_KEY;
@@ -32,13 +32,16 @@ export const PATCH = async (request: NextRequest) => {
     const { name, email, password } = await request.json();
 
     const isEmailExist = await prisma.user.findUnique({
-      where:{
-        email: email
+      where: {
+        email: email,
       },
     });
 
-    if(isEmailExist) {
-      return NextResponse.json({ message: "このメールアドレスは既に使われています" }, { status: 409 });
+    if (isEmailExist) {
+      return NextResponse.json(
+        { message: "このメールアドレスは既に使われています" },
+        { status: 409 },
+      );
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);

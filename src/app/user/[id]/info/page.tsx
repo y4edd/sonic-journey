@@ -1,27 +1,26 @@
 "use client";
 
+import UnauthorizedAccess from "@/components/UnauthorizedAccess/UnauthorizedAccess";
+import Modal from "@/components/mypage/Modal/Modal";
 import BreadList from "@/components/top/BreadList/BreadList";
 import Button from "@/components/user/Button/Button";
 import ButtonStyles from "@/components/user/Button/Button.module.css";
+import DeleteConfirm from "@/components/user/DeleteConfirm/DeleteConfirm";
 import Information from "@/components/user/Information/Information";
+import UserDetail from "@/components/user/UserDetail/UserDetail";
+import type { UserData } from "@/types/user";
+import { fetchUser } from "@/utils/apiFunc";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import styles from "./page.module.css";
-import UnauthorizedAccess from "@/components/UnauthorizedAccess/UnauthorizedAccess";
-import { fetchUser } from "@/utils/apiFunc";
-import UserDetail from "@/components/user/UserDetail/UserDetail";
-import { UserData } from "@/types/user";
-import Modal from "@/components/mypage/Modal/Modal";
-import DeleteConfirm from "@/components/user/DeleteConfirm/DeleteConfirm";
-import { toast, ToastContainer } from "react-toastify";
 
 const Info = () => {
-
   const [loading, setLoading] = useState(true);
   const [serverError, setServerError] = useState<string | "">("");
   const [userId, setUserId] = useState<string | null>(null);
-  const [userData,setUserData] = useState<UserData | undefined>(undefined); 
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false); 
+  const [userData, setUserData] = useState<UserData | undefined>(undefined);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [deleteProcessing, setDeleteProcessing] = useState<boolean>(false);
 
   const router = useRouter();
@@ -57,7 +56,7 @@ const Info = () => {
         return;
       }
       setUserData(data);
-    } catch(error) {
+    } catch (error) {
       console.log(error);
       setServerError("ユーザー情報の取得に失敗しました");
     } finally {
@@ -87,16 +86,16 @@ const Info = () => {
   };
 
   // 退会
-  const choiceDelete = async (event:React.MouseEvent<HTMLButtonElement>) => {
+  const choiceDelete = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    if(deleteProcessing) return;
+    if (deleteProcessing) return;
     setDeleteProcessing(true);
-    try{
-      const response = await fetch("/api/user/delete",{
+    try {
+      const response = await fetch("/api/user/delete", {
         method: "DELETE",
       });
       console.log(await response.text());
-      if(!response.ok){
+      if (!response.ok) {
         const error = await response.json();
         setServerError(error.message);
       }
@@ -112,18 +111,18 @@ const Info = () => {
       setTimeout(() => {
         router.push("/");
       }, 1500);
-      
+
       router.push("/");
-    } catch(error) {
+    } catch (error) {
       console.log(error);
       setServerError("アカウントの削除に失敗しました");
     }
   };
 
   // 退会キャンセル
-  const cancelDelete = async (event:React.MouseEvent<HTMLButtonElement>) => {
+  const cancelDelete = async () => {
     setIsModalOpen(false);
-  }
+  };
 
   // 戻る
   const handleBack = () => {
@@ -143,12 +142,15 @@ const Info = () => {
       </div>
       <div className={styles.container}>
         <ToastContainer />
-      {isModalOpen && (
-        <Modal setFunc={setIsModalOpen}>
-          <DeleteConfirm choiceDelete={choiceDelete} deleteProcessing={deleteProcessing} cancelDelete={cancelDelete}/>
-        </Modal>
-      )
-      }
+        {isModalOpen && (
+          <Modal setFunc={setIsModalOpen}>
+            <DeleteConfirm
+              choiceDelete={choiceDelete}
+              deleteProcessing={deleteProcessing}
+              cancelDelete={cancelDelete}
+            />
+          </Modal>
+        )}
         {userData ? (
           <>
             <UserDetail label={"ユーザー名"} userData={userData.name} />
@@ -158,8 +160,18 @@ const Info = () => {
         ) : (
           <div>Loading...</div>
         )}
-        <Button type="button" className={ButtonStyles.register} text={"編集"} onClick={handleEdit} />
-        <Button type="button" className={ButtonStyles.delete} text={"退会"} onClick={handleDelete} />
+        <Button
+          type="button"
+          className={ButtonStyles.register}
+          text={"編集"}
+          onClick={handleEdit}
+        />
+        <Button
+          type="button"
+          className={ButtonStyles.delete}
+          text={"退会"}
+          onClick={handleDelete}
+        />
         <Button type="button" className={ButtonStyles.return} text={"戻る"} onClick={handleBack} />
         <div className={styles.errorMessage}>{serverError}</div>
       </div>
