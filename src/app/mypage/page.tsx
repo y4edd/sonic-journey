@@ -61,13 +61,6 @@ const MyPage = () => {
           link="/user/edit"
         />
         <Logout />
-        <div className={styles.gridRow}>
-          <MenuBox
-            mainTitle="退会"
-            icon={<NoAccountsIcon fontSize="large" />}
-            link="/user/delete"
-          />
-        </div>
       </div>
     </div>
   );
