@@ -9,15 +9,13 @@ import PlaylistPlayTwoToneIcon from "@mui/icons-material/PlaylistPlayTwoTone";
 import { ToastContainer } from "react-toastify";
 import styles from "./page.module.css";
 import "react-toastify/dist/ReactToastify.css";
-import { getUserIdFromToken } from "@/utils/getUserIdFromToken";
 import { getTokenFromCookie } from "@/utils/getTokenFromCookie";
+import { getUserID } from "@/utils/apiFunc";
 
-const MyPage = () => {
+const MyPage = async () => {
   const token = getTokenFromCookie();
-  console.log("トークン", token);
 
-  const id = getUserIdFromToken(token);
-  console.log(id);
+  const id = await getUserID(token);
 
   const userInfoLink = `/user/${id}/info`;
 

@@ -312,3 +312,24 @@ export const getFavoriteArtists = async (token: string) => {
     console.error(error);
   }
 };
+
+// トークンからuserIDを取得する関数（Cookieのtokenを引数にとる）
+export const getUserID = async(token:string) => {
+  try {
+    const response = await fetch("http://localhost:3000/api/user/checkLogin", {
+      cache: "no-cache",
+      headers: {
+        Cookie: token,
+      },
+    });
+    const data = await response.json();
+
+    if (!response.ok) {
+      return data.message;
+    }
+    return data.id;
+  } catch (error:any) {
+    console.error(error);
+    return error;
+  }
+}

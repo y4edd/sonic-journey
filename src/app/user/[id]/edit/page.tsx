@@ -75,7 +75,7 @@ const Edit = () => {
         const error = await response.json();
         setServerError(error.message);
       } else {
-        toast.success("アカウントの削除が完了しました", {
+        toast.success("アカウント情報の編集が完了しました", {
           position: "top-center",
           autoClose: 1000,
           closeButton: true,

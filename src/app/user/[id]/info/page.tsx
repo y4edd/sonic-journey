@@ -56,7 +56,6 @@ const Info = () => {
         setServerError(data.message);
         return;
       }
-
       setUserData(data);
     } catch(error) {
       console.log(error);
