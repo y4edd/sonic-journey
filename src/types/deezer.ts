@@ -331,3 +331,13 @@ export type Playlist = {
   createdAt: Date;
   updatedAt: Date;
 };
+
+// 試聴履歴PlayHistoryで使用する型
+export type PlayHistorySong = {
+  id: number;
+  cover_xl: string;
+  title: string;
+  artist: {
+    name: string;
+  };
+};

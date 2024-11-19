@@ -1,24 +1,33 @@
-import ActionButton from "@/components/mypage/ActionButton/ActionButton";
-import ArtistList from "@/components/mypage/ArtistList/ArtistList";
+import UnauthorizedAccess from "@/components/UnauthorizedAccess/UnauthorizedAccess";
+import FavoriteArtistsContainer from "@/components/mypage/FavoriteArtistsContainer/FavoriteArtistsContainer";
 import MenuHeader from "@/components/mypage/MenuHeader/MenuHeader";
-import SortButtons from "@/components/mypage/SortButtons/SortButtons";
 import BreadList from "@/components/top/BreadList/BreadList";
-import { getArtist } from "@/utils/apiFunc";
-import EditIcon from "@mui/icons-material/Edit";
-import styles from "./page.module.css";
+import type { DeezerArtist } from "@/types/deezer";
+import { checkLoggedInServer, getArtist, getFavoriteArtists } from "@/utils/apiFunc";
+import { getTokenFromCookie } from "@/utils/getTokenFromCookie";
+
+type favoriteArtist = {
+  artistId: number;
+  updatedAt: Date;
+};
 
 const FavoriteArtist = async () => {
-  // FIXME: ログインユーザーidを取得する
-  // FIXME: ログインユーザーのお気に入りアーティストをDBから取得する
+  // NOTE: cookieからtokenを取得し、ログインしているか確認
+  const token = getTokenFromCookie();
+  const isLoggedin = await checkLoggedInServer(token);
 
-  // MEMO: 表示確認のため、仮でアーティストidの配列を定義する
-  const favoriteArtistsId = [109785742, 4726033, 5482289, 1460437, 4993784];
+  if (!isLoggedin) {
+    return <UnauthorizedAccess />;
+  }
 
-  const favoriteArtistsInfo = await Promise.all(
-    favoriteArtistsId.map(async (artistId) => {
-      const artistData = await getArtist(artistId);
+  // NOTE: DBからお気に入りアーティストを取得
+  const favoriteArtists: { resultData: favoriteArtist[] } = await getFavoriteArtists(token);
 
-      return artistData.resArtistData;
+  // NOTE: アーティストidをもとにアーティスト情報を取得してデータに追加
+  const favoriteArtistsData = await Promise.all(
+    favoriteArtists.resultData.map(async (artist) => {
+      const artistData: { resArtistData: DeezerArtist } = await getArtist(artist.artistId);
+      return { ...artist, artistData: artistData.resArtistData };
     }),
   );
 
@@ -32,14 +41,7 @@ const FavoriteArtist = async () => {
         ]}
       />
       <MenuHeader title="お気に入りアーティスト" />
-      <SortButtons label="登録日" />
-      <div className={styles.actionButtonContainer}>
-        <ActionButton name="編集" icon={<EditIcon />} url="/mypage/favoriteartist/edit" />
-      </div>
-      <ArtistList
-        artists={favoriteArtistsInfo}
-        errorMessage="お気に入りアーティストは登録されていません"
-      />
+      <FavoriteArtistsContainer artistsInfo={favoriteArtistsData} />
     </div>
   );
 };
