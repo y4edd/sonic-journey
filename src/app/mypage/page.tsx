@@ -13,9 +13,8 @@ import { getUserIdFromToken } from "@/utils/getUserIdFromToken";
 import { getTokenFromCookie } from "@/utils/getTokenFromCookie";
 
 const MyPage = () => {
-
   const token = getTokenFromCookie();
-  console.log(token);
+  console.log("トークン", token);
 
   const id = getUserIdFromToken(token);
   console.log(id);
