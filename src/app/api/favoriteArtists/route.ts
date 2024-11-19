@@ -4,7 +4,7 @@ import { type NextRequest, NextResponse } from "next/server";
 
 export const GET = async (req: NextRequest) => {
   try {
-    // NOTE: ログインユーザーのidを取得する
+    // NOTE: ログインユーザーの確認
     const token = req.cookies.get("token")?.value;
     if (!token) {
       return NextResponse.json({ message: "ログインが必要です" }, { status: 401 });
@@ -15,8 +15,8 @@ export const GET = async (req: NextRequest) => {
       return NextResponse.json({ message: "認証に失敗しました" }, { status: 401 });
     }
 
-    // NOTE: DBからお気に入り楽曲を取得する
-    const favoriteSongs = await prisma.favorite_Song.findMany({
+    // NOTE: DBからお気に入りアーティストを取得する
+    const favoriteArtists = await prisma.favorite_Artist.findMany({
       where: {
         user_id: userId,
       },
@@ -24,20 +24,20 @@ export const GET = async (req: NextRequest) => {
         updatedAt: "desc",
       },
       select: {
-        api_song_id: true,
+        api_artist_id: true,
         updatedAt: true,
       },
     });
 
-    // NOTE: お気に入り楽曲が登録されていない場合は空の配列を返す
-    if (!favoriteSongs.length) {
+    // NOTE: お気に入りアーティストが登録されていない場合は空の配列を返す
+    if (!favoriteArtists.length) {
       return NextResponse.json({ resultData: [] }, { status: 200 });
     }
 
-    const resultData = favoriteSongs.map((song) => {
+    const resultData = favoriteArtists.map((artist) => {
       return {
-        songId: Number(song.api_song_id),
-        updatedAt: song.updatedAt,
+        artistId: Number(artist.api_artist_id),
+        updatedAt: artist.updatedAt,
       };
     });
 
