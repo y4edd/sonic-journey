@@ -78,7 +78,7 @@ const Info = () => {
   }
 
   const handleEdit = () => {
-    router.push("/user/edit");
+    router.push(`/user/${userId}/edit`);
   };
 
   // モーダル展開
@@ -115,7 +115,7 @@ const Info = () => {
       <BreadList
         bread={[
           { link: "/", title: "TOP" },
-          { link: "/user/info", title: "アカウント情報" },
+          { link: `/user/${userId}/info`, title: "アカウント情報" },
         ]}
       />
       <div>

@@ -94,7 +94,7 @@ const Edit = () => {
   };
 
   const handleClick = () => {
-    router.push("/user/information");
+    router.push(`/user/${userId}/info`);
   };
 
   return (
@@ -102,8 +102,8 @@ const Edit = () => {
       <BreadList
         bread={[
           { link: "/", title: "TOP" },
-          { link: "/user/[id]", title: "アカウント情報" },
-          { link: "/user/edit", title: "アカウント編集" },
+          { link: `/user/${userId}/info`, title: "アカウント情報" },
+          { link: `/user/${userId}/edit`, title: "アカウント編集" },
         ]}
       />
       <ToastContainer />

@@ -4,15 +4,22 @@ import BreadList from "@/components/top/BreadList/BreadList";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import HistoryIcon from "@mui/icons-material/History";
 import MusicNoteTwoToneIcon from "@mui/icons-material/MusicNoteTwoTone";
-import NoAccountsIcon from "@mui/icons-material/NoAccounts";
 import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import PlaylistPlayTwoToneIcon from "@mui/icons-material/PlaylistPlayTwoTone";
 import { ToastContainer } from "react-toastify";
-
 import styles from "./page.module.css";
 import "react-toastify/dist/ReactToastify.css";
+import { getUserIdFromToken } from "@/utils/getUserIdFromToken";
+import { getTokenFromCookie } from "@/utils/getTokenFromCookie";
 
 const MyPage = () => {
+
+  const token = getTokenFromCookie();
+
+  const id = getUserIdFromToken(token);
+
+  const userInfoLink = `/user/${id}/info`;
+
   return (
     <div>
       <BreadList
@@ -58,7 +65,7 @@ const MyPage = () => {
           mainTitle="ユーザー情報"
           subTitle="編集・確認"
           icon={<AccountBoxIcon fontSize="large" />}
-          link="/user/edit"
+          link={userInfoLink}
         />
         <Logout />
       </div>
