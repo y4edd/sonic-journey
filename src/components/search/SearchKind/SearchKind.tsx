@@ -1,5 +1,6 @@
 import Link from "next/link";
 import SearchAlbumResult from "../SearchAlbumResult/SearchAlbumResult";
+import SearchArtistResult from "../SearchArtistResult/SearchArtistResult";
 import SearchResult from "../SearchResult/SearchResult";
 import styles from "./SearchKind.module.css";
 const SearchKind = ({
@@ -55,12 +56,15 @@ const SearchKind = ({
           <SearchResult freeWord={freeWord} url="music" searchTotal={searchTotal} />
           <hr className={styles.hr} />
           <SearchAlbumResult freeWord={freeWord} url="album" />
+          <hr className={styles.hr} />
+          <SearchArtistResult freeWord={freeWord} url="artist" />
         </div>
       )}
       {kind === "single" && (
         <SearchResult freeWord={freeWord} url="music" searchTotal={searchTotal} />
       )}
       {kind === "album" && <SearchAlbumResult freeWord={freeWord} url="album" />}
+      {kind === "artist" && <SearchArtistResult freeWord={freeWord} url="artist" />}
     </div>
   );
 };
