@@ -81,12 +81,12 @@ const Info = () => {
     router.push("/user/edit");
   };
 
+  // モーダル展開
   const handleDelete = () => {
-    // モーダルを開く
     setIsModalOpen(true);
-    console.log(isModalOpen);
   };
 
+  // 退会
   const choiceDelete = async (event:React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if(deleteProcessing) return;
@@ -105,6 +105,7 @@ const Info = () => {
     }
   };
 
+  // 戻る
   const handleBack = () => {
     router.push("/mypage");
   };
@@ -123,7 +124,7 @@ const Info = () => {
       <div className={styles.container}>
       {isModalOpen && (
         <Modal setFunc={setIsModalOpen}>
-          <DeleteConfirm />
+          <DeleteConfirm choiceDelete={choiceDelete} deleteProcessing={deleteProcessing} isModalOpen={isModalOpen}/>
         </Modal>
       )
       }
