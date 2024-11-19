@@ -15,8 +15,10 @@ import { getTokenFromCookie } from "@/utils/getTokenFromCookie";
 const MyPage = () => {
 
   const token = getTokenFromCookie();
+  console.log(token);
 
   const id = getUserIdFromToken(token);
+  console.log(id);
 
   const userInfoLink = `/user/${id}/info`;
 

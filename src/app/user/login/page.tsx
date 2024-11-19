@@ -13,6 +13,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import styles from "./page.module.css";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const [serverError, setServerError] = useState<string | null>(null);
@@ -43,6 +45,18 @@ const Login = () => {
         const error = await response.json();
         setServerError(error.message);
       } else {
+        toast.success("ログインに成功しました！", {
+          position: "top-center",
+          autoClose: 1000,
+          closeButton: true,
+          hideProgressBar: true,
+          closeOnClick: true,
+          theme: "colored",
+        });
+        setTimeout(() => {
+          router.push("/");
+        }, 1500);
+
         router.push("/");
       }
     } catch (err) {
@@ -63,6 +77,7 @@ const Login = () => {
         <Information text="ログイン" />
       </div>
       <div className={styles.container}>
+        <ToastContainer />
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormInput
             label="メールアドレス"

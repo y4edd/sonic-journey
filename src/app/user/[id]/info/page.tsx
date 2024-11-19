@@ -13,6 +13,7 @@ import UserDetail from "@/components/user/UserDetail/UserDetail";
 import { UserData } from "@/types/user";
 import Modal from "@/components/mypage/Modal/Modal";
 import DeleteConfirm from "@/components/user/DeleteConfirm/DeleteConfirm";
+import { toast, ToastContainer } from "react-toastify";
 
 const Info = () => {
 
@@ -92,11 +93,26 @@ const Info = () => {
     if(deleteProcessing) return;
     setDeleteProcessing(true);
     try{
-      const response = await fetch("/api/user/delete");
+      const response = await fetch("/api/user/delete",{
+        method: "DELETE",
+      });
+      console.log(await response.text());
       if(!response.ok){
         const error = await response.json();
         setServerError(error.message);
       }
+
+      toast.success("編集が完了しました！", {
+        position: "top-center",
+        autoClose: 1000,
+        closeButton: true,
+        hideProgressBar: true,
+        closeOnClick: true,
+        theme: "colored",
+      });
+      setTimeout(() => {
+        router.push("/");
+      }, 1500);
       
       router.push("/");
     } catch(error) {
@@ -104,6 +120,11 @@ const Info = () => {
       setServerError("アカウントの削除に失敗しました");
     }
   };
+
+  // 退会キャンセル
+  const cancelDelete = async (event:React.MouseEvent<HTMLButtonElement>) => {
+    setIsModalOpen(false);
+  }
 
   // 戻る
   const handleBack = () => {
@@ -122,9 +143,10 @@ const Info = () => {
         <Information text="アカウント情報" />
       </div>
       <div className={styles.container}>
+        <ToastContainer />
       {isModalOpen && (
         <Modal setFunc={setIsModalOpen}>
-          <DeleteConfirm choiceDelete={choiceDelete} deleteProcessing={deleteProcessing} isModalOpen={isModalOpen}/>
+          <DeleteConfirm choiceDelete={choiceDelete} deleteProcessing={deleteProcessing} cancelDelete={cancelDelete}/>
         </Modal>
       )
       }

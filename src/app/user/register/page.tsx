@@ -13,6 +13,8 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
 import styles from "./page.module.css";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const UserRegistration = () => {
   // useStateでサーバーエラー管理
@@ -47,6 +49,18 @@ const UserRegistration = () => {
         const error = await response.json();
         setServerError(error.message);
       } else {
+        toast.success("アカウント登録が完了しました！", {
+          position: "top-center",
+          autoClose: 1000,
+          closeButton: true,
+          hideProgressBar: true,
+          closeOnClick: true,
+          theme: "colored",
+        });
+        setTimeout(() => {
+          router.push("/");
+        }, 1500);
+
         router.push("/user/login");
       }
     } catch (err) {
@@ -67,6 +81,7 @@ const UserRegistration = () => {
         <Information text="アカウント登録" />
       </div>
       <div className={styles.container}>
+        <ToastContainer />
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormInput
             label="ユーザー名"
