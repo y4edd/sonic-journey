@@ -1,12 +1,15 @@
 .buttonContainer {
   display: flex;
   align-items: center;
-}
-
-.buttonContainer > button {
   font-size: 1rem;
   border: none;
   background-color: white;
-  color: black;
-  padding: 4px 4px;
+  color: #525252;
+  padding: 4px;
+  cursor: pointer;
+}
+
+.buttonIcon {
+  display: inline-flex;
+  padding-right: 2px;
 }
