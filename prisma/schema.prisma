@@ -63,6 +63,8 @@ model Playlist_Song {
   playlist    Playlist  @relation(fields: [playlist_id], references: [id], onDelete: Cascade)
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+
+  @@unique([playlist_id, api_song_id], name: "playlistSong_identifier")
 }
 
 model History {
