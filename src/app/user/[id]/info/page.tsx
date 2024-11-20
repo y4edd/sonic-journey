@@ -137,9 +137,7 @@ const Info = () => {
           { link: `/user/${userId}/info`, title: "アカウント情報" },
         ]}
       />
-      <div>
-        <Information text="アカウント情報" />
-      </div>
+      <Information text="アカウント情報" />
       <div className={styles.container}>
         <ToastContainer />
         {isModalOpen && (
