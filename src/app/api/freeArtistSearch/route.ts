@@ -20,7 +20,6 @@ export const GET = async (request: NextRequest) => {
       return {
         id: data.id,
         name: data.name ?? "artist",
-        link: data.link ?? "link",
         picture_xl: data.picture_xl ?? "/images/defaultsong.png",
       };
     });
