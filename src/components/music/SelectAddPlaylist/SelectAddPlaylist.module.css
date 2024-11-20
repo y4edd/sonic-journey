@@ -1,0 +1,7 @@
+.playlist {
+  display: flex;
+}
+
+.playlistCheck {
+  color: red;
+}
