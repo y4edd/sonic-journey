@@ -53,3 +53,13 @@ export type UserInfo = {
   createdAt: Date;
   updatedAt: Date;
 };
+
+export type choiceDeleteProps = (event: React.MouseEvent<HTMLButtonElement>) => Promise<void>;
+
+export type cancelDeleteProps = (event: React.MouseEvent<HTMLButtonElement>) => void;
+
+export type DeleteConfirm = {
+  choiceDelete: choiceDeleteProps;
+  deleteProcessing: boolean;
+  cancelDelete: cancelDeleteProps;
+};

@@ -1,19 +1,10 @@
 import styles from "./DeleteConfirm.module.css";
-
-type choiceDeleteProps = (event: React.MouseEvent<HTMLButtonElement>) => Promise<void>;
-
-type cancelDeleteProps = (event: React.MouseEvent<HTMLButtonElement>) => void;
-
-type DeleteConfirm = {
-  choiceDelete: choiceDeleteProps;
-  deleteProcessing: boolean;
-  cancelDelete: cancelDeleteProps;
-};
+import { type DeleteConfirm } from "@/types/user";
 
 const DeleteConfirm = ({ choiceDelete, deleteProcessing, cancelDelete }: DeleteConfirm) => {
   return (
     <div className={styles.modal}>
-      <p className={styles.warning}>本当に退会しますか?</p>
+      <p className={styles.warning}>本当に退会しますか？</p>
       <p className={styles.message}>
         このアカウントのデータ及び、
         <br />
