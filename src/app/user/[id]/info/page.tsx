@@ -21,7 +21,7 @@ const Info = () => {
   const [userId, setUserId] = useState<string | null>(null);
   const [userData, setUserData] = useState<UserData | undefined>(undefined);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [deleteProcessing, setDeleteProcessing] = useState<boolean>(false);
+  const [isButtonDisabled, setIsDeleteProcessing] = useState<boolean>(false);
 
   const router = useRouter();
 
@@ -85,8 +85,8 @@ const Info = () => {
   // 退会
   const choiceDelete = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    if (deleteProcessing) return;
-    setDeleteProcessing(true);
+    if (isButtonDisabled) return;
+    setIsDeleteProcessing(true);
     try {
       const response = await fetch("/api/user/delete", {
         method: "DELETE",
@@ -141,7 +141,7 @@ const Info = () => {
           <Modal setFunc={setIsModalOpen}>
             <DeleteConfirm
               choiceDelete={choiceDelete}
-              deleteProcessing={deleteProcessing}
+              isButtonDisabled={isButtonDisabled}
               cancelDelete={cancelDelete}
             />
           </Modal>

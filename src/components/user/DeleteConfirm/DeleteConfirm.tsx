@@ -1,7 +1,7 @@
 import type { DeleteConfirmProps } from "@/types/user";
 import styles from "./DeleteConfirm.module.css";
 
-const DeleteConfirm = ({ choiceDelete, deleteProcessing, cancelDelete }: DeleteConfirmProps) => {
+const DeleteConfirm = ({ choiceDelete, isButtonDisabled, cancelDelete }: DeleteConfirmProps) => {
   return (
     <div className={styles.modal}>
       <p className={styles.warning}>本当に退会しますか？</p>
@@ -15,7 +15,7 @@ const DeleteConfirm = ({ choiceDelete, deleteProcessing, cancelDelete }: DeleteC
           type="submit"
           className={styles.deleteButton}
           onClick={choiceDelete}
-          disabled={deleteProcessing}
+          disabled={isButtonDisabled}
         >
           退会する
         </button>
