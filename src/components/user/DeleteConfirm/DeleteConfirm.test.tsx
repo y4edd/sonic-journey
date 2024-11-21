@@ -3,14 +3,14 @@ import DeleteConfirm from "./DeleteConfirm";
 
 describe("DeleteConfirmコンポーネントのテスト", () => {
   const choiceDeleteMock = jest.fn();
-  const deleteProcessing = false;
+  const isButtonDisabled = false;
   const cancelDeleteMock = jest.fn();
 
   test("モーダルの警告メッセージが正しく表示される", () => {
     render(
       <DeleteConfirm
         choiceDelete={choiceDeleteMock}
-        deleteProcessing={deleteProcessing}
+        isButtonDisabled={isButtonDisabled}
         cancelDelete={cancelDeleteMock}
       />,
     );
@@ -22,7 +22,7 @@ describe("DeleteConfirmコンポーネントのテスト", () => {
     render(
       <DeleteConfirm
         choiceDelete={choiceDeleteMock}
-        deleteProcessing={deleteProcessing}
+        isButtonDisabled={isButtonDisabled}
         cancelDelete={cancelDeleteMock}
       />,
     );
@@ -35,7 +35,7 @@ describe("DeleteConfirmコンポーネントのテスト", () => {
     render(
       <DeleteConfirm
         choiceDelete={choiceDeleteMock}
-        deleteProcessing={deleteProcessing}
+        isButtonDisabled={isButtonDisabled}
         cancelDelete={cancelDeleteMock}
       />,
     );
@@ -48,7 +48,7 @@ describe("DeleteConfirmコンポーネントのテスト", () => {
     render(
       <DeleteConfirm
         choiceDelete={choiceDeleteMock}
-        deleteProcessing={deleteProcessing}
+        isButtonDisabled={isButtonDisabled}
         cancelDelete={cancelDeleteMock}
       />,
     );

@@ -362,4 +362,4 @@ export const fetchUserInfo = async () => {
   } catch (error) {
     console.error(error);
   }
-}
+};

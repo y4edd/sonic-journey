@@ -48,7 +48,7 @@ const Info = () => {
   const getUserInfo = async () => {
     try {
       const data = await fetchUserInfo();
-      if(data) {
+      if (data) {
         setUserData(data);
       } else {
         setUserData(undefined);
@@ -137,7 +137,7 @@ const Info = () => {
             <DeleteConfirm
               choiceDelete={choiceDelete}
               isButtonDisabled={isButtonDisabled}
-              cancelDelete={ ()=>setIsModalOpen(false) }
+              cancelDelete={() => setIsModalOpen(false)}
             />
           </Modal>
         )}
@@ -162,12 +162,7 @@ const Info = () => {
           text={"退会"}
           onClick={handleDelete}
         />
-        <Button
-          type="button"
-          className={ButtonStyles.return}
-          text={"戻る"}
-          onClick={handleBack}
-        />
+        <Button type="button" className={ButtonStyles.return} text={"戻る"} onClick={handleBack} />
         <div className={styles.errorMessage}>{serverError}</div>
       </div>
     </>
