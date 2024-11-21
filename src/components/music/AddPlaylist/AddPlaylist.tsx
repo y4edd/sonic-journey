@@ -4,6 +4,7 @@ import CreateNewFolderIcon from "@mui/icons-material/CreateNewFolder";
 import { SelectAddPlaylist } from "../SelectAddPlaylist/SelectAddPlaylist";
 import { fetchUser, getUserPlaylist } from "@/utils/apiFunc";
 import { getAddPlaylists } from "@/utils/apiFunc";
+import Modal from "@/components/mypage/Modal/Modal";
 import type { Playlist } from "@prisma/client";
 import styles from "./AddPlaylist.module.css";
 import { useState, useEffect } from "react";
@@ -11,14 +12,14 @@ import { useState, useEffect } from "react";
 export const AddPlaylist = ({ id }: { id: number }) => {
   const [user, setUser] = useState<string | null>(null);
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
-  const [addListOpen, setAddListOpen] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const [defaultPlaylists, setDefaultPlaylists] = useState<
     { playlist_id: number; music_flag: boolean }[]
   >([]);
 
   const handleAddPlaylist = () => {
     if (user) {
-      setAddListOpen(true);
+      setModalOpen(true);
     }
   };
 
@@ -49,7 +50,7 @@ export const AddPlaylist = ({ id }: { id: number }) => {
       };
       addMusicPlaylists();
     }
-  }, [user, playlists, addListOpen]);
+  }, [user, playlists, modalOpen]);
 
   return (
     <>
@@ -57,14 +58,18 @@ export const AddPlaylist = ({ id }: { id: number }) => {
         <CreateNewFolderIcon />
         <p>プレイリストに追加</p>
       </button>
-      {addListOpen && user && (
-        <SelectAddPlaylist
-          user_id={user}
-          music_id={id}
-          playlists={playlists}
-          defaultPlaylists={defaultPlaylists}
-          setAddListOpen={setAddListOpen}
-        />
+      {modalOpen && user && (
+        <Modal setFunc={setModalOpen}>
+          <div className={styles.modal}>
+            <SelectAddPlaylist
+              user_id={user}
+              music_id={id}
+              playlists={playlists}
+              defaultPlaylists={defaultPlaylists}
+              setModalOpen={setModalOpen}
+            />
+          </div>
+        </Modal>
       )}
     </>
   );

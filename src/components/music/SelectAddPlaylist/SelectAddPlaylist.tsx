@@ -5,20 +5,22 @@ import { ChangeEvent, useEffect } from "react";
 import { FormEvent } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { useState } from "react";
+import AddBoxIcon from "@mui/icons-material/AddBox";
 import styles from "./SelectAddPlaylist.module.css";
+import Link from "next/link";
 
 export const SelectAddPlaylist = ({
   user_id,
   music_id,
   playlists,
   defaultPlaylists,
-  setAddListOpen,
+  setModalOpen,
 }: {
   user_id: string;
   music_id: number;
   playlists: Playlist[];
   defaultPlaylists: { playlist_id: number; music_flag: boolean }[];
-  setAddListOpen: Dispatch<SetStateAction<boolean>>;
+  setModalOpen: Dispatch<SetStateAction<boolean>>;
 }) => {
   // チェックされているプレイリスト
   const [addPlaylists, setAddPlaylists] =
@@ -110,7 +112,7 @@ export const SelectAddPlaylist = ({
           cache: "no-cache",
         }
       );
-      setAddListOpen(false);
+      setModalOpen(false);
       alert("プレイリストが編集されました");
       if (!delRes.ok) {
         throw new Error("プレイリストの楽曲の削除ができませんでした");
@@ -122,26 +124,52 @@ export const SelectAddPlaylist = ({
 
   return (
     <>
-      {defaultPlaylists.length === 0 && <p>プレイリストがありません</p>}
+      {defaultPlaylists.length === 0 && (
+        <>
+          <p className={styles.noPlaylist}>プレイリストがありません</p>
+          <Link href="/mypage/playlist" className={styles.playlistLink}>
+            <AddBoxIcon className={styles.addLinkIcon} />
+            プレイリストを新規作成
+          </Link>
+        </>
+      )}
       {defaultPlaylists.length === addPlaylists.length &&
         defaultPlaylists.length !== 0 && (
-          <form onSubmit={handleSubmit}>
-            {playlists.map((playlist: Playlist) => (
-              <div className="playlist" key={playlist.id}>
-                <input
-                  type="checkbox"
-                  id={playlist.name}
-                  name="addPlaylist"
-                  value={playlist.id}
-                  defaultChecked={checkedCheck(playlist.id)}
-                  onChange={handleChange}
-                  className={styles.playlistCheck}
-                />
-                <label htmlFor={playlist.name}>{playlist.name}</label>
+          <>
+            <p className={styles.modalTitle}>楽曲の追加先</p>
+            <form onSubmit={handleSubmit}>
+              {playlists.map((playlist: Playlist) => (
+                <div className={styles.playlist} key={playlist.id}>
+                  <input
+                    type="checkbox"
+                    id={playlist.name}
+                    name="addPlaylist"
+                    value={playlist.id}
+                    defaultChecked={checkedCheck(playlist.id)}
+                    onChange={handleChange}
+                    className={styles.playlistCheck}
+                  />
+                  <label htmlFor={playlist.name}>{playlist.name}</label>
+                </div>
+              ))}
+              <div className={styles.buttonContainer}>
+                <button
+                  type="button"
+                  onClick={() => setModalOpen(false)}
+                  className={styles.cancelButton}
+                >
+                  キャンセル
+                </button>
+                <button type="submit" className={styles.createButton}>
+                  作成
+                </button>
               </div>
-            ))}
-            <button type="submit">完了</button>
-          </form>
+            </form>
+            <Link href="/mypage/playlist" className={styles.playlistLink}>
+              <AddBoxIcon className={styles.addLinkIcon} />
+              プレイリストを新規作成
+            </Link>
+          </>
         )}
     </>
   );
