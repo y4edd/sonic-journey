@@ -1,7 +1,7 @@
+import type { DeleteConfirmProps } from "@/types/user";
 import styles from "./DeleteConfirm.module.css";
-import { type DeleteConfirm } from "@/types/user";
 
-const DeleteConfirm = ({ choiceDelete, deleteProcessing, cancelDelete }: DeleteConfirm) => {
+const DeleteConfirm = ({ choiceDelete, deleteProcessing, cancelDelete }: DeleteConfirmProps) => {
   return (
     <div className={styles.modal}>
       <p className={styles.warning}>本当に退会しますか？</p>

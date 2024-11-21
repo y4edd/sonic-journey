@@ -58,7 +58,7 @@ export type choiceDeleteProps = (event: React.MouseEvent<HTMLButtonElement>) => 
 
 export type cancelDeleteProps = (event: React.MouseEvent<HTMLButtonElement>) => void;
 
-export type DeleteConfirm = {
+export type DeleteConfirmProps = {
   choiceDelete: choiceDeleteProps;
   deleteProcessing: boolean;
   cancelDelete: cancelDeleteProps;
