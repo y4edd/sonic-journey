@@ -21,7 +21,7 @@ const Info = () => {
   const [userId, setUserId] = useState<string | null>(null);
   const [userData, setUserData] = useState<UserData | undefined>(undefined);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  const [isButtonDisabled, setIsDeleteProcessing] = useState<boolean>(false);
+  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(false);
 
   const router = useRouter();
 
@@ -86,7 +86,7 @@ const Info = () => {
   const choiceDelete = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
     if (isButtonDisabled) return;
-    setIsDeleteProcessing(true);
+    setIsButtonDisabled(true);
     try {
       const response = await fetch("/api/user/delete", {
         method: "DELETE",
