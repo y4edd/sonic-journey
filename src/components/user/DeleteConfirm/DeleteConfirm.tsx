@@ -12,7 +12,7 @@ const DeleteConfirm = ({ choiceDelete, isButtonDisabled, cancelDelete }: DeleteC
       </p>
       <div className={styles.buttonContainer}>
         <button
-          type="submit"
+          type="button"
           className={styles.deleteButton}
           onClick={choiceDelete}
           disabled={isButtonDisabled}
