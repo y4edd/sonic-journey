@@ -21,7 +21,7 @@ export const GET = async (req: NextRequest) => {
       },
     });
 
-    let musicPlaylists: { playlist_id: number }[] = [];
+    let musicPlaylists: { playlist_id: number; music_flag: boolean }[] = [];
     for (const userPlaylist_id of userPlaylist_ids) {
       const musicPlaylist = await prisma.playlist_Song.findFirst({
         select: {
@@ -35,7 +35,12 @@ export const GET = async (req: NextRequest) => {
       if (musicPlaylist) {
         musicPlaylists = [
           ...musicPlaylists,
-          { playlist_id: musicPlaylist.playlist_id },
+          { playlist_id: musicPlaylist.playlist_id, music_flag: true },
+        ];
+      } else {
+        musicPlaylists = [
+          ...musicPlaylists,
+          { playlist_id: userPlaylist_id.id, music_flag: false },
         ];
       }
     }

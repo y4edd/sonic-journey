@@ -13,7 +13,7 @@ export const AddPlaylist = ({ id }: { id: number }) => {
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
   const [addListOpen, setAddListOpen] = useState(false);
   const [defaultPlaylists, setDefaultPlaylists] = useState<
-    { playlist_id: number }[]
+    { playlist_id: number; music_flag: boolean }[]
   >([]);
 
   const handleAddPlaylist = () => {
@@ -43,7 +43,8 @@ export const AddPlaylist = ({ id }: { id: number }) => {
   useEffect(() => {
     if (user) {
       const addMusicPlaylists = async () => {
-        const data: { playlist_id: number }[] = await getAddPlaylists(user, id);
+        const data: { playlist_id: number; music_flag: boolean }[] =
+          await getAddPlaylists(user, id);
         setDefaultPlaylists(data);
       };
       addMusicPlaylists();
