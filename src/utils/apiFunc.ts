@@ -330,7 +330,7 @@ export const getFreeArtist = async (artist: string) => {
 };
 
 // トークンからuserIDを取得する関数（Cookieのtokenを引数にとる）
-export const getUserID = async (token: string) => {
+export const getUserId = async (token: string) => {
   try {
     const response = await fetch("http://localhost:3000/api/user/checkLogin", {
       cache: "no-cache",
