@@ -16,10 +16,7 @@ jest.mock("@/utils/apiFunc", () => ({
 }));
 
 describe("Infoコンポーネントのテスト", () => {
-  // ロジック
-  //loadUser関数
   test("正常なユーザーデータが取得できる場合、userIdが正しく設定され、ユーザー情報ページが表示される", async () => {
-    // コンポーネントをレンダリング
     await act(async () => {
       render(<Info />);
     });
