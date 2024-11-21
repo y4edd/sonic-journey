@@ -349,3 +349,17 @@ export const getUserId = async (token: string) => {
     return error;
   }
 };
+
+// ユーザー情報を取得する非同期処理
+export const fetchUserInfo = async () => {
+  try {
+    const response = await fetch("/api/user/getUserInfo");
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(`エラー: ${response.status} - ${data.message}`);
+    }
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+}

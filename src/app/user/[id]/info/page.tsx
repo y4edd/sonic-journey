@@ -9,7 +9,7 @@ import DeleteConfirm from "@/components/user/DeleteConfirm/DeleteConfirm";
 import Information from "@/components/user/Information/Information";
 import UserDetail from "@/components/user/UserDetail/UserDetail";
 import type { UserData } from "@/types/user";
-import { fetchUser } from "@/utils/apiFunc";
+import { fetchUser, fetchUserInfo } from "@/utils/apiFunc";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
@@ -47,15 +47,12 @@ const Info = () => {
 
   const getUserInfo = async () => {
     try {
-      const response = await fetch("/api/user/getUserInfo");
-      const data = await response.json();
-
-      if (!response.ok) {
-        // 詳細なエラーメッセージ取得
-        setServerError(data.message);
-        return;
+      const data = await fetchUserInfo();
+      if(data) {
+        setUserData(data);
+      } else {
+        setUserData(undefined);
       }
-      setUserData(data);
     } catch (error) {
       console.log(error);
       setServerError("ユーザー情報の取得に失敗しました");
