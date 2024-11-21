@@ -17,8 +17,6 @@ const MyPage = async () => {
 
   const userId = await getUserId(token);
 
-  const userInfoLink = `/user/${userId}/info`;
-
   return (
     <div>
       <BreadList
@@ -64,7 +62,7 @@ const MyPage = async () => {
           mainTitle="ユーザー情報"
           subTitle="編集・確認"
           icon={<AccountBoxIcon fontSize="large" />}
-          link={userInfoLink}
+          link={`/user/${userId}/info`}
         />
         <Logout />
       </div>
