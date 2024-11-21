@@ -116,11 +116,6 @@ const Info = () => {
     }
   };
 
-  // 退会キャンセル
-  const cancelDelete = async () => {
-    setIsModalOpen(false);
-  };
-
   // 戻る
   const handleBack = () => {
     router.push("/mypage");
@@ -142,7 +137,7 @@ const Info = () => {
             <DeleteConfirm
               choiceDelete={choiceDelete}
               isButtonDisabled={isButtonDisabled}
-              cancelDelete={cancelDelete}
+              cancelDelete={ ()=>setIsModalOpen(false) }
             />
           </Modal>
         )}
