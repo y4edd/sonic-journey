@@ -15,10 +15,10 @@ export const GET = async (req: NextRequest, _res: NextResponse) => {
     return NextResponse.json({ message: "ログインが必要です" }, { status: 401 });
   }
   try {
-    const decoded = jwt.verify(token.value, secretKey) as { email: string };
+    const decoded = jwt.verify(token.value, secretKey) as { id: string };
     const userInfo = await prisma.user.findFirst({
       where: {
-        email: decoded.email,
+        id: decoded.id,
       },
     });
     if (!userInfo) {

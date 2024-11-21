@@ -1,0 +1,15 @@
+.userInfo {
+  margin-left: 1.0rem;
+  margin-bottom: 1.0rem;
+}
+
+.userLabel {
+  padding: 0.5rem;
+  width: 100%;
+}
+
+.userData {
+  margin-left: 1.0rem;
+  font-size: 1.4rem;
+  width: 100%;
+}

@@ -312,7 +312,6 @@ export const getFavoriteArtists = async (token: string) => {
     console.error(error);
   }
 };
-
 // 検索ワードを使用してアーティストを取得する関数
 export const getFreeArtist = async (artist: string) => {
   try {
@@ -325,6 +324,41 @@ export const getFreeArtist = async (artist: string) => {
     }
 
     return await res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// トークンからuserIDを取得する関数（Cookieのtokenを引数にとる）
+export const getUserId = async (token: string) => {
+  try {
+    const response = await fetch("http://localhost:3000/api/user/checkLogin", {
+      cache: "no-cache",
+      headers: {
+        Cookie: token,
+      },
+    });
+    const data = await response.json();
+
+    if (!response.ok) {
+      return data.message;
+    }
+    return data.id;
+  } catch (error) {
+    console.error(error);
+    return error;
+  }
+};
+
+// ユーザー情報を取得する非同期処理
+export const fetchUserInfo = async () => {
+  try {
+    const response = await fetch("/api/user/getUserInfo");
+    const data = await response.json();
+    if (!response.ok) {
+      throw new Error(`エラー: ${response.status} - ${data.message}`);
+    }
+    return data;
   } catch (error) {
     console.error(error);
   }

@@ -11,7 +11,7 @@ describe("Informationコンポーネントのテスト", () => {
     expect(element).toBeInTheDocument();
   });
 
-  test("情報コンポーネントのクラスが正しく適用されている", () => {
+  test("Informationコンポーネントのクラスが正しく適用されている", () => {
     const testText = "スタイルのテスト";
 
     render(<Information text={testText} />);

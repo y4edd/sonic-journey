@@ -75,7 +75,7 @@ const Edit = () => {
         const error = await response.json();
         setServerError(error.message);
       } else {
-        toast.success("編集が完了しました！", {
+        toast.success("アカウント情報の編集が完了しました", {
           position: "top-center",
           autoClose: 1000,
           closeButton: true,
@@ -94,7 +94,7 @@ const Edit = () => {
   };
 
   const handleClick = () => {
-    router.push("/user/information");
+    router.push(`/user/${userId}/info`);
   };
 
   return (
@@ -102,8 +102,8 @@ const Edit = () => {
       <BreadList
         bread={[
           { link: "/", title: "TOP" },
-          { link: "/user/[id]", title: "アカウント情報" },
-          { link: "/user/edit", title: "アカウント編集" },
+          { link: `/user/${userId}/info`, title: "アカウント情報" },
+          { link: `/user/${userId}/edit`, title: "アカウント編集" },
         ]}
       />
       <ToastContainer />
