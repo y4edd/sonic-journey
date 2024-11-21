@@ -10,13 +10,11 @@ import styles from "./SelectAddPlaylist.module.css";
 import Link from "next/link";
 
 export const SelectAddPlaylist = ({
-  user_id,
   music_id,
   playlists,
   defaultPlaylists,
   setModalOpen,
 }: {
-  user_id: string;
   music_id: number;
   playlists: Playlist[];
   defaultPlaylists: { playlist_id: number; music_flag: boolean }[];
@@ -85,40 +83,47 @@ export const SelectAddPlaylist = ({
   }, [defaultPlaylists, addPlaylists]);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    if (diffPlaylists.length > 0) {
+      e.preventDefault();
 
-    try {
-      const addRes = await fetch("http://localhost:3000/api/musicAddPlaylist", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ diffPlaylists, music_id }),
-        cache: "no-cache",
-      });
+      try {
+        const addRes = await fetch(
+          "http://localhost:3000/api/musicAddPlaylist",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ diffPlaylists, music_id }),
+            cache: "no-cache",
+          }
+        );
 
-      if (!addRes.ok) {
-        throw new Error("プレイリストに楽曲の追加ができませんでした");
-      }
-    } catch (error) {
-      console.error(error);
-    }
-
-    try {
-      const delRes = await fetch(
-        "http://localhost:3000/api/musicDeletePlaylist",
-        {
-          method: "DELETE",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ diffPlaylists, music_id }),
-          cache: "no-cache",
+        if (!addRes.ok) {
+          throw new Error("プレイリストに楽曲の追加ができませんでした");
         }
-      );
-      setModalOpen(false);
-      alert("プレイリストが編集されました");
-      if (!delRes.ok) {
-        throw new Error("プレイリストの楽曲の削除ができませんでした");
+      } catch (error) {
+        console.error(error);
       }
-    } catch (error) {
-      console.error(error);
+
+      try {
+        const delRes = await fetch(
+          "http://localhost:3000/api/musicDeletePlaylist",
+          {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ diffPlaylists, music_id }),
+            cache: "no-cache",
+          }
+        );
+        setModalOpen(false);
+        alert("プレイリストが編集されました");
+        if (!delRes.ok) {
+          throw new Error("プレイリストの楽曲の削除ができませんでした");
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      setModalOpen(false);
     }
   };
 
@@ -161,7 +166,7 @@ export const SelectAddPlaylist = ({
                   キャンセル
                 </button>
                 <button type="submit" className={styles.createButton}>
-                  作成
+                  追加
                 </button>
               </div>
             </form>

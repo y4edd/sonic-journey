@@ -56,13 +56,12 @@ export const AddPlaylist = ({ id }: { id: number }) => {
     <>
       <button className={styles.songInfoAddList} onClick={handleAddPlaylist}>
         <CreateNewFolderIcon />
-        <p>プレイリストに追加</p>
+        <span>プレイリストに追加</span>
       </button>
       {modalOpen && user && (
         <Modal setFunc={setModalOpen}>
           <div className={styles.modal}>
             <SelectAddPlaylist
-              user_id={user}
               music_id={id}
               playlists={playlists}
               defaultPlaylists={defaultPlaylists}

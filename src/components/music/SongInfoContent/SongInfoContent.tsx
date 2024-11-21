@@ -35,7 +35,6 @@ const SongInfoContent = ({
           <div>
             <SongAudio preview={preview} id={id} />
           </div>
-          {/* FIXME: プレイリストに追加する処理を記述する必要があります。 */}
           <div className={styles.songInfoAddFavorite}>
             <FavoriteBorderIcon />
             <p>お気に入りに追加</p>
