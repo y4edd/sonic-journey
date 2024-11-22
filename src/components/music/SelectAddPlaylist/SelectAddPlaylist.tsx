@@ -37,14 +37,12 @@ export const SelectAddPlaylist = ({
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     // クリックされたプレイリストデータを取得
     const changePlaylist = addPlaylists.filter(
-      (addPlaylist) => addPlaylist.playlist_id === Number(e.target.value)
+      (addPlaylist) => addPlaylist.playlist_id === Number(e.target.value),
     );
 
     // addPlaylistsからクリックしたプレイリストデータを削除
     setAddPlaylists((prevStateArr) =>
-      prevStateArr.filter(
-        (prevState) => prevState.playlist_id !== Number(e.target.value)
-      )
+      prevStateArr.filter((prevState) => prevState.playlist_id !== Number(e.target.value)),
     );
 
     // music_flagを逆転させたプレイリストデータを作成
@@ -58,7 +56,7 @@ export const SelectAddPlaylist = ({
 
   const checkedCheck = (playlist_id: number) => {
     const checkedPlaylist = addPlaylists.filter(
-      (addPlaylist) => addPlaylist.playlist_id === playlist_id
+      (addPlaylist) => addPlaylist.playlist_id === playlist_id,
     );
     if (checkedPlaylist.length === 1) {
       return checkedPlaylist[0].music_flag;
@@ -71,13 +69,10 @@ export const SelectAddPlaylist = ({
       setDiffPlaylists(
         addPlaylists.filter((addPlaylist) => {
           const defaultPlaylist = defaultPlaylists.find(
-            (p) => p.playlist_id === addPlaylist.playlist_id
+            (p) => p.playlist_id === addPlaylist.playlist_id,
           );
-          return (
-            defaultPlaylist &&
-            addPlaylist.music_flag !== defaultPlaylist.music_flag
-          );
-        })
+          return defaultPlaylist && addPlaylist.music_flag !== defaultPlaylist.music_flag;
+        }),
       );
     }
   }, [defaultPlaylists, addPlaylists]);
@@ -87,15 +82,12 @@ export const SelectAddPlaylist = ({
       e.preventDefault();
 
       try {
-        const addRes = await fetch(
-          "http://localhost:3000/api/musicAddPlaylist",
-          {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ diffPlaylists, music_id }),
-            cache: "no-cache",
-          }
-        );
+        const addRes = await fetch("http://localhost:3000/api/musicAddPlaylist", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ diffPlaylists, music_id }),
+          cache: "no-cache",
+        });
 
         if (!addRes.ok) {
           alert("プレイリストに楽曲の追加ができませんでした");
@@ -106,15 +98,12 @@ export const SelectAddPlaylist = ({
       }
 
       try {
-        const delRes = await fetch(
-          "http://localhost:3000/api/musicDeletePlaylist",
-          {
-            method: "DELETE",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ diffPlaylists, music_id }),
-            cache: "no-cache",
-          }
-        );
+        const delRes = await fetch("http://localhost:3000/api/musicDeletePlaylist", {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ diffPlaylists, music_id }),
+          cache: "no-cache",
+        });
         setModalOpen(false);
         alert("プレイリストが編集されました");
         if (!delRes.ok) {
@@ -140,44 +129,43 @@ export const SelectAddPlaylist = ({
           </Link>
         </>
       )}
-      {defaultPlaylists.length === addPlaylists.length &&
-        defaultPlaylists.length !== 0 && (
-          <>
-            <p className={styles.modalTitle}>楽曲の追加先</p>
-            <form onSubmit={handleSubmit}>
-              {playlists.map((playlist: Playlist) => (
-                <div className={styles.playlist} key={playlist.id}>
-                  <input
-                    type="checkbox"
-                    id={playlist.name}
-                    name="addPlaylist"
-                    value={playlist.id}
-                    defaultChecked={checkedCheck(playlist.id)}
-                    onChange={handleChange}
-                    className={styles.playlistCheck}
-                  />
-                  <label htmlFor={playlist.name}>{playlist.name}</label>
-                </div>
-              ))}
-              <div className={styles.buttonContainer}>
-                <button
-                  type="button"
-                  onClick={() => setModalOpen(false)}
-                  className={styles.cancelButton}
-                >
-                  キャンセル
-                </button>
-                <button type="submit" className={styles.createButton}>
-                  追加
-                </button>
+      {defaultPlaylists.length === addPlaylists.length && defaultPlaylists.length !== 0 && (
+        <>
+          <p className={styles.modalTitle}>楽曲の追加先</p>
+          <form onSubmit={handleSubmit}>
+            {playlists.map((playlist: Playlist) => (
+              <div className={styles.playlist} key={playlist.id}>
+                <input
+                  type="checkbox"
+                  id={playlist.name}
+                  name="addPlaylist"
+                  value={playlist.id}
+                  defaultChecked={checkedCheck(playlist.id)}
+                  onChange={handleChange}
+                  className={styles.playlistCheck}
+                />
+                <label htmlFor={playlist.name}>{playlist.name}</label>
               </div>
-            </form>
-            <Link href="/mypage/playlist" className={styles.playlistLink}>
-              <AddBoxIcon className={styles.addLinkIcon} />
-              プレイリストを新規作成
-            </Link>
-          </>
-        )}
+            ))}
+            <div className={styles.buttonContainer}>
+              <button
+                type="button"
+                onClick={() => setModalOpen(false)}
+                className={styles.cancelButton}
+              >
+                キャンセル
+              </button>
+              <button type="submit" className={styles.createButton}>
+                追加
+              </button>
+            </div>
+          </form>
+          <Link href="/mypage/playlist" className={styles.playlistLink}>
+            <AddBoxIcon className={styles.addLinkIcon} />
+            プレイリストを新規作成
+          </Link>
+        </>
+      )}
     </>
   );
 };
