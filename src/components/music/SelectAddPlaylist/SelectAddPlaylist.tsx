@@ -55,8 +55,8 @@ export const SelectAddPlaylist = ({
   };
 
   const checkedCheck = (playlist_id: number) => {
-    const checkedPlaylist = addPlaylists.filter(
-      (addPlaylist) => addPlaylist.playlist_id === playlist_id,
+    const checkedPlaylist = defaultPlaylists.filter(
+      (defaultPlaylist) => defaultPlaylist.playlist_id === playlist_id,
     );
     if (checkedPlaylist.length === 1) {
       return checkedPlaylist[0].music_flag;
