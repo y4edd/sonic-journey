@@ -7,4 +7,4 @@ describe("FavoriteButtonコンポーネントのテスト", () => {
     const element = screen.getByText("お気に入りに追加");
     expect(element).toBeInTheDocument();
   });
-})
+});

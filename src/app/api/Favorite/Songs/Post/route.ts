@@ -4,10 +4,10 @@ import { type NextRequest, NextResponse } from "next/server";
 
 type Body = {
   music_id: number;
-}
+};
 
-export const POST = async (req:NextRequest) => {
-  try{
+export const POST = async (req: NextRequest) => {
+  try {
     // NOTE: ログインユーザーのidを取得する
     const token = req.cookies.get("token")?.value;
     if (!token) {
@@ -27,14 +27,13 @@ export const POST = async (req:NextRequest) => {
     // NOTE: DBにお気に入り楽曲を追加する
     await prisma.favorite_Song.create({
       data: {
-        user_id:userId,
-        api_song_id:BigInt(music_id),
+        user_id: userId,
+        api_song_id: BigInt(music_id),
       },
     });
 
     return NextResponse.json({ message: "お気に入り楽曲に追加されました" }, { status: 200 });
-
-  }catch(error){
+  } catch (error) {
     console.error(error);
     return NextResponse.json({ message: "サーバーエラーが発生しました" }, { status: 500 });
   }

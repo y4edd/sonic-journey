@@ -1,18 +1,19 @@
-"use client"
+"use client";
+import styles from "./FavoriteButton.module.css";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 
-const FavoriteButton = ({id}:{id: number}) => {
+const FavoriteButton = ({ id }: { id: number }) => {
   const postFavorite = async () => {
-    const response = await fetch("/api/Favorite/Songs/Post",{
+    const response = await fetch("/api/Favorite/Songs/Post", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        music_id: id
+        music_id: id,
       }),
-    }
-    );
-    if(!response.ok) {
+    });
+    if (!response.ok) {
       const error = response.json();
       console.error(error);
       alert(error);
@@ -22,9 +23,12 @@ const FavoriteButton = ({id}:{id: number}) => {
 
   return (
     <>
-      <p onClick={postFavorite}>お気に入りに追加</p>
+      <button className={styles.songInfoAddFavorite}onClick={postFavorite}>
+      <FavoriteBorderIcon />
+        お気に入りに追加
+      </button>
     </>
   );
-}
+};
 
 export default FavoriteButton;
