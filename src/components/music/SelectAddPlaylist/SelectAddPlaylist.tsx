@@ -25,9 +25,9 @@ export const SelectAddPlaylist = ({
     useState<{ playlistId: number; musicFlag: boolean }[]>(defaultPlaylists);
 
   // defaultと最新の差分のあるプレイリストを獲得
-  const [diffPlaylists, setDiffPlaylists] = useState<{ playlistId: number; musicFlag: boolean }[]>(
-    [],
-  );
+  const [diffPlaylists, setDiffPlaylists] = useState<
+    { playlistId: number; musicFlag: boolean }[]
+  >([]);
 
   useEffect(() => {
     setAddPlaylists(defaultPlaylists);
@@ -37,7 +37,7 @@ export const SelectAddPlaylist = ({
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     // クリックされたプレイリストデータを取得
     const changePlaylist = addPlaylists.filter(
-      (addPlaylist) => addPlaylist.playlistId === Number(e.target.value),
+      (addPlaylist) => addPlaylist.playlistId === Number(e.target.value)
     );
 
     if (!changePlaylist) return;
@@ -50,14 +50,16 @@ export const SelectAddPlaylist = ({
 
     setAddPlaylists((prevStateArr) =>
       prevStateArr.map((prevState) =>
-        prevState.playlistId === Number(e.target.value) ? changedPlaylist : prevState,
-      ),
+        prevState.playlistId === Number(e.target.value)
+          ? changedPlaylist
+          : prevState
+      )
     );
   };
 
   const isChecked = (playlistId: number) => {
     const checkedPlaylist = defaultPlaylists.filter(
-      (defaultPlaylist) => defaultPlaylist.playlistId === playlistId,
+      (defaultPlaylist) => defaultPlaylist.playlistId === playlistId
     );
     if (checkedPlaylist.length === 1) {
       return checkedPlaylist[0].musicFlag;
@@ -65,18 +67,18 @@ export const SelectAddPlaylist = ({
     return false;
   };
 
-  console.log("DEF", defaultPlaylists);
-  console.log("ADD", addPlaylists);
-
   useEffect(() => {
     if (defaultPlaylists.length === addPlaylists.length) {
       setDiffPlaylists(
         addPlaylists.filter((addPlaylist) => {
           const defaultPlaylist = defaultPlaylists.find(
-            (p) => p.playlistId === addPlaylist.playlistId,
+            (p) => p.playlistId === addPlaylist.playlistId
           );
-          return defaultPlaylist && addPlaylist.musicFlag !== defaultPlaylist.musicFlag;
-        }),
+          return (
+            defaultPlaylist &&
+            addPlaylist.musicFlag !== defaultPlaylist.musicFlag
+          );
+        })
       );
     }
   }, [defaultPlaylists, addPlaylists]);
@@ -86,12 +88,15 @@ export const SelectAddPlaylist = ({
       e.preventDefault();
 
       try {
-        const addRes = await fetch("http://localhost:3000/api/musicAddPlaylist", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ diffPlaylists, musicId }),
-          cache: "no-cache",
-        });
+        const addRes = await fetch(
+          "http://localhost:3000/api/musicAddPlaylist",
+          {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ diffPlaylists, musicId }),
+            cache: "no-cache",
+          }
+        );
 
         if (!addRes.ok) {
           alert("プレイリストに楽曲の追加ができませんでした");
@@ -102,12 +107,15 @@ export const SelectAddPlaylist = ({
       }
 
       try {
-        const delRes = await fetch("http://localhost:3000/api/musicDeletePlaylist", {
-          method: "DELETE",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ diffPlaylists, musicId }),
-          cache: "no-cache",
-        });
+        const delRes = await fetch(
+          "http://localhost:3000/api/musicDeletePlaylist",
+          {
+            method: "DELETE",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ diffPlaylists, musicId }),
+            cache: "no-cache",
+          }
+        );
         setModalOpen(false);
         alert("プレイリストが編集されました");
         if (!delRes.ok) {
@@ -133,43 +141,44 @@ export const SelectAddPlaylist = ({
           </Link>
         </>
       )}
-      {defaultPlaylists.length === addPlaylists.length && defaultPlaylists.length !== 0 && (
-        <>
-          <p className={styles.modalTitle}>楽曲の追加先</p>
-          <form onSubmit={handleSubmit}>
-            {playlists.map((playlist: Playlist) => (
-              <div className={styles.playlist} key={playlist.id}>
-                <input
-                  type="checkbox"
-                  id={playlist.name}
-                  name="addPlaylist"
-                  value={playlist.id}
-                  defaultChecked={isChecked(playlist.id)}
-                  onChange={handleChange}
-                  className={styles.playlistCheck}
-                />
-                <label htmlFor={playlist.name}>{playlist.name}</label>
+      {defaultPlaylists.length === addPlaylists.length &&
+        defaultPlaylists.length !== 0 && (
+          <>
+            <p className={styles.modalTitle}>楽曲の追加先</p>
+            <form onSubmit={handleSubmit}>
+              {playlists.map((playlist: Playlist) => (
+                <div className={styles.playlist} key={playlist.id}>
+                  <input
+                    type="checkbox"
+                    id={playlist.name}
+                    name="addPlaylist"
+                    value={playlist.id}
+                    defaultChecked={isChecked(playlist.id)}
+                    onChange={handleChange}
+                    className={styles.playlistCheck}
+                  />
+                  <label htmlFor={playlist.name}>{playlist.name}</label>
+                </div>
+              ))}
+              <div className={styles.buttonContainer}>
+                <button
+                  type="button"
+                  onClick={() => setModalOpen(false)}
+                  className={styles.cancelButton}
+                >
+                  キャンセル
+                </button>
+                <button type="submit" className={styles.createButton}>
+                  追加
+                </button>
               </div>
-            ))}
-            <div className={styles.buttonContainer}>
-              <button
-                type="button"
-                onClick={() => setModalOpen(false)}
-                className={styles.cancelButton}
-              >
-                キャンセル
-              </button>
-              <button type="submit" className={styles.createButton}>
-                追加
-              </button>
-            </div>
-          </form>
-          <Link href="/mypage/playlist" className={styles.playlistLink}>
-            <AddBoxIcon className={styles.addLinkIcon} />
-            プレイリストを新規作成
-          </Link>
-        </>
-      )}
+            </form>
+            <Link href="/mypage/playlist" className={styles.playlistLink}>
+              <AddBoxIcon className={styles.addLinkIcon} />
+              プレイリストを新規作成
+            </Link>
+          </>
+        )}
     </>
   );
 };
