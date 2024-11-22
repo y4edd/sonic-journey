@@ -21,36 +21,27 @@ export const GET = async (req: NextRequest) => {
       },
     });
 
-    let musicPlaylists: { playlistId: number; musicFlag: boolean }[] = [];
-    for (const userPlaylistId of userPlaylistIds) {
-      const musicPlaylist = await prisma.playlist_Song.findFirst({
-        select: {
-          playlist_id: true,
-        },
-        where: {
-          api_song_id: bigMusicId,
-          playlist_id: userPlaylistId.id,
-        },
-      });
-      if (musicPlaylist) {
-        musicPlaylists = [
-          ...musicPlaylists,
-          { playlistId: musicPlaylist.playlist_id, musicFlag: true },
-        ];
-      } else {
-        musicPlaylists = [
-          ...musicPlaylists,
-          { playlistId: userPlaylistId.id, musicFlag: false },
-        ];
-      }
-    }
+    const musicPlaylists = await Promise.all(
+      userPlaylistIds.map(async (userPlaylistId) => {
+        const musicPlaylist = await prisma.playlist_Song.findFirst({
+          select: {
+            playlist_id: true,
+          },
+          where: {
+            api_song_id: bigMusicId,
+            playlist_id: userPlaylistId.id,
+          },
+        });
+
+        return musicPlaylist
+          ? { playlistId: musicPlaylist.playlist_id, musicFlag: true }
+          : { playlistId: userPlaylistId.id, musicFlag: false };
+      }),
+    );
 
     return NextResponse.json(musicPlaylists, { status: 200 });
   } catch (error) {
     console.error(error);
-    return NextResponse.json(
-      { message: "サーバエラーが発生しました" },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: "サーバエラーが発生しました" }, { status: 500 });
   }
 };

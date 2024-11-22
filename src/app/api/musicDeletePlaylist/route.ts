@@ -33,15 +33,9 @@ export const DELETE = async (req: NextRequest) => {
       }
     }
 
-    return NextResponse.json(
-      { message: "プレイリストから楽曲が削除されました" },
-      { status: 200 }
-    );
+    return NextResponse.json({ message: "プレイリストから楽曲が削除されました" }, { status: 200 });
   } catch (err) {
     console.error(err);
-    return NextResponse.json(
-      { message: "サーバエラーが発生しました" },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: "サーバエラーが発生しました" }, { status: 500 });
   }
 };

@@ -45,8 +45,7 @@ export const AddPlaylist = ({ id }: { id: number }) => {
   useEffect(() => {
     if (user) {
       const addMusicPlaylists = async () => {
-        const data: { playlistId: number; musicFlag: boolean }[] =
-          await getAddPlaylists(user, id);
+        const data: { playlistId: number; musicFlag: boolean }[] = await getAddPlaylists(user, id);
         setDefaultPlaylists(data);
       };
       addMusicPlaylists();
@@ -55,11 +54,7 @@ export const AddPlaylist = ({ id }: { id: number }) => {
 
   return (
     <>
-      <button
-        type="button"
-        className={styles.songInfoAddList}
-        onClick={handleAddPlaylist}
-      >
+      <button type="button" className={styles.songInfoAddList} onClick={handleAddPlaylist}>
         <CreateNewFolderIcon />
         <span>プレイリストに追加</span>
       </button>

@@ -26,15 +26,9 @@ export const POST = async (req: NextRequest) => {
       }
     }
 
-    return NextResponse.json(
-      { message: "プレイリストに楽曲が追加されました" },
-      { status: 200 }
-    );
+    return NextResponse.json({ message: "プレイリストに楽曲が追加されました" }, { status: 200 });
   } catch (err) {
     console.error(err);
-    return NextResponse.json(
-      { message: "サーバエラーが発生しました" },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: "サーバエラーが発生しました" }, { status: 500 });
   }
 };
