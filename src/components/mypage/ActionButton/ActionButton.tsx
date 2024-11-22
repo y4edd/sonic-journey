@@ -11,10 +11,10 @@ type ActionButtonProps = {
 const ActionButton = ({ name, icon, url }: ActionButtonProps) => {
   return (
     <Link href={url}>
-      <div className={styles.buttonContainer}>
-        {icon}
-        <button type="button">{name}</button>
-      </div>
+      <button type="button" tabIndex={-1} className={styles.buttonContainer}>
+        <span className={styles.buttonIcon}>{icon}</span>
+        {name}
+      </button>
     </Link>
   );
 };

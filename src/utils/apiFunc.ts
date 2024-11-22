@@ -254,7 +254,7 @@ export const fetchUser = async () => {
 // DBからお気に入り楽曲の楽曲idと更新日を取得する関数（Cookieのtokenを引数にとる）
 export const getFavoriteSongs = async (token: string) => {
   try {
-    const res = await fetch("http://localhost:3000/api/favoriteSongs", {
+    const res = await fetch("http://localhost:3000/api/getFavoriteSongs", {
       cache: "no-cache",
       headers: {
         Cookie: token,
@@ -296,7 +296,7 @@ export const checkLoggedInServer = async (token: string): Promise<boolean> => {
 // DBからお気に入りアーティストのidと更新日を取得する関数（Cookieのtokenを引数にとる）
 export const getFavoriteArtists = async (token: string) => {
   try {
-    const res = await fetch("http://localhost:3000/api/favoriteArtists", {
+    const res = await fetch("http://localhost:3000/api/getFavoriteArtists", {
       cache: "no-cache",
       headers: {
         Cookie: token,
