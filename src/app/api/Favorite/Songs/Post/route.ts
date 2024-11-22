@@ -3,7 +3,7 @@ import { getUserIdFromToken } from "@/utils/getUserIdFromToken";
 import { type NextRequest, NextResponse } from "next/server";
 
 type Body = {
-  music_id: number;
+  musicId: number;
 };
 
 export const POST = async (req: NextRequest) => {
@@ -19,7 +19,7 @@ export const POST = async (req: NextRequest) => {
       return NextResponse.json({ message: "認証に失敗しました" }, { status: 401 });
     }
     const body: Body = await req.json();
-    const music_id = body.music_id;
+    const musicId = body.musicId;
     if (!body) {
       throw new Error("楽曲データの受け渡しに失敗しました");
     }
@@ -28,7 +28,7 @@ export const POST = async (req: NextRequest) => {
     await prisma.favorite_Song.create({
       data: {
         user_id: userId,
-        api_song_id: BigInt(music_id),
+        api_song_id: BigInt(musicId),
       },
     });
 
