@@ -14,11 +14,12 @@ export const DELETE = async (req: NextRequest) => {
     if (!body) {
       throw new Error("楽曲データの受け渡しに失敗しました");
     }
-    for (let i = 0; i < diffPlaylists.length; i++) {
-      if (!diffPlaylists[i].musicFlag) {
+
+    for (const ele of diffPlaylists) {
+      if (!ele.musicFlag) {
         const submitCheck = await prisma.playlist_Song.findFirst({
           where: {
-            playlist_id: diffPlaylists[i].playlistId,
+            playlist_id: ele.playlistId,
             api_song_id: BigInt(musicId),
           },
         });
