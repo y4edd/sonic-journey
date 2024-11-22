@@ -7,6 +7,12 @@ export type FormData = {
   passwordConfirm: string;
 };
 
+export type UserData = {
+  name: string;
+  email: string;
+  password: string;
+};
+
 export type FormInputProps = {
   label: string;
   id: string;
@@ -46,4 +52,14 @@ export type UserInfo = {
   email: string;
   createdAt: Date;
   updatedAt: Date;
+};
+
+export type choiceDeleteProps = (event: React.MouseEvent<HTMLButtonElement>) => Promise<void>;
+
+export type cancelDeleteProps = (event: React.MouseEvent<HTMLButtonElement>) => void;
+
+export type DeleteConfirmProps = {
+  choiceDelete: choiceDeleteProps;
+  isButtonDisabled: boolean;
+  cancelDelete: cancelDeleteProps;
 };
