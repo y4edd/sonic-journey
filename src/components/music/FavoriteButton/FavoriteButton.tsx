@@ -4,21 +4,28 @@ import styles from "./FavoriteButton.module.css";
 
 const FavoriteButton = ({ id }: { id: number }) => {
   const postFavorite = async () => {
-    const response = await fetch("/api/favorites/postSongs", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        music_id: id,
-      }),
-    });
-    if (!response.ok) {
-      const error = response.json();
+    try{
+      const response = await fetch("/api/favoriteSongs", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          musicId: id,
+        }),
+      });
+      if (!response.ok) {
+        const error = response.json();
+        console.error(error);
+        alert(error);
+        return;
+      }
+
+      alert("お気に入り楽曲に追加されました");
+    } catch (error) {
       console.error(error);
-      alert(error);
+      alert("ネットワークエラーです");
     }
-    alert("お気に入り楽曲に追加されました");
   };
 
   return (
