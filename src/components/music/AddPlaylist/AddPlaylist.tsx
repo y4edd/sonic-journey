@@ -14,7 +14,7 @@ export const AddPlaylist = ({ id }: { id: number }) => {
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [defaultPlaylists, setDefaultPlaylists] = useState<
-    { playlist_id: number; music_flag: boolean }[]
+    { playlistId: number; musicFlag: boolean }[]
   >([]);
 
   const handleAddPlaylist = () => {
@@ -45,10 +45,8 @@ export const AddPlaylist = ({ id }: { id: number }) => {
   useEffect(() => {
     if (user) {
       const addMusicPlaylists = async () => {
-        const data: { playlist_id: number; music_flag: boolean }[] = await getAddPlaylists(
-          user,
-          id,
-        );
+        const data: { playlistId: number; musicFlag: boolean }[] =
+          await getAddPlaylists(user, id);
         setDefaultPlaylists(data);
       };
       addMusicPlaylists();
@@ -57,7 +55,11 @@ export const AddPlaylist = ({ id }: { id: number }) => {
 
   return (
     <>
-      <button type="button" className={styles.songInfoAddList} onClick={handleAddPlaylist}>
+      <button
+        type="button"
+        className={styles.songInfoAddList}
+        onClick={handleAddPlaylist}
+      >
         <CreateNewFolderIcon />
         <span>プレイリストに追加</span>
       </button>
@@ -65,7 +67,7 @@ export const AddPlaylist = ({ id }: { id: number }) => {
         <Modal setFunc={setModalOpen}>
           <div className={styles.modal}>
             <SelectAddPlaylist
-              music_id={id}
+              musicId={id}
               playlists={playlists}
               defaultPlaylists={defaultPlaylists}
               setModalOpen={setModalOpen}

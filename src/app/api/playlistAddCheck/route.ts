@@ -4,43 +4,43 @@ import { type NextRequest, NextResponse } from "next/server";
 export const GET = async (req: NextRequest) => {
   try {
     const { searchParams } = new URL(req.url);
-    const user_id = searchParams.get("user_id");
-    const music_id = searchParams.get("music_id");
-    if (!user_id || !music_id) {
+    const userId = searchParams.get("userId");
+    const musicId = searchParams.get("musicId");
+    if (!userId || !musicId) {
       throw new Error("クエリの受け渡しに失敗しました");
     }
 
-    const bigMusic_id = BigInt(music_id);
+    const bigMusicId = BigInt(musicId);
 
-    const userPlaylist_ids: { id: number }[] = await prisma.playlist.findMany({
+    const userPlaylistIds: { id: number }[] = await prisma.playlist.findMany({
       select: {
         id: true,
       },
       where: {
-        user_id: user_id,
+        user_id: userId,
       },
     });
 
-    let musicPlaylists: { playlist_id: number; music_flag: boolean }[] = [];
-    for (const userPlaylist_id of userPlaylist_ids) {
+    let musicPlaylists: { playlistId: number; musicFlag: boolean }[] = [];
+    for (const userPlaylistId of userPlaylistIds) {
       const musicPlaylist = await prisma.playlist_Song.findFirst({
         select: {
           playlist_id: true,
         },
         where: {
-          api_song_id: bigMusic_id,
-          playlist_id: userPlaylist_id.id,
+          api_song_id: bigMusicId,
+          playlist_id: userPlaylistId.id,
         },
       });
       if (musicPlaylist) {
         musicPlaylists = [
           ...musicPlaylists,
-          { playlist_id: musicPlaylist.playlist_id, music_flag: true },
+          { playlistId: musicPlaylist.playlist_id, musicFlag: true },
         ];
       } else {
         musicPlaylists = [
           ...musicPlaylists,
-          { playlist_id: userPlaylist_id.id, music_flag: false },
+          { playlistId: userPlaylistId.id, musicFlag: false },
         ];
       }
     }
@@ -48,6 +48,9 @@ export const GET = async (req: NextRequest) => {
     return NextResponse.json(musicPlaylists, { status: 200 });
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ message: "サーバエラーが発生しました" }, { status: 500 });
+    return NextResponse.json(
+      { message: "サーバエラーが発生しました" },
+      { status: 500 }
+    );
   }
 };
