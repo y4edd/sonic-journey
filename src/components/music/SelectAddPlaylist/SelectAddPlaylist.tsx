@@ -54,7 +54,7 @@ export const SelectAddPlaylist = ({
     setAddPlaylists((prevState) => [...prevState, changedPlaylist]);
   };
 
-  const checkedCheck = (playlistId: number) => {
+  const isChecked = (playlistId: number) => {
     const checkedPlaylist = defaultPlaylists.filter(
       (defaultPlaylist) => defaultPlaylist.playlistId === playlistId,
     );
@@ -120,7 +120,7 @@ export const SelectAddPlaylist = ({
 
   return (
     <>
-      {defaultPlaylists.length === 0 && (
+      {!defaultPlaylists.length && (
         <>
           <p className={styles.noPlaylist}>プレイリストがありません</p>
           <Link href="/mypage/playlist" className={styles.playlistLink}>
@@ -140,7 +140,7 @@ export const SelectAddPlaylist = ({
                   id={playlist.name}
                   name="addPlaylist"
                   value={playlist.id}
-                  defaultChecked={checkedCheck(playlist.id)}
+                  defaultChecked={isChecked(playlist.id)}
                   onChange={handleChange}
                   className={styles.playlistCheck}
                 />

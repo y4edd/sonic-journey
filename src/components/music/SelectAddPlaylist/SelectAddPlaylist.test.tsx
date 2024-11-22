@@ -39,13 +39,9 @@ describe("SelectAddPlaylistの単体テスト", () => {
     render(<SelectAddPlaylist {...props} />);
     expect(screen.getByText("楽曲の追加先")).toBeInTheDocument();
     expect(screen.getByText("睡眠用")).toBeInTheDocument();
-    expect(
-      screen.getByRole("button", { name: "キャンセル" })
-    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "キャンセル" })).toBeInTheDocument();
     expect(screen.getByRole("button", { name: "追加" })).toBeInTheDocument();
-    expect(
-      screen.getByRole("link", { name: "プレイリストを新規作成" })
-    ).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "プレイリストを新規作成" })).toBeInTheDocument();
   });
 
   test("キャンセルボタンを押すとモーダルの開閉を管理する状態変数が呼び出されること", () => {
