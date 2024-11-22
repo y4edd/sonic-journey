@@ -312,6 +312,26 @@ export const getFavoriteArtists = async (token: string) => {
     console.error(error);
   }
 };
+
+// 引数のmusic_idが登録されているユーザのプレイリスト情報を取得する関数
+export const getAddPlaylists = async (user: string, id: number) => {
+  try {
+    const res = await fetch(
+      `http://localhost:3000/api/playlistAddCheck?userId=${user}&musicId=${id}`,
+      {
+        cache: "no-cache",
+      },
+    );
+    if (!res.ok) {
+      throw new Error("データが見つかりませんでした");
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 // 検索ワードを使用してアーティストを取得する関数
 export const getFreeArtist = async (artist: string) => {
   try {

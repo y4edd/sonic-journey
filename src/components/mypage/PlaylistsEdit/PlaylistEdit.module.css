@@ -45,11 +45,13 @@
   margin-left: 0.3rem;
   font-size: 2rem;
   color: rgba(204, 15, 15, 0.635);
+  cursor: pointer;
 }
 
 .editIcon {
   font-size: 2rem;
   color: rgb(62, 154, 59);
+  cursor: pointer;
 }
 
 .buttonContainer {
