@@ -1,6 +1,6 @@
 "use client";
-import styles from "./FavoriteButton.module.css";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import styles from "./FavoriteButton.module.css";
 
 const FavoriteButton = ({ id }: { id: number }) => {
   const postFavorite = async () => {
@@ -23,8 +23,8 @@ const FavoriteButton = ({ id }: { id: number }) => {
 
   return (
     <>
-      <button className={styles.songInfoAddFavorite}onClick={postFavorite}>
-      <FavoriteBorderIcon />
+      <button type="button" className={styles.songInfoAddFavorite} onClick={postFavorite}>
+        <FavoriteBorderIcon />
         お気に入りに追加
       </button>
     </>
