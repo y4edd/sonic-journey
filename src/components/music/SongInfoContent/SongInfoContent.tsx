@@ -12,23 +12,11 @@ type SongInfoContentProps = {
   preview?: string;
 };
 
-const SongInfoContent = ({
-  id,
-  title,
-  artist,
-  image,
-  preview,
-}: SongInfoContentProps) => {
+const SongInfoContent = ({ id, title, artist, image, preview }: SongInfoContentProps) => {
   return (
     <div>
       <div className={styles.songInfoContent}>
-        <Image
-          src={image}
-          alt={`${title}のジャケット`}
-          width={130}
-          height={130}
-          priority
-        />
+        <Image src={image} alt={`${title}のジャケット`} width={130} height={130} priority />
         <div className={styles.songInfoDetail}>
           <h2>{title}</h2>
           <p>{artist}</p>

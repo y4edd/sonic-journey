@@ -1,13 +1,13 @@
 "use client";
 
-import CreateNewFolderIcon from "@mui/icons-material/CreateNewFolder";
-import { SelectAddPlaylist } from "../SelectAddPlaylist/SelectAddPlaylist";
+import Modal from "@/components/mypage/Modal/Modal";
 import { fetchUser, getUserPlaylist } from "@/utils/apiFunc";
 import { getAddPlaylists } from "@/utils/apiFunc";
-import Modal from "@/components/mypage/Modal/Modal";
+import CreateNewFolderIcon from "@mui/icons-material/CreateNewFolder";
 import type { Playlist } from "@prisma/client";
+import { useEffect, useState } from "react";
+import { SelectAddPlaylist } from "../SelectAddPlaylist/SelectAddPlaylist";
 import styles from "./AddPlaylist.module.css";
-import { useState, useEffect } from "react";
 
 export const AddPlaylist = ({ id }: { id: number }) => {
   const [user, setUser] = useState<string | null>(null);
@@ -41,20 +41,23 @@ export const AddPlaylist = ({ id }: { id: number }) => {
     }
   }, [user]);
 
+  // biome-ignore lint/correctness/useExhaustiveDependencies: プレイリスト作成、編集モーダルの開閉により更新
   useEffect(() => {
     if (user) {
       const addMusicPlaylists = async () => {
-        const data: { playlist_id: number; music_flag: boolean }[] =
-          await getAddPlaylists(user, id);
+        const data: { playlist_id: number; music_flag: boolean }[] = await getAddPlaylists(
+          user,
+          id,
+        );
         setDefaultPlaylists(data);
       };
       addMusicPlaylists();
     }
-  }, [user, playlists, modalOpen]);
+  }, [user, id, playlists, modalOpen]);
 
   return (
     <>
-      <button className={styles.songInfoAddList} onClick={handleAddPlaylist}>
+      <button type="button" className={styles.songInfoAddList} onClick={handleAddPlaylist}>
         <CreateNewFolderIcon />
         <span>プレイリストに追加</span>
       </button>

@@ -48,9 +48,6 @@ export const GET = async (req: NextRequest) => {
     return NextResponse.json(musicPlaylists, { status: 200 });
   } catch (error) {
     console.error(error);
-    return NextResponse.json(
-      { message: "サーバエラーが発生しました" },
-      { status: 500 }
-    );
+    return NextResponse.json({ message: "サーバエラーが発生しました" }, { status: 500 });
   }
 };
