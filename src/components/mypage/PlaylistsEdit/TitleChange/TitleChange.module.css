@@ -31,6 +31,7 @@
 .checkIcon {
   color: lightgreen;
   font-size: 1.8rem;
+  cursor: pointer;
 }
 
 .createButton,
@@ -43,4 +44,5 @@
   color: rgba(255, 0, 0, 0.537);
   font-size: 1.8rem;
   margin-left: 0.5rem;
+  cursor: pointer;
 }

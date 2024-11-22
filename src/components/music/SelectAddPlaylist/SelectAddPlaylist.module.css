@@ -10,6 +10,11 @@
 
 .playlistCheck {
   margin-right: 0.4rem;
+  cursor: pointer;
+}
+
+.checkLabel {
+  cursor: pointer;
 }
 
 .buttonContainer {

@@ -1,6 +1,7 @@
 .buttonContainer {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .buttonContainer > button {
@@ -9,4 +10,5 @@
   background-color: white;
   color: black;
   padding: 4px 4px;
+  cursor: pointer;
 }
