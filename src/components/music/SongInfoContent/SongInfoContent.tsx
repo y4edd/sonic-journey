@@ -1,8 +1,8 @@
 import Image from "next/image";
+import { AddPlaylist } from "../AddPlaylist/AddPlaylist";
 import FavoriteButton from "../FavoriteButton/FavoriteButton";
 import SongAudio from "../SongAudio/SongAudio";
 import styles from "./SongInfoContent.module.css";
-import { AddPlaylist } from "../AddPlaylist/AddPlaylist";
 
 type SongInfoContentProps = {
   id: number;
