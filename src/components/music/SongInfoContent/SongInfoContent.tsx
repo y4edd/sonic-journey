@@ -1,6 +1,6 @@
-import CreateNewFolderIcon from "@mui/icons-material/CreateNewFolder";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Image from "next/image";
+import { AddPlaylist } from "../AddPlaylist/AddPlaylist";
 import SongAudio from "../SongAudio/SongAudio";
 import styles from "./SongInfoContent.module.css";
 
@@ -23,15 +23,11 @@ const SongInfoContent = ({ id, title, artist, image, preview }: SongInfoContentP
           <div>
             <SongAudio preview={preview} id={id} />
           </div>
-          {/* FIXME: プレイリストに追加する処理を記述する必要があります。 */}
           <div className={styles.songInfoAddFavorite}>
             <FavoriteBorderIcon />
             <p>お気に入りに追加</p>
           </div>
-          <div className={styles.songInfoAddList}>
-            <CreateNewFolderIcon />
-            <p>プレイリストに追加</p>
-          </div>
+          <AddPlaylist id={id} />
         </div>
       </div>
     </div>
