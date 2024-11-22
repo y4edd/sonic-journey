@@ -1,0 +1,60 @@
+.modalTitle {
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+}
+
+.playlist {
+  margin-bottom: 0.4rem;
+  font-size: 1.2rem;
+}
+
+.playlistCheck {
+  margin-right: 0.4rem;
+  cursor: pointer;
+}
+
+.checkLabel {
+  cursor: pointer;
+}
+
+.buttonContainer {
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.buttonContainer > button {
+  padding: 5px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  width: 100px;
+}
+
+.cancelButton {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+}
+
+.createButton {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+}
+
+.noPlaylist {
+  margin: 2rem 0;
+}
+
+.playlistLink {
+  border-bottom: 1px solid black;
+  font-size: 0.9rem;
+  padding-right: 0.5rem;
+}
+
+.addLinkIcon {
+  font-size: 0.9rem;
+  margin-right: 0.3rem;
+}

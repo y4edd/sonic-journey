@@ -1,8 +1,8 @@
-import CreateNewFolderIcon from "@mui/icons-material/CreateNewFolder";
 import Image from "next/image";
 import FavoriteButton from "../FavoriteButton/FavoriteButton";
 import SongAudio from "../SongAudio/SongAudio";
 import styles from "./SongInfoContent.module.css";
+import { AddPlaylist } from "../AddPlaylist/AddPlaylist";
 
 type SongInfoContentProps = {
   id: number;
@@ -24,10 +24,7 @@ const SongInfoContent = ({ id, title, artist, image, preview }: SongInfoContentP
             <SongAudio preview={preview} id={id} />
           </div>
           <FavoriteButton id={id} />
-          <div className={styles.songInfoAddList}>
-            <CreateNewFolderIcon />
-            <p>プレイリストに追加</p>
-          </div>
+          <AddPlaylist id={id} />
         </div>
       </div>
     </div>
