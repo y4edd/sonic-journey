@@ -17,8 +17,8 @@ export const DELETE = async (req: NextRequest) => {
 
     // リクエストに削除対象が存在するか確認する
     const { songIds } = await req.json();
-    if(!songIds.length) {
-      return NextResponse.json({ message: "削除対象の楽曲idが必要です"}, {status: 400 })
+    if (!songIds.length) {
+      return NextResponse.json({ message: "削除対象の楽曲idが必要です" }, { status: 400 });
     }
 
     // DBからお気に入り楽曲を削除する
@@ -26,7 +26,7 @@ export const DELETE = async (req: NextRequest) => {
       where: {
         user_id: userId,
         api_song_id: {
-          in: songIds
+          in: songIds,
         },
       },
     });
