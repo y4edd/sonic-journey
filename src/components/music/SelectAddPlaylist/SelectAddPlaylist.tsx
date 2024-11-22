@@ -40,10 +40,7 @@ export const SelectAddPlaylist = ({
       (addPlaylist) => addPlaylist.playlistId === Number(e.target.value),
     );
 
-    // addPlaylistsからクリックしたプレイリストデータを削除
-    setAddPlaylists((prevStateArr) =>
-      prevStateArr.filter((prevState) => prevState.playlistId !== Number(e.target.value)),
-    );
+    if (!changePlaylist) return;
 
     // musicFlagを逆転させたプレイリストデータを作成
     const changedPlaylist = {
@@ -51,7 +48,11 @@ export const SelectAddPlaylist = ({
       musicFlag: !changePlaylist[0].musicFlag,
     };
 
-    setAddPlaylists((prevState) => [...prevState, changedPlaylist]);
+    setAddPlaylists((prevStateArr) =>
+      prevStateArr.map((prevState) =>
+        prevState.playlistId === Number(e.target.value) ? changedPlaylist : prevState,
+      ),
+    );
   };
 
   const isChecked = (playlistId: number) => {
@@ -63,6 +64,9 @@ export const SelectAddPlaylist = ({
     }
     return false;
   };
+
+  console.log("DEF", defaultPlaylists);
+  console.log("ADD", addPlaylists);
 
   useEffect(() => {
     if (defaultPlaylists.length === addPlaylists.length) {
