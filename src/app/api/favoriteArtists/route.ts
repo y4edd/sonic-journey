@@ -34,7 +34,7 @@ export const POST = async (req: NextRequest) => {
     });
 
     return NextResponse.json(
-      { message: "「お気に入りアーティスト」に追加しました" },
+      { message: "お気に入りアーティストに追加されました" },
       { status: 200 },
     );
   } catch (error) {
