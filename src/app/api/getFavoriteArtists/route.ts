@@ -2,10 +2,6 @@ import prisma from "@/lib/prisma";
 import { getUserIdFromToken } from "@/utils/getUserIdFromToken";
 import { type NextRequest, NextResponse } from "next/server";
 
-type Body = {
-  musicId: number;
-};
-
 export const GET = async (req: NextRequest) => {
   try {
     // NOTE: ログインユーザーの確認
