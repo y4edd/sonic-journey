@@ -22,6 +22,30 @@ const PickSongs = ({ pickSong }: { pickSong: DeezerTrackSong }) => {
     setCurrentlyPlayingId(null);
   };
 
+  const postFavorite = async () => {
+    try {
+      const response = await fetch("/api/favoriteSongs", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          musicId: pickSong.id,
+        }),
+      });
+      if (!response.ok) {
+        const error = await response.json();
+        console.error(error);
+        alert(error.message);
+        return;
+      }
+
+      alert("お気に入り楽曲に追加されました");
+    } catch (error) {
+      console.error(error);
+      alert("ネットワークエラーです");
+    }
+  };
   return (
     <div className={styles.albumSingleContent}>
       <Link href={`/album/${pickSong.album.id}`} className={styles.linkImage}>
@@ -37,7 +61,7 @@ const PickSongs = ({ pickSong }: { pickSong: DeezerTrackSong }) => {
         <p>
           <Link href={`/music/${pickSong.id}`}>{pickSong.title}</Link>
         </p>
-        <button type="button">
+        <button type="button" onClick={postFavorite}>
           <FavoriteIcon
             sx={{
               fontSize: 16,
