@@ -6,12 +6,17 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import Link from "next/link";
 import AlbumSingleSongAudio from "../AlbumSingleSongAudio/AlbumSingleSongAudio";
 import styles from "./AlbumSingleSong.module.css";
+import { useState } from "react";
 
 type AlbumSingleSongProps = {
   id: number;
   num: number;
   title: string;
   preview: string;
+};
+
+type ErrorResponse = {
+  message: string;
 };
 
 const AlbumSingleSong = ({ id, num, title, preview }: AlbumSingleSongProps) => {
@@ -43,8 +48,9 @@ const AlbumSingleSong = ({ id, num, title, preview }: AlbumSingleSongProps) => {
         body: JSON.stringify({ musicId: id }),
       });
       if (!response.ok) {
-        const err = response.json();
+        const err = await response.json();
         console.error(err);
+        alert(err.message);
         return;
       }
       alert("お気に入りに登録されました");

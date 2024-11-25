@@ -15,9 +15,9 @@ const FavoriteButton = ({ id }: { id: number }) => {
         }),
       });
       if (!response.ok) {
-        const error = response.json();
+        const error = await response.json();
         console.error(error);
-        alert(error);
+        alert(error.message);
         return;
       }
 

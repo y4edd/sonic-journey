@@ -17,9 +17,9 @@ const ArtistFavoriteButton = ({ id }: { id: number }) => {
       });
 
       if (!response.ok) {
-        const error = response.json();
+        const error = await response.json();
         console.error(error);
-        alert("お気に入りの登録に失敗しました");
+        alert(error.message);
         return;
       }
 
