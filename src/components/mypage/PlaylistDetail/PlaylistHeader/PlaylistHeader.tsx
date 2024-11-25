@@ -1,9 +1,13 @@
 import styles from "./PlaylistHeader.module.css";
 
-export const PlaylistHeader = ({ playlistTitle }: { playlistTitle: string }) => {
+export const PlaylistHeader = ({
+  playlistTitle,
+}: {
+  playlistTitle: string;
+}) => {
   return (
     <>
-      <p>{playlistTitle}</p>
+      <h1 className={styles.playlistTitle}>{playlistTitle}</h1>
     </>
   );
 };

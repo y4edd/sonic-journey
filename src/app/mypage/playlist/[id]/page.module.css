@@ -1,3 +1,7 @@
+.wrapper {
+  margin: 1rem;
+}
+
 .playlistList {
-  margin: 1rem 2rem;
+  margin: 2rem 1rem;
 }

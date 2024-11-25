@@ -34,7 +34,7 @@ const Page = async ({ params }: { params: { id: number } }) => {
     throw new Error("プレイリスト曲の詳細情報の取得に失敗しました");
   }
   const playlistSongs: DeezerTrackSong[] = await response.json();
-
+  console.log("AAAAAAAAAAAAAAAAAA", playlistSongs);
   return (
     <>
       <BreadList
@@ -48,9 +48,11 @@ const Page = async ({ params }: { params: { id: number } }) => {
           },
         ]}
       />
-      <PlaylistHeader playlistTitle={playlistInfo.playlistTitle} />
-      <div className={styles.playlistList}>
-        <PickSong singles={playlistSongs} />
+      <div className={styles.wrapper}>
+        <PlaylistHeader playlistTitle={playlistInfo.playlistTitle} />
+        <div className={styles.playlistList}>
+          <PickSong singles={playlistSongs} />
+        </div>
       </div>
     </>
   );
