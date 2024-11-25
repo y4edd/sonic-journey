@@ -1,6 +1,6 @@
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import Image from "next/image";
 import { AddPlaylist } from "../AddPlaylist/AddPlaylist";
+import FavoriteButton from "../FavoriteButton/FavoriteButton";
 import SongAudio from "../SongAudio/SongAudio";
 import styles from "./SongInfoContent.module.css";
 
@@ -23,10 +23,7 @@ const SongInfoContent = ({ id, title, artist, image, preview }: SongInfoContentP
           <div>
             <SongAudio preview={preview} id={id} />
           </div>
-          <div className={styles.songInfoAddFavorite}>
-            <FavoriteBorderIcon />
-            <p>お気に入りに追加</p>
-          </div>
+          <FavoriteButton id={id} />
           <AddPlaylist id={id} />
         </div>
       </div>
