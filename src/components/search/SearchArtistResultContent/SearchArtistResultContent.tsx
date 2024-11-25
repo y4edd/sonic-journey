@@ -5,12 +5,14 @@ import styles from "./SearchArtistResultContent.module.css";
 const SearchArtistResultContent = ({
   result,
   url,
+  style,
 }: {
   result: DeezerArtist;
   url: string;
+  style: string;
 }) => {
   return (
-    <div className={styles.artistInfo}>
+    <div className={style === "grid" ? styles.artistInfoGrid : styles.artistInfo}>
       <Link href={`/${url}/${result.id}`}>
         <Image
           src={result.picture_xl || "/images/defaultsong.png"}
@@ -18,9 +20,10 @@ const SearchArtistResultContent = ({
           width={180}
           height={180}
         />
-
-        <p>{result.name}</p>
       </Link>
+      <div>
+        <p>{result.name}</p>
+      </div>
     </div>
   );
 };

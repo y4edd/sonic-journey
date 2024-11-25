@@ -10,13 +10,13 @@ const mockResult: DeezerArtist = {
 
 describe("SearchArtistContentの単体テスト", () => {
   test("アーティスト名が正しく表示されているか", () => {
-    render(<SearchArtistResultContent result={mockResult} url="artist" />);
+    render(<SearchArtistResultContent result={mockResult} url="artist" style="grid" />);
 
     expect(screen.getByText("test")).toBeInTheDocument();
   });
 
   test("画像が正しく表示されているか", () => {
-    render(<SearchArtistResultContent result={mockResult} url="artist" />);
+    render(<SearchArtistResultContent result={mockResult} url="artist" style="grid" />);
 
     const image = screen.getByRole("img");
 
@@ -27,7 +27,7 @@ describe("SearchArtistContentの単体テスト", () => {
   });
 
   test("リンクが正しいかどうか", () => {
-    render(<SearchArtistResultContent result={mockResult} url="artist" />);
+    render(<SearchArtistResultContent result={mockResult} url="artist" style="grid" />);
 
     const link = screen.getByRole("link");
 

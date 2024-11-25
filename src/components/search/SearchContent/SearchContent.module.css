@@ -1,16 +1,42 @@
-.songInfo {
+.songInfoGrid {
   display: flex;
   flex-direction: column;
 }
 
-.songImage {
+.songInfoGrid img {
   border-radius: 10px;
   box-shadow: 0px 0px 15px -5px #777777;
   width: 100%;
   height: 100%;
 }
 
-.songInfo > p {
+.songInfoGrid > p {
   margin: 0.3rem 0;
   line-height: 1;
+}
+
+.songInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-top: solid rgb(116, 116, 116) 0.05rem;
+  border-bottom: solid rgb(116, 116, 116) 0.05rem;
+}
+
+.songInfo + .songInfo {
+  border-top: none;
+}
+
+.songInfo img {
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px -5px #777777;
+  width: 100%;
+  height: 100%;
+  margin: 0.5rem 0;
+}
+
+.songInfo p {
+  margin: 0;
+  width: 16rem;
+  text-align: left;
 }

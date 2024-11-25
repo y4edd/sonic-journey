@@ -23,6 +23,20 @@
 }
 
 .hr {
-  border: 0.2rem solid rgb(203, 203, 203);
-  margin: 1rem 0;
+  border: 0.2rem solid rgb(132, 132, 132);
+  margin: 4rem 0;
+}
+
+.viewIcon {
+  font-size: 3rem;
+}
+
+.noneIcon {
+  color: rgb(209, 209, 209);
+  font-size: 3rem;
+}
+
+.icon {
+  text-align: left;
+  margin-top: 1rem;
 }

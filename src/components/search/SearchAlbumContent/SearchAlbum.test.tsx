@@ -15,18 +15,18 @@ const url = "album";
 
 describe("SearchAlbumContentの単体テスト", () => {
   test("アルバム名が表示されているか", () => {
-    render(<SearchAlbumContent result={mockResult} url="album" />);
+    render(<SearchAlbumContent result={mockResult} url={url} style="grid" />);
 
     expect(screen.getByText("sampleAlbum")).toBeInTheDocument();
   });
 
   test("アーティスト名が表示されているか", () => {
-    const { getByText } = render(<SearchAlbumContent result={mockResult} url="album" />);
+    const { getByText } = render(<SearchAlbumContent result={mockResult} url={url} style="grid" />);
     expect(getByText("sampleArtist")).toBeInTheDocument();
   });
 
   test("画像が正しく表示されているか", () => {
-    render(<SearchAlbumContent result={mockResult} url="albu" />);
+    render(<SearchAlbumContent result={mockResult} url={url} style="grid" />);
 
     const image = screen.getByRole("img");
     //srcが正しいか
@@ -36,7 +36,7 @@ describe("SearchAlbumContentの単体テスト", () => {
   });
 
   test("リンクが正しいURLかどうか", () => {
-    render(<SearchAlbumContent result={mockResult} url={url} />);
+    render(<SearchAlbumContent result={mockResult} url={url} style="grid" />);
 
     const link = screen.getByRole("link");
 
