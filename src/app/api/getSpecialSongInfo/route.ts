@@ -4,7 +4,7 @@ import { type NextRequest, NextResponse } from "next/server";
 export const POST = async (request: NextRequest) => {
   try {
     const body = await request.json();
-    const songs: SpecialSongs[] = body.songs;
+    const songs: SpecialSongs[] | { api_song_id: string }[] = body.songs;
 
     if (!songs || songs.length === 0) {
       return NextResponse.json({ message: "曲情報が見つかりませんでした" }, { status: 404 });
