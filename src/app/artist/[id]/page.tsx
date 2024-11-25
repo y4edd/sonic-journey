@@ -36,6 +36,7 @@ const ArtistPage = async ({ params }: ArtistPageProps) => {
           <ArtistInfo
             image={artistData.resArtistData.picture_xl}
             name={artistData.resArtistData.name}
+            id={artistData.resArtistData.id}
           />
         </div>
 
