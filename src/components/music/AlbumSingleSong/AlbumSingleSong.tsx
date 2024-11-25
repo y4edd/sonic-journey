@@ -35,6 +35,24 @@ const AlbumSingleSong = ({ id, num, title, preview }: AlbumSingleSongProps) => {
   // 楽曲をナンバリングするための記述
   const displayNum = num.toString().padStart(2, "0");
 
+  // 楽曲をお気に入り登録
+  const postFavorite = async() => {
+    try{
+      const response = await fetch("/api/favoriteSongs",{
+        method:"POST",
+        body: JSON.stringify({musicId: id}),
+      });
+      if(!response.ok) {
+        const err = response.json();
+        console.error(err);
+        return;
+      }
+      alert("お気に入りに登録されました");
+    }catch(error){
+      console.error(error);
+    }
+  };
+
   return (
     <div className={styles.albumSingleContent}>
       <AlbumSingleSongAudio
@@ -49,7 +67,7 @@ const AlbumSingleSong = ({ id, num, title, preview }: AlbumSingleSongProps) => {
             {displayNum}: {title}
           </Link>
         </p>
-        <button type="button">
+        <button type="button" onClick={postFavorite}>
           <FavoriteIcon
             sx={{
               fontSize: 16,
