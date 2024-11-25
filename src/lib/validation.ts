@@ -44,7 +44,7 @@ export const playlistTitleSchema = z.object({
   playlistTitle: z
     .string()
     .min(1, "プレイリスト名を入力してください")
-    .max(20, "プレイリスト名は20文字以上で入力してください")
+    .max(10, "プレイリスト名は10文字以内で入力してください")
     .refine((value) => {
       return Boolean(value.trim().length);
     }, "空白文字だけの入力は無効です"),
