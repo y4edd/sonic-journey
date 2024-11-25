@@ -13,6 +13,7 @@ const Search = ({
   const freeWord = searchParams.q;
   const searchTotal = searchParams.n;
   const kind = searchParams.k;
+  const style = searchParams.s;
   return (
     <div>
       <BreadList
@@ -31,7 +32,7 @@ const Search = ({
         </div>
 
         <div>
-          <SearchKind freeWord={freeWord} searchTotal={searchTotal} kind={kind} />
+          <SearchKind freeWord={freeWord} searchTotal={searchTotal} kind={kind} style={style} />
         </div>
       </div>
     </div>
