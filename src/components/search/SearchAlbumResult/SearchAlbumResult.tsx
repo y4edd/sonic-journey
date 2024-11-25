@@ -8,9 +8,11 @@ import styles from "./SearchAlbumResult.module.css";
 const SearchAlbumResult = async ({
   freeWord,
   url,
+  style,
 }: {
   freeWord: string;
   url: string;
+  style: string;
 }) => {
   //アルバムの検索結果を取得する関数を呼び出し
   const searchAlbum = await getArtistAlbum(freeWord);
@@ -21,9 +23,9 @@ const SearchAlbumResult = async ({
       <div>
         <SearchTotal searchTotal={String(resultAlbum.length)} name="アルバム" />
       </div>
-      <div className={styles.albumGroup}>
+      <div className={style === "grid" ? styles.albumGroup : styles.none}>
         {resultAlbum.map((result: SearchAlbum) => {
-          return <SearchAlbumContent key={result.id} result={result} url={url} />;
+          return <SearchAlbumContent key={result.id} result={result} url={url} style={style} />;
         })}
       </div>
     </>

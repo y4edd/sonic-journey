@@ -7,9 +7,11 @@ import styles from "./SearchArtistResult.module.css";
 const SearchArtistResult = async ({
   freeWord,
   url,
+  style,
 }: {
   freeWord: string;
   url: string;
+  style: string;
 }) => {
   const res = await getFreeArtist(freeWord);
   const searchArtist: DeezerArtist[] = res.resultData;
@@ -19,9 +21,11 @@ const SearchArtistResult = async ({
       <div>
         <SearchTotal searchTotal={String(searchArtist.length)} name="アーティスト" />
       </div>
-      <div className={styles.artistGroup}>
+      <div className={style === "grid" ? styles.artistGroup : styles.none}>
         {searchArtist.map((result: DeezerArtist) => {
-          return <SearchArtistResultContent key={result.id} result={result} url={url} />;
+          return (
+            <SearchArtistResultContent key={result.id} result={result} url={url} style={style} />
+          );
         })}
       </div>
     </div>
