@@ -237,24 +237,6 @@ export const getUserPlaylist = async (user_id: string) => {
   }
 };
 
-// プレイリストのタイトル、収録曲を取得する関数
-export const getPlaylistInfo = async (id: number, token: string) => {
-  try {
-    const res = await fetch(`http://localhost:3000/api/playlistSong?id=${id}`, {
-      cache: "no-cache",
-      headers: {
-        Cookie: token,
-      },
-    });
-    if (!res.ok) {
-      throw new Error("データが得られませんでした");
-    }
-    return await res.json();
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 // ログイン状態を確認し、idを返す
 export const fetchUser = async () => {
   try {

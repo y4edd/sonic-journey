@@ -1,9 +1,10 @@
+import UnauthorizedAccess from "@/components/UnauthorizedAccess/UnauthorizedAccess";
 import { PlaylistHeader } from "@/components/mypage/PlaylistDetail/PlaylistHeader/PlaylistHeader";
 import PickSong from "@/components/special/DetailPage/PlayPickSong/PickSong/PickSong";
 import BreadList from "@/components/top/BreadList/BreadList";
 import type { DeezerTrackSong } from "@/types/deezer";
-import { getPlaylistInfo } from "@/utils/apiFunc";
 import { getTokenFromCookie } from "@/utils/getTokenFromCookie";
+import Link from "next/link";
 import styles from "./page.module.css";
 
 type PlaylistInfo = {
@@ -14,48 +15,69 @@ type PlaylistInfo = {
 const Page = async ({ params }: { params: { id: number } }) => {
   const { id } = params;
   const token = getTokenFromCookie();
-  const playlistInfo: PlaylistInfo = await getPlaylistInfo(id, token);
-  if (!playlistInfo) {
-    return <p>プレイリストの情報が得られませんでした</p>;
-  }
+  try {
+    const res = await fetch(`http://localhost:3000/api/playlistSong?id=${id}`, {
+      cache: "no-cache",
+      headers: {
+        Cookie: token,
+      },
+    });
 
-  const response = await fetch("http://localhost:3000/api/getSpecialSongInfo", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ songs: playlistInfo.playlistSongs }),
-    cache: "no-store",
-  });
+    if (res.status === 401) {
+      return <UnauthorizedAccess />;
+    }
+    if (!res.ok) {
+      throw new Error("プレイリストの情報が得られませんでした");
+    }
 
-  if (!response.ok) {
-    const errorText = await response.text();
-    console.error("APIエラー:", response.status, errorText);
-    throw new Error("プレイリスト曲の詳細情報の取得に失敗しました");
-  }
-  const playlistSongs: DeezerTrackSong[] = await response.json();
-  console.log("AAAAAAAAAAAAAAAAAA", playlistSongs);
-  return (
-    <>
-      <BreadList
-        bread={[
-          { link: "/", title: "TOP" },
-          { link: "/mypage", title: "マイページ" },
-          { link: "/mypage/playlist", title: "プレイリスト" },
-          {
-            link: `/mypage/playlist/${id}`,
-            title: `${playlistInfo.playlistTitle}`,
-          },
-        ]}
-      />
-      <div className={styles.wrapper}>
-        <PlaylistHeader playlistTitle={playlistInfo.playlistTitle} />
-        <div className={styles.playlistList}>
-          <PickSong singles={playlistSongs} />
+    const playlistInfo: PlaylistInfo = await res.json();
+
+    const response = await fetch("http://localhost:3000/api/getSpecialSongInfo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        songs: playlistInfo?.playlistSongs || [],
+      }),
+      cache: "no-store",
+    });
+
+    const playlistSongs: DeezerTrackSong[] = await response.json();
+    return (
+      <>
+        <BreadList
+          bread={[
+            { link: "/", title: "TOP" },
+            { link: "/mypage", title: "マイページ" },
+            { link: "/mypage/playlist", title: "プレイリスト" },
+            {
+              link: `/mypage/playlist/${id}`,
+              title: `${playlistInfo.playlistTitle}`,
+            },
+          ]}
+        />
+        <div className={styles.wrapper}>
+          <PlaylistHeader playlistTitle={playlistInfo.playlistTitle} />
+          <div className={styles.playlistList}>
+            {playlistSongs.length > 0 ? (
+              <PickSong singles={playlistSongs} />
+            ) : (
+              <>
+                <p className={styles.noSongs}>曲を追加しましょう!!</p>
+                <div className={styles.link}>
+                  <Link href="/ranking" className={styles.rankingPageLink}>
+                    人気楽曲ページへ →
+                  </Link>
+                </div>
+              </>
+            )}
+          </div>
         </div>
-      </div>
-    </>
-  );
+      </>
+    );
+  } catch (error) {
+    console.error(error);
+  }
 };
-
 export default Page;
