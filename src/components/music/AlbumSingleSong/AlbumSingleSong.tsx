@@ -36,19 +36,19 @@ const AlbumSingleSong = ({ id, num, title, preview }: AlbumSingleSongProps) => {
   const displayNum = num.toString().padStart(2, "0");
 
   // 楽曲をお気に入り登録
-  const postFavorite = async() => {
-    try{
-      const response = await fetch("/api/favoriteSongs",{
-        method:"POST",
-        body: JSON.stringify({musicId: id}),
+  const postFavorite = async () => {
+    try {
+      const response = await fetch("/api/favoriteSongs", {
+        method: "POST",
+        body: JSON.stringify({ musicId: id }),
       });
-      if(!response.ok) {
+      if (!response.ok) {
         const err = response.json();
         console.error(err);
         return;
       }
       alert("お気に入りに登録されました");
-    }catch(error){
+    } catch (error) {
       console.error(error);
     }
   };

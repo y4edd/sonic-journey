@@ -19,15 +19,6 @@ const AlbumInfo = ({ image, title, artist, nb_tracks }: AlbumInfoProps) => {
           <h2>{title}</h2>
           <p>{artist}</p>
           <p>{nb_tracks}曲</p>
-          {/* FIXME: プレイリストに追加する処理を記述する必要があります。 */}
-          <div className={styles.albumInfoAddFavorite}>
-            <FavoriteBorderIcon />
-            <p>お気に入りに追加</p>
-          </div>
-          <div className={styles.albumInfoAddList}>
-            <CreateNewFolderIcon />
-            <p>プレイリストに追加</p>
-          </div>
         </div>
       </div>
     </div>
