@@ -20,7 +20,7 @@ const FavoriteSongsEditContainer = ({ songsInfo }: FavoriteSongsEditContainerPro
   const router = useRouter();
   // 選択されている音楽を管理, 登録解除ボタンのdisabledプロパティを管理
   const [selectedSongs, setSelectedSongs] = useState<number[]>([]);
-  const [isButtonDisabled, setButtonDisabled] = useState<boolean>(true);
+  const [isButtonDisabled, setIsButtonDisabled] = useState<boolean>(true);
 
   const handleCheckboxChange = (id: number, isChecked: boolean) => {
     setSelectedSongs((prev) => {
@@ -28,7 +28,7 @@ const FavoriteSongsEditContainer = ({ songsInfo }: FavoriteSongsEditContainerPro
       const newSelectedSongs = isChecked ? [...prev, id] : prev.filter((songId) => songId !== id);
 
       // 音楽が選択されていないとき、解除ボタンを無効化する
-      setButtonDisabled(!newSelectedSongs.length);
+      setIsButtonDisabled(!newSelectedSongs.length);
       return newSelectedSongs;
     });
   };
@@ -37,7 +37,7 @@ const FavoriteSongsEditContainer = ({ songsInfo }: FavoriteSongsEditContainerPro
     await deleteFavoriteSongs(selectedSongs);
     // router.refresh()後に state を保持したくないので初期値をセットする
     setSelectedSongs([]);
-    setButtonDisabled(true);
+    setIsButtonDisabled(true);
     router.refresh();
   };
 
