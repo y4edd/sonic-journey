@@ -1,16 +1,18 @@
 import prisma from "@/lib/prisma";
-import { getUserIdFromToken } from "@/utils/getUserIdFromToken";
+import { AbsoluteString } from "next/dist/lib/metadata/types/metadata-types";
 import { type NextRequest, NextResponse } from "next/server";
 
 type Body = {
-  userId: string;
+  userId: {id: string};
 }
+
+
 // お気に入り楽曲の取得
-export const GET = async (req: NextRequest) => {
+export const POST = async (req: NextRequest) => {
   try {
     // NOTE: ログインユーザーのidを取得する
     const body:Body = await req.json();
-    const userId =body.userId;
+    const userId =body.userId.id;
 
     // NOTE: DBからお気に入り楽曲を取得する
     const favoriteSongs = await prisma.favorite_Song.findMany({

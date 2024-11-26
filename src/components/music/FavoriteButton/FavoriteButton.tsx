@@ -5,24 +5,28 @@ import styles from "./FavoriteButton.module.css";
 import { useEffect, useState } from "react";
 import { fetchUser, getFavoriteSongsForFav } from "@/utils/apiFunc";
 
-//FIXME: 使いまわせるように（mypage/favoritesong/page.tsxでも使われておりました） 
-type favoriteSong = {
-  songId: number;
-  updatedAt: Date;
+type FavoriteSongs = {
+  resultData :{
+    songId: number,
+    updatedAt: Date
+}[]
 };
 
 const FavoriteButton = ({ id }: { id: number }) => {
   const [isFav, setIsFav] = useState<boolean>(false);
 
   // NOTE: DBから取得したお気に入り楽曲とidを比較し、お気に入りボタンの表示を変える
-  const doneFav= async () => {
+  const doneFav = async () => {
     // NOTE: ログイン状態を確認し、userIdを返す
     const userId:string = await fetchUser();
     // NOTE: DBからお気に入り楽曲を取得。
-    const favoriteSongs = await getFavoriteSongsForFav(userId);
-    console.log(favoriteSongs);
+    const favoriteSongs:FavoriteSongs = await getFavoriteSongsForFav(userId);
+    const songIds = favoriteSongs.resultData.map((song) => song.songId);
+    // NOTE: もしfavoriteSongsのなかのsongIdとidに、一致するものがあればisFavをtrueにする
+    if(songIds.includes(id)) {
+      setIsFav(true);
+    }
   };
-
 
   useEffect(()=> {
     doneFav();

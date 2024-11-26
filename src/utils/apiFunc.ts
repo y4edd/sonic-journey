@@ -391,9 +391,9 @@ export const fetchUserInfo = async () => {
 export const getFavoriteSongsForFav = async (userId: string) => {
   try {
     const res = await fetch("http://localhost:3000/api/getFavoriteSongsForFav", {
-      method: "GET",
+      method: "POST",
       cache: "no-cache",
-      body: JSON.stringify({userId:userId}),
+      body: JSON.stringify({userId}),
       },
     );
 
