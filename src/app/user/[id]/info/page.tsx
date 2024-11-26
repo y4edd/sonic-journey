@@ -97,7 +97,7 @@ const Info = () => {
         setServerError(error.message);
       }
 
-      toast.success("編集が完了しました！", {
+      toast.success("退会が完了しました！", {
         position: "top-center",
         autoClose: 1000,
         closeButton: true,

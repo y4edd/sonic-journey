@@ -1,4 +1,7 @@
 // 人気新着楽曲を取得する関数
+
+import { JsonWebTokenError } from "jsonwebtoken";
+
 // limitには取得したい件数を入力
 export const getNewSongs = async (limit: number) => {
   try {
@@ -379,6 +382,26 @@ export const fetchUserInfo = async () => {
       throw new Error(`エラー: ${response.status} - ${data.message}`);
     }
     return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// DBからお気に入り楽曲の楽曲idと更新日を取得する関数（userIdを引数にとる）
+export const getFavoriteSongsForFav = async (userId: string) => {
+  try {
+    const res = await fetch("http://localhost:3000/api/getFavoriteSongsForFav", {
+      method: "GET",
+      cache: "no-cache",
+      body: JSON.stringify({userId:userId}),
+      },
+    );
+
+    if (!res.ok) {
+      throw new Error("データが見つかりませんでした");
+    }
+
+    return await res.json();
   } catch (error) {
     console.error(error);
   }

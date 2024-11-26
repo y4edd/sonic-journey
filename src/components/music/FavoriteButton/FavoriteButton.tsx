@@ -2,13 +2,31 @@
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import DoneIcon from '@mui/icons-material/Done';
 import styles from "./FavoriteButton.module.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { fetchUser, getFavoriteSongsForFav } from "@/utils/apiFunc";
+
+//FIXME: 使いまわせるように（mypage/favoritesong/page.tsxでも使われておりました） 
+type favoriteSong = {
+  songId: number;
+  updatedAt: Date;
+};
 
 const FavoriteButton = ({ id }: { id: number }) => {
   const [isFav, setIsFav] = useState<boolean>(false);
 
-  // 初期状態でお気に入り追加済みかどうかを確認し、レンダリング
-  
+  // NOTE: DBから取得したお気に入り楽曲とidを比較し、お気に入りボタンの表示を変える
+  const doneFav= async () => {
+    // NOTE: ログイン状態を確認し、userIdを返す
+    const userId:string = await fetchUser();
+    // NOTE: DBからお気に入り楽曲を取得。
+    const favoriteSongs = await getFavoriteSongsForFav(userId);
+    console.log(favoriteSongs);
+  };
+
+
+  useEffect(()=> {
+    doneFav();
+  }, []);
 
   // お気に入り楽曲追加
   const postFavorite = async () => {
