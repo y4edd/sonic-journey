@@ -13,7 +13,7 @@ export const POST = async (req: NextRequest) => {
     const userId =body.userId.id;
 
     // NOTE: DBからお気に入り楽曲を取得する
-    const favoriteSongs = await prisma.favorite_Song.findMany({
+    const favoriteArtists = await prisma.favorite_Artist.findMany({
       where: {
         user_id: userId,
       },
@@ -21,20 +21,20 @@ export const POST = async (req: NextRequest) => {
         updatedAt: "desc",
       },
       select: {
-        api_song_id: true,
+        api_artist_id: true,
         updatedAt: true,
       },
     });
 
     // NOTE: お気に入り楽曲が登録されていない場合は空の配列を返す
-    if (!favoriteSongs.length) {
+    if (!favoriteArtists.length) {
       return NextResponse.json({ resultData: [] }, { status: 200 });
     }
 
-    const resultData = favoriteSongs.map((song) => {
+    const resultData = favoriteArtists.map((artist) => {
       return {
-        songId: Number(song.api_song_id),
-        updatedAt: song.updatedAt,
+        artistId: Number(artist.api_artist_id),
+        updatedAt: artist.updatedAt,
       };
     });
 
