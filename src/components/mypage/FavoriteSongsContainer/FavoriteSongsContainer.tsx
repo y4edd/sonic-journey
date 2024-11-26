@@ -29,6 +29,10 @@ const FavoriteSongsContainer = ({ songsInfo }: FavoriteSongsContainerProps) => {
 
   const songData = ascFlag ? ascSongData : descSongData;
 
+  if (songsInfo.length === 0) {
+    return <SongList songs={[]} url="music" errorMessage="お気に入り曲は登録されていません" />;
+  }
+
   return (
     <>
       <SortButtons label="登録日" onSortChange={(flag) => setAscFlag(flag)} />
