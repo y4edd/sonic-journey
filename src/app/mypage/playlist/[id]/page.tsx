@@ -32,18 +32,29 @@ const Page = async ({ params }: { params: { id: number } }) => {
 
     const playlistInfo: PlaylistInfo = await res.json();
 
-    const response = await fetch("http://localhost:3000/api/getSpecialSongInfo", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        songs: playlistInfo?.playlistSongs || [],
-      }),
-      cache: "no-store",
-    });
+    const response = await fetch(
+      "http://localhost:3000/api/getSpecialSongInfo",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          songs: playlistInfo?.playlistSongs || [],
+        }),
+        cache: "no-store",
+      }
+    );
 
     const playlistSongs: DeezerTrackSong[] = await response.json();
+
+    const playlistSongIds: { api_song_id: number; title: string }[] =
+      playlistSongs.length > 0
+        ? playlistSongs.map((playlistSong) => {
+            return { api_song_id: playlistSong.id, title: playlistSong.title };
+          })
+        : [];
+
     return (
       <>
         <BreadList
@@ -58,7 +69,11 @@ const Page = async ({ params }: { params: { id: number } }) => {
           ]}
         />
         <div className={styles.wrapper}>
-          <PlaylistHeader playlistTitle={playlistInfo.playlistTitle} />
+          <PlaylistHeader
+            playlistTitle={playlistInfo.playlistTitle}
+            playlistId={id}
+            playlistSongInfo={playlistSongIds}
+          />
           <div className={styles.playlistList}>
             {playlistSongs.length > 0 ? (
               <PickSong singles={playlistSongs} />

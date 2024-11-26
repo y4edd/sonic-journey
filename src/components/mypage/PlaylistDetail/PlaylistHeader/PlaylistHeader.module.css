@@ -1,4 +1,10 @@
-.playlistTitle {
-  font-size: 1.5rem;
-  font-weight: 600;
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
+  margin-right: 1rem;
+}
+.button > :first-child {
+  margin-right: 0.5rem;
 }
