@@ -2,15 +2,15 @@ import prisma from "@/lib/prisma";
 import { type NextRequest, NextResponse } from "next/server";
 
 type Body = {
-  userId: {id: string};
-}
+  userId: { id: string };
+};
 
 // お気に入り楽曲の取得
 export const POST = async (req: NextRequest) => {
   try {
     // NOTE: ログインユーザーのidを取得する
-    const body:Body = await req.json();
-    const userId =body.userId.id;
+    const body: Body = await req.json();
+    const userId = body.userId.id;
 
     // NOTE: DBからお気に入り楽曲を取得する
     const favoriteSongs = await prisma.favorite_Song.findMany({

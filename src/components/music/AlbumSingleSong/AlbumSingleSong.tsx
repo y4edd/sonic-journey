@@ -1,14 +1,14 @@
 "use client";
 
 import { useAlbumAudio } from "@/context/AlbumAudioContext";
+import { fetchUser, getFavoriteSongsForFav } from "@/utils/apiFunc";
 import { savePlayHistory } from "@/utils/history";
+import DoneIcon from "@mui/icons-material/Done";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import DoneIcon from '@mui/icons-material/Done';
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import AlbumSingleSongAudio from "../AlbumSingleSongAudio/AlbumSingleSongAudio";
 import styles from "./AlbumSingleSong.module.css";
-import { useEffect, useState } from "react";
-import { fetchUser, getFavoriteSongsForFav } from "@/utils/apiFunc";
 
 type AlbumSingleSongProps = {
   id: number;
@@ -18,10 +18,10 @@ type AlbumSingleSongProps = {
 };
 
 type FavoriteSongs = {
-  resultData :{
-    songId: number,
-    updatedAt: Date
-}[]
+  resultData: {
+    songId: number;
+    updatedAt: Date;
+  }[];
 };
 
 const AlbumSingleSong = ({ id, num, title, preview }: AlbumSingleSongProps) => {
@@ -46,22 +46,23 @@ const AlbumSingleSong = ({ id, num, title, preview }: AlbumSingleSongProps) => {
   // 楽曲をナンバリングするための記述
   const displayNum = num.toString().padStart(2, "0");
 
-    // NOTE: DBから取得したお気に入り楽曲とidを比較し、お気に入りボタンの表示を変える
-    const doneFav = async () => {
-      // NOTE: ログイン状態を確認し、userIdを返す
-      const userId:string = await fetchUser();
-      // NOTE: DBからお気に入り楽曲を取得。
-      const favoriteSongs:FavoriteSongs = await getFavoriteSongsForFav(userId);
-      const songIds = favoriteSongs.resultData.map((song) => song.songId);
-      // NOTE: もしfavoriteSongsのなかのsongIdとidに、一致するものがあればisFavをtrueにする
-      if(songIds.includes(id)) {
-        setIsFav(true);
-      }
-    };
-  
-    useEffect(()=> {
-      doneFav();
-    }, []);
+  // NOTE: DBから取得したお気に入り楽曲とidを比較し、お気に入りボタンの表示を変える
+  const doneFav = async () => {
+    // NOTE: ログイン状態を確認し、userIdを返す
+    const userId: string = await fetchUser();
+    // NOTE: DBからお気に入り楽曲を取得。
+    const favoriteSongs: FavoriteSongs = await getFavoriteSongsForFav(userId);
+    const songIds = favoriteSongs.resultData.map((song) => song.songId);
+
+    if (songIds.includes(id)) {
+      setIsFav(true);
+    }
+  };
+
+  // biome-ignore lint/correctness/useExhaustiveDependencies: マウント時のみ実行
+  useEffect(() => {
+    doneFav();
+  }, []);
 
   // 楽曲をお気に入り登録
   const postFavorite = async () => {
@@ -83,32 +84,32 @@ const AlbumSingleSong = ({ id, num, title, preview }: AlbumSingleSongProps) => {
     }
   };
 
-    // お気に入り楽曲削除
-    const deleteFavorite = async () => {
-      try {
-        const response = await fetch("/api/favoriteSongs", {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            songIds: [id],
-          }),
-        });
-        if (!response.ok) {
-          const error = await response.json();
-          console.error(error);
-          alert(error.message);
-          return;
-        }
-  
-        alert("お気に入り楽曲から削除されました");
-        setIsFav(false);
-      } catch (error) {
+  // お気に入り楽曲削除
+  const deleteFavorite = async () => {
+    try {
+      const response = await fetch("/api/favoriteSongs", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          songIds: [id],
+        }),
+      });
+      if (!response.ok) {
+        const error = await response.json();
         console.error(error);
-        alert("ネットワークエラーです");
+        alert(error.message);
+        return;
       }
-    };
+
+      alert("お気に入り楽曲から削除されました");
+      setIsFav(false);
+    } catch (error) {
+      console.error(error);
+      alert("ネットワークエラーです");
+    }
+  };
 
   return (
     <div className={styles.albumSingleContent}>
@@ -138,23 +139,21 @@ const AlbumSingleSong = ({ id, num, title, preview }: AlbumSingleSongProps) => {
               />
             </button>
           </>
-        )
-          : (
-            <>
-              <button type="button" onClick={postFavorite} className={styles.postButton}>
-                <FavoriteIcon
-                  sx={{
-                    fontSize: 16,
-                    color: "#fc9aff",
-                    cursor: "pointer",
-                  }}
-                  role="img"
-                  aria-hidden="false"
-                />
-              </button>
-            </>
-            )
-        }
+        ) : (
+          <>
+            <button type="button" onClick={postFavorite} className={styles.postButton}>
+              <FavoriteIcon
+                sx={{
+                  fontSize: 16,
+                  color: "#fc9aff",
+                  cursor: "pointer",
+                }}
+                role="img"
+                aria-hidden="false"
+              />
+            </button>
+          </>
+        )}
       </div>
     </div>
   );

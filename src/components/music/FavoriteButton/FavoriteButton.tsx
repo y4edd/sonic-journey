@@ -1,15 +1,16 @@
 "use client";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import DoneIcon from '@mui/icons-material/Done';
-import styles from "./FavoriteButton.module.css";
-import { useEffect, useState } from "react";
+
 import { fetchUser, getFavoriteSongsForFav } from "@/utils/apiFunc";
+import DoneIcon from "@mui/icons-material/Done";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { useEffect, useState } from "react";
+import styles from "./FavoriteButton.module.css";
 
 type FavoriteSongs = {
-  resultData :{
-    songId: number,
-    updatedAt: Date
-}[]
+  resultData: {
+    songId: number;
+    updatedAt: Date;
+  }[];
 };
 
 const FavoriteButton = ({ id }: { id: number }) => {
@@ -18,17 +19,18 @@ const FavoriteButton = ({ id }: { id: number }) => {
   // NOTE: DBから取得したお気に入り楽曲とidを比較し、お気に入りボタンの表示を変える
   const doneFav = async () => {
     // NOTE: ログイン状態を確認し、userIdを返す
-    const userId:string = await fetchUser();
+    const userId: string = await fetchUser();
     // NOTE: DBからお気に入り楽曲を取得。
-    const favoriteSongs:FavoriteSongs = await getFavoriteSongsForFav(userId);
+    const favoriteSongs: FavoriteSongs = await getFavoriteSongsForFav(userId);
     const songIds = favoriteSongs.resultData.map((song) => song.songId);
     // NOTE: もしfavoriteSongsのなかのsongIdとidに、一致するものがあればisFavをtrueにする
-    if(songIds.includes(id)) {
+    if (songIds.includes(id)) {
       setIsFav(true);
     }
   };
 
-  useEffect(()=> {
+  // biome-ignore lint/correctness/useExhaustiveDependencies: マウント時のみ実行
+  useEffect(() => {
     doneFav();
   }, []);
 
@@ -95,16 +97,14 @@ const FavoriteButton = ({ id }: { id: number }) => {
             お気に入りに追加済み
           </button>
         </>
-      )
-        : (
-          <>
-            <button type="button" className={styles.songInfoAddFavorite} onClick={postFavorite}>
-              <FavoriteBorderIcon />
-              お気に入りに追加
-            </button>
-          </>
-        )
-      }
+      ) : (
+        <>
+          <button type="button" className={styles.songInfoAddFavorite} onClick={postFavorite}>
+            <FavoriteBorderIcon />
+            お気に入りに追加
+          </button>
+        </>
+      )}
     </>
   );
 };

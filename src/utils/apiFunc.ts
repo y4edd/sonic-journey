@@ -393,9 +393,8 @@ export const getFavoriteSongsForFav = async (userId: string) => {
     const res = await fetch("http://localhost:3000/api/getFavoriteSongsForFav", {
       method: "POST",
       cache: "no-cache",
-      body: JSON.stringify({userId}),
-      },
-    );
+      body: JSON.stringify({ userId }),
+    });
 
     if (!res.ok) {
       throw new Error("データが見つかりませんでした");
@@ -413,9 +412,8 @@ export const getFavoriteArtistsForFav = async (userId: string) => {
     const res = await fetch("http://localhost:3000/api/getFavoriteArtistsForFav", {
       method: "POST",
       cache: "no-cache",
-      body: JSON.stringify({userId}),
-      },
-    );
+      body: JSON.stringify({ userId }),
+    });
 
     if (!res.ok) {
       throw new Error("データが見つかりませんでした");
