@@ -1,12 +1,12 @@
 "use client";
 
+import EditIcon from "@mui/icons-material/Edit";
 import { useState } from "react";
+import MenuHeader from "../../MenuHeader/MenuHeader";
 import Modal from "../../Modal/Modal";
+import PlaylistButton from "../../PlaylistButton/PlaylistButton";
 import { PlaylistSongEdit } from "../PlaylistSongEdit/PlaylistSongEdit";
 import styles from "./PlaylistHeader.module.css";
-import MenuHeader from "../../MenuHeader/MenuHeader";
-import PlaylistButton from "../../PlaylistButton/PlaylistButton";
-import EditIcon from "@mui/icons-material/Edit";
 
 export const PlaylistHeader = ({
   playlistTitle,
@@ -24,11 +24,7 @@ export const PlaylistHeader = ({
         <MenuHeader title={playlistTitle} />
         {playlistSongInfo.length > 0 && (
           <div className={styles.button}>
-            <PlaylistButton
-              name="編集"
-              icon={<EditIcon />}
-              setFunc={setModalOpen}
-            />
+            <PlaylistButton name="編集" icon={<EditIcon />} setFunc={setModalOpen} />
           </div>
         )}
       </div>

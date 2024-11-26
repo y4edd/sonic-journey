@@ -1,11 +1,11 @@
 "use client";
 
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import styles from "./PlaylistSongEdit.module.css";
-import { useRouter } from "next/navigation";
 
 export const PlaylistSongEdit = ({
   playlistId,
@@ -23,30 +23,25 @@ export const PlaylistSongEdit = ({
     api_song_id: number;
     title: string;
   }) => {
-    const deleteCheck = confirm(
-      `「${playlist.title}」を\nプレイリストから削除しますか？`
-    );
+    const deleteCheck = confirm(`「${playlist.title}」を\nプレイリストから削除しますか？`);
     if (deleteCheck) {
       try {
-        const res = await fetch(
-          "http://localhost:3000/api/deletePlaylistSong",
-          {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              songId: playlist.api_song_id,
-              playlistId: Number(playlistId),
-            }),
-          }
-        );
+        const res = await fetch("http://localhost:3000/api/deletePlaylistSong", {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            songId: playlist.api_song_id,
+            playlistId: Number(playlistId),
+          }),
+        });
 
         if (!res.ok) {
           throw new Error("正常に削除できませんでした");
         }
         setPlaylistSongs((prevState) =>
-          prevState.filter((deletePlaylist) => deletePlaylist !== playlist)
+          prevState.filter((deletePlaylist) => deletePlaylist !== playlist),
         );
         router.refresh();
       } catch (error) {
