@@ -78,7 +78,6 @@ const ArtistFavoriteButton = ({ id }: { id: number }) => {
     //     alert(error.message);
     //     return;
     //   }
-
     //   alert("お気に入りアーティストから削除されました");
     //   setIsFav(false);
     // } catch (error) {
