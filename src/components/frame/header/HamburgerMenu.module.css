@@ -53,7 +53,8 @@
   color: aquamarine;
 }
 
-.hamburgerinList {
+.hamburgerinList,
+.serverError {
   list-style-type: none;
   display: flex;
   margin-left: 25px;
@@ -65,4 +66,9 @@
 .line {
   border-bottom: 1px solid gray;
   margin: 20px 0;
+}
+
+.serverError {
+  color: red;
+  font-size: 0.8rem;
 }
