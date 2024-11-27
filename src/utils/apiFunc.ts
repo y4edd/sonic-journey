@@ -273,26 +273,6 @@ export const checkLoggedInServer = async (token: string): Promise<boolean> => {
   }
 };
 
-// DBからお気に入りアーティストのidと更新日を取得する関数（Cookieのtokenを引数にとる）
-export const getFavoriteArtists = async (token: string) => {
-  try {
-    const res = await fetch("http://localhost:3000/api/getFavoriteArtists", {
-      cache: "no-cache",
-      headers: {
-        Cookie: token,
-      },
-    });
-
-    if (!res.ok) {
-      throw new Error("データが見つかりませんでした");
-    }
-
-    return await res.json();
-  } catch (error) {
-    console.error(error);
-  }
-};
-
 // 引数のmusic_idが登録されているユーザのプレイリスト情報を取得する関数
 export const getAddPlaylists = async (user: string, id: number) => {
   try {
