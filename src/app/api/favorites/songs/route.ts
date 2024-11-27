@@ -80,7 +80,7 @@ export const POST = async (req: NextRequest) => {
       },
     });
 
-    if(favoriteSongRecord) {
+    if (favoriteSongRecord) {
       return NextResponse.json({ message: "既に登録済みです" }, { status: 409 });
     }
 
