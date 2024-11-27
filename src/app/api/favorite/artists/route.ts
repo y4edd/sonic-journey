@@ -69,7 +69,10 @@ export const POST = async (req: NextRequest) => {
     // リクエストにアーティストidが存在するか確認する
     const { artistId } = await req.json();
     if (!artistId) {
-      return NextResponse.json({ message: "リクエストボディにアーティストidが必要です" }, { status: 400 });
+      return NextResponse.json(
+        { message: "リクエストボディにアーティストidが必要です" },
+        { status: 400 },
+      );
     }
 
     // DBにお気に入りアーティストが存在するか確認する
@@ -134,7 +137,10 @@ export const DELETE = async (req: NextRequest) => {
       },
     });
 
-    return NextResponse.json({ message: "お気に入りアーティストの削除に成功しました" }, { status: 200 });
+    return NextResponse.json(
+      { message: "お気に入りアーティストの削除に成功しました" },
+      { status: 200 },
+    );
   } catch (error) {
     console.error(error);
     return NextResponse.json({ message: "サーバーエラーが発生しました" }, { status: 500 });
