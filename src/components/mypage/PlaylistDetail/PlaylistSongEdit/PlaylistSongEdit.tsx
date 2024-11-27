@@ -38,6 +38,9 @@ export const PlaylistSongEdit = ({
         });
 
         if (!res.ok) {
+          alert("正常に削除処理が行われませんでした");
+          setEditModalOpen(false);
+          router.refresh();
           throw new Error("正常に削除できませんでした");
         }
         setPlaylistSongs((prevState) =>
