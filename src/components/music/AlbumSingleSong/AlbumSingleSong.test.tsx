@@ -2,12 +2,16 @@ import { AlbumAudioProvider } from "@/context/AlbumAudioContext";
 import { fireEvent, render, screen } from "@testing-library/react";
 import AlbumSingleSong from "./AlbumSingleSong";
 
-beforeAll(() => {
-  jest.spyOn(HTMLMediaElement.prototype, "play").mockImplementation(() => {
-    return Promise.resolve();
-  });
+jest.mock("../../../utils/apiFunc", () => ({
+  fetchUser: jest.fn().mockImplementation(() => "userId"),
+  getFavoriteSongsForFav: jest.fn().mockImplementation(() => ({
+    resultData: [{ songId: 7878479, updatedAt: new Date() }],
+  })),
+}));
 
-  jest.spyOn(HTMLMediaElement.prototype, "pause").mockImplementation(() => {});
+beforeAll(() => {
+  jest.spyOn(HTMLMediaElement.prototype, "play").mockImplementation(() => Promise.resolve());
+  jest.spyOn(HTMLMediaElement.prototype, "pause");
 });
 
 afterAll(() => {
@@ -37,7 +41,7 @@ describe("AlbumSingleSongコンポーネントの単体テスト", () => {
     expect(screen.getByText("プレビューが読み込めません")).toBeInTheDocument();
   });
 
-  test("numの値が9より大きい場合、先頭に0が付かないこと", () => {
+  test("num の値が正しくレンダリングされること", () => {
     render(
       <AlbumAudioProvider>
         <AlbumSingleSong id={1} num={15} title="タイトル" preview="example.com" />
@@ -46,7 +50,7 @@ describe("AlbumSingleSongコンポーネントの単体テスト", () => {
     expect(screen.getByText("15: タイトル")).toBeInTheDocument();
   });
 
-  test("再生ボタンをクリックすると、playメソッドが呼び出されること", () => {
+  test("再生ボタンをクリックすると、playメソッドが呼び出されること", async () => {
     render(
       <AlbumAudioProvider>
         <AlbumSingleSong id={1} num={15} title="タイトル" preview="example.com" />
@@ -59,7 +63,7 @@ describe("AlbumSingleSongコンポーネントの単体テスト", () => {
     expect(HTMLMediaElement.prototype.play).toHaveBeenCalled();
   });
 
-  test("停止ボタンをクリックすると、stopメソッドが呼び出されること", () => {
+  test("停止ボタンをクリックすると、pauseメソッドが呼び出されること", async () => {
     render(
       <AlbumAudioProvider>
         <AlbumSingleSong id={1} num={15} title="タイトル" preview="example.com" />

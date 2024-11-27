@@ -1,4 +1,5 @@
 // 人気新着楽曲を取得する関数
+
 // limitには取得したい件数を入力
 export const getNewSongs = async (limit: number) => {
   try {
@@ -241,10 +242,11 @@ export const getUserPlaylist = async (user_id: string) => {
 export const fetchUser = async () => {
   try {
     const response = await fetch("/api/user/checkLogin");
-    const data = await response.json();
     if (!response.ok) {
-      throw new Error(`エラー: ${response.status} - ${data.message}`);
+      throw new Error("ログイン状態が確認できませんでした");
     }
+    const data = await response.json();
+
     return data;
   } catch (error) {
     console.error(error);
@@ -339,6 +341,45 @@ export const fetchUserInfo = async () => {
       throw new Error(`エラー: ${response.status} - ${data.message}`);
     }
     return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// DBからお気に入り楽曲の楽曲idと更新日を取得する関数（userIdを引数にとる）
+export const getFavoriteSongsForFav = async (userId: string) => {
+  try {
+    const res = await fetch("http://localhost:3000/api/getFavoriteSongsForFav", {
+      method: "POST",
+      cache: "no-cache",
+      body: JSON.stringify({ userId }),
+    });
+    const data = await res.json();
+
+    if (!res.ok) {
+      throw new Error("データが見つかりませんでした");
+    }
+
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+// DBからお気に入りアーティストのアーティストIDと更新日を取得する関数（userIdを引数にとる）
+export const getFavoriteArtistsForFav = async (userId: string) => {
+  try {
+    const res = await fetch("http://localhost:3000/api/getFavoriteArtistsForFav", {
+      method: "POST",
+      cache: "no-cache",
+      body: JSON.stringify({ userId }),
+    });
+
+    if (!res.ok) {
+      throw new Error("データが見つかりませんでした");
+    }
+
+    return await res.json();
   } catch (error) {
     console.error(error);
   }
