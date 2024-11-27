@@ -1,7 +1,5 @@
 // 人気新着楽曲を取得する関数
 
-import { JsonWebTokenError } from "jsonwebtoken";
-
 // limitには取得したい件数を入力
 export const getNewSongs = async (limit: number) => {
   try {
@@ -244,10 +242,12 @@ export const getUserPlaylist = async (user_id: string) => {
 export const fetchUser = async () => {
   try {
     const response = await fetch("/api/user/checkLogin");
-    const data = await response.json();
+    console.log(response);
     if (!response.ok) {
-      throw new Error(`エラー: ${response.status} - ${data.message}`);
+      throw new Error("ログイン状態が確認できませんでした");
     }
+    const data = await response.json();
+
     return data;
   } catch (error) {
     console.error(error);
@@ -395,12 +395,13 @@ export const getFavoriteSongsForFav = async (userId: string) => {
       cache: "no-cache",
       body: JSON.stringify({ userId }),
     });
+    const data = await res.json();
 
     if (!res.ok) {
       throw new Error("データが見つかりませんでした");
     }
 
-    return await res.json();
+    return data;
   } catch (error) {
     console.error(error);
   }

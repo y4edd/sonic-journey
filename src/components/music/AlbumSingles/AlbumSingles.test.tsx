@@ -1,12 +1,26 @@
 import { render, screen } from "@testing-library/react";
 import AlbumSingles from "./AlbumSingles";
 
-beforeAll(() => {
-  jest.spyOn(HTMLMediaElement.prototype, "play").mockImplementation(() => {
-    return Promise.resolve();
-  });
+jest.mock("../../../utils/apiFunc", () => ({
+  fetchUser: jest.fn().mockImplementation(() => "userId"),
+  getFavoriteSongsForFav: jest.fn().mockImplementation(() => ({
+    resultData: [{ songId: 7878479, updatedAt: new Date() }],
+  })),
+}));
 
-  jest.spyOn(HTMLMediaElement.prototype, "pause").mockImplementation(() => {});
+jest.mock("../AlbumSingleSong/AlbumSingleSong", () => {
+  return function MockAlbumSingleSong({ id, title, num }: { id: number; title: string; num: number }) {
+    return (
+      <div data-testid={`song-${id}`}>
+        {num.toString().padStart(2, "0")}: {title}
+      </div>
+    );
+  };
+});
+
+beforeAll(() => {
+  jest.spyOn(HTMLMediaElement.prototype, "play").mockImplementation(() => Promise.resolve());
+  jest.spyOn(HTMLMediaElement.prototype, "pause");
 });
 
 const AlbumSingleProps = [
@@ -28,7 +42,7 @@ const AlbumSingleProps = [
     id: 3,
     title: "テスト3",
     duration: 200,
-    preview: "example2.com",
+    preview: "example3.com",
     cover_xl: "example2.jpeg",
   },
 ];
