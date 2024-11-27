@@ -12,8 +12,10 @@ jest.mock("next/navigation", () => ({
 describe("Editコンポーネントのテスト", () => {
   test("未ログインの場合はUnauthenticatedコンポーネントが表示されること", async () => {
     render(<Edit />);
-    await waitFor(() =>{
-      expect(screen.getByText(/不正な画面遷移です.*下記ボタンよりログインしてください/),).toBeInTheDocument();
+    await waitFor(() => {
+      expect(
+        screen.getByText(/不正な画面遷移です.*下記ボタンよりログインしてください/),
+      ).toBeInTheDocument();
       expect(screen.getByRole("button", { name: "ログインページへ移動" })).toBeInTheDocument();
     });
   });

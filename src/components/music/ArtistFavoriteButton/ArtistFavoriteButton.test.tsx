@@ -18,5 +18,4 @@ describe("ArtistFavoriteButtonコンポーネントのテスト", () => {
     const button = screen.getByRole("button", { name: "お気に入りに追加" });
     expect(button).toBeInTheDocument();
   });
-
 });

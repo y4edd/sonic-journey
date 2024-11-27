@@ -9,7 +9,11 @@ jest.mock("../../../utils/apiFunc", () => ({
 }));
 
 jest.mock("../AlbumSingleSong/AlbumSingleSong", () => {
-  return function MockAlbumSingleSong({ id, title, num }: { id: number; title: string; num: number }) {
+  return function MockAlbumSingleSong({
+    id,
+    title,
+    num,
+  }: { id: number; title: string; num: number }) {
     return (
       <div data-testid={`song-${id}`}>
         {num.toString().padStart(2, "0")}: {title}
