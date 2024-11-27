@@ -5,7 +5,7 @@ import styles from "./FavoriteButton.module.css";
 const FavoriteButton = ({ id }: { id: number }) => {
   const postFavorite = async () => {
     try {
-      const response = await fetch("/api/favorites/songs", {
+      const response = await fetch("/api/favorite/songs", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
