@@ -2,9 +2,14 @@ import { UseHamburgerOpen } from "@/hooks/header/useHamburgerOpen";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { HamburgerMenu } from "./HamburgerMenu";
 import "@testing-library/jest-dom";
+import { useLogout } from "@/hooks/useLogout";
 
 jest.mock("@/hooks/header/useHamburgerOpen", () => ({
   UseHamburgerOpen: jest.fn(),
+}));
+
+jest.mock("@/hooks/useLogout", () => ({
+  useLogout: jest.fn(),
 }));
 
 jest.mock("next/image", () => {
@@ -21,11 +26,16 @@ jest.mock("next/image", () => {
 describe("ハンバーガーメニューの単体テスト", () => {
   const mockHandleMenuClick = jest.fn();
   const mockHandleLinkClick = jest.fn();
+  const mockLogoutUser = jest.fn().mockResolvedValue(undefined);
   beforeEach(() => {
     (UseHamburgerOpen as jest.Mock).mockReturnValue({
       openMenu: false,
       openMenuClick: mockHandleMenuClick,
       hamburgerLink: mockHandleLinkClick,
+    });
+    (useLogout as jest.Mock).mockReturnValue({
+      logoutUser: mockLogoutUser,
+      serverError: "",
     });
   });
 
