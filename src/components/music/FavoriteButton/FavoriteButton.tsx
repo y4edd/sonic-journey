@@ -64,7 +64,7 @@ const FavoriteButton = ({ id }: { id: number }) => {
   // お気に入り楽曲削除
   const deleteFavorite = async () => {
     try {
-      const response = await fetch("/api/favoriteSongs", {
+      const response = await fetch("/api/favorite/songs", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
