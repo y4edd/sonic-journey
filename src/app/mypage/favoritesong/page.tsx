@@ -3,7 +3,8 @@ import FavoriteSongsContainer from "@/components/mypage/FavoriteSongsContainer/F
 import MenuHeader from "@/components/mypage/MenuHeader/MenuHeader";
 import BreadList from "@/components/top/BreadList/BreadList";
 import type { DeezerSong } from "@/types/deezer";
-import { checkLoggedInServer, getFavoriteSongs, getSong } from "@/utils/apiFunc";
+import { checkLoggedInServer, getSong } from "@/utils/apiFunc";
+import { getFavoriteSongs } from "@/utils/favoriteSong";
 import { getTokenFromCookie } from "@/utils/getTokenFromCookie";
 
 type favoriteSong = {

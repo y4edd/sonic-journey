@@ -24,13 +24,13 @@ const PickSongs = ({ pickSong }: { pickSong: DeezerTrackSong }) => {
 
   const postFavorite = async () => {
     try {
-      const response = await fetch("/api/favoriteSongs", {
+      const response = await fetch("/api/favorite/songs", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          musicId: pickSong.id,
+          songId: pickSong.id,
         }),
       });
       if (!response.ok) {
