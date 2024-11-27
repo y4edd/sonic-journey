@@ -1,6 +1,7 @@
 "use client";
 
 import { UseHamburgerOpen } from "@/hooks/header/useHamburgerOpen";
+import { useLogout } from "@/hooks/useLogout";
 import { fetchUser } from "@/utils/apiFunc";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import HeadphonesIcon from "@mui/icons-material/Headphones";
@@ -21,6 +22,7 @@ import styles from "./HamburgerMenu.module.css";
 export const HamburgerMenu = () => {
   const [user, setUser] = useState<string | null>(null);
   const { openMenu, openMenuClick, hamburgerLink } = UseHamburgerOpen();
+  const { logoutUser, serverError } = useLogout();
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: ハンバーガーメニューの開閉により更新
   useEffect(() => {
@@ -32,6 +34,11 @@ export const HamburgerMenu = () => {
     };
     getUser();
   }, [openMenu]);
+
+  const logoutClick = () => {
+    logoutUser();
+    openMenuClick();
+  };
 
   return (
     <>
@@ -111,21 +118,21 @@ export const HamburgerMenu = () => {
                   <PersonIcon fontSize="large" />
                   &nbsp;ユーザー
                 </li>
-                {/* ログイン情報により記載内容変更 */}
                 {user ? (
                   <>
                     <li
                       className={styles.hamburgerinList}
-                      onClick={() => hamburgerLink("/user/logout")}
-                      onKeyDown={() => hamburgerLink("/user/logout")}
+                      onClick={logoutClick}
+                      onKeyDown={logoutClick}
                     >
                       <LogoutIcon fontSize="large" />
                       &nbsp;ログアウト
                     </li>
+                    <p className={styles.serverError}>{serverError}</p>
                     <li
                       className={styles.hamburgerinList}
-                      onClick={() => hamburgerLink("/user/[:id]")}
-                      onKeyDown={() => hamburgerLink("/user/[:id]")}
+                      onClick={() => hamburgerLink(`/user/${user}/info`)}
+                      onKeyDown={() => hamburgerLink(`/user/${user}/info`)}
                     >
                       <AccountBoxIcon fontSize="large" />
                       &nbsp;アカウント情報
