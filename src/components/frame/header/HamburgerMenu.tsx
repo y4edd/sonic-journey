@@ -17,7 +17,9 @@ import PersonIcon from "@mui/icons-material/Person";
 import PlaylistPlayIcon from "@mui/icons-material/PlaylistPlay";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { ToastContainer } from "react-toastify";
 import styles from "./HamburgerMenu.module.css";
+import "react-toastify/dist/ReactToastify.css";
 
 export const HamburgerMenu = () => {
   const [user, setUser] = useState<string | null>(null);
@@ -42,6 +44,7 @@ export const HamburgerMenu = () => {
 
   return (
     <>
+      <ToastContainer />
       <div className={styles.hamburgerContainer}>
         {openMenu ? (
           <>
