@@ -67,9 +67,9 @@ const AlbumSingleSong = ({ id, num, title, preview }: AlbumSingleSongProps) => {
   // 楽曲をお気に入り登録
   const postFavorite = async () => {
     try {
-      const response = await fetch("/api/favoriteSongs", {
+      const response = await fetch("/api/favorite/songs", {
         method: "POST",
-        body: JSON.stringify({ musicId: id }),
+        body: JSON.stringify({ songId: id }),
       });
       if (!response.ok) {
         const err = await response.json();

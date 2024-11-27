@@ -37,13 +37,13 @@ const FavoriteButton = ({ id }: { id: number }) => {
   // お気に入り楽曲追加
   const postFavorite = async () => {
     try {
-      const response = await fetch("/api/favoriteSongs", {
+      const response = await fetch("/api/favorite/songs", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          musicId: id,
+          songId: id,
         }),
       });
       if (!response.ok) {
