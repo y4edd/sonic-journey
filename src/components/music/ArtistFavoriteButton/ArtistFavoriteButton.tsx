@@ -62,28 +62,28 @@ const ArtistFavoriteButton = ({ id }: { id: number }) => {
 
   // FIXME:お気に入りアーティスト削除(API実装後、エンドポイント変更(2024/11/27))
   const deleteFavorite = async () => {
-    // try {
-    //   const response = await fetch("/api/favoriteSongs", {
-    //     method: "DELETE",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       songIds: [id],
-    //     }),
-    //   });
-    //   if (!response.ok) {
-    //     const error = await response.json();
-    //     console.error(error);
-    //     alert(error.message);
-    //     return;
-    //   }
-    //   alert("お気に入りアーティストから削除されました");
-    //   setIsFav(false);
-    // } catch (error) {
-    //   console.error(error);
-    //   alert("ネットワークエラーです");
-    // }
+    try {
+      const response = await fetch("/api/favorite/songs", {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          songIds: [id],
+        }),
+      });
+      if (!response.ok) {
+        const error = await response.json();
+        console.error(error);
+        alert(error.message);
+        return;
+      }
+      alert("お気に入りアーティストから削除されました");
+      setIsFav(false);
+    } catch (error) {
+      console.error(error);
+      alert("ネットワークエラーです");
+    }
   };
 
   return (
