@@ -35,7 +35,7 @@ const ArtistFavoriteButton = ({ id }: { id: number }) => {
 
   const postFavorite = async () => {
     try {
-      const response = await fetch("/api/favoriteArtists", {
+      const response = await fetch("/api/favorite/artists", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
