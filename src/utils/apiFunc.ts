@@ -242,7 +242,6 @@ export const getUserPlaylist = async (user_id: string) => {
 export const fetchUser = async () => {
   try {
     const response = await fetch("/api/user/checkLogin");
-    console.log(response);
     if (!response.ok) {
       throw new Error("ログイン状態が確認できませんでした");
     }
