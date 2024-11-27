@@ -1,0 +1,17 @@
+.songListContainer {
+  margin: 1rem 0;
+  padding: 0 1rem;
+}
+
+.songListContainer > ul {
+  list-style-type: none;
+}
+
+.songListContainer li:last-child {
+  border-bottom: 1px solid lightgray;
+}
+
+.noSongsMessage {
+  text-align: center;
+  color: gray;
+}
