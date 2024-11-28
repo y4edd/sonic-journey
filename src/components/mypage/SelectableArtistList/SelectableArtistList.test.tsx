@@ -23,7 +23,7 @@ describe("SelectableArtistListコンポーネントのテスト", () => {
     expect(screen.getByText("お気に入りアーティストは登録されていません")).toBeInTheDocument();
   });
 
-    test("アーティストが1つある場合、1つのArtistListItemを表示すること", () => {
+  test("アーティストが1つある場合、1つのArtistListItemを表示すること", () => {
     render(
       <SelectableArtistList
         artists={[mockArtist]}
