@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { SelectAddPlaylist } from "../SelectAddPlaylist/SelectAddPlaylist";
 import styles from "./AddPlaylist.module.css";
 
-export const AddPlaylist = ({ id }: { id: number }) => {
+export const AddPlaylist = ({ id, text }: { id: number; text: string }) => {
   const [user, setUser] = useState<string | null>(null);
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
@@ -56,7 +56,7 @@ export const AddPlaylist = ({ id }: { id: number }) => {
     <>
       <button type="button" className={styles.songInfoAddList} onClick={handleAddPlaylist}>
         <CreateNewFolderIcon />
-        <span>プレイリストに追加</span>
+        <span>{text}</span>
       </button>
       {modalOpen && user && (
         <Modal setFunc={setModalOpen}>

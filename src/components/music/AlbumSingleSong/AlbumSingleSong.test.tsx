@@ -19,7 +19,7 @@ afterAll(() => {
 });
 
 describe("AlbumSingleSongコンポーネントの単体テスト", () => {
-  test("受け取ったpropsを反映し、正しくレンダリングすること", () => {
+  test("受け取ったpropsを反映し、正しくレンダリングすること", async () => {
     render(
       <AlbumAudioProvider>
         <AlbumSingleSong id={1} num={1} title="タイトル" preview="example.com" />
@@ -28,7 +28,10 @@ describe("AlbumSingleSongコンポーネントの単体テスト", () => {
 
     expect(screen.getByText("01: タイトル")).toBeInTheDocument();
     expect(screen.queryByText("プレビューが読み込めません")).not.toBeInTheDocument();
-    expect(screen.getByRole("button")).toBeInTheDocument();
+    expect(screen.getByRole("img", { hidden: false })).toBeInTheDocument();
+    const doneIcon = await screen.findByRole("img", { hidden: false });
+    expect(doneIcon).toBeInTheDocument();
+    expect(doneIcon).toHaveAttribute("aria-hidden", "false");
     expect(screen.getByRole("link")).toHaveAttribute("href", "/music/1");
   });
 

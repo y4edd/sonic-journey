@@ -7,6 +7,7 @@ import DoneIcon from "@mui/icons-material/Done";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { AddPlaylist } from "../AddPlaylist/AddPlaylist";
 import AlbumSingleSongAudio from "../AlbumSingleSongAudio/AlbumSingleSongAudio";
 import styles from "./AlbumSingleSong.module.css";
 
@@ -125,6 +126,11 @@ const AlbumSingleSong = ({ id, num, title, preview }: AlbumSingleSongProps) => {
             {displayNum}: {title}
           </Link>
         </p>
+
+        <div className={styles.play}>
+          <AddPlaylist id={id} text="" />
+        </div>
+
         {isFav ? (
           <>
             <button type="button" onClick={deleteFavorite} className={styles.deleteButton}>
