@@ -19,10 +19,13 @@ import { fetchUser, fetchUserInfo } from "@/utils/apiFunc";
 
 const Edit = () => {
   // useStateでサーバーエラーの管理
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [serverError, setServerError] = useState<string | null>("");
   const [userId, setUserId] = useState<string | null>(null);
-  const [userInfo, setUserInfo] = useState({ name:"", email:"" });
+  const [userInfo, setUserInfo] = useState<{ name: string; email: string }>({
+    name: "",
+    email: "",
+  });
 
   // React hook formでフォーム管理
   const {
@@ -39,6 +42,7 @@ const Edit = () => {
   const loadUser = async () => {
     try {
       const data = await fetchUser();
+      console.log(data);
       if (data?.id) {
         setUserId(data.id);
       } else {
@@ -55,7 +59,7 @@ const Edit = () => {
   const loadUserInfo = async () => {
     try {
       const data = await fetchUserInfo();
-      if(data) {
+      if (data) {
         setUserInfo(data);
       }
     } catch {
@@ -63,7 +67,7 @@ const Edit = () => {
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: マウント時のみ実行
   useEffect(() => {
@@ -114,6 +118,16 @@ const Edit = () => {
     router.push(`/user/${userId}/info`);
   };
 
+  // ユーザー名編集のハンドラ
+  const handleUserNameValue = (e:string) => {
+    setUserInfo({...userInfo, name:e});
+  }; 
+
+  // email編集のハンドラ
+  const handleEmailValue = (e:string) => {
+    setUserInfo({...userInfo, email:e});
+  }; 
+
   return (
     <>
       <BreadList
@@ -134,7 +148,7 @@ const Edit = () => {
             id="userName"
             type="text"
             name="name"
-            value={userInfo.name}
+            value={handleUserNameValue}
             placeholder="tanitune"
             register={register}
             error={errors.name}
@@ -144,7 +158,7 @@ const Edit = () => {
             id="mailAddress"
             type="email"
             name="email"
-            value={userInfo.email}
+            value={handleEmailValue}
             placeholder="tani@example.com"
             register={register}
             error={errors.email}
@@ -154,7 +168,6 @@ const Edit = () => {
             id="password"
             type="password"
             name="password"
-            value={""}
             placeholder="password"
             register={register}
             error={errors.password}
@@ -164,7 +177,6 @@ const Edit = () => {
             id="passwordConfirm"
             type="password"
             name="passwordConfirm"
-            value={""}
             placeholder="password"
             register={register}
             error={errors.passwordConfirm}
