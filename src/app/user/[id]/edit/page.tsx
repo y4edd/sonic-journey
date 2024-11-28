@@ -15,13 +15,15 @@ import { ToastContainer, toast } from "react-toastify";
 import styles from "./page.module.css";
 import "react-toastify/dist/ReactToastify.css";
 import UnauthorizedAccess from "@/components/UnauthorizedAccess/UnauthorizedAccess";
-import { fetchUser } from "@/utils/apiFunc";
+import { fetchUser, fetchUserInfo } from "@/utils/apiFunc";
 
 const Edit = () => {
   // useStateでサーバーエラーの管理
   const [loading, setLoading] = useState(true);
   const [serverError, setServerError] = useState<string | null>("");
   const [userId, setUserId] = useState<string | null>(null);
+  const [userInfo, setUserInfo] = useState({ name:"", email:"" });
+
   // React hook formでフォーム管理
   const {
     register,
@@ -49,9 +51,24 @@ const Edit = () => {
     }
   };
 
+  // ユーザー情報を取得
+  const loadUserInfo = async () => {
+    try {
+      const data = await fetchUserInfo();
+      if(data) {
+        setUserInfo(data);
+      }
+    } catch {
+      setServerError("ユーザー情報の取得に失敗しました");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   // biome-ignore lint/correctness/useExhaustiveDependencies: マウント時のみ実行
   useEffect(() => {
     loadUser();
+    loadUserInfo();
   }, []);
 
   if (loading) {
@@ -117,6 +134,7 @@ const Edit = () => {
             id="userName"
             type="text"
             name="name"
+            value={userInfo.name}
             placeholder="tanitune"
             register={register}
             error={errors.name}
@@ -126,6 +144,7 @@ const Edit = () => {
             id="mailAddress"
             type="email"
             name="email"
+            value={userInfo.email}
             placeholder="tani@example.com"
             register={register}
             error={errors.email}
@@ -135,6 +154,7 @@ const Edit = () => {
             id="password"
             type="password"
             name="password"
+            value={""}
             placeholder="password"
             register={register}
             error={errors.password}
@@ -144,6 +164,7 @@ const Edit = () => {
             id="passwordConfirm"
             type="password"
             name="passwordConfirm"
+            value={""}
             placeholder="password"
             register={register}
             error={errors.passwordConfirm}
