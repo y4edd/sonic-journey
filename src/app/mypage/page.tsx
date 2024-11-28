@@ -6,9 +6,7 @@ import HistoryIcon from "@mui/icons-material/History";
 import MusicNoteTwoToneIcon from "@mui/icons-material/MusicNoteTwoTone";
 import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import PlaylistPlayTwoToneIcon from "@mui/icons-material/PlaylistPlayTwoTone";
-import { ToastContainer } from "react-toastify";
 import styles from "./page.module.css";
-import "react-toastify/dist/ReactToastify.css";
 import { getUserId } from "@/utils/apiFunc";
 import { getTokenFromCookie } from "@/utils/getTokenFromCookie";
 
@@ -25,7 +23,6 @@ const MyPage = async () => {
           { link: "/mypage", title: "マイページ" },
         ]}
       />
-      <ToastContainer />
       <div className={styles.menuTitle}>
         <h3>メニュー</h3>
       </div>

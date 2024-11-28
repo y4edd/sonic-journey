@@ -12,7 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import styles from "./page.module.css";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -81,7 +81,6 @@ const UserRegistration = () => {
         <Information text="アカウント登録" />
       </div>
       <div className={styles.container}>
-        <ToastContainer />
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormInput
             label="ユーザー名"
@@ -119,7 +118,11 @@ const UserRegistration = () => {
             register={register}
             error={errors.passwordConfirm}
           />
-          <Button type="submit" className={ButtonStyles.register} text={"ユーザー登録"} />
+          <Button
+            type="submit"
+            className={ButtonStyles.register}
+            text={"ユーザー登録"}
+          />
           <div className={styles.errorMessage}>{serverError}</div>
         </form>
       </div>
