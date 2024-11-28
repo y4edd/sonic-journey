@@ -10,7 +10,7 @@ jest.mock("@/utils/apiFunc", () => ({
 
 describe("AddPlaylistの単体テスト", () => {
   test("レンダリングが適切に行われていること", () => {
-    render(<AddPlaylist id={1} />);
+    render(<AddPlaylist id={1} text="プレイリストに追加" />);
     expect(screen.getByRole("button", { name: "プレイリストに追加" })).toBeInTheDocument();
   });
 });
