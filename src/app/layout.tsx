@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Footer from "@/components/frame/footer/Footer";
 import Header from "@/components/frame/header/Header";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import styles from "../components/frame/footer/Footer.module.css";
 
 const geistSans = localFont({
@@ -34,6 +36,7 @@ export default function RootLayout({
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <div className={styles.wrapper}>
           <Header />
+          <ToastContainer />
           <main className={styles.content}>{children}</main>
           <Footer />
         </div>
