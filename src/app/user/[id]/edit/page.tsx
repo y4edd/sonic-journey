@@ -22,7 +22,7 @@ const Edit = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [serverError, setServerError] = useState<string | null>("");
   const [userId, setUserId] = useState<string | null>(null);
-  const [userInfo, setUserInfo] = useState<{ name: string; email: string }>({
+  const [userInfo, setUserInfo] = useState({
     name: "",
     email: "",
   });
@@ -60,7 +60,7 @@ const Edit = () => {
     try {
       const data = await fetchUserInfo();
       if (data) {
-        setUserInfo(data);
+        setUserInfo({name:data.name, email:data.email});
       }
     } catch {
       setServerError("ユーザー情報の取得に失敗しました");
@@ -119,13 +119,13 @@ const Edit = () => {
   };
 
   // ユーザー名編集のハンドラ
-  const handleUserNameValue = (e:string) => {
-    setUserInfo({...userInfo, name:e});
+  const handleUserNameValue = (e:React.ChangeEvent<HTMLInputElement>) => {
+    setUserInfo({...userInfo, name:e.target.value});
   }; 
 
   // email編集のハンドラ
-  const handleEmailValue = (e:string) => {
-    setUserInfo({...userInfo, email:e});
+  const handleEmailValue = (e:React.ChangeEvent<HTMLInputElement>) => {
+    setUserInfo({...userInfo, email:e.target.value});
   }; 
 
   return (
@@ -148,7 +148,8 @@ const Edit = () => {
             id="userName"
             type="text"
             name="name"
-            value={handleUserNameValue}
+            value={userInfo.name}
+            onChange={handleUserNameValue}
             placeholder="tanitune"
             register={register}
             error={errors.name}
@@ -158,7 +159,8 @@ const Edit = () => {
             id="mailAddress"
             type="email"
             name="email"
-            value={handleEmailValue}
+            value={userInfo.email}
+            onChange={handleEmailValue}
             placeholder="tani@example.com"
             register={register}
             error={errors.email}

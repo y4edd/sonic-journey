@@ -7,6 +7,7 @@ const FormInput: React.FC<FormInputProps> = ({
   type,
   name,
   value,
+  onChange,
   placeholder,
   register,
   error,
@@ -25,6 +26,7 @@ const FormInput: React.FC<FormInputProps> = ({
           className={styles.userInput}
           name={name}
           value={value}
+          onChange={onChange}
         />
         <div className={styles.errorMessage}>{error?.message && <span>{error.message}</span>}</div>
       </div>
