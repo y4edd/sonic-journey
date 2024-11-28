@@ -12,9 +12,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import styles from "./page.module.css";
-import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const [serverError, setServerError] = useState<string | null>(null);
@@ -77,7 +76,6 @@ const Login = () => {
         <Information text="ログイン" />
       </div>
       <div className={styles.container}>
-        <ToastContainer />
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormInput
             label="メールアドレス"

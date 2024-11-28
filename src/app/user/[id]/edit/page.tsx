@@ -11,7 +11,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { type SubmitHandler, useForm } from "react-hook-form";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import styles from "./page.module.css";
 import "react-toastify/dist/ReactToastify.css";
 import UnauthorizedAccess from "@/components/UnauthorizedAccess/UnauthorizedAccess";
@@ -106,7 +106,6 @@ const Edit = () => {
           { link: `/user/${userId}/edit`, title: "アカウント編集" },
         ]}
       />
-      <ToastContainer />
       <div>
         <Information text="アカウント編集" />
       </div>
