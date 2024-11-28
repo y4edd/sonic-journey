@@ -1,14 +1,14 @@
 import Logout from "@/components/mypage/Logout/Logout";
 import MenuBox from "@/components/mypage/MenuBox/MenuBox";
 import BreadList from "@/components/top/BreadList/BreadList";
+import { getUserId } from "@/utils/apiFunc";
+import { getTokenFromCookie } from "@/utils/getTokenFromCookie";
 import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import HistoryIcon from "@mui/icons-material/History";
 import MusicNoteTwoToneIcon from "@mui/icons-material/MusicNoteTwoTone";
 import PeopleOutlineIcon from "@mui/icons-material/PeopleOutline";
 import PlaylistPlayTwoToneIcon from "@mui/icons-material/PlaylistPlayTwoTone";
 import styles from "./page.module.css";
-import { getUserId } from "@/utils/apiFunc";
-import { getTokenFromCookie } from "@/utils/getTokenFromCookie";
 
 const MyPage = async () => {
   const token = getTokenFromCookie();

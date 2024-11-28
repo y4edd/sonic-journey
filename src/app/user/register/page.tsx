@@ -118,11 +118,7 @@ const UserRegistration = () => {
             register={register}
             error={errors.passwordConfirm}
           />
-          <Button
-            type="submit"
-            className={ButtonStyles.register}
-            text={"ユーザー登録"}
-          />
+          <Button type="submit" className={ButtonStyles.register} text={"ユーザー登録"} />
           <div className={styles.errorMessage}>{serverError}</div>
         </form>
       </div>

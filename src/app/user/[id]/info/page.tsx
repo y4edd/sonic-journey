@@ -161,12 +161,7 @@ const Info = () => {
           text={"退会"}
           onClick={handleDelete}
         />
-        <Button
-          type="button"
-          className={ButtonStyles.return}
-          text={"戻る"}
-          onClick={handleBack}
-        />
+        <Button type="button" className={ButtonStyles.return} text={"戻る"} onClick={handleBack} />
         <div className={styles.errorMessage}>{serverError}</div>
       </div>
     </>
