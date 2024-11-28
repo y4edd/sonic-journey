@@ -54,7 +54,7 @@ describe("UserRegistrationコンポーネントのテスト", () => {
     });
   });
 
-  test("正しい入力の場合、ページ遷移が行われる", async () => {
+  test("正しい入力の場合、toastが表示される", async () => {
     render(<UserRegistration />);
 
     fireEvent.input(screen.getByLabelText("ユーザー名"), {

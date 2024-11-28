@@ -1,12 +1,12 @@
+import { fetchUser, fetchUserInfo } from "@/utils/apiFunc";
 import { render, screen, waitFor } from "@testing-library/react";
 import Edit from "./page";
-import { fetchUser, fetchUserInfo } from "@/utils/apiFunc";
 
 jest.mock("next/navigation", () => ({
   useRouter: jest.fn(() => ({
     router: "/",
-    pathname:"user/id/info",
-    query: {id: "uyrf9" },
+    pathname: "user/id/info",
+    query: { id: "uyrf9" },
     asPath: "",
   })),
 }));
@@ -19,7 +19,7 @@ jest.mock("../../../../utils/apiFunc", () => ({
 
 afterEach(() => {
   jest.clearAllMocks();
-})
+});
 
 describe("Editコンポーネントのテスト", () => {
   test("未ログインの場合はUnauthenticatedコンポーネントが表示されること", async () => {
@@ -36,15 +36,15 @@ describe("Editコンポーネントのテスト", () => {
   });
 
   test("ログイン済の場合は「アカウント編集」の文字が表示される", async () => {
-    (fetchUser as jest.Mock).mockImplementation(() => Promise.resolve({id:"uyrf9"}));
+    (fetchUser as jest.Mock).mockImplementation(() => Promise.resolve({ id: "uyrf9" }));
     (fetchUserInfo as jest.Mock).mockImplementation(() =>
-      Promise.resolve({ name: "test", email: "test@test.com" })
+      Promise.resolve({ name: "test", email: "test@test.com" }),
     );
 
     render(<Edit />);
-    
+
     await waitFor(() => {
-      expect(screen.getByTestId("information")).toHaveTextContent("アカウント編集")
+      expect(screen.getByTestId("information")).toHaveTextContent("アカウント編集");
     });
-  })
+  });
 });

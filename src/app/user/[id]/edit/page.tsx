@@ -60,7 +60,7 @@ const Edit = () => {
     try {
       const data = await fetchUserInfo();
       if (data) {
-        setUserInfo({name:data.name, email:data.email});
+        setUserInfo({ name: data.name, email: data.email });
       }
     } catch {
       setServerError("ユーザー情報の取得に失敗しました");
@@ -119,14 +119,14 @@ const Edit = () => {
   };
 
   // ユーザー名編集のハンドラ
-  const handleUserNameValue = (e:React.ChangeEvent<HTMLInputElement>) => {
-    setUserInfo({...userInfo, name:e.target.value});
-  }; 
+  const handleUserNameValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserInfo({ ...userInfo, name: e.target.value });
+  };
 
   // email編集のハンドラ
-  const handleEmailValue = (e:React.ChangeEvent<HTMLInputElement>) => {
-    setUserInfo({...userInfo, email:e.target.value});
-  }; 
+  const handleEmailValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserInfo({ ...userInfo, email: e.target.value });
+  };
 
   return (
     <>

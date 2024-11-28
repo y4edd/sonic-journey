@@ -58,10 +58,8 @@ const UserRegistration = () => {
           theme: "colored",
         });
         setTimeout(() => {
-          router.push("/");
+          router.push("/user/login");
         }, 1500);
-
-        router.push("/user/login");
       }
     } catch (err) {
       console.log(err);
