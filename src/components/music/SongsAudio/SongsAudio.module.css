@@ -22,11 +22,10 @@
   display: flex;
   margin-top: 3rem;
   margin-bottom: 4rem;
-  padding: 15px;
-  padding-right: 5px;
+  padding: 12px 5px 12px 15px;
   border-radius: 3px;
   box-shadow: 0 2px 10px rgb(177, 176, 176);
-  background-color: rgb(249, 249, 238);
+  background-color: rgb(235, 235, 233);
   align-items: center;
 }
 
@@ -35,7 +34,7 @@
 }
 
 .songIntro > * {
-  background-color: rgb(249, 249, 238);
+  background-color: rgb(235, 235, 233);
 }
 
 .currentTitle {
@@ -49,16 +48,16 @@
   display: flex;
   margin: 0 1rem 0 auto;
   justify-content: center;
-  background-color: rgb(249, 249, 238);
+  background-color: rgb(235, 235, 233);
 }
 
 .controls > button {
-  background-color: rgb(249, 249, 238);
+  background-color: rgb(235, 235, 233);
 }
 
 .preButtonIcon,
 .switchButtonIcon,
 .nextButtonIcon {
   font-size: 2rem;
-  background-color: rgb(249, 249, 238);
+  background-color: rgb(235, 235, 233);
 }
