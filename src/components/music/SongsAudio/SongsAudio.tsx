@@ -1,42 +1,40 @@
 "use client";
 
-import { savePlayHistory } from "@/utils/history";
+import PauseIcon from "@mui/icons-material/Pause";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import SkipNextIcon from "@mui/icons-material/SkipNext";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
-import PauseIcon from "@mui/icons-material/Pause";
-import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { useEffect } from "react";
+import type { Dispatch, MutableRefObject, SetStateAction } from "react";
 import styles from "./SongsAudio.module.css";
 
 type PlaylistAudioProps = {
-  playlistSongsAudio: {
-    preview?: string;
-    id: number;
-    title: string;
-    img: string;
-  }[];
+  preview?: string;
+  id: number;
+  title: string;
+  img: string;
 };
 
-const SongAudio = ({ playlistSongsAudio }: PlaylistAudioProps) => {
-  // 再生中の楽曲のインデックス
-  const [currentIndex, setCurrentIndex] = useState(0);
-  // 再生中かどうかstateで管理
-  const [isPlaying, setIsPlaying] = useState(false);
-  // 再レンダリングさせたくないので、useRefでaudio要素を参照
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  const currentSong = playlistSongsAudio[currentIndex];
-
-  // 曲を再生
-  const handlePlay = async () => {
-    if (audioRef.current) {
-      await audioRef.current.play();
-      setIsPlaying(true);
-      await savePlayHistory(currentSong.id);
-    }
-  };
-
+const SongAudio = ({
+  playlistSongsAudio,
+  currentIndex,
+  setCurrentIndex,
+  isPlaying,
+  setIsPlaying,
+  audioRef,
+  handlePlay,
+  currentSong,
+}: {
+  playlistSongsAudio: PlaylistAudioProps[];
+  currentIndex: number;
+  setCurrentIndex: Dispatch<SetStateAction<number>>;
+  isPlaying: boolean;
+  setIsPlaying: Dispatch<SetStateAction<boolean>>;
+  audioRef: MutableRefObject<HTMLAudioElement | null>;
+  handlePlay: (start_flag: boolean) => Promise<void>;
+  currentSong: PlaylistAudioProps;
+}) => {
   // 曲を一時停止
   const handlePause = () => {
     if (audioRef.current) {
@@ -60,10 +58,12 @@ const SongAudio = ({ playlistSongsAudio }: PlaylistAudioProps) => {
     }
   };
 
+  // 一曲の再生終了に伴ってcurrentIndexが変わった時に、曲再生を始める
+  // biome-ignore lint/correctness/useExhaustiveDependencies: 再生対象の楽曲が移った際にのみ楽曲の再生を行わせるため
   useEffect(() => {
     const nextPlaying = async () => {
       if (audioRef.current && isPlaying) {
-        await handlePlay();
+        await handlePlay(false);
       }
     };
     nextPlaying();
@@ -74,11 +74,7 @@ const SongAudio = ({ playlistSongsAudio }: PlaylistAudioProps) => {
       <>
         <audio src={currentSong.preview} ref={audioRef} onEnded={handleEnded} />
         <div className={styles.playButtons}>
-          <button
-            type="button"
-            onClick={handlePlay}
-            className={styles.playButton}
-          >
+          <button type="button" onClick={() => handlePlay(true)} className={styles.playButton}>
             ▶ &nbsp;再生
           </button>
         </div>
@@ -89,9 +85,7 @@ const SongAudio = ({ playlistSongsAudio }: PlaylistAudioProps) => {
             height={50}
             width={50}
           />
-          <p className={styles.currentTitle}>
-            {playlistSongsAudio[currentIndex].title}
-          </p>
+          <p className={styles.currentTitle}>{playlistSongsAudio[currentIndex].title}</p>
 
           <div className={styles.controls}>
             <button
@@ -102,11 +96,7 @@ const SongAudio = ({ playlistSongsAudio }: PlaylistAudioProps) => {
             >
               <SkipPreviousIcon className={styles.preButtonIcon} />
             </button>
-            <button
-              type="button"
-              onClick={handlePause}
-              className={styles.switchButton}
-            >
+            <button type="button" onClick={handlePause} className={styles.switchButton}>
               {isPlaying ? (
                 <PauseIcon className={styles.switchButtonIcon} />
               ) : (

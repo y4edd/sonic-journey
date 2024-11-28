@@ -1,18 +1,41 @@
 "use client";
 
 import { AlbumAudioProvider } from "@/context/AlbumAudioContext";
-import type { DeezerTrackSong } from "@/types/deezer";
+import type { Dispatch, SetStateAction } from "react";
 import PlaylistSongButton from "../PlaylistSongButton/PlaylistSongButton";
 import styles from "./PlaylistSongButtons.module.css";
 
-const PlaylistSongButtons = ({ singles }: { singles: DeezerTrackSong[] }) => {
+type PlaylistSongsAudio = {
+  preview?: string;
+  id: number;
+  title: string;
+  img: string;
+};
+
+const PlaylistSongButtons = ({
+  song,
+  setCurrentIndex,
+  setIsPlaying,
+  handlePlay,
+}: {
+  song: PlaylistSongsAudio[];
+  setCurrentIndex: Dispatch<SetStateAction<number>>;
+  setIsPlaying: Dispatch<SetStateAction<boolean>>;
+  handlePlay: (start_flag: boolean) => Promise<void>;
+}) => {
   return (
     <AlbumAudioProvider>
       <div className={styles.albumSinglesContent}>
-        {singles.map((song: DeezerTrackSong, index: number) => {
+        {song.map((song: PlaylistSongsAudio, index: number) => {
           return (
             <div key={song.id} className={styles.albumSingleSong}>
-              <PlaylistSongButton pickSong={song} index={index} />
+              <PlaylistSongButton
+                song={song}
+                index={index}
+                setCurrentIndex={setCurrentIndex}
+                setIsPlaying={setIsPlaying}
+                handlePlay={handlePlay}
+              />
             </div>
           );
         })}

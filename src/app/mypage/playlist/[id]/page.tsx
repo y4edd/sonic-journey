@@ -1,12 +1,17 @@
 import UnauthorizedAccess from "@/components/UnauthorizedAccess/UnauthorizedAccess";
 import { PlaylistHeader } from "@/components/mypage/PlaylistDetail/PlaylistHeader/PlaylistHeader";
-import PlaylistSongButtons from "@/components/mypage/PlaylistDetail/PlaylistSongButtons/PlaylistSongButtons";
+import { PlaylistSongList } from "@/components/mypage/PlaylistDetail/PlaylistSongList/PlaylistSongList";
 import BreadList from "@/components/top/BreadList/BreadList";
 import type { DeezerTrackSong } from "@/types/deezer";
-import SongsAudio from "@/components/music/SongsAudio/SongsAudio";
 import { getTokenFromCookie } from "@/utils/getTokenFromCookie";
-import Link from "next/link";
 import styles from "./page.module.css";
+
+type PlaylistSongsAudio = {
+  preview?: string;
+  id: number;
+  title: string;
+  img: string;
+};
 
 type PlaylistInfo = {
   playlistTitle: string;
@@ -33,19 +38,16 @@ const Page = async ({ params }: { params: { id: number } }) => {
 
     const playlistInfo: PlaylistInfo = await res.json();
 
-    const response = await fetch(
-      "http://localhost:3000/api/getSpecialSongInfo",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          songs: playlistInfo?.playlistSongs || [],
-        }),
-        cache: "no-store",
-      }
-    );
+    const response = await fetch("http://localhost:3000/api/getSpecialSongInfo", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        songs: playlistInfo?.playlistSongs || [],
+      }),
+      cache: "no-store",
+    });
 
     const playlistSongs: DeezerTrackSong[] = await response.json();
 
@@ -56,12 +58,7 @@ const Page = async ({ params }: { params: { id: number } }) => {
           })
         : [];
 
-    const playlistSongsAudio: {
-      preview?: string;
-      id: number;
-      title: string;
-      img: string;
-    }[] =
+    const playlistSongsAudio: PlaylistSongsAudio[] =
       playlistSongs.length > 0
         ? playlistSongs.map((playlistSong) => {
             return {
@@ -92,23 +89,7 @@ const Page = async ({ params }: { params: { id: number } }) => {
             playlistId={id}
             playlistSongInfo={playlistSongIds}
           />
-          {playlistSongs.length > 0 ? (
-            <SongsAudio playlistSongsAudio={playlistSongsAudio} />
-          ) : null}
-          <div className={styles.playlistList}>
-            {playlistSongs.length > 0 ? (
-              <PlaylistSongButtons singles={playlistSongs} />
-            ) : (
-              <>
-                <p className={styles.noSongs}>曲を追加しましょう!!</p>
-                <div className={styles.link}>
-                  <Link href="/ranking" className={styles.rankingPageLink}>
-                    人気楽曲ページへ →
-                  </Link>
-                </div>
-              </>
-            )}
-          </div>
+          <PlaylistSongList playlistSongsAudio={playlistSongsAudio} />
         </div>
       </>
     );
