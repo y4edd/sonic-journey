@@ -95,11 +95,7 @@ const Login = () => {
             register={register}
             error={errors.password}
           />
-          <Button
-            type="submit"
-            className={ButtonStyles.register}
-            text={"ログイン"}
-          />
+          <Button type="submit" className={ButtonStyles.register} text={"ログイン"} />
           <div className={styles.errorMessage}>{serverError}</div>
         </form>
       </div>
