@@ -1,6 +1,6 @@
 import type { DeezerArtist } from "@/types/deezer";
 import AritstListItemWithCheckBox from "../ArtistListItemWithCheckBox/ArtistListItemWithCheckBox";
-import styles from "./SelectableAritstList.module.css";
+import styles from "./SelectableArtistList.module.css";
 
 const SelectableArtistList = ({
   artists,
