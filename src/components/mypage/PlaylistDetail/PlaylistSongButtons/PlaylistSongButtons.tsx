@@ -1,7 +1,7 @@
 "use client";
 
 import { AlbumAudioProvider } from "@/context/AlbumAudioContext";
-import type { Dispatch, SetStateAction } from "react";
+import type { Dispatch, MutableRefObject, SetStateAction } from "react";
 import PlaylistSongButton from "../PlaylistSongButton/PlaylistSongButton";
 import styles from "./PlaylistSongButtons.module.css";
 
@@ -16,12 +16,16 @@ const PlaylistSongButtons = ({
   song,
   setCurrentIndex,
   setIsPlaying,
+  audioRef,
   handlePlay,
 }: {
   song: PlaylistSongsAudio[];
   setCurrentIndex: Dispatch<SetStateAction<number>>;
   setIsPlaying: Dispatch<SetStateAction<boolean>>;
-  handlePlay: (start_flag: boolean) => Promise<void>;
+  audioRef: MutableRefObject<HTMLAudioElement | null>;
+  handlePlay: (
+    type: "standard" | "continuous" | "interrupted" | "shuffle"
+  ) => Promise<void>;
 }) => {
   return (
     <AlbumAudioProvider>
@@ -34,6 +38,7 @@ const PlaylistSongButtons = ({
                 index={index}
                 setCurrentIndex={setCurrentIndex}
                 setIsPlaying={setIsPlaying}
+                audioRef={audioRef}
                 handlePlay={handlePlay}
               />
             </div>

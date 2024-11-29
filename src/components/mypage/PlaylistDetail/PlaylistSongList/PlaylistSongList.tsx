@@ -23,23 +23,41 @@ export const PlaylistSongList = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   // 再生中かどうかstateで管理
   const [isPlaying, setIsPlaying] = useState(false);
+  // 再生順を管理
+  const [order, setOrder] = useState<number[]>([]);
   // 再レンダリングさせたくないので、useRefでaudio要素を参照
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const currentSong = playlistSongsAudio[order[currentIndex]];
+  const defaultOrder = () => {
+    setOrder(
+      Array.from({ length: playlistSongsAudio.length }, (_, index) => index)
+    );
+  };
 
-  const currentSong = playlistSongsAudio[currentIndex];
+  // 無限増殖回避のための条件式
+  if (order.length === 0 && playlistSongsAudio.length > 0) {
+    defaultOrder();
+  }
 
   // 曲を再生
   // start_flagがtrueの時、プレイリストの一曲目から再生を始める。falseの時、currentIndexの曲を再生する
-  const handlePlay = async (start_flag: boolean) => {
+  const handlePlay = async (
+    type: "standard" | "continuous" | "interrupted" | "shuffle"
+  ) => {
     if (audioRef.current) {
-      if (start_flag) {
+      if (type === "standard") {
+        defaultOrder();
         setCurrentIndex(0);
-        await audioRef.current.play();
-        setIsPlaying(true);
+        audioRef.current.currentTime = 0;
+      } else if (type === "interrupted") {
+        defaultOrder();
+      } else if (type === "shuffle") {
+        setCurrentIndex(0);
+        audioRef.current.currentTime = 0;
       }
       await audioRef.current.play();
-      setIsPlaying(true);
       await savePlayHistory(currentSong.id);
+      setIsPlaying(true);
     }
   };
 
@@ -55,6 +73,8 @@ export const PlaylistSongList = ({
           audioRef={audioRef}
           handlePlay={handlePlay}
           currentSong={currentSong}
+          order={order}
+          setOrder={setOrder}
         />
       ) : null}
       <div className={styles.playlistList}>
@@ -63,6 +83,7 @@ export const PlaylistSongList = ({
             song={playlistSongsAudio}
             setCurrentIndex={setCurrentIndex}
             setIsPlaying={setIsPlaying}
+            audioRef={audioRef}
             handlePlay={handlePlay}
           />
         ) : (

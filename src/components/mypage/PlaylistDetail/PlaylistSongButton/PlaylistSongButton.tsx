@@ -2,7 +2,7 @@
 
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Image from "next/image";
-import type { Dispatch, SetStateAction } from "react";
+import type { Dispatch, MutableRefObject, SetStateAction } from "react";
 import styles from "./PlaylistSongButton.module.css";
 
 type PlaylistSongsAudio = {
@@ -17,13 +17,17 @@ const PlaylistSongButton = ({
   index,
   setCurrentIndex,
   setIsPlaying,
+  audioRef,
   handlePlay,
 }: {
   song: PlaylistSongsAudio;
   index: number;
   setCurrentIndex: Dispatch<SetStateAction<number>>;
   setIsPlaying: Dispatch<SetStateAction<boolean>>;
-  handlePlay: (start_flag: boolean) => Promise<void>;
+  audioRef: MutableRefObject<HTMLAudioElement | null>;
+  handlePlay: (
+    type: "standard" | "continuous" | "interrupted" | "shuffle"
+  ) => Promise<void>;
 }) => {
   const postFavorite = async () => {
     try {
@@ -51,17 +55,28 @@ const PlaylistSongButton = ({
   };
 
   const handleIndexPlay = () => {
-    setCurrentIndex(index);
-    setIsPlaying(true);
-    handlePlay(false);
+    if (audioRef.current) {
+      setCurrentIndex(index);
+      audioRef.current.currentTime = 0; // 再生時間を0秒に更新
+      setIsPlaying(true);
+      handlePlay("interrupted");
+    }
   };
   return (
     <div className={styles.songList}>
-      <button type="button" onClick={handleIndexPlay} className={styles.playButton}>
+      <button
+        type="button"
+        onClick={handleIndexPlay}
+        className={styles.playButton}
+      >
         <Image src={song.img} alt="" height={60} width={60} />
         <p>{song.title}</p>
       </button>
-      <button type="button" onClick={postFavorite} className={styles.favoriteButton}>
+      <button
+        type="button"
+        onClick={postFavorite}
+        className={styles.favoriteButton}
+      >
         <FavoriteIcon
           sx={{
             fontSize: 16,
