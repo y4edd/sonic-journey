@@ -60,16 +60,15 @@ const ArtistFavoriteButton = ({ id }: { id: number }) => {
     }
   };
 
-  // FIXME:お気に入りアーティスト削除(API実装後、エンドポイント変更(2024/11/27))
   const deleteFavorite = async () => {
     try {
-      const response = await fetch("/api/favorite/songs", {
+      const response = await fetch("/api/favorite/artists", {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          songIds: [id],
+          artistIds: [id],
         }),
       });
       if (!response.ok) {

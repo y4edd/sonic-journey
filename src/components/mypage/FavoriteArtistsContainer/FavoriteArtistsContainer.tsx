@@ -29,6 +29,10 @@ const FavoriteArtistsContainer = ({ artistsInfo }: FavoriteArtistsContainerProps
 
   const artistData = ascFlag ? ascArtistData : descArtistData;
 
+  if (artistsInfo.length === 0) {
+    return <ArtistList artists={[]} errorMessage="お気に入りアーティストは登録されていません" />;
+  }
+
   return (
     <>
       <SortButtons label="登録日" onSortChange={(flag) => setAscFlag(flag)} />
