@@ -25,9 +25,11 @@ const UserRegistration = () => {
     resolver: zodResolver(registerSchema),
   });
 
-  const { RegisterUser,serverError } = userRegister();
+  const { RegisterUser, serverError } = userRegister();
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {RegisterUser(data)};
+  const onSubmit: SubmitHandler<FormData> = (data) => {
+    RegisterUser(data);
+  };
 
   return (
     <>

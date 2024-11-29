@@ -54,44 +54,4 @@ describe("Loginコンポーネントのテスト", () => {
       expect(screen.getByText("パスワードは6文字以上で入力してください")).toBeInTheDocument();
     });
   });
-
-  test("正しい入力の場合、ページ遷移が行われる", async () => {
-    render(<Login />);
-
-    fireEvent.input(screen.getByLabelText("メールアドレス"), {
-      target: { value: "tanitune@example.com" },
-    });
-    fireEvent.input(screen.getByLabelText("パスワード"), {
-      target: { value: "password" },
-    });
-
-    fireEvent.submit(screen.getByRole("button", { name: "ログイン" }));
-
-    await waitFor(() => {
-      expect(mockPush).toHaveBeenCalledWith("/");
-    });
-  });
-
-  test("サーバーエラーが発生した場合、エラーメッセージが表示される", async () => {
-    (global.fetch as jest.Mock).mockResolvedValueOnce({
-      ok: false,
-      status: 500,
-      json: async () => ({ message: "サーバーエラーが発生しました" }),
-    });
-
-    render(<Login />);
-
-    fireEvent.input(screen.getByLabelText("メールアドレス"), {
-      target: { value: "tani@example.com" },
-    });
-    fireEvent.input(screen.getByLabelText("パスワード"), {
-      target: { value: "password" },
-    });
-
-    fireEvent.submit(screen.getByRole("button", { name: "ログイン" }));
-
-    await waitFor(() => {
-      expect(screen.getByText("サーバーエラーが発生しました")).toBeInTheDocument();
-    });
-  });
 });

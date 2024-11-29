@@ -13,7 +13,7 @@ jest.mock("next/navigation", () => ({
 jest.mock("../../../hooks/useRegister", () => ({
   userRegister: jest.fn(() => ({
     onSubmit: jest.fn(),
-  })) 
+  })),
 }));
 
 describe("UserRegistrationコンポーネントのテスト", () => {
@@ -23,8 +23,8 @@ describe("UserRegistrationコンポーネントのテスト", () => {
 
   const setUp = () => {
     render(<UserRegistration />);
-    const submitButton = screen.getByRole("button",{name:"ユーザー登録"});
-    return {submitButton}; 
+    const submitButton = screen.getByRole("button", { name: "ユーザー登録" });
+    return { submitButton };
   };
 
   test("フォームが正しくレンダリングされている", () => {

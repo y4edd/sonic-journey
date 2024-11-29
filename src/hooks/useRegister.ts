@@ -1,22 +1,21 @@
 "use client";
 
+import type { FormData } from "@/types/user";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { FormData } from "@/types/user";
 
 type UserRegister = () => {
-  RegisterUser: (data:FormData) => Promise<void>;
+  RegisterUser: (data: FormData) => Promise<void>;
   serverError: string;
 };
 
-export const userRegister:UserRegister = () => {
+export const userRegister: UserRegister = () => {
   const [serverError, setServerError] = useState<string>("");
 
   const router = useRouter();
 
-  const RegisterUser = async (data:FormData) =>{
-
+  const RegisterUser = async (data: FormData) => {
     try {
       const response = await fetch("/api/user/register", {
         method: "POST",
