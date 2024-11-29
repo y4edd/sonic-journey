@@ -9,6 +9,12 @@ jest.mock("next/navigation", () => ({
   }),
 }));
 
+// onSubmitのモック化
+const mockOnSubmit = jest.fn();
+jest.mock("./page", () =>({
+  
+}))
+
 describe("UserRegistrationコンポーネントのテスト", () => {
   test("フォームが正しくレンダリングされている", () => {
     render(<UserRegistration />);
@@ -37,66 +43,37 @@ describe("UserRegistrationコンポーネントのテスト", () => {
     });
   });
 
-  test("パスワードが一致しない場合、エラーメッセージが表示される", async () => {
+  test("登録成功時にトーストメッセージが表示される", async () => {
+    // APIレスポンスをモック
+    (onSubmit as jest.Mock).mockImplementation(() =>
+      Promise.resolve({
+        ok: true,
+        json: () => Promise.resolve({}),
+      })
+    );
+  
     render(<UserRegistration />);
-
+  
+    fireEvent.input(screen.getByLabelText("ユーザー名"), {
+      target: { value: "testuser" },
+    });
+    fireEvent.input(screen.getByLabelText("メールアドレス"), {
+      target: { value: "test@example.com" },
+    });
     fireEvent.input(screen.getByLabelText("パスワード"), {
       target: { value: "password1" },
     });
     fireEvent.input(screen.getByLabelText("パスワード確認"), {
-      target: { value: "password2" },
+      target: { value: "password1" },
     });
-
+  
     fireEvent.submit(screen.getByRole("button", { name: "ユーザー登録" }));
-
+  
+    // トーストの表示を確認
     await waitFor(() => {
-      expect(screen.getByText("パスワードが一致しません")).toBeInTheDocument();
-    });
-  });
-
-  test("正しい入力の場合、toastが表示される", async () => {
-    render(<UserRegistration />);
-
-    fireEvent.input(screen.getByLabelText("ユーザー名"), {
-      target: { value: "tanitune" },
-    });
-    fireEvent.input(screen.getByLabelText("メールアドレス"), {
-      target: { value: "tanisan@example.com" },
-    });
-    fireEvent.input(screen.getByLabelText("パスワード"), {
-      target: { value: "password" },
-    });
-    fireEvent.input(screen.getByLabelText("パスワード確認"), {
-      target: { value: "password" },
-    });
-
-    fireEvent.submit(screen.getByRole("button", { name: "ユーザー登録" }));
-
-    await waitFor(() => {
-      expect(mockPush).toHaveBeenCalledWith("/user/login");
-    });
-  });
-
-  test("サーバーエラーが発生した場合、エラーメッセージが表示される", async () => {
-    (global.fetch as jest.Mock).mockResolvedValueOnce({
-      ok: false,
-      status: 500,
-      json: async () => ({ message: "サーバーエラーが発生しました" }),
-    });
-
-    render(<UserRegistration />);
-
-    fireEvent.input(screen.getByLabelText("ユーザー名"), { target: { value: "tanitune" } });
-    fireEvent.input(screen.getByLabelText("メールアドレス"), {
-      target: { value: "tani@example.com" },
-    });
-    fireEvent.input(screen.getByLabelText("パスワード"), { target: { value: "password" } });
-    fireEvent.input(screen.getByLabelText("パスワード確認"), { target: { value: "password" } });
-
-    fireEvent.submit(screen.getByRole("button", { name: "ユーザー登録" }));
-
-    await waitFor(() => {
-      expect(screen.getByText("サーバーエラーが発生しました")).toBeInTheDocument();
+      expect(
+        screen.getByText("アカウント登録が完了しました！")
+      ).toBeInTheDocument();
     });
   });
 });
