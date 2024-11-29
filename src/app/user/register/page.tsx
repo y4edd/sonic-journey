@@ -27,7 +27,7 @@ const UserRegistration = () => {
 
   const { RegisterUser,serverError } = userRegister();
 
-  const onSubmit = (data:FormData) => {RegisterUser(data)};
+  const onSubmit: SubmitHandler<FormData> = (data) => {RegisterUser(data)};
 
   return (
     <>
