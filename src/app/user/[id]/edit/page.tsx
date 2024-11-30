@@ -42,7 +42,6 @@ const Edit = () => {
   const loadUser = async () => {
     try {
       const data = await fetchUser();
-      console.log(data);
       if (data?.id) {
         setUserId(data.id);
       } else {
