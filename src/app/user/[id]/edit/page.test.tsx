@@ -3,6 +3,7 @@ import { cleanup, fireEvent, getByRole, render, screen, waitFor } from "@testing
 import userEvent from "@testing-library/user-event";
 import Edit from "./page";
 
+// next/navigationモジュール全体、useRouter、pushのモック化
 jest.mock("next/navigation", () => ({
   useRouter: jest.fn(() => ({
     push: jest.fn(),
@@ -74,7 +75,7 @@ describe("Editコンポーネントのテスト", () => {
     render(<Edit />);
 
     await waitFor(() => {
-      expect(screen.getByDisplayValue("test")).toBeInTheDocument();
+      expect(screen.getByDisplayValue("test"));
       expect(screen.getByDisplayValue("test@test.com"));
     });
   });
@@ -142,6 +143,8 @@ describe("Editコンポーネントのテスト", () => {
   });
 
   test("「戻る」ボタンが押されたとき、userInfoページが呼び出される", async () => {
+    // 既にモック化されたuseRouterの返り値を変更
+    // (requireでモックされたモジュールを取得し、useRouterを再設定)
     const pushMock = jest.fn();
     require("next/navigation").useRouter.mockReturnValue({
       push: pushMock,

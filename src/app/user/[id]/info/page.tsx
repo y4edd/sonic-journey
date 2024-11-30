@@ -40,11 +40,6 @@ const Info = () => {
     }
   };
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: マウント時のみ実行
-  useEffect(() => {
-    loadUser();
-  }, []);
-
   const getUserInfo = async () => {
     try {
       const data = await fetchUserInfo();
@@ -63,6 +58,7 @@ const Info = () => {
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: マウント時のみ実行
   useEffect(() => {
+    loadUser();
     getUserInfo();
   }, []);
 
@@ -91,12 +87,10 @@ const Info = () => {
       const response = await fetch("/api/user/delete", {
         method: "DELETE",
       });
-      console.log(await response.text());
       if (!response.ok) {
         const error = await response.json();
         setServerError(error.message);
       }
-
       toast.success("退会が完了しました！", {
         position: "top-center",
         autoClose: 1000,
