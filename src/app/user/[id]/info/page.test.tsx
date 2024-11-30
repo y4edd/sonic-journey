@@ -1,6 +1,6 @@
+import { fetchUser, fetchUserInfo } from "@/utils/apiFunc";
 import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
 import Info from "./page";
-import { fetchUser, fetchUserInfo } from "@/utils/apiFunc";
 
 // next/navigationモジュール全体、useRouter、pushのモック化
 jest.mock("next/navigation", () => ({
@@ -46,7 +46,9 @@ describe("Infoコンポーネントのテスト", () => {
 
   test("ログイン済みの場合、アカウント情報が表示される", async () => {
     (fetchUser as jest.Mock).mockImplementation(() => Promise.resolve({ id: "12huh" }));
-    (fetchUserInfo as jest.Mock).mockImplementation(() => Promise.resolve({ name: "test", email: "test@ttt.com" }));
+    (fetchUserInfo as jest.Mock).mockImplementation(() =>
+      Promise.resolve({ name: "test", email: "test@ttt.com" }),
+    );
 
     render(<Info />);
 
@@ -58,7 +60,9 @@ describe("Infoコンポーネントのテスト", () => {
 
   test("編集ボタンをクリックすると、編集ページに遷移する", async () => {
     (fetchUser as jest.Mock).mockImplementation(() => Promise.resolve({ id: "12huh" }));
-    (fetchUserInfo as jest.Mock).mockImplementation(() => Promise.resolve({ name: "test", email: "test@ttt.com" }));
+    (fetchUserInfo as jest.Mock).mockImplementation(() =>
+      Promise.resolve({ name: "test", email: "test@ttt.com" }),
+    );
 
     const pushMock = jest.fn();
     require("next/navigation").useRouter.mockReturnValue({
@@ -74,21 +78,23 @@ describe("Infoコンポーネントのテスト", () => {
     });
   });
 
-    test("戻るボタンをクリックすると、mypageに遷移する", async () => {
-      (fetchUser as jest.Mock).mockImplementation(() => Promise.resolve({ id: "12huh" }));
-      (fetchUserInfo as jest.Mock).mockImplementation(() => Promise.resolve({ name: "test", email: "test@ttt.com" }));
-  
-      const pushMock = jest.fn();
-      require("next/navigation").useRouter.mockReturnValue({
-        push: pushMock,
-      });
-  
-      render(<Info />);
-  
-      await waitFor(() => {
-        const backButton = screen.getByRole("button", { name: "戻る" });
-        fireEvent.click(backButton);
-        expect(pushMock).toHaveBeenCalledWith("/mypage");
-      });
+  test("戻るボタンをクリックすると、mypageに遷移する", async () => {
+    (fetchUser as jest.Mock).mockImplementation(() => Promise.resolve({ id: "12huh" }));
+    (fetchUserInfo as jest.Mock).mockImplementation(() =>
+      Promise.resolve({ name: "test", email: "test@ttt.com" }),
+    );
+
+    const pushMock = jest.fn();
+    require("next/navigation").useRouter.mockReturnValue({
+      push: pushMock,
     });
+
+    render(<Info />);
+
+    await waitFor(() => {
+      const backButton = screen.getByRole("button", { name: "戻る" });
+      fireEvent.click(backButton);
+      expect(pushMock).toHaveBeenCalledWith("/mypage");
+    });
+  });
 });
