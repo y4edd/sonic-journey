@@ -1,7 +1,7 @@
 import { fetchUser, fetchUserInfo } from "@/utils/apiFunc";
 import { cleanup, fireEvent, getByRole, render, screen, waitFor } from "@testing-library/react";
-import Edit from "./page";
 import userEvent from "@testing-library/user-event";
+import Edit from "./page";
 
 jest.mock("next/navigation", () => ({
   useRouter: jest.fn(() => ({
@@ -58,7 +58,9 @@ describe("Editコンポーネントのテスト", () => {
     render(<Edit />);
 
     await waitFor(() => {
-      expect(screen.getByText(/不正な画面遷移です.*下記ボタンよりログインしてください/),).toBeInTheDocument();
+      expect(
+        screen.getByText(/不正な画面遷移です.*下記ボタンよりログインしてください/),
+      ).toBeInTheDocument();
       expect(screen.getByRole("button", { name: "ログインページへ移動" })).toBeInTheDocument();
     });
   });
@@ -85,8 +87,8 @@ describe("Editコンポーネントのテスト", () => {
     });
 
     render(<Edit />);
-    
-    await waitFor( async ()=>{
+
+    await waitFor(async () => {
       const nameInput = screen.getByRole("textbox", { name: "ユーザー名" });
       const emailInput = screen.getByRole("textbox", { name: "メールアドレス" });
       const event = userEvent.setup();
@@ -98,7 +100,6 @@ describe("Editコンポーネントのテスト", () => {
 
       expect(nameInput).toHaveValue("test2");
       expect(emailInput).toHaveValue("test2@test.com");
-
     });
   });
 
@@ -116,28 +117,28 @@ describe("Editコンポーネントのテスト", () => {
       expect(screen.queryByText("Loading...")).not.toBeInTheDocument();
     });
 
-      const nameInput = screen.getByRole("textbox", { name: "ユーザー名" });
-      const emailInput = screen.getByRole("textbox", { name: "メールアドレス" });
-      const passwordInput = screen.getByLabelText("パスワード");
-      const passwordConfirmInput = screen.getByLabelText("パスワード確認");
+    const nameInput = screen.getByRole("textbox", { name: "ユーザー名" });
+    const emailInput = screen.getByRole("textbox", { name: "メールアドレス" });
+    const passwordInput = screen.getByLabelText("パスワード");
+    const passwordConfirmInput = screen.getByLabelText("パスワード確認");
 
-      const event = userEvent.setup();
+    const event = userEvent.setup();
 
-      await event.clear(nameInput);
-      await event.type(nameInput, "test2");
-      await event.clear(emailInput);
-      await event.type(emailInput, "test2@test.com");
-      await event.type(passwordInput, "testpass");
-      await event.type(passwordConfirmInput, "testpass");
+    await event.clear(nameInput);
+    await event.type(nameInput, "test2");
+    await event.clear(emailInput);
+    await event.type(emailInput, "test2@test.com");
+    await event.type(passwordInput, "testpass");
+    await event.type(passwordConfirmInput, "testpass");
 
-      const backButton = screen.getByRole("button", { name: "更新" });
+    const backButton = screen.getByRole("button", { name: "更新" });
 
-      fireEvent.click(backButton);
+    fireEvent.click(backButton);
 
-      () => {
-        const message = screen.getByText("アカウント情報の編集が完了しました");
-        expect(message).toBeInTheDocument();
-      };
+    () => {
+      const message = screen.getByText("アカウント情報の編集が完了しました");
+      expect(message).toBeInTheDocument();
+    };
   });
 
   test("「戻る」ボタンが押されたとき、userInfoページが呼び出される", async () => {
