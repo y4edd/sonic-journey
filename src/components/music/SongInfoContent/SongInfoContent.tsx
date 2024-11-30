@@ -24,7 +24,7 @@ const SongInfoContent = ({ id, title, artist, image, preview }: SongInfoContentP
             <SongAudio preview={preview} id={id} />
           </div>
           <FavoriteButton id={id} />
-          <AddPlaylist id={id} />
+          <AddPlaylist id={id} text="プレイリストに追加" />
         </div>
       </div>
     </div>

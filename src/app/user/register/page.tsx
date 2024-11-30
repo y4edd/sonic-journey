@@ -10,7 +10,7 @@ import { registerSchema } from "@/lib/validation";
 import type { FormData } from "@/types/user";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { type SubmitHandler, useForm } from "react-hook-form";
-import { ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import styles from "./page.module.css";
 import "react-toastify/dist/ReactToastify.css";
 import { userRegister } from "@/hooks/useRegister";
@@ -43,7 +43,6 @@ const UserRegistration = () => {
         <Information text="アカウント登録" />
       </div>
       <div className={styles.container}>
-        <ToastContainer />
         <form onSubmit={handleSubmit(onSubmit)}>
           <FormInput
             label="ユーザー名"

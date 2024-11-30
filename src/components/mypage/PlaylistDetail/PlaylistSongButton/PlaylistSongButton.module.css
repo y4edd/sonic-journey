@@ -1,0 +1,30 @@
+.songList {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.favoriteButton {
+  background-color: white;
+  border: 1px solid #fc9aff;
+  border-radius: 5px;
+  padding: 0.2rem 0.6rem 0;
+  margin: auto 1rem auto auto;
+}
+
+.playButton {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: none;
+  width: 70%;
+}
+
+.playButton > img {
+  border-radius: 4px;
+}
+
+.playButton > p {
+  font-size: 1.2rem;
+  margin-left: 1.2rem;
+}

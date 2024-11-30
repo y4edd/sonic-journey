@@ -1,29 +1,3 @@
 .wrapper {
   margin: 1rem;
 }
-
-.playlistList {
-  margin: 2rem 1rem;
-}
-
-.noSongs {
-  font-size: 1.5rem;
-  text-align: center;
-}
-
-.link {
-  display: flex;
-  justify-content: center;
-}
-
-.rankingPageLink {
-  margin: 0 auto;
-  border-bottom: 1px solid black;
-  margin-top: 3rem;
-  padding: 0 3px 1px 3px;
-}
-
-.rankingPageLink:hover {
-  color: #6be3b5;
-  border-bottom: 1px solid #6be3b5;
-}

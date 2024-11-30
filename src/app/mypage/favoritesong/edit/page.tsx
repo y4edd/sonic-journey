@@ -13,7 +13,7 @@ type favoriteSong = {
   updatedAt: Date;
 };
 
-const FavoriteSongs = async () => {
+const EditFavoriteSongs = async () => {
   // cookieからtokenを取得し、ログインしているか確認する
   const token = getTokenFromCookie();
   const isLoggedin = await checkLoggedInServer(token);
@@ -52,4 +52,4 @@ const FavoriteSongs = async () => {
   );
 };
 
-export default FavoriteSongs;
+export default EditFavoriteSongs;

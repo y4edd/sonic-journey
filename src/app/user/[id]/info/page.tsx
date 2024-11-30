@@ -12,7 +12,7 @@ import type { UserData } from "@/types/user";
 import { fetchUser, fetchUserInfo } from "@/utils/apiFunc";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import styles from "./page.module.css";
 
 const Info = () => {
@@ -131,7 +131,6 @@ const Info = () => {
       />
       <Information text="アカウント情報" />
       <div className={styles.container}>
-        <ToastContainer />
         {isModalOpen && (
           <Modal setFunc={setIsModalOpen}>
             <DeleteConfirm
