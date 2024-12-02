@@ -25,9 +25,7 @@ const PlaylistSongButton = ({
   setCurrentIndex: Dispatch<SetStateAction<number>>;
   setIsPlaying: Dispatch<SetStateAction<boolean>>;
   audioRef: MutableRefObject<HTMLAudioElement | null>;
-  handlePlay: (
-    type: "standard" | "continuous" | "interrupted" | "shuffle"
-  ) => Promise<void>;
+  handlePlay: (type: "standard" | "continuous" | "interrupted") => Promise<void>;
 }) => {
   const postFavorite = async () => {
     try {
@@ -64,19 +62,11 @@ const PlaylistSongButton = ({
   };
   return (
     <div className={styles.songList}>
-      <button
-        type="button"
-        onClick={handleIndexPlay}
-        className={styles.playButton}
-      >
+      <button type="button" onClick={handleIndexPlay} className={styles.playButton}>
         <Image src={song.img} alt="" height={60} width={60} />
         <p>{song.title}</p>
       </button>
-      <button
-        type="button"
-        onClick={postFavorite}
-        className={styles.favoriteButton}
-      >
+      <button type="button" onClick={postFavorite} className={styles.favoriteButton}>
         <FavoriteIcon
           sx={{
             fontSize: 16,

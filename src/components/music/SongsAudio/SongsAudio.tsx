@@ -2,11 +2,12 @@
 
 import PauseIcon from "@mui/icons-material/Pause";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import SkipNextIcon from "@mui/icons-material/SkipNext";
+import ReorderIcon from "@mui/icons-material/Reorder";
 import ShuffleIcon from "@mui/icons-material/Shuffle";
+import SkipNextIcon from "@mui/icons-material/SkipNext";
 import SkipPreviousIcon from "@mui/icons-material/SkipPrevious";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import type { Dispatch, MutableRefObject, SetStateAction } from "react";
 import styles from "./SongsAudio.module.css";
 
@@ -18,7 +19,9 @@ type PlaylistAudioProps = {
 };
 
 const SongAudio = ({
-  playlistSongsAudio,
+  playlistSongs,
+  defaultSongs,
+  setPlaylistSongs,
   currentIndex,
   setCurrentIndex,
   isPlaying,
@@ -26,21 +29,17 @@ const SongAudio = ({
   audioRef,
   handlePlay,
   currentSong,
-  order,
-  setOrder,
 }: {
-  playlistSongsAudio: PlaylistAudioProps[];
+  playlistSongs: PlaylistAudioProps[];
+  defaultSongs: PlaylistAudioProps[];
+  setPlaylistSongs: Dispatch<SetStateAction<PlaylistAudioProps[]>>;
   currentIndex: number;
   setCurrentIndex: Dispatch<SetStateAction<number>>;
   isPlaying: boolean;
   setIsPlaying: Dispatch<SetStateAction<boolean>>;
   audioRef: MutableRefObject<HTMLAudioElement | null>;
-  handlePlay: (
-    type: "standard" | "continuous" | "interrupted" | "shuffle"
-  ) => Promise<void>;
+  handlePlay: (type: "standard" | "continuous" | "interrupted") => Promise<void>;
   currentSong: PlaylistAudioProps;
-  order: number[];
-  setOrder: Dispatch<SetStateAction<number[]>>;
 }) => {
   // 曲を一時停止
   const handlePause = () => {
@@ -57,7 +56,7 @@ const SongAudio = ({
 
   // 再生終了後
   const handleEnded = () => {
-    if (currentIndex < playlistSongsAudio.length - 1) {
+    if (currentIndex < playlistSongs.length - 1) {
       setCurrentIndex((prevIndex) => prevIndex + 1);
     } else {
       setIsPlaying(false);
@@ -68,8 +67,20 @@ const SongAudio = ({
   // シャッフル再生の処理
   const handleShuffle = async () => {
     if (audioRef.current) {
-      setOrder((prevOrder) => [...prevOrder].sort(() => Math.random() - 0.5));
-      await handlePlay("shuffle");
+      audioRef.current.pause();
+      setIsPlaying(false);
+      setPlaylistSongs((prevSongs) => [...prevSongs].sort(() => Math.random() - 0.5));
+      setCurrentIndex(0);
+    }
+  };
+
+  // 曲順を元の追加順に
+  const handleReOrder = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      setIsPlaying(false);
+      setPlaylistSongs(defaultSongs);
+      setCurrentIndex(0);
     }
   };
 
@@ -87,7 +98,7 @@ const SongAudio = ({
   // 次曲アイコン　最終曲の時は1曲目へ返り再生停止。それ以前の曲は次の曲へスキップ
   const handleNextPlay = () => {
     if (audioRef.current) {
-      if (currentIndex !== playlistSongsAudio.length - 1) {
+      if (currentIndex !== playlistSongs.length - 1) {
         setCurrentIndex((prevIndex) => prevIndex + 1);
       } else {
         setIsPlaying(false);
@@ -119,52 +130,45 @@ const SongAudio = ({
           >
             ▶ &nbsp;再生
           </button>
-          <button
-            type="button"
-            onClick={handleShuffle}
-            className={styles.playButton}
-          >
-            <ShuffleIcon /> &nbsp;シャッフル
-          </button>
         </div>
+
         <div className={styles.songIntro}>
           <Image
-            src={playlistSongsAudio[order[currentIndex]].img}
-            alt={`${playlistSongsAudio[order[currentIndex]].title}のジャケット`}
+            src={playlistSongs[currentIndex].img}
+            alt={`${playlistSongs[currentIndex].title}のジャケット`}
             height={60}
             width={60}
           />
-          <p className={styles.currentTitle}>
-            {playlistSongsAudio[order[currentIndex]].title}
-          </p>
+          <p className={styles.currentTitle}>{playlistSongs[currentIndex].title}</p>
 
           <div className={styles.controls}>
-            <button
-              type="button"
-              onClick={handlePrePlay}
-              className={styles.preButton}
-            >
+            <button type="button" onClick={handlePrePlay} className={styles.preButton}>
               <SkipPreviousIcon className={styles.preButtonIcon} />
             </button>
-            <button
-              type="button"
-              onClick={handlePause}
-              className={styles.switchButton}
-            >
+            <button type="button" onClick={handlePause} className={styles.switchButton}>
               {isPlaying ? (
                 <PauseIcon className={styles.switchButtonIcon} />
               ) : (
                 <PlayArrowIcon className={styles.switchButtonIcon} />
               )}
             </button>
-            <button
-              type="button"
-              onClick={handleNextPlay}
-              className={styles.nextButton}
-            >
+            <button type="button" onClick={handleNextPlay} className={styles.nextButton}>
               <SkipNextIcon className={styles.nextButtonIcon} />
             </button>
           </div>
+        </div>
+        <div className={styles.orderButton}>
+          <button
+            type="button"
+            onClick={handleReOrder}
+            className={styles.reOrderButton}
+            disabled={playlistSongs === defaultSongs}
+          >
+            <ReorderIcon />
+          </button>
+          <button type="button" onClick={handleShuffle} className={styles.shuffleButton}>
+            <ShuffleIcon />
+          </button>
         </div>
       </>
     </div>

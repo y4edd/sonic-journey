@@ -8,7 +8,6 @@
 
 .playButtons {
   display: flex;
-  margin-top: 2rem;
 }
 
 .playButton {
@@ -25,7 +24,7 @@
 .songIntro {
   display: flex;
   margin-top: 3rem;
-  margin-bottom: 4rem;
+  margin-bottom: 3em;
   padding: 12px 5px 12px 15px;
   border-radius: 3px;
   box-shadow: 0 2px 10px rgb(177, 176, 176);
@@ -64,4 +63,33 @@
 .nextButtonIcon {
   font-size: 2rem;
   background-color: rgb(235, 235, 233);
+}
+
+.orderButton {
+  display: flex;
+  justify-content: right;
+}
+
+.shuffleButton,
+.reOrderButton {
+  background-color: white;
+  border: none;
+  margin-right: 1rem;
+}
+
+.reOrderButton {
+  margin-right: 1rem;
+}
+
+.shuffleButton :first-child,
+.reOrderButton :first-child {
+  font-size: 2.2rem;
+  cursor: pointer;
+}
+
+.preButtonIcon:hover,
+.switchButtonIcon:hover,
+.nextButtonIcon:hover,
+.shuffleButton :first-child:hover {
+  color: #92e3c4;
 }

@@ -23,49 +23,34 @@ export const PlaylistSongList = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   // 再生中かどうかstateで管理
   const [isPlaying, setIsPlaying] = useState(false);
-  // 再生順を管理
-  const [order, setOrder] = useState<number[]>([]);
+  // 画面下部に表示するプレイリストを管理（シャッフルによる曲順変更に対応するため定義）
+  const [playlistSongs, setPlaylistSongs] = useState<PlaylistSongsAudio[]>(playlistSongsAudio);
   // 再レンダリングさせたくないので、useRefでaudio要素を参照
   const audioRef = useRef<HTMLAudioElement | null>(null);
-  const currentSong = playlistSongsAudio[order[currentIndex]];
-  const defaultOrder = () => {
-    setOrder(
-      Array.from({ length: playlistSongsAudio.length }, (_, index) => index)
-    );
-  };
-
-  // 無限増殖回避のための条件式
-  if (order.length === 0 && playlistSongsAudio.length > 0) {
-    defaultOrder();
-  }
+  const currentSong = playlistSongs[currentIndex];
 
   // 曲を再生
   // start_flagがtrueの時、プレイリストの一曲目から再生を始める。falseの時、currentIndexの曲を再生する
-  const handlePlay = async (
-    type: "standard" | "continuous" | "interrupted" | "shuffle"
-  ) => {
+  const handlePlay = async (type: "standard" | "continuous" | "interrupted") => {
     if (audioRef.current) {
+      audioRef.current.pause();
       if (type === "standard") {
-        defaultOrder();
-        setCurrentIndex(0);
-        audioRef.current.currentTime = 0;
-      } else if (type === "interrupted") {
-        defaultOrder();
-      } else if (type === "shuffle") {
         setCurrentIndex(0);
         audioRef.current.currentTime = 0;
       }
       await audioRef.current.play();
-      await savePlayHistory(currentSong.id);
       setIsPlaying(true);
     }
+    await savePlayHistory(currentSong.id);
   };
 
   return (
     <>
-      {playlistSongsAudio.length > 0 ? (
+      {playlistSongs.length > 0 ? (
         <SongsAudio
-          playlistSongsAudio={playlistSongsAudio}
+          playlistSongs={playlistSongs}
+          defaultSongs={playlistSongsAudio}
+          setPlaylistSongs={setPlaylistSongs}
           currentIndex={currentIndex}
           setCurrentIndex={setCurrentIndex}
           isPlaying={isPlaying}
@@ -73,14 +58,12 @@ export const PlaylistSongList = ({
           audioRef={audioRef}
           handlePlay={handlePlay}
           currentSong={currentSong}
-          order={order}
-          setOrder={setOrder}
         />
       ) : null}
       <div className={styles.playlistList}>
-        {playlistSongsAudio.length > 0 ? (
+        {playlistSongs.length > 0 ? (
           <PlaylistSongButtons
-            song={playlistSongsAudio}
+            song={playlistSongs}
             setCurrentIndex={setCurrentIndex}
             setIsPlaying={setIsPlaying}
             audioRef={audioRef}
