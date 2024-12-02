@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic"; // 動的レンダリングを強制する
+
 import DeleteButton from "@/components/mypage/DeleteButton/DeleteButton";
 import MenuHeader from "@/components/mypage/MenuHeader/MenuHeader";
 import SongList from "@/components/mypage/SongList/SongList";

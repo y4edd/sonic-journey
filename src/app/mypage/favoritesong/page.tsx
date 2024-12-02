@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic"; // 動的レンダリングを強制する
+
 import UnauthorizedAccess from "@/components/UnauthorizedAccess/UnauthorizedAccess";
 import FavoriteSongsContainer from "@/components/mypage/FavoriteSongsContainer/FavoriteSongsContainer";
 import MenuHeader from "@/components/mypage/MenuHeader/MenuHeader";
