@@ -10,8 +10,8 @@ jest.mock("next/navigation", () => ({
   })),
 }));
 
-jest.mock("../../../../utils/apiFunc", () => ({
-  ...jest.requireActual("../../../../utils/apiFunc"),
+jest.mock("@/utils/apiFunc", () => ({
+  ...jest.requireActual("@/utils/apiFunc"),
   fetchUser: jest.fn(),
   fetchUserInfo: jest.fn(),
 }));
