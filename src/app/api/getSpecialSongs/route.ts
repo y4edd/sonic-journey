@@ -3,8 +3,8 @@ import type { PrismaSpecialSongs, SpecialSongs } from "@/types/deezer";
 import { type NextRequest, NextResponse } from "next/server";
 
 export const GET = async (request: NextRequest) => {
+  const searchParams = request.nextUrl.searchParams
   try {
-    const { searchParams } = new URL(request.url);
     const stringId = searchParams.get("id");
     if (!stringId) {
       throw new Error("クエリの受け渡しに失敗しました");

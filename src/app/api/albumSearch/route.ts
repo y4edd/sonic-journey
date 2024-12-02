@@ -1,13 +1,12 @@
 import type { AlbumSong } from "@/types/deezer";
-import { duration } from "@mui/material";
 import { type NextRequest, NextResponse } from "next/server";
 
 // NOTE: 楽曲idからアルバム情報を取得して、DeezerAlbumの方に合わせたデータを返すAPI
 export const GET = async (request: NextRequest) => {
+  const searchParams = request.nextUrl.searchParams
   try {
-    const { searchParams } = request.nextUrl;
     const album = searchParams.get("album");
-
+    
     const getAlbum = await fetch(`https://api.deezer.com/album/${album}`);
 
     if (!getAlbum) {

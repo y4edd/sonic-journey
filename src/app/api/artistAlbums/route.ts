@@ -2,8 +2,8 @@ import type { ArtistAlbum } from "@/types/deezer";
 import { type NextRequest, NextResponse } from "next/server";
 
 export const GET = async (request: NextRequest) => {
+  const searchParams = request.nextUrl.searchParams
   try {
-    const { searchParams } = request.nextUrl;
     const artistName = searchParams.get("artistName");
     const resultLimit = searchParams.get("limit");
     const artistAlbums = await fetch(

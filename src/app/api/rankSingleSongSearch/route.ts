@@ -2,8 +2,8 @@ import type { DeezerSong } from "@/types/deezer";
 import { type NextRequest, NextResponse } from "next/server";
 
 export const GET = async (request: NextRequest) => {
+  const searchParams = request.nextUrl.searchParams
   try {
-    const { searchParams } = request.nextUrl;
     const limit = searchParams.get("limit");
 
     const singleSongs = await fetch(`https://api.deezer.com/chart/0/tracks?limit=${limit}`);

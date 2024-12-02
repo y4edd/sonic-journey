@@ -3,8 +3,9 @@ import { type NextRequest, NextResponse } from "next/server";
 
 // NOTE: 検索ワードから曲情報を取得して、DeezerArtistの型に合わせたデータを返すAPI
 export const GET = async (request: NextRequest) => {
+  const searchParams = request.nextUrl.searchParams
+
   try {
-    const { searchParams } = request.nextUrl;
     const artist = searchParams.get("artist");
     const getArtist = await fetch(`https://api.deezer.com/search/artist?q=${artist}`);
 
