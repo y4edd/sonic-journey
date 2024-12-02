@@ -14,12 +14,14 @@ type PlaylistSongsAudio = {
 
 const PlaylistSongButtons = ({
   song,
+  currentIndex,
   setCurrentIndex,
   setIsPlaying,
   audioRef,
   handlePlay,
 }: {
   song: PlaylistSongsAudio[];
+  currentIndex: number;
   setCurrentIndex: Dispatch<SetStateAction<number>>;
   setIsPlaying: Dispatch<SetStateAction<boolean>>;
   audioRef: MutableRefObject<HTMLAudioElement | null>;
@@ -34,6 +36,7 @@ const PlaylistSongButtons = ({
               <PlaylistSongButton
                 song={song}
                 index={index}
+                currentIndex={currentIndex}
                 setCurrentIndex={setCurrentIndex}
                 setIsPlaying={setIsPlaying}
                 audioRef={audioRef}

@@ -15,6 +15,7 @@ type PlaylistSongsAudio = {
 const PlaylistSongButton = ({
   song,
   index,
+  currentIndex,
   setCurrentIndex,
   setIsPlaying,
   audioRef,
@@ -22,6 +23,7 @@ const PlaylistSongButton = ({
 }: {
   song: PlaylistSongsAudio;
   index: number;
+  currentIndex: number;
   setCurrentIndex: Dispatch<SetStateAction<number>>;
   setIsPlaying: Dispatch<SetStateAction<boolean>>;
   audioRef: MutableRefObject<HTMLAudioElement | null>;
@@ -62,8 +64,16 @@ const PlaylistSongButton = ({
   };
   return (
     <div className={styles.songList}>
-      <button type="button" onClick={handleIndexPlay} className={styles.playButton}>
-        <Image src={song.img} alt="" height={60} width={60} />
+      <button
+        type="button"
+        onClick={handleIndexPlay}
+        className={index === currentIndex ? styles.currentSong : styles.playButton}
+      >
+        {index === currentIndex ? (
+          <Image src={song.img} alt="" height={65} width={65} />
+        ) : (
+          <Image src={song.img} alt="" height={50} width={50} />
+        )}
         <p>{song.title}</p>
       </button>
       <button type="button" onClick={postFavorite} className={styles.favoriteButton}>

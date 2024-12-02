@@ -161,7 +161,9 @@ const SongAudio = ({
           <button
             type="button"
             onClick={handleReOrder}
-            className={styles.reOrderButton}
+            className={
+              playlistSongs === defaultSongs ? styles.reOrderDisabled : styles.reOrderButton
+            }
             disabled={playlistSongs === defaultSongs}
           >
             <ReorderIcon />
