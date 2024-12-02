@@ -1,7 +1,8 @@
 import { fetchUser, fetchUserInfo } from "@/utils/apiFunc";
-import { cleanup, fireEvent, getByRole, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Edit from "./page";
+import { act } from "@testing-library/react";
 
 // next/navigationモジュール全体、useRouter、pushのモック化
 jest.mock("next/navigation", () => ({
@@ -85,13 +86,15 @@ describe("Editコンポーネントのテスト", () => {
       const emailInput = screen.getByRole("textbox", { name: "メールアドレス" });
       const event = userEvent.setup();
 
-      await event.clear(nameInput);
-      await event.type(nameInput, "test2");
-      await event.clear(emailInput);
-      await event.type(emailInput, "test2@test.com");
-
-      expect(nameInput).toHaveValue("test2");
-      expect(emailInput).toHaveValue("test2@test.com");
+      await act(async () =>{
+        await event.clear(nameInput);
+        await event.type(nameInput, "test2");
+        await event.clear(emailInput);
+        await event.type(emailInput, "test2@test.com");
+  
+        expect(nameInput).toHaveValue("test2");
+        expect(emailInput).toHaveValue("test2@test.com");
+      });
     });
   });
 
@@ -116,12 +119,14 @@ describe("Editコンポーネントのテスト", () => {
 
     const event = userEvent.setup();
 
-    await event.clear(nameInput);
-    await event.type(nameInput, "test2");
-    await event.clear(emailInput);
-    await event.type(emailInput, "test2@test.com");
-    await event.type(passwordInput, "testpass");
-    await event.type(passwordConfirmInput, "testpass");
+    await act(async () =>{
+      await event.clear(nameInput);
+      await event.type(nameInput, "test2");
+      await event.clear(emailInput);
+      await event.type(emailInput, "test2@test.com");
+      await event.type(passwordInput, "testpass");
+      await event.type(passwordConfirmInput, "testpass");
+    });
 
     const backButton = screen.getByRole("button", { name: "更新" });
 
