@@ -2,7 +2,7 @@ import type { DeezerSong } from "@/types/deezer";
 import { type NextRequest, NextResponse } from "next/server";
 
 export const GET = async (request: NextRequest) => {
-  const searchParams = request.nextUrl.searchParams
+  const searchParams = request.nextUrl.searchParams;
   try {
     const limit = searchParams.get("limit");
 

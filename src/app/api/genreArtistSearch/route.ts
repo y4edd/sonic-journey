@@ -3,7 +3,7 @@ import { type NextRequest, NextResponse } from "next/server";
 
 // ジャンルごとのアーティスト情報を取得するAPI
 export const GET = async (request: NextRequest) => {
-  const searchParams = request.nextUrl.searchParams
+  const searchParams = request.nextUrl.searchParams;
 
   try {
     const genre = searchParams.get("genre");

@@ -2,7 +2,7 @@ import prisma from "@/lib/prisma";
 import { type NextRequest, NextResponse } from "next/server";
 
 export const GET = async (req: NextRequest) => {
-  const searchParams = req.nextUrl.searchParams
+  const searchParams = req.nextUrl.searchParams;
   try {
     const userId = searchParams.get("userId");
     const musicId = searchParams.get("musicId");

@@ -3,7 +3,7 @@ import { type NextRequest, NextResponse } from "next/server";
 
 // NOTE: 楽曲idから曲情報を取得して、DeezerSongの型に合わせたデータを返すAPI
 export const GET = async (request: NextRequest) => {
-  const searchParams = request.nextUrl.searchParams
+  const searchParams = request.nextUrl.searchParams;
   try {
     const song = searchParams.get("song");
 

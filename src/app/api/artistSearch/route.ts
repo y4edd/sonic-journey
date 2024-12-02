@@ -3,7 +3,7 @@ import { type NextRequest, NextResponse } from "next/server";
 
 // NOTE: アーティストidからアーティスト情報を取得して、DeezerArtistの型に合わせたデータを返すAPI
 export const GET = async (request: NextRequest) => {
-  const searchParams = request.nextUrl.searchParams
+  const searchParams = request.nextUrl.searchParams;
 
   try {
     const artist = searchParams.get("artist");
