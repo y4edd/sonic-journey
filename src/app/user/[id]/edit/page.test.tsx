@@ -20,10 +20,6 @@ beforeEach(() => {
   jest.clearAllMocks();
 });
 
-afterEach(() => {
-  // テスト間でDOMリセット
-  cleanup();
-});
 
 describe("Editコンポーネントのテスト", () => {
   test("未ログインの場合はUnauthenticatedコンポーネントが表示されること", async () => {
