@@ -1,6 +1,5 @@
 import { fetchUser, fetchUserInfo } from "@/utils/apiFunc";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { act } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Edit from "./page";
 
@@ -86,7 +85,7 @@ describe("Editコンポーネントのテスト", () => {
       const emailInput = screen.getByRole("textbox", { name: "メールアドレス" });
       const event = userEvent.setup();
 
-      await act(async () => {
+      await waitFor(async () => {
         await event.clear(nameInput);
         await event.type(nameInput, "test2");
         await event.clear(emailInput);
@@ -119,7 +118,7 @@ describe("Editコンポーネントのテスト", () => {
 
     const event = userEvent.setup();
 
-    await act(async () => {
+    await waitFor(async () => {
       await event.clear(nameInput);
       await event.type(nameInput, "test2");
       await event.clear(emailInput);
