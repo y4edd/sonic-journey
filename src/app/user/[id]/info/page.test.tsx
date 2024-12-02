@@ -1,5 +1,5 @@
 import { fetchUser, fetchUserInfo } from "@/utils/apiFunc";
-import { cleanup, fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import Info from "./page";
 
 // next/navigationモジュール全体、useRouter、pushのモック化
@@ -13,15 +13,6 @@ jest.mock("@/utils/apiFunc", () => ({
   fetchUser: jest.fn(),
   fetchUserInfo: jest.fn(),
 }));
-
-beforeEach(() => {
-  jest.clearAllMocks();
-});
-
-afterEach(() => {
-  // テスト間でDOMリセット
-  cleanup();
-});
 
 describe("Infoコンポーネントのテスト", () => {
   test("初期表示時に「Loading...」が表示される", () => {
@@ -38,7 +29,7 @@ describe("Infoコンポーネントのテスト", () => {
     render(<Info />);
     await waitFor(() => {
       expect(
-        screen.getByText(/不正な画面遷移です.*下記ボタンよりログインしてください/),
+        screen.getByText("不正な画面遷移です下記ボタンよりログインしてください"),
       ).toBeInTheDocument();
       expect(screen.getByRole("button", { name: "ログインページへ移動" })).toBeInTheDocument();
     });
@@ -52,9 +43,11 @@ describe("Infoコンポーネントのテスト", () => {
 
     render(<Info />);
 
-    await waitFor(() => {
-      expect(screen.getByText("test"));
-      expect(screen.getByText("test@ttt.com"));
+    await waitFor(async () => {
+      await waitFor(() => {
+        expect(screen.getByText("test"));
+        expect(screen.getByText("test@ttt.com"));
+      });
     });
   });
 
@@ -71,10 +64,12 @@ describe("Infoコンポーネントのテスト", () => {
 
     render(<Info />);
 
-    await waitFor(() => {
+    await waitFor(async () => {
       const editButton = screen.getByRole("button", { name: "編集" });
       fireEvent.click(editButton);
-      expect(pushMock).toHaveBeenCalledWith("/user/12huh/edit");
+      await waitFor(() => {
+        expect(pushMock).toHaveBeenCalledWith("/user/12huh/edit");
+      });
     });
   });
 
@@ -91,10 +86,12 @@ describe("Infoコンポーネントのテスト", () => {
 
     render(<Info />);
 
-    await waitFor(() => {
+    await waitFor(async () => {
       const backButton = screen.getByRole("button", { name: "戻る" });
       fireEvent.click(backButton);
-      expect(pushMock).toHaveBeenCalledWith("/mypage");
+      await waitFor(() => {
+        expect(pushMock).toHaveBeenCalledWith("/mypage");
+      });
     });
   });
 });
