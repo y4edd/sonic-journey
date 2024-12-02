@@ -29,7 +29,7 @@ const PlayList = async () => {
       />
       <MenuHeader title="再生履歴" />
       <DeleteButton />
-      <SongList songs={historySongsInfo} errorMessage="履歴がありません" />
+      <SongList songs={historySongsInfo} url="music" errorMessage="履歴がありません" />
     </>
   );
 };
