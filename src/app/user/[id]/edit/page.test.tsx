@@ -16,11 +16,6 @@ jest.mock("@/utils/apiFunc", () => ({
   fetchUserInfo: jest.fn(),
 }));
 
-beforeEach(() => {
-  jest.clearAllMocks();
-});
-
-
 describe("Editコンポーネントのテスト", () => {
   test("未ログインの場合はUnauthenticatedコンポーネントが表示されること", async () => {
     (fetchUser as jest.Mock).mockImplementation(() => Promise.resolve(null));
