@@ -4,9 +4,14 @@ import GenreState from "@/components/genre/GenreState/GenreState";
 import { ChartTitle } from "@/components/newChart/ChartTitle/ChartTitle";
 import BreadList from "@/components/top/BreadList/BreadList";
 import { UseGenreNumChange } from "@/hooks/chart/useGenreNumChange";
+import { Suspense } from "react";
+
+const GenreContent = () => {
+  const { transitionId } = UseGenreNumChange();
+  return <GenreState transitionId={transitionId} />;
+};
 
 const Page = () => {
-  const { transitionId } = UseGenreNumChange();
   return (
     <>
       <BreadList
@@ -16,7 +21,9 @@ const Page = () => {
         ]}
       />
       <ChartTitle title="ジャンル" />
-      <GenreState transitionId={transitionId} />
+      <Suspense fallback={<div>Loading...</div>}>
+        <GenreContent />
+      </Suspense>
     </>
   );
 };
