@@ -4,7 +4,7 @@ import SongsAudio from "@/components/music/SongsAudio/SongsAudio";
 import PlaylistSongButtons from "@/components/mypage/PlaylistDetail/PlaylistSongButtons/PlaylistSongButtons";
 import { savePlayHistory } from "@/utils/history";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./PlaylistSongList.module.css";
 
 type PlaylistSongsAudio = {
@@ -44,6 +44,11 @@ export const PlaylistSongList = ({
     await savePlayHistory(currentSong.id);
   };
 
+  // プレイリストから楽曲が削除されたタイミングで表示プレイリストを更新
+  useEffect(() => {
+    setPlaylistSongs(playlistSongsAudio);
+  }, [playlistSongsAudio]);
+
   return (
     <>
       {playlistSongs.length > 0 ? (
@@ -64,6 +69,7 @@ export const PlaylistSongList = ({
         {playlistSongs.length > 0 ? (
           <PlaylistSongButtons
             song={playlistSongs}
+            currentIndex={currentIndex}
             setCurrentIndex={setCurrentIndex}
             setIsPlaying={setIsPlaying}
             audioRef={audioRef}
