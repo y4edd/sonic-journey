@@ -4,12 +4,10 @@ import PlayHistory from "@/components/music/PlayHistory/PlayHistory";
 import SongList from "@/components/mypage/SongList/SongList";
 import BreadList from "@/components/top/BreadList/BreadList";
 import { getArtist, getArtistAlbum, getArtistSongs } from "@/utils/apiFunc";
-import type { ReadonlyURLSearchParams } from "next/navigation";
 import styles from "./page.module.css";
 
 type ArtistPageProps = {
   params: { id: string };
-  artistParams: ReadonlyURLSearchParams;
 };
 
 const ArtistPage = async ({ params }: ArtistPageProps) => {
