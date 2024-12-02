@@ -33,7 +33,7 @@ describe("Editコンポーネントのテスト", () => {
     render(<Edit />);
     await waitFor(() => {
       expect(
-        screen.getByText(/不正な画面遷移です.*下記ボタンよりログインしてください/),
+        screen.getByText("不正な画面遷移です下記ボタンよりログインしてください"),
       ).toBeInTheDocument();
       expect(screen.getByRole("button", { name: "ログインページへ移動" })).toBeInTheDocument();
     });
