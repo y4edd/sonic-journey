@@ -1,7 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import FavoriteButton from "./FavoriteButton";
 
-jest.mock("../../../utils/apiFunc", () => ({
+jest.mock("@/utils/apiFunc", () => ({
   fetchUser: jest.fn().mockImplementation(() => "userId"),
   getFavoriteSongsForFav: jest.fn().mockImplementation(() => ({
     resultData: [{ songId: 78787878, updatedAt: new Date() }],
