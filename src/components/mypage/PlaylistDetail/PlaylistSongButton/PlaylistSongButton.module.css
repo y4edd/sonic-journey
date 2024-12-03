@@ -4,27 +4,44 @@
   margin: 5px 0;
 }
 
-.favoriteButton {
-  background-color: white;
-  border: 1px solid #fc9aff;
-  border-radius: 5px;
-  padding: 0.2rem 0.6rem 0;
-  margin: auto 1rem auto auto;
-}
-
-.playButton {
+.playButton,
+.currentSong {
   display: flex;
   align-items: center;
   background-color: white;
   border: none;
-  width: 70%;
+  width: 75%;
+  cursor: pointer;
 }
 
-.playButton > img {
+.currentSong {
+  margin: 0.2rem 0;
+}
+
+.playButton > img,
+.currentSong > img {
   border-radius: 4px;
 }
 
 .playButton > p {
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-left: 1.2rem;
+}
+
+.currentSong > p {
+  font-size: 1.1rem;
+  margin-left: 1.2rem;
+}
+
+.albumLink {
+  margin: auto 0.5rem auto auto;
+}
+
+.albumLink :first-child {
+  font-size: 1.7rem;
+  color: rgb(187, 185, 185);
+}
+
+.albumLink :first-child:hover {
+  color: #9edbc4;
 }

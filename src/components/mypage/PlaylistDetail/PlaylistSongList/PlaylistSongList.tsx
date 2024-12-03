@@ -4,7 +4,7 @@ import SongsAudio from "@/components/music/SongsAudio/SongsAudio";
 import PlaylistSongButtons from "@/components/mypage/PlaylistDetail/PlaylistSongButtons/PlaylistSongButtons";
 import { savePlayHistory } from "@/utils/history";
 import Link from "next/link";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./PlaylistSongList.module.css";
 
 type PlaylistSongsAudio = {
@@ -12,6 +12,7 @@ type PlaylistSongsAudio = {
   id: number;
   title: string;
   img: string;
+  album_id: number;
 };
 
 export const PlaylistSongList = ({
@@ -23,31 +24,39 @@ export const PlaylistSongList = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   // 再生中かどうかstateで管理
   const [isPlaying, setIsPlaying] = useState(false);
+  // 画面下部に表示するプレイリストを管理（シャッフルによる曲順変更に対応するため定義）
+  const [playlistSongs, setPlaylistSongs] = useState<PlaylistSongsAudio[]>(playlistSongsAudio);
   // 再レンダリングさせたくないので、useRefでaudio要素を参照
   const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  const currentSong = playlistSongsAudio[currentIndex];
+  const currentSong = playlistSongs[currentIndex];
 
   // 曲を再生
   // start_flagがtrueの時、プレイリストの一曲目から再生を始める。falseの時、currentIndexの曲を再生する
-  const handlePlay = async (start_flag: boolean) => {
+  const handlePlay = async (type: "standard" | "continuous" | "interrupted") => {
     if (audioRef.current) {
-      if (start_flag) {
+      audioRef.current.pause();
+      if (type === "standard") {
         setCurrentIndex(0);
-        await audioRef.current.play();
-        setIsPlaying(true);
+        audioRef.current.currentTime = 0;
       }
       await audioRef.current.play();
       setIsPlaying(true);
-      await savePlayHistory(currentSong.id);
     }
+    await savePlayHistory(currentSong.id);
   };
+
+  // プレイリストから楽曲が削除されたタイミングで表示プレイリストを更新
+  useEffect(() => {
+    setPlaylistSongs(playlistSongsAudio);
+  }, [playlistSongsAudio]);
 
   return (
     <>
-      {playlistSongsAudio.length > 0 ? (
+      {playlistSongs.length > 0 ? (
         <SongsAudio
-          playlistSongsAudio={playlistSongsAudio}
+          playlistSongs={playlistSongs}
+          defaultSongs={playlistSongsAudio}
+          setPlaylistSongs={setPlaylistSongs}
           currentIndex={currentIndex}
           setCurrentIndex={setCurrentIndex}
           isPlaying={isPlaying}
@@ -58,11 +67,13 @@ export const PlaylistSongList = ({
         />
       ) : null}
       <div className={styles.playlistList}>
-        {playlistSongsAudio.length > 0 ? (
+        {playlistSongs.length > 0 ? (
           <PlaylistSongButtons
-            song={playlistSongsAudio}
+            song={playlistSongs}
+            currentIndex={currentIndex}
             setCurrentIndex={setCurrentIndex}
             setIsPlaying={setIsPlaying}
+            audioRef={audioRef}
             handlePlay={handlePlay}
           />
         ) : (

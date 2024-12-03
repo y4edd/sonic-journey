@@ -11,6 +11,7 @@ type PlaylistSongsAudio = {
   id: number;
   title: string;
   img: string;
+  album_id: number;
 };
 
 type PlaylistInfo = {
@@ -66,6 +67,7 @@ const Page = async ({ params }: { params: { id: number } }) => {
               id: playlistSong.id,
               title: playlistSong.title,
               img: playlistSong.cover_xl,
+              album_id: playlistSong.album.id,
             };
           })
         : [];
