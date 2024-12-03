@@ -16,6 +16,7 @@ type PlaylistAudioProps = {
   id: number;
   title: string;
   img: string;
+  album_id: number
 };
 
 const SongAudio = ({

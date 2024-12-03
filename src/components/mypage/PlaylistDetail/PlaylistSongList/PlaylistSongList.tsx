@@ -12,6 +12,7 @@ type PlaylistSongsAudio = {
   id: number;
   title: string;
   img: string;
+  album_id: number
 };
 
 export const PlaylistSongList = ({

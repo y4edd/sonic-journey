@@ -10,6 +10,7 @@ type PlaylistSongsAudio = {
   id: number;
   title: string;
   img: string;
+  album_id: number;
 };
 
 const PlaylistSongButtons = ({
@@ -25,7 +26,9 @@ const PlaylistSongButtons = ({
   setCurrentIndex: Dispatch<SetStateAction<number>>;
   setIsPlaying: Dispatch<SetStateAction<boolean>>;
   audioRef: MutableRefObject<HTMLAudioElement | null>;
-  handlePlay: (type: "standard" | "continuous" | "interrupted") => Promise<void>;
+  handlePlay: (
+    type: "standard" | "continuous" | "interrupted"
+  ) => Promise<void>;
 }) => {
   return (
     <AlbumAudioProvider>

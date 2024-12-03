@@ -11,6 +11,7 @@ type PlaylistSongsAudio = {
   id: number;
   title: string;
   img: string;
+  album_id: number;
 };
 
 type PlaylistInfo = {
@@ -38,16 +39,19 @@ const Page = async ({ params }: { params: { id: number } }) => {
 
     const playlistInfo: PlaylistInfo = await res.json();
 
-    const response = await fetch("http://localhost:3000/api/getSpecialSongInfo", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        songs: playlistInfo?.playlistSongs || [],
-      }),
-      cache: "no-store",
-    });
+    const response = await fetch(
+      "http://localhost:3000/api/getSpecialSongInfo",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          songs: playlistInfo?.playlistSongs || [],
+        }),
+        cache: "no-store",
+      }
+    );
 
     const playlistSongs: DeezerTrackSong[] = await response.json();
 
@@ -66,6 +70,7 @@ const Page = async ({ params }: { params: { id: number } }) => {
               id: playlistSong.id,
               title: playlistSong.title,
               img: playlistSong.cover_xl,
+              album_id: playlistSong.album.id,
             };
           })
         : [];
