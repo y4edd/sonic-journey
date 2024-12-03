@@ -1,5 +1,6 @@
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import ArtistFavoriteButton from "./ArtistFavoriteButton";
+import userEvent from "@testing-library/user-event";
 
 jest.mock("@/utils/apiFunc", () => ({
   fetchUser: jest.fn().mockImplementation(() => "userId"),
@@ -28,7 +29,7 @@ describe("ArtistFavoriteButtonコンポーネントのテスト", () => {
     render(<ArtistFavoriteButton id={88} />);
 
     const button = screen.getByRole("button", { name: "お気に入りに追加" });
-    fireEvent.click(button);
+    userEvent.click(button);
 
     await waitFor(() => {
       const addedButton = screen.getByRole("button", { name: "お気に入りに追加済み" });
@@ -51,7 +52,7 @@ describe("ArtistFavoriteButtonコンポーネントのテスト", () => {
     await waitFor(async () => {
       const addedButton = screen.getByRole("button", { name: "お気に入りに追加済み" });
 
-      fireEvent.click(addedButton);
+      userEvent.click(addedButton);
 
       await waitFor(() => {
         const notAddButton = screen.getByRole("button", { name: "お気に入りに追加済み" });
