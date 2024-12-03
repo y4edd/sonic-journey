@@ -8,6 +8,11 @@ jest.mock("@/utils/apiFunc", () => ({
   })),
 }));
 
+// アラートのモック化(jsdomでは未実装のため)
+beforeEach(() => {
+  jest.spyOn(window, 'alert').mockImplementation(() => {});
+});
+
 afterAll(() => {
   jest.restoreAllMocks();
 });
