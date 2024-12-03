@@ -5,7 +5,7 @@ import menuStyles from "../MenuBox/MenuBox.module.css";
 import styles from "./Logout.module.css";
 
 const Logout = () => {
-  const { logoutUser, serverError } = useLogout();
+  const { logoutUser } = useLogout();
   return (
     <>
       <button type="button" onClick={logoutUser} className={styles.menuBox}>
@@ -14,7 +14,6 @@ const Logout = () => {
         </div>
         <p>ログアウト</p>
       </button>
-      <div className={styles.errorMessage}>{serverError}</div>
     </>
   );
 };
