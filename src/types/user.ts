@@ -18,6 +18,8 @@ export type FormInputProps = {
   id: string;
   type: string;
   name: "name" | "email" | "password" | "passwordConfirm";
+  value?: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   placeholder: string;
   register: UseFormRegister<FormData>;
   error?: FieldError;
