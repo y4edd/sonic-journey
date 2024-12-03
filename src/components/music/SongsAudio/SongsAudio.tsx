@@ -16,7 +16,7 @@ type PlaylistAudioProps = {
   id: number;
   title: string;
   img: string;
-  album_id: number
+  album_id: number;
 };
 
 const SongAudio = ({
@@ -70,6 +70,7 @@ const SongAudio = ({
     if (audioRef.current) {
       audioRef.current.pause();
       setIsPlaying(false);
+      // ランダムに生成される0-1の値から0.5を引いて、正ならば1個目と２個目の順序を入れ替える、負ならばそのまま。以降の順序を、同様にして確定させる
       setPlaylistSongs((prevSongs) => [...prevSongs].sort(() => Math.random() - 0.5));
       setCurrentIndex(0);
     }
