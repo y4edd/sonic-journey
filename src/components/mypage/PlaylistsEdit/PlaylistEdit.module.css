@@ -4,10 +4,9 @@
 }
 
 .editTitle {
-  display: flex;
   text-align: center;
   width: 100%;
-  margin: 1.1rem;
+  margin: 1.1rem auto;
   padding-top: 1rem;
   padding-left: 0.9rem;
   padding-right: 0.9rem;
@@ -15,10 +14,13 @@
   font-weight: 600;
 }
 
+.listWrapper {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
 .playlists {
-  display: flex;
-  flex-direction: column;
-  margin: 3rem auto;
+  margin: 1.5rem auto;
   width: 100%;
 }
 
@@ -26,16 +28,18 @@
   display: flex;
   list-style-type: none;
   border-bottom: 1px solid black;
+  margin-right: 10px;
   margin-bottom: 1rem;
+  max-width: 250px;
 }
 
 .listTitle {
   font-size: 1.1rem;
-  margin: 0 0rem 0 0.5rem;
-  width: 65%;
+  width: 80%;
 }
 
 .editIcons {
+  display: flex;
   margin: auto 0 auto auto;
 }
 .editIcons > button {
@@ -62,9 +66,9 @@
 }
 
 .closeButton {
+  margin-top: 15px;
   padding: 5px 10px;
   border-radius: 10px;
-  cursor: pointer;
   width: 150px;
   background-color: gray;
   color: white;
