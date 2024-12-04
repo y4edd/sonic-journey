@@ -65,9 +65,9 @@
 }
 
 .closeButton {
+  margin-top: 15px;
   padding: 5px 10px;
   border-radius: 10px;
-  cursor: pointer;
   width: 150px;
   background-color: gray;
   color: white;
