@@ -4,10 +4,9 @@
 }
 
 .editTitle {
-  display: flex;
   text-align: center;
   width: 100%;
-  margin: 1.1rem;
+  margin: 1.1rem auto;
   padding-top: 1rem;
   padding-left: 0.9rem;
   padding-right: 0.9rem;
@@ -15,10 +14,13 @@
   font-weight: 600;
 }
 
+.listWrapper {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
 .playlists {
-  display: flex;
-  flex-direction: column;
-  margin: 3rem auto;
+  margin: 1.5rem auto;
   width: 100%;
 }
 
