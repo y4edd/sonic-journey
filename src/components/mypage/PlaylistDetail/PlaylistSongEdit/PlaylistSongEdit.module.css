@@ -28,13 +28,14 @@
   display: flex;
   list-style-type: none;
   border-bottom: 1px solid black;
+  margin-right: 10px;
   margin-bottom: 1rem;
+  max-width: 250px;
 }
 
 .listTitle {
   font-size: 1.1rem;
-  margin: 0 0rem 0 0.5rem;
-  width: 65%;
+  width: 80%;
 }
 
 .editIcons {
