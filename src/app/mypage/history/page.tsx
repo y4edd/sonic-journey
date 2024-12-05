@@ -1,28 +1,22 @@
+import UnauthorizedAccess from "@/components/UnauthorizedAccess/UnauthorizedAccess";
 import DeleteButton from "@/components/mypage/DeleteButton/DeleteButton";
 import MenuHeader from "@/components/mypage/MenuHeader/MenuHeader";
 import SongList from "@/components/mypage/SongList/SongList";
 import BreadList from "@/components/top/BreadList/BreadList";
-import { getSong, getUserId } from "@/utils/apiFunc";
+import { checkLoggedInServer, getSong, getUserId } from "@/utils/apiFunc";
 import { getTokenFromCookie } from "@/utils/getTokenFromCookie";
 import { getPlayHistory } from "@/utils/history";
 import Link from "next/link";
 import styles from "./page.module.css";
 
 const PlayList = async () => {
-  // FIXME: ログインユーザーidを取得する
-  // FIXME: ログインユーザーの再生履歴(最大10件)をDBから取得する
-
   // クッキーからトークン取得
   const token = getTokenFromCookie();
 
-  if (!token) {
-    return (
-      <div className={styles.playHistoryGroup}>
-        <Link href="/user/login" className={styles.noLoginHistory}>
-          ログインユーザーの機能です
-        </Link>
-      </div>
-    );
+  const isLoggedin = await checkLoggedInServer(token);
+
+  if (!isLoggedin) {
+    return <UnauthorizedAccess />;
   }
 
   const userId = await getUserId(token);
