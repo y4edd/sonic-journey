@@ -1,5 +1,6 @@
 import { deletePlayHistory } from "@/utils/history";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import { useRouter } from "next/navigation";
 import DeleteButton from "./DeleteButton";
 
@@ -28,12 +29,12 @@ describe("DeleteButtonコンポーネントの単体テスト", () => {
   });
 
   test("クリック時にdeletePlayHistory関数が呼ばれる", async () => {
-    mockDeletePlayHistory.mockResolvedValueOnce({ success: true });
+    mockDeletePlayHistory.mockResolvedValueOnce(null);
 
     render(<DeleteButton userId={userId} />);
     const button = screen.getByRole("button", { name: "履歴を削除" });
 
-    fireEvent.click(button);
+    userEvent.click(button);
 
     await waitFor(() => {
       expect(mockDeletePlayHistory).toHaveBeenCalledWith(userId);
@@ -41,31 +42,31 @@ describe("DeleteButtonコンポーネントの単体テスト", () => {
   });
 
   test("削除成功時にrouter.refreshが呼ばれる", async () => {
-    mockDeletePlayHistory.mockResolvedValueOnce({ success: true });
+    mockDeletePlayHistory.mockResolvedValueOnce(null);
 
     render(<DeleteButton userId={userId} />);
     const button = screen.getByRole("button", { name: "履歴を削除" });
 
-    fireEvent.click(button);
+    userEvent.click(button);
 
     await waitFor(() => {
       expect(mockRouter.refresh).toHaveBeenCalled();
     });
   });
 
-  test("削除失敗時にアラートが表示される", async () => {
-    const alertMock = jest.spyOn(window, "alert").mockImplementation(() => {});
-    mockDeletePlayHistory.mockResolvedValueOnce(null);
+  test("削除失敗時にエラーをキャッチする", async () => {
+    const consoleSpy = jest.spyOn(console, "error").mockImplementation(() => {});
+    mockDeletePlayHistory.mockRejectedValueOnce(new Error("Error"));
 
     render(<DeleteButton userId={userId} />);
     const button = screen.getByRole("button", { name: "履歴を削除" });
 
-    fireEvent.click(button);
+    userEvent.click(button);
 
     await waitFor(() => {
-      expect(alertMock).toHaveBeenCalledWith("再生履歴の削除に失敗しました");
+      expect(consoleSpy).toHaveBeenCalledWith(expect.any(Error));
     });
 
-    alertMock.mockRestore();
+    consoleSpy.mockRestore();
   });
 });
