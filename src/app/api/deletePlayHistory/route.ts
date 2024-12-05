@@ -3,8 +3,8 @@ import { type NextRequest, NextResponse } from "next/server";
 
 export const DELETE = async (req: NextRequest) => {
   try {
-    const { searchParams } = req.nextUrl;
-    const userId = searchParams.get("userId");
+    const body = await req.json();
+    const userId = body.userId;
 
     if (!userId) {
       return NextResponse.json({ message: "再生履歴が見つかりません" });
