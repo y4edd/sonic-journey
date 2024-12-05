@@ -8,16 +8,16 @@ const DeleteButton = ({ userId }: { userId: string }) => {
   const router = useRouter();
 
   const handleDelete = async () => {
-    const res = await deletePlayHistory(userId);
-
-    if (res) {
+    try {
+      await deletePlayHistory(userId);
       router.refresh();
-    } else {
+    } catch (error) {
+      console.error(error);
       alert("再生履歴の削除に失敗しました");
     }
   };
+
   return (
-    // FIXME: ボタン押下時に履歴の削除処理を呼び出す
     <div className={styles.container}>
       <div className={styles.deleteButtonWrapper}>
         <DeleteIcon />
