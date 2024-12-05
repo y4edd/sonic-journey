@@ -133,7 +133,7 @@ export const SelectAddPlaylist = ({
       {defaultPlaylists.length === addPlaylists.length && defaultPlaylists.length !== 0 && (
         <>
           <p className={styles.modalTitle}>楽曲の追加先</p>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className={styles.form}>
             {playlists.map((playlist: Playlist) => (
               <div className={styles.playlist} key={playlist.id}>
                 <input
