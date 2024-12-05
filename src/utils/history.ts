@@ -39,9 +39,11 @@ export const getPlayHistory = async (token: string, take: number) => {
 // 再生履歴を削除する関数
 export const deletePlayHistory = async (userId: string) => {
   try {
-    const res = await fetch(`http://localhost:3000/api/deletePlayHistory?userId=${userId}`, {
-      method: "DELETE",
+    const res = await fetch("http://localhost:3000/api/deletePlayHistory", {
       cache: "no-cache",
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ userId }),
     });
     if (!res.ok) {
       throw new Error("再生履歴の削除に失敗しました");
