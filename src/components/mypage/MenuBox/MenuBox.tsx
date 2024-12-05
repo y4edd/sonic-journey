@@ -11,7 +11,7 @@ type MenuBoxProps = {
 
 const MenuBox = ({ mainTitle, subTitle, icon, link }: MenuBoxProps) => {
   return (
-    <Link href={link}>
+    <Link href={link} className={styles.anchor}>
       <div className={styles.menuBox}>
         <div className={styles.menuIcon}>{icon}</div>
         <p>{mainTitle}</p>

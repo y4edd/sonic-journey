@@ -67,8 +67,3 @@
   border-bottom: 1px solid gray;
   margin: 20px 0;
 }
-
-.serverError {
-  color: red;
-  font-size: 0.8rem;
-}
