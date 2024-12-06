@@ -7,6 +7,7 @@ type PlaylistSong = {
 };
 
 export const GET = async (req: NextRequest) => {
+  const searchParams = req.nextUrl.searchParams;
   try {
     const token = req.cookies.get("token")?.value;
     if (!token) {
@@ -18,7 +19,6 @@ export const GET = async (req: NextRequest) => {
       return NextResponse.json({ message: "認証に失敗しました" }, { status: 401 });
     }
 
-    const { searchParams } = req.nextUrl;
     const playlistId = searchParams.get("id");
 
     if (!playlistId || Number.isNaN(Number(playlistId))) {

@@ -3,8 +3,9 @@ import { type NextRequest, NextResponse } from "next/server";
 
 // ジャンルごとのアーティスト情報を取得するAPI
 export const GET = async (request: NextRequest) => {
+  const searchParams = request.nextUrl.searchParams;
+
   try {
-    const { searchParams } = request.nextUrl;
     const genre = searchParams.get("genre");
 
     const genreArtists = await fetch(`https://api.deezer.com/genre/${genre}/artists`);

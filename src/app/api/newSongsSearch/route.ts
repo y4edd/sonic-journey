@@ -2,8 +2,8 @@ import type { DeezerNewRelease } from "@/types/deezer";
 import { type NextRequest, NextResponse } from "next/server";
 
 export const GET = async (request: NextRequest) => {
+  const searchParams = request.nextUrl.searchParams;
   try {
-    const { searchParams } = request.nextUrl;
     const limit = searchParams.get("limit");
 
     const newSongs = await fetch(`https://api.deezer.com/editorial/16/releases?limit=${limit}`);

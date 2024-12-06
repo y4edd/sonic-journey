@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic"; // 動的レンダリングを強制する
+
 import { ChartTitle } from "@/components/newChart/ChartTitle/ChartTitle";
 import { Song } from "@/components/rankingChart/Song/Song";
 import BreadList from "@/components/top/BreadList/BreadList";

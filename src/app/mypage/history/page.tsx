@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic"; // 動的レンダリングを強制する
+
 import UnauthorizedAccess from "@/components/UnauthorizedAccess/UnauthorizedAccess";
 import DeleteButton from "@/components/mypage/DeleteButton/DeleteButton";
 import MenuHeader from "@/components/mypage/MenuHeader/MenuHeader";
@@ -6,7 +8,6 @@ import BreadList from "@/components/top/BreadList/BreadList";
 import { checkLoggedInServer, getSong, getUserId } from "@/utils/apiFunc";
 import { getTokenFromCookie } from "@/utils/getTokenFromCookie";
 import { getPlayHistory } from "@/utils/history";
-import Link from "next/link";
 import styles from "./page.module.css";
 
 const PlayList = async () => {
