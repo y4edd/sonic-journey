@@ -1,4 +1,5 @@
 .modalTitle {
+  display: block;
   font-size: 1.4rem;
   margin-bottom: 0.8rem;
 }
@@ -57,4 +58,9 @@
 .addLinkIcon {
   font-size: 0.9rem;
   margin-right: 0.3rem;
+}
+
+.form {
+  overflow-y: auto;
+  max-height: 600px;
 }

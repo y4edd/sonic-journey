@@ -15,13 +15,18 @@ import { toast } from "react-toastify";
 import styles from "./page.module.css";
 import "react-toastify/dist/ReactToastify.css";
 import UnauthorizedAccess from "@/components/UnauthorizedAccess/UnauthorizedAccess";
-import { fetchUser } from "@/utils/apiFunc";
+import { fetchUser, fetchUserInfo } from "@/utils/apiFunc";
 
 const Edit = () => {
   // useStateでサーバーエラーの管理
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [serverError, setServerError] = useState<string | null>("");
   const [userId, setUserId] = useState<string | null>(null);
+  const [userInfo, setUserInfo] = useState({
+    name: "",
+    email: "",
+  });
+
   // React hook formでフォーム管理
   const {
     register,
@@ -49,9 +54,24 @@ const Edit = () => {
     }
   };
 
+  // ユーザー情報を取得
+  const loadUserInfo = async () => {
+    try {
+      const data = await fetchUserInfo();
+      if (data) {
+        setUserInfo({ name: data.name, email: data.email });
+      }
+    } catch {
+      setServerError("ユーザー情報の取得に失敗しました");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   // biome-ignore lint/correctness/useExhaustiveDependencies: マウント時のみ実行
   useEffect(() => {
     loadUser();
+    loadUserInfo();
   }, []);
 
   if (loading) {
@@ -97,6 +117,16 @@ const Edit = () => {
     router.push(`/user/${userId}/info`);
   };
 
+  // ユーザー名編集のハンドラ
+  const handleUserNameValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserInfo({ ...userInfo, name: e.target.value });
+  };
+
+  // email編集のハンドラ
+  const handleEmailValue = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setUserInfo({ ...userInfo, email: e.target.value });
+  };
+
   return (
     <>
       <BreadList
@@ -116,6 +146,8 @@ const Edit = () => {
             id="userName"
             type="text"
             name="name"
+            value={userInfo.name}
+            onChange={handleUserNameValue}
             placeholder="tanitune"
             register={register}
             error={errors.name}
@@ -125,6 +157,8 @@ const Edit = () => {
             id="mailAddress"
             type="email"
             name="email"
+            value={userInfo.email}
+            onChange={handleEmailValue}
             placeholder="tani@example.com"
             register={register}
             error={errors.email}

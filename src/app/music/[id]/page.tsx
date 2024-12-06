@@ -39,6 +39,7 @@ const SongPage = async ({ params }: SongPageProps) => {
             artist={resSongData.artist.name}
             image={resSongData.cover_xl}
             preview={resSongData.preview}
+            albumId={resSongData.album.id}
           />
         </div>
         <div className={styles.artistInfoLinkContent}>

@@ -1,5 +1,7 @@
 .albumSinglesContent {
+  padding-top: 5px;
   margin-top: 1rem;
+  border-top: 1px solid lightgray;
 }
 
 .albumSingleSong {

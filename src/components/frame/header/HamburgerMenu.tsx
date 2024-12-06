@@ -22,7 +22,7 @@ import styles from "./HamburgerMenu.module.css";
 export const HamburgerMenu = () => {
   const [user, setUser] = useState<string | null>(null);
   const { openMenu, openMenuClick, hamburgerLink } = UseHamburgerOpen();
-  const { logoutUser, serverError } = useLogout();
+  const { logoutUser } = useLogout();
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: ハンバーガーメニューの開閉により更新
   useEffect(() => {
@@ -128,7 +128,6 @@ export const HamburgerMenu = () => {
                       <LogoutIcon fontSize="large" />
                       &nbsp;ログアウト
                     </li>
-                    <p className={styles.serverError}>{serverError}</p>
                     <li
                       className={styles.hamburgerinList}
                       onClick={() => hamburgerLink(`/user/${user}/info`)}

@@ -1,24 +1,44 @@
 export const dynamic = "force-dynamic"; // 動的レンダリングを強制する
 
+import UnauthorizedAccess from "@/components/UnauthorizedAccess/UnauthorizedAccess";
 import DeleteButton from "@/components/mypage/DeleteButton/DeleteButton";
 import MenuHeader from "@/components/mypage/MenuHeader/MenuHeader";
 import SongList from "@/components/mypage/SongList/SongList";
 import BreadList from "@/components/top/BreadList/BreadList";
-import { getSong } from "@/utils/apiFunc";
+import { checkLoggedInServer, getSong, getUserId } from "@/utils/apiFunc";
+import { getTokenFromCookie } from "@/utils/getTokenFromCookie";
+import { getPlayHistory } from "@/utils/history";
+import styles from "./page.module.css";
 
 const PlayList = async () => {
-  // FIXME: ログインユーザーidを取得する
-  // FIXME: ログインユーザーの再生履歴(最大10件)をDBから取得する
+  // クッキーからトークン取得
+  const token = getTokenFromCookie();
 
-  // MEMO: 表示確認のため、仮で曲idの配列を定義する
-  const historySongsId = [2210493097, 824731152, 1171495792, 2449469235, 1002378782];
+  const isLoggedin = await checkLoggedInServer(token);
 
-  const historySongsInfo = await Promise.all(
-    historySongsId.map(async (songId) => {
-      const songData = await getSong(songId);
-      return songData.resSongData;
-    }),
-  );
+  if (!isLoggedin) {
+    return <UnauthorizedAccess />;
+  }
+
+  const userId = await getUserId(token);
+
+  if (!userId) {
+    return (
+      <div className={styles.playHistoryGroup}>
+        <p>ユーザーIDが見つかりません。</p>
+      </div>
+    );
+  }
+
+  // ログインユーザーの試聴履歴楽曲のidを取得
+  const playHistory = await getPlayHistory(token, 10);
+
+  // 取得したidを使って楽曲情報を取得
+  const playHistories = await Promise.all(playHistory.songIds.map((id: number) => getSong(id)));
+
+  const historySongsInfo = playHistories.map((playHistorySong) => {
+    return playHistorySong.resSongData;
+  });
 
   return (
     <>
@@ -30,8 +50,17 @@ const PlayList = async () => {
         ]}
       />
       <MenuHeader title="再生履歴" />
-      <DeleteButton />
-      <SongList songs={historySongsInfo} url="music" errorMessage="履歴がありません" />
+
+      {historySongsInfo.length > 0 ? (
+        <div>
+          <DeleteButton userId={userId} />
+          <SongList songs={historySongsInfo} errorMessage="履歴がありません" url="music" />
+        </div>
+      ) : (
+        <div className={styles.nothingHistory}>
+          <p>試聴履歴がありません</p>
+        </div>
+      )}
     </>
   );
 };
