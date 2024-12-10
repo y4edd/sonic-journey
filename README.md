@@ -5,7 +5,7 @@ yaetunes は、様々なアーティストの楽曲を簡単に試聴できる�
 ユーザーはアカウント機能やマイページ機能を活用して、お気に入り楽曲の設定やプレイリストの作成、
 再生履歴を確認できます。
 
-<img src="./public/readme/images/favicon.ico" alt="yaetunesロゴ" width="300">
+<img src="./public/images/readme/images/favicon.ico" alt="yaetunesロゴ" width="300">
 
 ## 概要
 
@@ -66,10 +66,10 @@ yarn dev
   </tr>
   <tr>
     <td>
-      <img src="./public/readme/register.png" alt="登録画面" width="300">
+      <img src="./public/images/readme/register.png" alt="登録画面" width="300">
     </td>
     <td>
-      <img src="./public/readme/login.png" alt="ログイン画面" width="300">
+      <img src="./public/images/readme/login.png" alt="ログイン画面" width="300">
     </td>
   </tr>
   <tr>
@@ -82,10 +82,10 @@ yarn dev
   </tr>
   <tr>
     <td>
-      <img src="./public/readme/edit.png" alt="アカウント編集" width="300">
+      <img src="./public/images/readme/edit.png" alt="アカウント編集" width="300">
     </td>
     <td>
-      <img src="./public/readme/information.png" alt="アカウント詳細" width="300">
+      <img src="./public/images/readme/information.png" alt="アカウント詳細" width="300">
     </td>
   </tr>
   <tr>
@@ -98,10 +98,10 @@ yarn dev
   </tr>
   <tr>
     <td>
-      <img src="./public/readme/top.png" alt="トップページ" width="300">
+      <img src="./public/images/readme/top.png" alt="トップページ" width="300">
     </td>
     <td>
-      <img src="./public/readme/musicDetails.png" alt="楽曲詳細画面" width="300">
+      <img src="./public/images/readme/musicDetails.png" alt="楽曲詳細画面" width="300">
     </td>
   </tr>
   <tr>
@@ -118,10 +118,10 @@ yarn dev
   </tr>
   <tr>
     <td>
-      <img src="./public/readme/albumDetails.png" alt="アルバム詳細画面" width="300">
+      <img src="./public/images/readme/albumDetails.png" alt="アルバム詳細画面" width="300">
     </td>
     <td>
-      <img src="./public/readme/artistDetails.png" alt="アーティスト詳細画面" width="300">
+      <img src="./public/images/readme/artistDetails.png" alt="アーティスト詳細画面" width="300">
     </td>　
   </tr>
   <tr>
@@ -138,10 +138,10 @@ yarn dev
   </tr>
   <tr>
     <td>
-      <img src="./public/readme/search.png" alt="検索結果画面" width="300">
+      <img src="./public/images/readme/search.png" alt="検索結果画面" width="300">
     </td>
     <td>
-      <img src="./public/readme/special.png" alt="特集選択画面" width="300">
+      <img src="./public/images/readme/special.png" alt="特集選択画面" width="300">
     </td>
   </tr>
   <tr>
@@ -155,10 +155,10 @@ yarn dev
   </tr>
   <tr>
     <td>
-      <img src="./public/readme/specialDetail.png" alt="特集画面" width="300">
+      <img src="./public/images/readme/specialDetail.png" alt="特集画面" width="300">
     </td>
     <td>
-      <img src="./public/readme/playlist.png" alt="プレイリスト選択画面" width="300">
+      <img src="./public/images/readme/playlist.png" alt="プレイリスト選択画面" width="300">
     </td>
   </tr>
   <tr>
@@ -173,10 +173,10 @@ yarn dev
   </tr>
   <tr>
     <td>
-      <img src="./public/readme/playlistCreate.png" alt="プレイリスト作成画面" width="300">
+      <img src="./public/images/readme/playlistCreate.png" alt="プレイリスト作成画面" width="300">
     </td>
     <td>
-      <img src="./public/readme/playlistEdit.png" alt="プレイリスト編集画面" width="300">
+      <img src="./public/images/readme/playlistEdit.png" alt="プレイリスト編集画面" width="300">
     </td>
   </tr>
   <tr>
@@ -190,10 +190,10 @@ yarn dev
   </tr>
   <tr>
     <td>
-      <img src="./public/readme/playlistDetails.png" alt="プレイリスト詳細画面" width="300">
+      <img src="./public/images/readme/playlistDetails.png" alt="プレイリスト詳細画面" width="300">
     </td>
     <td>
-      <img src="./public/readme/playlistDetailEdit.png" alt="プレイリスト詳細編集画面" width="300">
+      <img src="./public/images/readme/playlistDetailEdit.png" alt="プレイリスト詳細編集画面" width="300">
     </td>
   </tr>
   <tr>
@@ -209,10 +209,10 @@ yarn dev
   </tr>
   <tr>
     <td>
-      <img src="./public/readme/newarrival.png" alt="新着チャート画面" width="300">
+      <img src="./public/images/readme/newarrival.png" alt="新着チャート画面" width="300">
     </td>
     <td>
-      <img src="./public/readme/ranking.png" alt="ランキングチャート画面" width="300">
+      <img src="./public/images/readme/ranking.png" alt="ランキングチャート画面" width="300">
     </td>
   </tr>
   <tr>
@@ -225,7 +225,7 @@ yarn dev
   </tr>
   <tr>
     <td>
-      <img src="./public/readme/genre.png" alt="ジャンル別アーティスト確認画面" width="300">
+      <img src="./public/images/readme/genre.png" alt="ジャンル別アーティスト確認画面" width="300">
     </td>
     <td>
     </td>
