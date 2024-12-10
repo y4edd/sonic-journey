@@ -134,104 +134,122 @@ yarn dev
   </tr>
   <tr>
     <th>検索結果画面 /search</th>
-    <th>特集選択画面 /special</th>
+    <th>新着チャート画面 /newarrival</th>
   </tr>
   <tr>
     <td>
-      <img src="./public/images/readme/search.png" alt="検索結果画面" width="300">
+    <img src="./public/images/readme/search.png" alt="検索結果画面" width="300">
     </td>
-    <td>
-      <img src="./public/images/readme/special.png" alt="特集選択画面" width="300">
+    <td>      
+    <img src="./public/images/readme/newarrival.png" alt="新着チャート画面" width="300">
+
     </td>
+
   </tr>
   <tr>
     <td>検索ワードに沿った検索結果を確認できます。検索結果は
     シングル曲、アルバム、アーティストのそれぞれ最大25件表示されます。</td>
+    <td>2週間以内に配信が開始されたアルバムを確認できます。アルバム詳細画面へアクセスできます。</td>
+  </tr>
+  <tr>
+    <th>ランキングチャート画面 /ranking</th>
+    <th>特集選択画面 /special</th>
+  </tr>
+  <tr>
+    <td>
+    <img src="./public/images/readme/ranking.png" alt="ランキングチャート画面" width="300">
+    </td>
+    <td><img src="./public/images/readme/special.png" alt="特集選択画面" width="300">
+    </td>
+  </tr>
+  <tr>
+    <td>シングルアルバムのランキングを確認できます。楽曲詳細画面へアクセスできます。</td>
     <td>各楽曲特集のサムネイルを確認し、選択できます。</td>
   </tr>
   <tr>
     <th>特集画面 /special/:id</th>
-    <th>プレイリスト選択画面 /playlist</th>
+    <th>ジャンル別アーティスト確認画面 /genre</th>
   </tr>
   <tr>
     <td>
-      <img src="./public/images/readme/specialDetail.png" alt="特集画面" width="300">
+    <img src="./public/images/readme/specialDetail.png" alt="特集画面" width="300">
     </td>
     <td>
-      <img src="./public/images/readme/playlist.png" alt="プレイリスト選択画面" width="300">
+    <img src="./public/images/readme/genre.png" alt="ジャンル別アーティスト確認画面" width="300">
     </td>
   </tr>
   <tr>
     <td>楽曲特集を確認できます。特集に収録されている楽曲毎に
     試聴、お気に入り登録ができます。</td>
+    <td>ジャンル毎にアーティストを確認できます。</td>
+  </tr>
+  <tr>
+    <th>プレイリスト選択画面 /playlist</th>
+    <th>プレイリスト作成画面 /playlist</th>
+  </tr>
+  <tr>
+    <td>
+    <img src="./public/images/readme/playlist.png" alt="プレイリスト選択画面" width="300">
+    </td>
+    <td>
+    <img src="./public/images/readme/playlistCreate.png" alt="プレイリスト作成画面" width="300">
+    </td>
+  </tr>
+  <tr>
     <td>作成したプレイリストを確認できます。<br />
     また、プレイリストの作成、編集画面へアクセスできます。</td>
-  </tr>
-  <tr>
-    <th>プレイリスト作成画面 /playlist</th>
-    <th>プレイリスト編集画面 /playlist</th>
-  </tr>
-  <tr>
-    <td>
-      <img src="./public/images/readme/playlistCreate.png" alt="プレイリスト作成画面" width="300">
-    </td>
-    <td>
-      <img src="./public/images/readme/playlistEdit.png" alt="プレイリスト編集画面" width="300">
-    </td>
-  </tr>
-  <tr>
     <td>タイトルを入力し、作成ボタンを押すことでプレイリストを作成できます。</td>
+  </tr>
+  <tr>
+    <th>プレイリスト編集画面 /playlist</th>
+    <th>プレイリスト詳細画面 /playlist/:id</th>
+  </tr>
+  <tr>
+    <td>
+    <img src="./public/images/readme/playlistEdit.png" alt="プレイリスト編集画面" width="300">
+    </td>
+    <td>
+    <img src="./public/images/readme/playlistDetails.png" alt="プレイリスト詳細画面" width="300">
+    </td>
+  </tr>
+  <tr>
     <td>既存のプレイリストのタイトルを変更できます。<br />
     また、プレイリストを削除できます。</td>
-  </tr>
-  <tr>
-    <th>プレイリスト詳細画面 /playlist/:id</th>
-    <th>プレイリスト詳細編集画面 /playlist/:id</th>
-  </tr>
-  <tr>
-    <td>
-      <img src="./public/images/readme/playlistDetails.png" alt="プレイリスト詳細画面" width="300">
-    </td>
-    <td>
-      <img src="./public/images/readme/playlistDetailEdit.png" alt="プレイリスト詳細編集画面" width="300">
-    </td>
-  </tr>
-  <tr>
     <td>プレイリストに追加した楽曲を確認できます。また、追加した楽曲を
     通常再生/シャッフル再生できます。リスト表示されている楽曲を押下することで任意の楽曲から
     再生を開始できます。また、楽曲詳細ページへアクセスできます。<br />
     プレイリストの収録楽曲の編集ページへアクセスできます。</td>
+  </tr>
+  <tr>
+    <th>プレイリスト詳細編集画面 /playlist/:id</th>
+    <th>お気に入りアーティスト画面 /favoriteartist</th>
+  </tr>
+  <tr>
+    <td>
+    <img src="./public/images/readme/playlistDetailEdit.png" alt="プレイリスト詳細編集画面" width="300">
+    </td>
+    <td>
+    <img src="./public/images/readme/favoriteArtist.png" alt="お気に入りアーティスト画面" width="300">
+    </td>
+  </tr>
+  <tr>
     <td>プレイリストに追加した楽曲を削除できます。</td>
+    <td>お気に入りに追加したアーティストを一覧で確認できます。</td>
   </tr>
   <tr>
-    <th>新着チャート画面 /newarrival</th>
-    <th>ランキングチャート画面 /ranking</th>
-  </tr>
-  <tr>
-    <td>
-      <img src="./public/images/readme/newarrival.png" alt="新着チャート画面" width="300">
-    </td>
-    <td>
-      <img src="./public/images/readme/ranking.png" alt="ランキングチャート画面" width="300">
-    </td>
-  </tr>
-  <tr>
-    <td>2週間以内に配信が開始されたアルバムを確認できます。アルバム詳細画面へアクセスできます。</td>
-    <td>シングルアルバムのランキングを確認できます。楽曲詳細画面へアクセスできます。</td>
-  </tr>
-  <tr>
-    <th>ジャンル別アーティスト確認画面 /genre</th>
-    <th></th>
+    <th>お気に入り楽曲画面 /favoritemusic</th>
+    <th>再生履歴画面 /history</th>
   </tr>
   <tr>
     <td>
-      <img src="./public/images/readme/genre.png" alt="ジャンル別アーティスト確認画面" width="300">
+    <img src="./public/images/readme/favoriteMusic.png" alt="お気に入り楽曲画面" width="300">
     </td>
     <td>
+    <img src="./public/images/readme/history.png" alt="再生履歴画面" width="300">
     </td>
   </tr>
   <tr>
-    <td>ジャンル毎にアーティストを確認できます。</td>
-    <td></td>
+    <td>お気に入りに追加した楽曲を一覧で確認できます。</td>
+    <td>再生履歴を最大10件で確認できます。</td>
   </tr>
 </table>
