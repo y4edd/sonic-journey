@@ -172,7 +172,7 @@ yarn dev
   </tr>
   <tr>
     <td>
-    <img src="./public/images/readme/specialDetail.png" alt="特集画面" width="300">
+    <img src="./public/images/readme/specialDetails.png" alt="特集画面" width="300">
     </td>
     <td>
     <img src="./public/images/readme/genre.png" alt="ジャンル別アーティスト確認画面" width="300">
