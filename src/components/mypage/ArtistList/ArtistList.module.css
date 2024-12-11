@@ -1,0 +1,17 @@
+.artistListContainer {
+  margin: 1rem 0;
+  padding: 0 1rem;
+}
+
+.artistListContainer > ul {
+  list-style-type: none;
+}
+
+.artistListContainer li:last-child {
+  border-bottom: 1px solid lightgrey;
+}
+
+.noArtistMessage {
+  text-align: center;
+  color: gray;
+}

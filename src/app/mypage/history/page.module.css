@@ -1,0 +1,25 @@
+.playHistoryGroup {
+  display: grid;
+  grid-template-columns: repeat(3, 30%);
+  grid-template-rows: repeat(2, 1fr);
+  place-items: stretch;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.nothingHistory {
+  font-weight: bold;
+  text-align: center;
+  text-wrap: nowrap;
+}
+
+.noLoginHistory {
+  font-weight: bold;
+  text-wrap: nowrap;
+}
+
+.noLoginHistory:hover {
+  color: #77ffcc;
+}

@@ -1,0 +1,6 @@
+.information {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding-top: 0.8rem;
+}

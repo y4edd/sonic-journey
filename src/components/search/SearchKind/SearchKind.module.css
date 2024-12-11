@@ -1,0 +1,42 @@
+.display {
+  text-align: center;
+}
+
+.kind {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
+}
+
+.kindList {
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+.active {
+  color: rgb(86, 236, 186);
+  border-bottom: 0.2rem solid rgb(86, 236, 186);
+  padding-bottom: 0.2rem;
+}
+
+.hr {
+  border: 0.2rem solid rgb(132, 132, 132);
+  margin: 4rem 0;
+}
+
+.viewIcon {
+  font-size: 3rem;
+}
+
+.noneIcon {
+  color: rgb(209, 209, 209);
+  font-size: 3rem;
+}
+
+.icon {
+  text-align: left;
+  margin-top: 1rem;
+}

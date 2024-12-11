@@ -1,0 +1,35 @@
+.unexpectedPage {
+  padding: 2rem;
+  height: calc(100vh - 130px - 79px);
+  background-color: #efefef;
+}
+
+.unexpectedContent {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  background-color: #efefef;
+  text-align: center;
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+.unexpectedContent > h1 {
+  font-size: 1.6rem;
+  padding: 1rem;
+}
+
+.unexpectedContent > img {
+  margin: 1rem auto;
+  border-radius: 10px;
+}
+
+.unexpectedContent > a {
+  border-bottom: 1px solid #666;
+}
+
+.unexpectedContent > a:hover {
+  color: #a9a9a9;
+}

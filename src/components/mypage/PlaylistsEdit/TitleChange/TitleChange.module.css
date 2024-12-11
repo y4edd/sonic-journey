@@ -1,0 +1,48 @@
+.playlistList {
+  display: flex;
+  list-style-type: none;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid black;
+  margin-bottom: 1rem;
+}
+
+.listWrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input {
+  font-size: 1.1rem;
+  margin: auto 1.5rem 0.1rem 0.4rem;
+  padding: 0.2rem 0 0.2rem 0.3rem;
+  width: 10rem;
+}
+
+.input::placeholder {
+  color: lightgray;
+}
+
+.errorMessage {
+  color: red;
+  font-size: 0.7rem;
+  margin-top: 0.1rem;
+}
+
+.checkIcon {
+  color: lightgreen;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.createButton,
+.cancelButton {
+  background-color: white;
+  border: none;
+}
+
+.cancelIcon {
+  color: rgba(255, 0, 0, 0.537);
+  font-size: 1.8rem;
+  margin-left: 0.5rem;
+  cursor: pointer;
+}

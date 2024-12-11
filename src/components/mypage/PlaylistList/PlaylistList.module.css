@@ -1,0 +1,17 @@
+.playlistListContainer {
+  margin: 1rem 0;
+  padding: 0 1rem;
+}
+
+.playlistListContainer > ul {
+  list-style-type: none;
+}
+
+.playlistListContainer li:last-child {
+  border-bottom: 1px solid lightgray;
+}
+
+.noPlaylistMessage {
+  text-align: center;
+  color: gray;
+}

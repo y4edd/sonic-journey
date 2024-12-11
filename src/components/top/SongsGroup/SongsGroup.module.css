@@ -1,0 +1,19 @@
+.newSongGroup {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 1rem;
+  place-items: stretch;
+}
+
+.newSongGroup > div:nth-child(1) > img {
+  border: 5px solid gold;
+}
+
+.newSongGroup > div:nth-child(2) > img {
+  border: 5px solid silver;
+}
+
+.newSongGroup > div:nth-child(3) > img {
+  border: 5px solid rgb(193, 60, 60);
+}

@@ -1,0 +1,14 @@
+.buttonContainer {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.buttonContainer > button {
+  font-size: 1rem;
+  border: none;
+  background-color: white;
+  color: black;
+  padding: 4px 4px;
+  cursor: pointer;
+}

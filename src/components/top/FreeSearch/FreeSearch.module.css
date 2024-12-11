@@ -1,0 +1,35 @@
+.freeSearch {
+  display: flex;
+  justify-content: space-between;
+  color: #525252;
+}
+
+.freeSearch > input {
+  flex: 1;
+  padding: 0.3rem 0.6rem;
+  border-radius: 10px;
+  border: 1px solid #555;
+  box-shadow: none;
+}
+
+.freeSearch > button {
+  border: none;
+  background-color: white;
+  margin-left: 0.2rem;
+  border-radius: 9999px;
+  cursor: pointer;
+}
+
+.errorMessage {
+  color: red;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+}
+
+.searchIcon {
+  transition: transform 0.3s ease-in-out;
+}
+
+.searchIcon:hover {
+  transform: scale(1.2);
+}

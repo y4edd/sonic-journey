@@ -1,0 +1,100 @@
+.preButton,
+.nextButton,
+.switchButton,
+.playButton {
+  border: none;
+  cursor: pointer;
+}
+
+.playButtons {
+  display: flex;
+}
+
+.playButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.5rem auto 0.5rem auto;
+  font-size: 1.2rem;
+  padding: 0.5rem 0rem;
+  color: rgb(73, 72, 72);
+  background-color: rgba(211, 211, 211, 0.231);
+  width: 42%;
+}
+
+.songIntro {
+  display: flex;
+  margin-top: 3rem;
+  margin-bottom: 3em;
+  padding: 12px 5px 12px 15px;
+  border-radius: 3px;
+  box-shadow: 0 2px 10px rgb(177, 176, 176);
+  background-color: rgb(235, 235, 233);
+  align-items: center;
+}
+
+.songIntro > img {
+  border-radius: 4px;
+}
+
+.songIntro > * {
+  background-color: rgb(235, 235, 233);
+}
+
+.currentTitle {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-left: 1rem;
+}
+
+.controls {
+  display: flex;
+  margin: 0 1rem 0 auto;
+  justify-content: center;
+  background-color: rgb(235, 235, 233);
+}
+
+.controls > button {
+  background-color: rgb(235, 235, 233);
+}
+
+.preButtonIcon,
+.switchButtonIcon,
+.nextButtonIcon {
+  font-size: 2rem;
+  background-color: rgb(235, 235, 233);
+}
+
+.orderButton {
+  display: flex;
+  justify-content: right;
+}
+
+.shuffleButton,
+.reOrderButton,
+.reOrderDisabled {
+  background-color: white;
+  border: none;
+  margin-right: 1rem;
+}
+
+.reOrderButton,
+.reOrderDisabled {
+  margin-right: 1rem;
+}
+
+.shuffleButton :first-child,
+.reOrderButton :first-child,
+.reOrderDisabled :first-child {
+  font-size: 2.2rem;
+  cursor: pointer;
+}
+
+.preButtonIcon:hover,
+.switchButtonIcon:hover,
+.nextButtonIcon:hover,
+.shuffleButton :first-child:hover,
+.reOrderButton :first-child:hover {
+  color: #92e3c4;
+}

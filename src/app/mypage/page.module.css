@@ -1,0 +1,33 @@
+.menuTitle {
+  margin: 1rem 1.5rem;
+}
+
+.menuTitle h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  border-bottom: 2px solid black;
+  display: inline-block;
+}
+
+.myPageMenuGrid {
+  display: grid;
+  place-content: center;
+  place-items: center;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 2rem;
+  width: max-content;
+  margin: 0 auto;
+}
+
+.accountMenuGrid {
+  display: grid;
+  place-content: center;
+  place-items: center;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  width: max-content;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: 1rem;
+}

@@ -1,0 +1,39 @@
+.albumSingleContent {
+  display: flex;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.albumSingleInfo {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 1rem;
+}
+
+.albumSingleInfo > button {
+  background-color: white;
+  border: 1px solid #fc9aff;
+  border-radius: 5px;
+  padding: 0.2rem 0.6rem 0;
+  margin-left: 1rem;
+}
+
+.albumSingleInfo > p > a:hover {
+  color: #77ffcc;
+}
+
+.linkImage {
+  cursor: pointer;
+  margin-right: 12px;
+  margin-top: 3px;
+}
+
+.linkImage:hover {
+  opacity: 0.8;
+}
+
+.linkImage > img {
+  border-radius: 5px;
+}

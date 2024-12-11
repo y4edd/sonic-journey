@@ -1,0 +1,27 @@
+.headerBottom {
+  height: 40px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  background-color: white;
+}
+
+.thePageHeading,
+.otherPageHeading {
+  font-size: 0.9rem;
+  list-style-type: none;
+  text-align: center;
+  align-content: center;
+  transition: background-color 0.8s ease;
+}
+
+.otherPageHeading:hover {
+  background-color: rgba(215, 215, 215, 0.37);
+}
+
+.thePageHeading {
+  color: rgb(86, 236, 186);
+  font-weight: 500;
+  border-bottom: 3px solid rgb(86, 236, 186);
+}

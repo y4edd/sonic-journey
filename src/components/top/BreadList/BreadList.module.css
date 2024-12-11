@@ -1,0 +1,15 @@
+.breadListGroup {
+  background-color: #c0ffe7;
+  padding: 0.7rem 1rem;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+}
+
+.breadListGroup span {
+  margin: 0 0.5rem;
+}
+
+.breadListTitle:hover {
+  color: #b1b1b1;
+}

@@ -1,0 +1,39 @@
+.artistInfoAddFavorite {
+  display: flex;
+  background-color: #ff9e9e;
+  color: white;
+  border: white;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  padding: 0.4rem 3.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in;
+}
+
+.artistInfoAddFavorite:hover {
+  background-color: white;
+  color: #ff9e9e;
+  border: 2px solid #ff9e9e;
+}
+
+.artistInfoAddedFavorite {
+  display: flex;
+  background-color: white;
+  color: #a9a9a9;
+  border: 2px solid #a9a9a9;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.9rem;
+  padding: 0.4rem 2.6rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in;
+}
+
+.artistInfoAddedFavorite:hover {
+  background-color: #a9a9a9;
+  color: white;
+  border: 2px solid #a9a9a9;
+}

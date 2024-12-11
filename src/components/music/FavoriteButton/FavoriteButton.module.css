@@ -1,0 +1,41 @@
+.songInfoAddFavorite {
+  display: flex;
+  background-color: white;
+  color: #ff9e9e;
+  border: 2px solid #ff9e9e;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+  padding: 0.2rem 0.3rem;
+  max-width: 185px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in;
+}
+
+.songInfoAddFavorite:hover {
+  background-color: #ff9e9e;
+  color: white;
+  border-color: #ff9e9e;
+}
+
+.songInfoAddedFavorite {
+  display: flex;
+  background-color: white;
+  color: #a9a9a9;
+  border: 2px solid #a9a9a9;
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8rem;
+  padding: 0.2rem 0.3rem;
+  max-width: 185px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in, color 0.3s ease-in, border-color 0.3s ease-in;
+}
+
+.songInfoAddedFavorite:hover {
+  background-color: #a9a9a9;
+  color: white;
+  border-color: #a9a9a9;
+}

@@ -1,0 +1,91 @@
+.wrapper {
+  margin: 1rem 2rem;
+  max-width: 85%;
+}
+
+.editTitle {
+  text-align: center;
+  width: 100%;
+  margin: 1.1rem auto;
+  padding-top: 1rem;
+  padding-left: 0.9rem;
+  padding-right: 0.9rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.listWrapper {
+  max-height: 600px;
+  overflow-y: auto;
+}
+
+.playlists {
+  margin: 1.5rem auto;
+  width: 100%;
+}
+
+.playlistList {
+  display: flex;
+  list-style-type: none;
+  border-bottom: 1px solid black;
+  margin-right: 10px;
+  margin-bottom: 1rem;
+  max-width: 250px;
+}
+
+.listTitle {
+  font-size: 1.1rem;
+  width: 80%;
+}
+
+.editIcons {
+  margin: auto 0 auto auto;
+}
+.editIcons > button {
+  background-color: white;
+  border: none;
+}
+.deleteIcon {
+  margin-left: 0.3rem;
+  font-size: 2rem;
+  color: rgba(204, 15, 15, 0.635);
+  cursor: pointer;
+}
+
+.editIcon {
+  font-size: 2rem;
+  color: rgb(62, 154, 59);
+  cursor: pointer;
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.closeButton {
+  margin-top: 15px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  width: 150px;
+  background-color: gray;
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+
+.closeButton:hover {
+  opacity: 0.8;
+}
+
+.rankingPageLink {
+  display: flex;
+  justify-content: center;
+  margin-top: 3rem;
+  padding: 0 3px 2px 3px;
+}
+
+.rankingPageLink:hover {
+  color: #6be3b5;
+}

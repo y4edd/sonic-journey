@@ -1,0 +1,16 @@
+.imageContainer {
+  margin: 2rem 0 4rem 0;
+  text-align: center;
+}
+
+.imageItem {
+  margin-bottom: 1.5rem;
+}
+
+.imageItem a:hover {
+  opacity: 0.8;
+}
+
+.imageItem img {
+  border-radius: 10px;
+}

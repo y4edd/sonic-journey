@@ -1,0 +1,40 @@
+.artistContainer {
+  margin-top: 3rem;
+  border-top: 1px solid gray;
+}
+
+.artistItem {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid gray;
+}
+
+.artistLink {
+  width: 100%;
+}
+
+.artistLink > img {
+  border-radius: 5px;
+}
+
+.artistItem > a {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  padding: 10px 0;
+}
+
+.artistItem > a:hover {
+  background-color: #c9c9c92d;
+}
+
+.artistName {
+  margin-left: 1rem;
+}
+
+.linkArrow {
+  display: flex;
+  color: lightgray;
+  margin: auto 0 auto auto;
+}

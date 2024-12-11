@@ -1,0 +1,47 @@
+.songList {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.playButton,
+.currentSong {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: none;
+  width: 75%;
+  cursor: pointer;
+}
+
+.currentSong {
+  margin: 0.2rem 0;
+}
+
+.playButton > img,
+.currentSong > img {
+  border-radius: 4px;
+}
+
+.playButton > p {
+  font-size: 1rem;
+  margin-left: 1.2rem;
+}
+
+.currentSong > p {
+  font-size: 1.1rem;
+  margin-left: 1.2rem;
+}
+
+.albumLink {
+  margin: auto 0.5rem auto auto;
+}
+
+.albumLink :first-child {
+  font-size: 1.7rem;
+  color: rgb(187, 185, 185);
+}
+
+.albumLink :first-child:hover {
+  color: #9edbc4;
+}

@@ -1,0 +1,109 @@
+.wrapper {
+  margin-bottom: 70px;
+}
+
+.songItemsGridWrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 34px;
+  column-gap: 3vw;
+  margin: 0px 5vw;
+}
+
+.songItemsGridWrapper a {
+  padding: 0.2rem;
+  border-radius: 10px;
+}
+
+.songItemsGridWrapper a:hover {
+  background-color: #c9c9c92d;
+}
+
+.songImageGrid {
+  display: flex;
+  margin: auto;
+  border-radius: 10px;
+}
+
+.songNameGrid,
+.artistNameGrid {
+  width: 95%;
+  margin: 0 auto;
+}
+.songNameGrid {
+  margin-top: 5px;
+}
+.artistNameGrid {
+  margin-top: 3px;
+  color: rgb(178, 176, 176);
+}
+
+.songItemsListWrapper {
+  margin: 0px 18px;
+  border-top: 1px solid lightgray;
+}
+
+.songItemListWrapper {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
+}
+
+.songItemListWrapper:hover {
+  background-color: #c9c9c92d;
+}
+
+.songImageList {
+  border-radius: 3px;
+  margin-left: 10px;
+}
+.nameList {
+  margin: 5px 5px 0 20px;
+}
+
+.songNameList {
+  font-size: 1.1rem;
+}
+
+.artistNameList {
+  margin-top: 7px;
+  color: rgb(178, 176, 176);
+}
+
+.firstRankGrid,
+.secondRankGrid,
+.thirdRankGrid,
+.otherRankGrid {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 5px 0 5px 5px;
+}
+
+.firstRankGrid,
+.firstRankList {
+  color: gold;
+}
+
+.secondRankGrid,
+.secondRankList {
+  color: rgb(143, 142, 142);
+}
+
+.thirdRankGrid,
+.thirdRankList {
+  color: #ac6b25;
+}
+
+.otherRankGrid,
+.otherRankList {
+  color: rgb(193, 192, 192);
+  font-weight: 500;
+}
+
+.firstRankList,
+.secondRankList,
+.thirdRankList,
+.otherRankList {
+  margin: auto 10px auto 5px;
+}

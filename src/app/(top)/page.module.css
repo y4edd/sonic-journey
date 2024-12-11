@@ -1,0 +1,20 @@
+.specialContent,
+.freeSearchContent,
+.newSongsContent,
+.genreContent {
+  margin: 1.5rem 1rem;
+}
+
+.freeSearchContent,
+.newSongsContent,
+.genreContent {
+  padding-bottom: 2rem;
+  border-bottom: 1px solid #55555542;
+}
+
+.contentTitleGroup {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.8rem 0;
+}

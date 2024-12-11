@@ -1,0 +1,9 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 1rem;
+}
+.button > :first-child {
+  margin-right: 0.5rem;
+}
