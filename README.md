@@ -27,8 +27,7 @@ yaetunes は、様々なアーティストの楽曲を簡単に試聴できる�
 
 ## ER図
 
-<img src="./public/images/readme/ER.png" alt="ER図" width="450">
-
+<img src="./public/images/readme/ER.png" alt="ER図" width="600">
 
 ## インストール方法
 
