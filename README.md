@@ -5,7 +5,7 @@ yaetunes は、様々なアーティストの楽曲を簡単に試聴できる�
 ユーザーはアカウント機能やマイページ機能を活用して、お気に入り楽曲の設定やプレイリストの作成、
 再生履歴を確認できます。
 
-<img src="./public/images/readme/images/favicon.ico" alt="yaetunesロゴ" width="300">
+<img src="./public/images/favicon.ico" alt="yaetunesロゴ" width="300">
 
 ## 概要
 
@@ -49,13 +49,21 @@ cd sonic-journey
 yarn install
 ```
 
-3. 開発サーバーを起動します。
+3. DB をマイグレーションします。
+
+```bash
+yarn prisma db push
+```
+
+4. DB に必要な情報をインポートします。Seed ファイル(/prisma/sql/picksInsert.sql, /prisma/sql/pickSongInsert.sql)を順に実行します。
+
+5. 開発サーバーを起動します。
 
 ```bash
 yarn dev
 ```
 
-4. ブラウザで`http://localhost:3000`にアクセスします。
+6. ブラウザで`http://localhost:3000`にアクセスします。
 
 ## 使用方法
 
@@ -142,7 +150,6 @@ yarn dev
     </td>
     <td>      
     <img src="./public/images/readme/newarrival.png" alt="新着チャート画面" width="300">
-
     </td>
 
   </tr>
@@ -184,8 +191,8 @@ yarn dev
     <td>ジャンル毎にアーティストを確認できます。</td>
   </tr>
   <tr>
-    <th>プレイリスト選択画面 /playlist</th>
-    <th>プレイリスト作成画面 /playlist</th>
+    <th>プレイリスト選択画面 /mypage/playlist</th>
+    <th>プレイリスト作成画面 /mypage/playlist</th>
   </tr>
   <tr>
     <td>
@@ -201,8 +208,8 @@ yarn dev
     <td>タイトルを入力し、作成ボタンを押すことでプレイリストを作成できます。</td>
   </tr>
   <tr>
-    <th>プレイリスト編集画面 /playlist</th>
-    <th>プレイリスト詳細画面 /playlist/:id</th>
+    <th>プレイリスト編集画面 /mypage/playlist</th>
+    <th>プレイリスト詳細画面 /mypage/playlist/:id</th>
   </tr>
   <tr>
     <td>
@@ -221,8 +228,8 @@ yarn dev
     プレイリストの収録楽曲の編集ページへアクセスできます。</td>
   </tr>
   <tr>
-    <th>プレイリスト詳細編集画面 /playlist/:id</th>
-    <th>お気に入りアーティスト画面 /favoriteartist</th>
+    <th>プレイリスト詳細編集画面 /mypage/playlist/:id</th>
+    <th>お気に入りアーティスト画面 /mypage/favoriteartist</th>
   </tr>
   <tr>
     <td>
@@ -237,8 +244,8 @@ yarn dev
     <td>お気に入りに追加したアーティストを一覧で確認できます。</td>
   </tr>
   <tr>
-    <th>お気に入り楽曲画面 /favoritemusic</th>
-    <th>再生履歴画面 /history</th>
+    <th>お気に入り楽曲画面 /mypage/favoritemusic</th>
+    <th>再生履歴画面 /mypage/history</th>
   </tr>
   <tr>
     <td>
