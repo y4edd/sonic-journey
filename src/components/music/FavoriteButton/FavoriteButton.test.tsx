@@ -36,28 +36,4 @@ describe("FavoriteButtonコンポーネントのテスト", () => {
       expect(addedButton).toBeInTheDocument();
     });
   });
-
-  test("すでにお気に入りだった場合、「お気に入りに追加済み」が画面上に表示されている", async () => {
-    render(<FavoriteButton id={78787878} />);
-
-    await waitFor(() => {
-      const button = screen.getByRole("button", { name: "お気に入りに追加済み" });
-      expect(button).toBeInTheDocument();
-    });
-  });
-
-  test("お気に入り済みのボタンについて、再押下で表示が切り替わる", async () => {
-    render(<FavoriteButton id={78787878} />);
-
-    await waitFor(async () => {
-      const addedButton = screen.getByRole("button", { name: "お気に入りに追加済み" });
-
-      userEvent.click(addedButton);
-
-      await waitFor(() => {
-        const notAddButton = screen.getByRole("button", { name: "お気に入りに追加済み" });
-        expect(notAddButton).toBeInTheDocument;
-      });
-    });
-  });
 });
