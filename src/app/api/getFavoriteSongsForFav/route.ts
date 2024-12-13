@@ -11,8 +11,8 @@ export const POST = async (req: NextRequest) => {
     // NOTE: ログインユーザーのidを取得する
     const body: Body = await req.json();
     const userId = body.userId;
-    if(!userId) {
-      return NextResponse.json({ message: "未ログインです" }, { status: 401 })
+    if (!userId) {
+      return NextResponse.json({ message: "未ログインです" }, { status: 401 });
     }
 
     // NOTE: DBからお気に入り楽曲を取得する

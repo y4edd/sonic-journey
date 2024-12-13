@@ -23,9 +23,9 @@ const FavoriteButton = ({ id }: { id: number }) => {
   // NOTE: DBから取得したお気に入り楽曲とidを比較し、お気に入りボタンの表示を変える
   const doneFav = async () => {
     // NOTE: ログイン状態を確認し、userIdを返す
-    const userId:UserId = await fetchUser();
-    try{
-      if(typeof userId.id === "string") {
+    const userId: UserId = await fetchUser();
+    try {
+      if (typeof userId.id === "string") {
         // NOTE: DBからお気に入り楽曲を取得。
         const favoriteSongs: FavoriteSongs = await getFavoriteSongsForFav(userId.id);
         const songIds = favoriteSongs.resultData.map((song) => song.songId);
@@ -34,7 +34,7 @@ const FavoriteButton = ({ id }: { id: number }) => {
           setIsFav(true);
         }
       }
-    }catch(err){
+    } catch (err) {
       console.error(err);
     }
   };
