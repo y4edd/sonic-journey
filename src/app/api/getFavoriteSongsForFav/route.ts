@@ -2,7 +2,7 @@ import prisma from "@/lib/prisma";
 import { type NextRequest, NextResponse } from "next/server";
 
 type Body = {
-  userId: { id: string };
+  userId: string;
 };
 
 // お気に入り楽曲の取得
@@ -10,7 +10,10 @@ export const POST = async (req: NextRequest) => {
   try {
     // NOTE: ログインユーザーのidを取得する
     const body: Body = await req.json();
-    const userId = body.userId.id;
+    const userId = body.userId;
+    if(!userId) {
+      return NextResponse.json({ message: "未ログインです" }, { status: 401 })
+    }
 
     // NOTE: DBからお気に入り楽曲を取得する
     const favoriteSongs = await prisma.favorite_Song.findMany({
