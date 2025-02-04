@@ -14,6 +14,7 @@ export const GET = async (req: NextRequest) => {
     }
 
     const userId = getUserIdFromToken(token);
+    // undefined渡ってこないように早期リターン
     if (!userId) {
       return NextResponse.json({ message: "認証に失敗しました" }, { status: 401 });
     }
