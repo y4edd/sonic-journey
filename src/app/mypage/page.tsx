@@ -13,7 +13,7 @@ import styles from "./page.module.css";
 
 const MyPage = async () => {
   // NOTE: cookieからtokenを取得し、ログインしているか確認
-  const token = getTokenFromCookie();
+  const token = await getTokenFromCookie();
   const isLoggedin = await checkLoggedInServer(token);
 
   if (!isLoggedin) {

@@ -12,7 +12,7 @@ import styles from "./page.module.css";
 
 const PlayList = async () => {
   // クッキーからトークン取得
-  const token = getTokenFromCookie();
+  const token =  await getTokenFromCookie();
 
   const isLoggedin = await checkLoggedInServer(token);
 

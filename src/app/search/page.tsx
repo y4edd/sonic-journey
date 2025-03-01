@@ -4,16 +4,17 @@ import BreadList from "@/components/top/BreadList/BreadList";
 import FreeSearch from "@/components/top/FreeSearch/FreeSearch";
 import styles from "./page.module.css";
 
-const Search = ({
+const Search = async({
   searchParams,
 }: {
-  searchParams: { [key: string]: string };
+  searchParams: Promise<{ [key: string]: string }>;
 }) => {
+  const params = await searchParams;
   //searchParamsでクエリパラメータを取得
-  const freeWord = searchParams.q;
-  const searchTotal = searchParams.n;
-  const kind = searchParams.k;
-  const style = searchParams.s;
+  const freeWord = params.q;
+  const searchTotal = params.n;
+  const kind = params.k;
+  const style = params.s;
   return (
     <div>
       <BreadList

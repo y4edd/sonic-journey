@@ -15,7 +15,7 @@ type favoriteSong = {
 
 const EditFavoriteSongs = async () => {
   // cookieからtokenを取得し、ログインしているか確認する
-  const token = getTokenFromCookie();
+  const token = await getTokenFromCookie();
   const isLoggedin = await checkLoggedInServer(token);
 
   if (!isLoggedin) {

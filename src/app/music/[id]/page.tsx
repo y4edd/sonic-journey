@@ -9,13 +9,13 @@ import type { ReadonlyURLSearchParams } from "next/navigation";
 import styles from "./page.module.css";
 
 type SongPageProps = {
-  params: { id: string };
-  searchParams: ReadonlyURLSearchParams;
+  params: Promise<{ id: string }>;
+  searchParams: Promise<ReadonlyURLSearchParams>;
 };
 
 const SongPage = async ({ params }: SongPageProps) => {
   // クエリパラメーターから楽曲id取得
-  const { id } = params;
+  const { id } =await params;
 
   // 取得したidの楽曲情報を取得
   const { resSongData } = await getSong(Number(id));

@@ -55,8 +55,6 @@ const Login = () => {
         setTimeout(() => {
           router.push("/");
         }, 1500);
-
-        router.push("/");
       }
     } catch (err) {
       console.log(err);

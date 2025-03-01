@@ -19,9 +19,9 @@ type PlaylistInfo = {
   playlistSongs: { api_song_id: number }[];
 };
 
-const Page = async ({ params }: { params: { id: number } }) => {
-  const { id } = params;
-  const token = getTokenFromCookie();
+const Page = async ({ params }: { params: Promise<{ id: number }> }) => {
+  const { id } = await params;
+  const token = await getTokenFromCookie();
   try {
     const res = await fetch(`http://localhost:3000/api/playlistSong?id=${id}`, {
       cache: "no-cache",

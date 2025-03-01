@@ -7,12 +7,12 @@ import { getArtist, getArtistAlbum, getArtistSongs } from "@/utils/apiFunc";
 import styles from "./page.module.css";
 
 type ArtistPageProps = {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 };
 
 const ArtistPage = async ({ params }: ArtistPageProps) => {
   // クエリパラメーターからアーティストid取得
-  const { id } = params;
+  const { id } = await params;
   const artistData = await getArtist(Number(id));
 
   // 取得したアーティストidから楽曲情報を取得

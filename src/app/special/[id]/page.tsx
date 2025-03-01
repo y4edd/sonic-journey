@@ -4,12 +4,12 @@ import BreadList from "@/components/top/BreadList/BreadList";
 import type { ReadonlyURLSearchParams } from "next/navigation";
 
 type SongPageProps = {
-  params: { id: number };
-  searchParams: ReadonlyURLSearchParams;
+  params: Promise<{ id: number }>;
+  searchParams: Promise<ReadonlyURLSearchParams>;
 };
 
 const Page = async ({ params }: SongPageProps) => {
-  const { id } = params;
+  const { id } = await params;
   const specialOverViews = await getSpecialImage();
   const specialOverView = specialOverViews[id - 1];
   return (

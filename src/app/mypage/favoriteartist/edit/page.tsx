@@ -15,7 +15,7 @@ type favoriteArtist = {
 
 const EditFavoriteArtists = async () => {
   // ログイン確認をする
-  const token = getTokenFromCookie();
+  const token = await getTokenFromCookie();
   const isLoggedin = await checkLoggedInServer(token);
 
   if (!isLoggedin) {

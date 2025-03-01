@@ -10,13 +10,13 @@ import type { ReadonlyURLSearchParams } from "next/navigation";
 import styles from "./page.module.css";
 
 type AlbumPageProps = {
-  params: { id: string };
-  searchParams: ReadonlyURLSearchParams;
+  params: Promise<{ id: string }>;
+  searchParams: Promise<ReadonlyURLSearchParams>;
 };
 
 const AlbumPage = async ({ params }: AlbumPageProps) => {
   // クエリパラメーターからアルバムidを取得
-  const { id } = params;
+  const { id } = await params;
 
   // 取得したidのアルバム情報を取得
   const { resultData } = await getAlbum(Number(id));

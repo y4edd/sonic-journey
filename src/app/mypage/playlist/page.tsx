@@ -7,7 +7,7 @@ import { checkLoggedInServer } from "@/utils/apiFunc";
 import { getTokenFromCookie } from "@/utils/getTokenFromCookie";
 
 const PlayListPage = async () => {
-  const token = getTokenFromCookie();
+  const token = await getTokenFromCookie();
   const isLoggedin = await checkLoggedInServer(token);
   const userId = await getUserId(token);
 

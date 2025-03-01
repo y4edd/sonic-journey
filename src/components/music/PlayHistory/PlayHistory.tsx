@@ -8,7 +8,7 @@ import styles from "./PlayHistory.module.css";
 
 const PlayHistory = async () => {
   // クッキーからトークン取得
-  const token = getTokenFromCookie();
+  const token = await getTokenFromCookie();
 
   if (!token) {
     return (
