@@ -1,0 +1,13 @@
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"           # 依存ファイルのあるディレクトリ
+    schedule:
+      interval: "weekly"      # チェック頻度
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "fix(deps)"
+    rebase-strategy: "auto"
+    allow:
+      - dependency-type: "direct"
+    security-updates: true # 自動PRが作成される
