@@ -15,7 +15,7 @@ type SongPageProps = {
 
 const SongPage = async ({ params }: SongPageProps) => {
   // クエリパラメーターから楽曲id取得
-  const { id } =await params;
+  const { id } = await params;
 
   // 取得したidの楽曲情報を取得
   const { resSongData } = await getSong(Number(id));

@@ -4,7 +4,7 @@ import BreadList from "@/components/top/BreadList/BreadList";
 import FreeSearch from "@/components/top/FreeSearch/FreeSearch";
 import styles from "./page.module.css";
 
-const Search = async({
+const Search = async ({
   searchParams,
 }: {
   searchParams: Promise<{ [key: string]: string }>;
