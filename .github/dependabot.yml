@@ -1,13 +1,13 @@
-version: 2
+version: 2  # Dependabot の設定ファイルのバージョン
+
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"           # 依存ファイルのあるディレクトリ
+  - package-ecosystem: "npm"  # 依存関係のエコシステム（npm、yarn、pip、など）
+    directory: "/"  # 依存ファイル（package.json, package-lock.json）があるディレクトリ。ルートなら "/"
     schedule:
-      interval: "weekly"      # チェック頻度
-    open-pull-requests-limit: 5
+      interval: "daily"  # 依存関係の更新をチェックする頻度（"daily" / "weekly" / "monthly"）
+    open-pull-requests-limit: 5  # 同時に開けるPull Requestの上限
     commit-message:
-      prefix: "fix(deps)"
-    rebase-strategy: "auto"
+      prefix: "fix(deps)"  # PRのコミットメッセージのプレフィックス（例: "fix(deps): update x"）
+    rebase-strategy: "auto"  # 競合時のリベース戦略（"auto" = 自動でリベース）
     allow:
-      - dependency-type: "direct"
-    security-updates: true # 自動PRが作成される
+      - dependency-type: "direct"  # アップデート対象の依存タイプ（"direct" = 直接依存, "all" = すべて）
