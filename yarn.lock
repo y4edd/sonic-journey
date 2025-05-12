@@ -2726,6 +2726,11 @@
     use-resize-observer "^9.1.0"
     util-deprecate "^1.0.2"
 
+"@storybook/components@8.6.12":
+  version "8.6.12"
+  resolved "https://registry.yarnpkg.com/@storybook/components/-/components-8.6.12.tgz#8bfaf4bb061145c8a8acdda6f334691ad716b202"
+  integrity sha512-FiaE8xvCdvKC2arYusgtlDNZ77b8ysr8njAYQZwwaIHjy27TbR2tEpLDCmUwSbANNmivtc/xGEiDDwcNppMWlQ==
+
 "@storybook/core-client@7.6.20":
   version "7.6.20"
   resolved "https://registry.yarnpkg.com/@storybook/core-client/-/core-client-7.6.20.tgz#831681d64194e4d604a859ed3eb452981f6824c5"
@@ -2891,6 +2896,11 @@
     telejson "^7.2.0"
     ts-dedent "^2.0.0"
 
+"@storybook/manager-api@8.6.12":
+  version "8.6.12"
+  resolved "https://registry.yarnpkg.com/@storybook/manager-api/-/manager-api-8.6.12.tgz#a9169a3fb8de97ba406ed83314112d5c47d035ad"
+  integrity sha512-O0SpISeJLNTQvhSBOsWzzkCgs8vCjOq1578rwqHlC6jWWm4QmtfdyXqnv7rR1Hk08kQ+Dzqh0uhwHx0nfwy4nQ==
+
 "@storybook/nextjs@7.6.20":
   version "7.6.20"
   resolved "https://registry.yarnpkg.com/@storybook/nextjs/-/nextjs-7.6.20.tgz#d8f83c9b2d00d42301302f383ecbb31f0efd5c58"
@@ -3006,6 +3016,11 @@
     ts-dedent "^2.0.0"
     util-deprecate "^1.0.2"
 
+"@storybook/preview-api@8.6.12":
+  version "8.6.12"
+  resolved "https://registry.yarnpkg.com/@storybook/preview-api/-/preview-api-8.6.12.tgz#07ac0c697801d4c2ffe26afb2673d8a417bd63ef"
+  integrity sha512-84FE3Hrs0AYKHqpDZOwx1S/ffOfxBdL65lhCoeI8GoWwCkzwa9zEP3kvXBo/BnEDO7nAfxvMhjASTZXbKRJh5Q==
+
 "@storybook/preview@7.6.20":
   version "7.6.20"
   resolved "https://registry.yarnpkg.com/@storybook/preview/-/preview-7.6.20.tgz#df39739dce6e183efaf06a8c15a9459f019e631b"
@@ -3060,6 +3075,18 @@
     ts-dedent "^2.0.0"
     type-fest "~2.19"
     util-deprecate "^1.0.2"
+
+"@storybook/react@8.6.12":
+  version "8.6.12"
+  resolved "https://registry.yarnpkg.com/@storybook/react/-/react-8.6.12.tgz#b3918a83555973a90fb132843c080465ec1bea66"
+  integrity sha512-NzxlHLA5DkDgZM/dMwTYinuzRs6rsUPmlqP+NIv6YaciQ4NGnTYyOC7R/SqI6HHFm8ZZ5eMYvpfiFmhZ9rU+rQ==
+  dependencies:
+    "@storybook/components" "8.6.12"
+    "@storybook/global" "^5.0.0"
+    "@storybook/manager-api" "8.6.12"
+    "@storybook/preview-api" "8.6.12"
+    "@storybook/react-dom-shim" "8.6.12"
+    "@storybook/theming" "8.6.12"
 
 "@storybook/router@7.6.20":
   version "7.6.20"
@@ -3431,20 +3458,15 @@
     "@types/estree" "*"
     "@types/json-schema" "*"
 
-"@types/estree@*", "@types/estree@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@types/estree/-/estree-1.0.6.tgz#628effeeae2064a1b4e79f78e81d87b7e5fc7b50"
-  integrity sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==
+"@types/estree@*", "@types/estree@^1.0.0", "@types/estree@^1.0.6":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@types/estree/-/estree-1.0.7.tgz#4158d3105276773d5b7695cd4834b1722e4f37a8"
+  integrity sha512-w28IoSUCJpidD/TGviZwwMJckNESJZXFu7NBZ5YJ4mEUnNraUn9Pm8HSZm/jDF1pDWYKspWE7oVphigUPRakIQ==
 
 "@types/estree@^0.0.51":
   version "0.0.51"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.51.tgz#cfd70924a25a3fd32b218e5e420e6897e1ac4f40"
   integrity sha512-CuPgU6f3eT/XgKKPqKd/gLZV1Xmvf1a2R5POBOGQa6uv82xpls89HU5zKeVoyR8XzHd1RGNOlQlvUe3CFkjWNQ==
-
-"@types/estree@^1.0.0":
-  version "1.0.7"
-  resolved "https://registry.yarnpkg.com/@types/estree/-/estree-1.0.7.tgz#4158d3105276773d5b7695cd4834b1722e4f37a8"
-  integrity sha512-w28IoSUCJpidD/TGviZwwMJckNESJZXFu7NBZ5YJ4mEUnNraUn9Pm8HSZm/jDF1pDWYKspWE7oVphigUPRakIQ==
 
 "@types/express-serve-static-core@^4.17.33":
   version "4.19.6"
